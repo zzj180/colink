@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="13dp"
+        android:background="#97C3D2"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressBarWaiting"
+        style="@style/ProgressBarHorizontalStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="4dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+         />
+    <TextView
+        android:id="@+id/callDialogName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Name"
+        android:textColor="#F6F6F6"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/callDialogNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Number"
+        android:textColor="#F6F6F6"
+        android:textSize="28sp" />
+
+</LinearLayout>

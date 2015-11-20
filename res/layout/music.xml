@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home" >
+
+   <!--  <TextView
+        android:id="@+id/a2dpState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="@dimen/text_music_x"
+        android:layout_y="@dimen/button_contact_back_y"
+        android:textSize="18sp"
+        android:text="" /> -->
+
+    <ImageView
+        android:layout_width="@dimen/middle_music_size"
+        android:layout_height="@dimen/middle_music_size"
+        android:layout_x="@dimen/middle_music_x"
+        android:layout_y="@dimen/middle_music_y"
+        android:src="@drawable/middle" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="@dimen/button_contact_back_width"
+        android:layout_height="@dimen/button_contact_back_height"
+        android:layout_x="@dimen/button_contact_back_x"
+        android:layout_y="@dimen/button_contact_back_y"
+        android:background="@drawable/back_button" />
+
+<!--     <ImageButton
+        android:id="@+id/sound"
+        android:layout_width="@dimen/button_sound_width"
+        android:layout_height="@dimen/button_sound_height"
+        android:layout_x="@dimen/button_sound_x"
+        android:layout_y="@dimen/button_sound_y"
+        android:background="@drawable/sound" /> -->
+
+    <ImageButton
+        android:id="@+id/prev"
+        android:layout_width="@dimen/button_sound_width"
+        android:layout_height="@dimen/button_sound_height"
+        android:layout_x="@dimen/button_prev_x"
+        android:layout_y="@dimen/button_sound_y"
+        android:background="@drawable/prev" />
+
+    <ImageButton
+        android:id="@+id/play"
+        android:layout_width="@dimen/button_play_width"
+        android:layout_height="@dimen/button_play_height"
+        android:layout_x="@dimen/button_play_x"
+        android:layout_y="@dimen/button_play_y"
+        android:background="@drawable/play" />
+    <ImageButton
+        android:id="@+id/pause"
+        android:layout_width="@dimen/button_play_width"
+        android:layout_height="@dimen/button_play_height"
+        android:layout_x="@dimen/button_play_x"
+        android:layout_y="@dimen/button_play_y"
+        android:visibility="gone"
+        android:background="@drawable/pause" />
+    
+    <ImageButton
+        android:id="@+id/next"
+        android:layout_width="@dimen/button_sound_width"
+        android:layout_height="@dimen/button_sound_height"
+        android:layout_x="@dimen/button_next_x"
+        android:layout_y="@dimen/button_sound_y"
+        android:background="@drawable/next" />
+    
+    <ImageButton
+        android:id="@+id/stop"
+        android:layout_width="@dimen/button_sound_width"
+        android:layout_height="@dimen/button_sound_height"
+        android:layout_x="@dimen/button_stop_x"
+        android:layout_y="@dimen/button_sound_y"
+        android:background="@drawable/stop" />
+
+   <!--  <ImageView
+        android:id="@+id/voice_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="@dimen/button_play_x"
+        android:layout_y="@dimen/voice_volume_y"
+        android:src="@drawable/voice_volume" /> -->
+
+</AbsoluteLayout>

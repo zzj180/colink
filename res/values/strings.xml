@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BlueToothe2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+  <string name="app_id">=54b9e699</string>
+   <string name="preference_default_tts_role">xiaoyan</string>
+    <string name="preference_key_tts_speed">60</string>
+    <string name="preference_key_tts_volume">78</string>
+    <string name="preference_key_tts_pitch">50</string>
+    <string name="count"><Data> &lt;font color=#f16f0f>%1$d&lt;/font> 位联系人</Data></string>
+    
+    <string name="callin">正在通话</string>
+    <string name="calling">正在拨号</string>
+    <string name="callwait">来电通知</string>
+    
+    <string name="connected">蓝牙已连接</string>
+    <string name="unconnect">蓝牙未连接</string>
+    
+    <string name="a2dpconnected">蓝牙音频已连接</string>
+    <string name="a2dpdisconnected">蓝牙音频已断开</string>
+    <string name="a2dpstreaming">蓝牙音频传送中</string>
+    <string name="a2dpconnecting">蓝牙音频连接中</string>
+    
+    <string name="noPhoneBook">通讯录中没有电话本</string>
+</resources>

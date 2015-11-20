@@ -1,0 +1,94 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home" >
+
+    <ImageButton
+        android:id="@+id/contact_dial"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_contact_left"
+        android:layout_y="@dimen/button_contact_on"
+        android:background="@drawable/dial_button" />
+    <ImageButton
+        android:id="@+id/download"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_contact_left"
+        android:layout_y="@dimen/button_contact_middle"
+        android:background="@drawable/download_button" />
+    <ImageButton
+        android:id="@+id/contact_del"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_contact_left"
+        android:layout_y="@dimen/button_contact_lower"
+        android:background="@drawable/contact_del_button" />
+<FrameLayout
+    android:layout_width="@dimen/contact_bg_width"
+        android:layout_height="@dimen/contact_bg_height"
+        android:layout_x="@dimen/contact_bg_x"
+        android:layout_y="@dimen/contact_bg_y"
+        android:background="@drawable/list_bg">
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	 android:fastScrollAlwaysVisible="true"
+    	 android:fastScrollEnabled="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:choiceMode="singleChoice"
+    	android:scrollbarTrackVertical="@drawable/longtiao"
+    	android:scrollbarThumbVertical="@drawable/slider"
+		android:divider="@drawable/trabecula"  
+		android:layout_marginRight="30dp"
+    	android:dividerHeight="6dp" 
+    	android:layout_marginTop="20dp" 
+    	android:layout_marginBottom="20dp" 
+    	android:paddingLeft="30dp" 
+    	android:paddingRight="60dp" 
+    	android:drawSelectorOnTop="true"
+    	android:fadeScrollbars="true"
+    	android:transcriptMode="alwaysScroll" 
+    	android:cacheColorHint="#00000000" 
+    	android:fadingEdge="none"
+         >
+        
+    </ListView>
+
+     <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/testProgressBarStyle"
+        android:visibility="gone" /> 
+	<!-- <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+		android:indeterminateDrawable="@drawable/progressbar" /> -->
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="@dimen/button_contact_back_width"
+        android:layout_height="@dimen/button_contact_back_height"
+        android:layout_x="@dimen/button_contact_back_x"
+        android:layout_y="@dimen/button_contact_back_y"
+        android:background="@drawable/back_button" />
+
+    <TextView
+        android:id="@+id/textView1"
+      android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_contact_back_height"
+        android:layout_x="@dimen/contact_bg_x"
+        android:layout_y="@dimen/button_contact_back_y"
+        android:text="0 位联系人" />
+
+   </AbsoluteLayout>
+
+
