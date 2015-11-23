@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayoutOtherDaysWeather"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="@dimen/weather_padding_top1" >
+
+            <TextView
+                android:id="@+id/textViewWeatherSecondDayDatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/grey_white"
+                android:textSize="@dimen/weather_smaller_text_size" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherSecondDayWeather"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/weather_image_margin_bottom1"
+                    android:layout_marginTop="@dimen/weather_image_margin_top1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_weather_rainstorm_big" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherSecondDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageViewWeatherSecondDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherSecondDayWind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherSecondDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherSecondDayTemperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherSecondDayWind"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line_list_divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="@dimen/weather_padding_top1" >
+
+            <TextView
+                android:id="@+id/textViewWeatherThirdDayDatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/grey_white"
+                android:textSize="@dimen/weather_smaller_text_size" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherThirdDayWeather"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/weather_image_margin_bottom1"
+                    android:layout_marginTop="@dimen/weather_image_margin_top1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_weather_cloudy" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherThirdDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageViewWeatherThirdDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherThirdDayWind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherThirdDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherThirdDayTemperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherThirdDayWind"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line_list_divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="@dimen/weather_padding_top1" >
+
+            <TextView
+                android:id="@+id/textViewWeatherFouthDayDatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/grey_white"
+                android:textSize="@dimen/weather_smaller_text_size" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherFouthDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/weather_image_margin_bottom1"
+                    android:layout_marginTop="@dimen/weather_image_margin_top1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_weather_snow_heavy" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFouthDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageViewWeatherFouthDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFouthDayWind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherFouthDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFouthDayTemperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherFouthDayWind"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line_list_divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="@dimen/weather_padding_top1" >
+
+            <TextView
+                android:id="@+id/textViewWeatherFifthDayDatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/grey_white"
+                android:textSize="@dimen/weather_smaller_text_size" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherFifthDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/weather_image_margin_bottom1"
+                    android:layout_marginTop="@dimen/weather_image_margin_top1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_weather_hail" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFifthDayWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageViewWeatherFifthDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFifthDayWind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherFifthDayWeather"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+
+                <TextView
+                    android:id="@+id/textViewWeatherFifthDayTemperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewWeatherFifthDayWind"
+                    android:gravity="center"
+                    android:textColor="@color/grey_white"
+                    android:textSize="@dimen/weather_smaller_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

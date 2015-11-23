@@ -1,0 +1,44 @@
+-----------------------------------------------------------------------
+--UnicarGUI XD develop branch------------------------------------------
+-----------------------------------------------------------------------
+--Branch Name: uniCarSolution_dev_xd
+--Create by: hexiaodong@unisound.com
+--Based on : UnicarGUI main branch at 20150929
+-----------------------------------------------------------------------
+
+--Release Note Below
+
+-----------------------------------------------------------------------
+--Release Date: 20151010
+--Release By: hexiaodong@unisound.com
+--Note: First release
+--New Features:
+
+1. Add Web chat show View
+
+2. Gaode & Baidu Navigation without map
+
+3. KuWo Music SDK update from v1.2 to v1.3.
+   Update time: 20150923 
+   *APK needed: kwplayerhd_ar_2.1.0.0_yunzhisheng.apk
+   
+4. UniDriveFM AIDL control 
+   Update time: 20150923 
+   *APK needed: UniDriveXmFM_v0.4.apk
+
+5. XiMaLaYa FM AIDL control 
+   Update time: 201501010 
+   *APK needed: TingCarApp_20151009.apk
+   *Library Project need: XmSpeechControl (This Project will be replaced by jar later)
+
+6. OneShot (LP, XD 20151010 merged)
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+--Update Date: 
+--Update By: 
+--Note: 
+--New Features:
+
+
+-----------------------------------------------------------------------

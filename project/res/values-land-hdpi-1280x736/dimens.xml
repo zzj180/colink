@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="float_window_def">5dp</dimen>
+    <!-- menu -->
+    <dimen name="menu_width">60dp</dimen>
+    <!-- session padding -->
+    <dimen name="session_padding_left">9dp</dimen>
+    <dimen name="session_padding_right">9dp</dimen>
+    <dimen name="session_padding_top">9dp</dimen>
+    <dimen name="session_padding_bottom">9dp</dimen>
+
+    <!-- session text padding -->
+    <dimen name="session_text_padding_left">30dp</dimen>
+    <dimen name="session_text_padding_right">25dp</dimen>
+    <dimen name="session_text_padding_top">15dp</dimen>
+    <dimen name="session_text_padding_bottom">15dp</dimen>
+
+    <!-- function padding -->
+    <dimen name="function_padding_left">6.5dp</dimen>
+    <dimen name="function_padding_right">6.5dp</dimen>
+    <dimen name="function_padding_top">2.5dp</dimen>
+    <dimen name="function_padding_bottom">5dp</dimen>
+
+    <!-- pick persion padding -->
+    <dimen name="pick_persion_padding_left">6dp</dimen>
+    <dimen name="pick_persion_padding_right">16.7dp</dimen>
+    <dimen name="pick_persion_padding_top">20dp</dimen>
+    <dimen name="pick_persion_padding_bottom">8dp</dimen>
+
+    <!-- pick phone number padding -->
+    <dimen name="pick_phone_number_padding_left">6dp</dimen>
+    <dimen name="pick_phone_number_padding_right">6dp</dimen>
+    <dimen name="pick_phone_number_padding_top">6dp</dimen>
+    <dimen name="pick_phone_number_padding_bottom">6dp</dimen>
+
+    <!-- pick view -->
+    <dimen name="pick_view_cancel_button_height">40dp</dimen>
+
+    <!-- pick app padding -->
+    <dimen name="pick_app_padding_left">6dp</dimen>
+    <dimen name="pick_app_padding_right">6dp</dimen>
+    <dimen name="pick_app_padding_top">6dp</dimen>
+    <dimen name="pick_app_padding_bottom">8dp</dimen>
+
+    <!-- pick music padding -->
+    <dimen name="pick_music_padding_left">6dp</dimen>
+    <dimen name="pick_music_padding_right">7dp</dimen>
+    <dimen name="pick_music_padding_top">5dp</dimen>
+    <dimen name="pick_music_padding_bottom">8dp</dimen>
+
+    <!-- call content view padding -->
+    <dimen name="call_content_view_margin_left">0dp</dimen>
+    <dimen name="call_content_view_margin_right">0dp</dimen>
+    <dimen name="call_content_view_margin_top">0dp</dimen>
+    <dimen name="call_content_view_margin_bottom">0dp</dimen>
+
+    <!-- Datetime pick item text size -->
+    <dimen name="wheel_view_item_text_size">16sp</dimen>
+    <dimen name="poi_sort_list_divider_height">0.9dp</dimen>
+    <dimen name="poi_sort_list_item_width">120dp</dimen>
+    <dimen name="pick_app_content_view_header_height">13dp</dimen>
+
+    <!-- Poi -->
+    <dimen name="poi_list_divier_margin">5dp</dimen>
+    <dimen name="window_width">630dp</dimen>
+    <dimen name="window_height">270dp</dimen>
+    <dimen name="mic_height">64dp</dimen>
+    <dimen name="mic_icon">45dp</dimen>
+    <dimen name="container_height">190dp</dimen>
+    <dimen name="pick_view_cancel_button_textsize">12sp</dimen>
+    <dimen name="slidingmenu_offset">90dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">5dp</dimen>
+
+    <integer name="num_cols">1</integer>
+    
+    <dimen name="banner_paddingTop">0dp</dimen>
+    <dimen name="second_page_banner_height">55dp</dimen> 
+    <dimen name="mainview_setting_icon">45dp</dimen>
+    
+    <dimen name="homepage_itemtextview_padding">10dp</dimen>
+      
+    <dimen name="mic_control_height">95dp</dimen>
+    <dimen name="title_bar_paddingTop">5dp</dimen>
+
+    <dimen name="stock_normal_text_size">20sp</dimen>
+    <dimen name="stock_bigger_text_size">23sp</dimen>
+    <dimen name="stock_biggest_text_size">40sp</dimen>
+    <dimen name="weather_image_margin_top1">14dp</dimen>
+    <dimen name="weather_image_margin_bottom1">14dp</dimen>
+    <dimen name="weather_smaller_text_size">15sp</dimen>
+    <dimen name="mic_text_answer_margin">95dp</dimen>
+    <dimen name="session_contain_height">200dp</dimen>
+</resources>

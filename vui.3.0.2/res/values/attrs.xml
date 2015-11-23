@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MyView -->
+    <declare-styleable name="MyView">
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textWordMargin" format="dimension" />
+        <attr name="textLineMargin" format="dimension" />
+        <attr name="textBackground" format="integer" />
+        <attr name="textPaddingLeft" format="dimension" />
+        <attr name="textPaddingRight" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textPaddingBottom" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="LinedEditText">
+
+        <!-- 线条的宽度 -->
+        <attr name="line_stoke_width" format="dimension" />
+        <!-- 实线宽度 -->
+        <attr name="line_dash_on_width" format="dimension" />
+        <!-- 虚线的宽度 -->
+        <attr name="line_dash_off_width" format="dimension" />
+        <!-- 线条的颜色 -->
+        <attr name="line_color" format="color" />
+        <!-- 划线的条件 -->
+        <attr name="lines_according">
+
+            <!-- 根据输入的行数划线 -->
+            <enum name="line_count" value="1" />
+            <!-- 根据控件高度画出所有的线 -->
+            <enum name="view_height" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MicrophoneControl">
+
+        <!--
+        <attr name="mode_middle_width" format="dimension" />
+        <attr name="point_horizontal_dash" format="dimension" />
+        <attr name="point_vertical_dash" format="dimension" />
+        -->
+        <attr name="circle_radius" format="dimension" />
+        <attr name="circle_color" format="color" />
+        <!-- <attr name="end_color" format="color" /> -->
+    </declare-styleable>
+    <declare-styleable name="TitlePageIndicator">
+
+        <!-- Screen edge padding. -->
+        <attr name="clipPadding" format="dimension" />
+        <!-- Color of the footer line and indicator. -->
+        <attr name="footerColor" format="color" />
+        <!-- Height of the footer line. -->
+        <attr name="footerLineHeight" format="dimension" />
+        <!-- Style of the indicator. Default is triangle. -->
+        <attr name="footerIndicatorStyle">
+            <enum name="none" value="0" />
+            <enum name="triangle" value="1" />
+            <enum name="underline" value="2" />
+        </attr>
+        <!-- Height of the indicator above the footer line. -->
+        <attr name="footerIndicatorHeight" format="dimension" />
+        <!-- Left and right padding of the underline indicator. -->
+        <attr name="footerIndicatorUnderlinePadding" format="dimension" />
+        <!-- Padding between the bottom of the title and the footer. -->
+        <attr name="footerPadding" format="dimension" />
+        <!-- Position of the line. -->
+        <attr name="linePosition">
+            <enum name="bottom" value="0" />
+            <enum name="top" value="1" />
+        </attr>
+        <!-- Color of the selected title. -->
+        <attr name="selectedColor" format="color|reference" />
+        <!-- Whether or not the selected item is displayed as bold. -->
+        <attr name="selectedBold" format="boolean" />
+        <!-- Color of regular titles. -->
+        <attr name="android:textColor" />
+        <!-- Size of title text. -->
+        <attr name="android:textSize" />
+        <!-- Padding between titles when bumping into each other. -->
+        <attr name="titlePadding" format="dimension" />
+        <!-- Padding between titles and the top of the View. -->
+        <attr name="topPadding" format="dimension" />
+        <!-- View background -->
+        <attr name="android:background" />
+    </declare-styleable>
+    <declare-styleable name="CalendarView">
+
+        <!-- The first day of week according to {@link java.util.Calendar}. -->
+        <attr name="firstDayOfWeek" format="integer" />
+        <!-- The minimal date shown by this calendar view in mm/dd/yyyy format. -->
+        <attr name="minDate" format="string" />
+        <!-- The minimal date shown by this calendar view in mm/dd/yyyy format. -->
+        <attr name="maxDate" format="string" />
+        <!-- Drawable for the cell of the selected date. -->
+        <attr name="selectedDateBackground" format="color|reference" />
+        <!-- The text appearance for the week day abbreviation of the calendar header. -->
+        <attr name="weekDayTextColor" format="color|reference" />
+        <attr name="weekDayBackground" format="color|reference" />
+        <attr name="weekDayTextSize" format="dimension" />
+        <attr name="weekDayHeight" format="dimension" />
+        <!-- The text appearance for the calendar date month. -->
+        <attr name="dateTextAppearance" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="CalendarViewCell">
+        <attr name="lineStrokeWidth" format="dimension" />
+        <attr name="lineColor" format="color|reference" />
+        <attr name="dayTextSize" format="dimension" />
+        <attr name="dayTextColor" format="color|reference" />
+        <attr name="weekendDayTextColor" format="color|reference" />
+        <attr name="todayBackgroundColor" format="color|reference" />
+        <!-- The number of weeks to be shown. -->
+        <!-- <attr name="shownWeekCount" format="integer" /> -->
+        <!-- The background color for the selected week. -->
+        <!-- <attr name="selectedWeekBackgroundColor" format="color|reference" /> -->
+        <!-- The color for the dates of the focused month. -->
+        <!-- <attr name="focusedMonthDateColor" format="color|reference" /> -->
+        <!-- The color for the dates of an unfocused month. -->
+        <!-- <attr name="unfocusedMonthDateColor" format="color|reference" /> -->
+        <!-- The color for the week numbers. -->
+        <!-- <attr name="weekNumberColor" format="color|reference" /> -->
+        <!-- The color for the separator line between weeks. -->
+        <!-- <attr name="weekSeparatorLineColor" format="color|reference" /> -->
+        <!-- Drawable for the vertical bar shown at the beginning and at the end of the selected date. -->
+        <!-- <attr name="selectedDateVerticalBar" format="reference" /> -->
+        <!-- The text appearance for the week day abbreviation of the calendar header. -->
+        <!-- <attr name="weekDayTextColor" format="color|reference" /> -->
+        <!-- <attr name="weekDayBackground" format="color|reference" /> -->
+        <!-- <attr name="weekDayTextSize" format="dimension" /> -->
+        <!-- <attr name="weekDayHeight" format="dimension" /> -->
+        <!-- The text appearance for the calendar dates. -->
+        <!-- <attr name="dateTextAppearance" format="reference" /> -->
+    </declare-styleable>
+    <declare-styleable name="SlidingMenu">
+        <attr name="mode">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="viewAbove" format="reference" />
+        <attr name="viewBehind" format="reference" />
+        <attr name="behindOffset" format="dimension" />
+        <attr name="behindWidth" format="dimension" />
+        <attr name="behindScrollScale" format="float" />
+        <attr name="touchModeAbove">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
+        <attr name="touchModeBehind">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
+        <attr name="shadowDrawable" format="reference" />
+        <attr name="shadowWidth" format="dimension" />
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="fadeDegree" format="float" />
+        <attr name="selectorEnabled" format="boolean" />
+        <attr name="selectorDrawable" format="reference" />
+    </declare-styleable>
+
+</resources>

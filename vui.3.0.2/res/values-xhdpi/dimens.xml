@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 主界面 -->
+    <dimen name="title_height">65dp</dimen>
+    <dimen name="setting_sideline">10dp</dimen>
+    <dimen name="title_setting_right">10dp</dimen>
+    <dimen name="pic_text_distance">40dp</dimen>
+    <dimen name="banner_paddingTop">0dp</dimen>
+    <dimen name="second_page_banner_height">52dp</dimen>
+    <dimen name="mainview_setting_icon">42dp</dimen>
+    <dimen name="mic_control_height">95dp</dimen>
+    <!-- 浮球与对话框 -->
+    <dimen name="float_window_def">5dp</dimen>
+    <dimen name="window_width">630dp</dimen>
+    <dimen name="window_height">270dp</dimen>
+    <dimen name="sms_word_size">30dp</dimen>
+    <dimen name="prepare_windows_width">350dp</dimen>
+    <dimen name="prepare_windows_height">180dp</dimen>
+
+    <!-- help -->
+    <dimen name="help_menu_text_size">25sp</dimen>
+    <dimen name="help_menu_subtext_size">20sp</dimen>
+    <dimen name="help_submenu_text_size">20sp</dimen>
+    <dimen name="help_menu_margin">30dp</dimen>
+    <dimen name="help_menu_text_padding">8dp</dimen>
+    <dimen name="help_submenu_text_padding">5dp</dimen>
+    <dimen name="help_title_text_padding">5dp</dimen>
+    <dimen name="help_title_text_size">30sp</dimen>
+
+    <!-- pick phone number padding -->
+    <dimen name="pick_header_contact">40dp</dimen>
+    <dimen name="pick_phone_number_padding_left">-8dp</dimen>
+    <dimen name="pick_phone_number_padding_right">-8dp</dimen>
+    <dimen name="pick_phone_number_padding_top">0dp</dimen>
+    <dimen name="pick_phone_number_padding_bottom">0dp</dimen>
+
+    <!-- sms input content edittext height -->
+    <dimen name="sms_edittext_height">115dp</dimen>
+    <dimen name="homepage_itemtextview_padding">20dp</dimen>
+
+</resources>

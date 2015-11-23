@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_page_background" >
+
+    <RelativeLayout
+        android:id="@+id/top_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/second_page_banner_height" >
+
+        <TextView
+            android:id="@+id/tv_title_function_name"
+            style="@style/text_activity_title_f2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/common_control" />
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/title_setting_margin"
+            android:background="@drawable/btn_menu_back" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomPannel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_pannel"
+        android:background="@drawable/features_list_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lv_help_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:divider="@null" />
+    </LinearLayout>
+
+</RelativeLayout>

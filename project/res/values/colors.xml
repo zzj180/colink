@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <color name="blue">#0099CC</color>
+    <color name="dark_blue">#003567</color>
+    <color name="black">#000000</color>
+    <color name="brown">#3D3D3D</color>
+    <color name="grey">#777777</color>
+    <color name="red">#CC0000</color>
+    <color name="gren">#669900</color>
+    <color name="light_grey">#CCCCCC</color>
+    <color name="grey_white">#F6F6F6</color>
+    <color name="menu_item_pressed">#2B2B2B</color>
+    <color name="menu_divider">#404040</color>
+    <color name="page_memo_management_header">#E6E6E6</color>
+    <color name="page_memo_management_bg">#F2F2F2</color>
+    <color name="state_selected">#33B5E5</color>
+    <color name="state_pressed">#7BC7E1</color>
+    <color name="state_focused">#00BAFF</color>
+    <color name="music_item_bg_normal">#666666</color>
+    <color name="music_item_bg_pressed">#4D33B5E5</color>
+    <color name="text_stock_name">#003567</color>
+    <color name="title_bg">#97C3D2</color>
+    <color name="text_focus">#0099CC</color>
+    <color name="text_memo_management_header">#666666</color>
+    <color name="text_custom_dialog_title">#004986</color>
+    <color name="microphone_bg">#111824</color>
+    <color name="prompt_bg">#111824</color>
+    <color name="session_container_bg">#051329</color>
+    <color name="space_grey">#9B9B9B</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- 2013.03.22 added by shichao for new sms dialog -->
+    <color name="sms_title">#a0000000</color>
+    <color name="sms_line">#D9D9D9</color>
+    <color name="text_color_widget">#81909c</color>
+    <!--  -->
+    
+    <color name="item_pressed">#333f50</color>
+    
+    <color name="function_item">#3a3d42</color>
+    <color name="function_item_pressed">#272b2e</color>
+    
+    <!-- xiaodong added 20150610 -->
+    <color name="main_page_background">#FF181C26</color>
+    <color name="session_page_background">#E6020C19</color>
+    
+    <color name="weather_background">#2d3c4f</color>
+    <color name="weather_focus_day">#116afe</color>
+    
+    <color name="color_main_auto_help_text">#B2B2B2</color>
+    <color name="color_asr_result_text">#00a8ff</color>
+    
+    <color name="prepare_navi_active">#32364d</color>
+    <color name="prepare_navi">#1e2336</color>
+
+</resources>
