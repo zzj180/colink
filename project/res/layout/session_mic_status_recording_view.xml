@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    >
+
+
+    <!-- show mic status text -->
+    <TextView
+        android:id="@+id/tv_session_mic_status_recording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/mic_recording"
+        style="@style/text_session_title_f1"
+        />
+    
+    <!-- show mic status help text1 -->
+    <TextView
+        android:id="@+id/tv_session_mic_status_recording_tips1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="24dp"
+        android:text="@string/mic_recording"
+        style="@style/text_session_item_f3_tips_recording" />
+    
+    <!-- show mic status help text2 -->
+    <TextView
+        android:id="@+id/tv_session_mic_status_recording_tips2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:text="@string/mic_recording"
+        style="@style/text_session_item_f3_tips_recording" />
+    
+    <!-- show mic status help link -->
+    <TextView
+        android:id="@+id/tv_recording_help_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:text="@string/see_help"
+        style="@style/text_session_item_f4_tips" />
+
+</LinearLayout>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_page_background" >
+
+   <RelativeLayout
+        android:id="@+id/top_pannel"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/second_page_banner_height" 
+        >
+        <TextView
+            android:id="@+id/tv_title_function_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/bluetooth_conn"
+            style="@style/text_activity_title_f2"/>
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/title_setting_margin"
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/btn_menu_back"/>
+    </RelativeLayout>
+    
+   <LinearLayout 
+        android:layout_width="fill_parent"  
+	    android:layout_height="fill_parent" 
+	    android:background="@drawable/features_list_bg"
+	    android:gravity="center_vertical"
+        >
+
+   <ScrollView  
+	    android:layout_width="fill_parent"  
+	    android:layout_height="wrap_content"  
+	    android:scrollbars="vertical"  
+	    android:fadingEdge="vertical">
+        
+	   <LinearLayout
+	       android:layout_height="wrap_content"
+	       android:layout_width="match_parent"
+	       android:orientation="vertical"
+	       >
+	       <!-- 1:call out -->
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        >
+		        <LinearLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+			        android:orientation="horizontal"
+			        android:gravity="center_vertical"
+			        android:background="#19181C26"
+		            >
+		            <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:singleLine="true"
+				        android:text="@string/help_content_buletooth_item_call_out"
+				        style = "@style/text_session_item_f4_tips"
+				        />
+		        </LinearLayout>
+		        
+	            <LinearLayout 
+	                android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+			        android:gravity="center"
+		            android:layout_gravity="center_horizontal"
+		            >
+		            <TextView
+		                android:id="@+id/tv_help_call_offline_text_1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+		            
+		            <TextView
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/help_content_status_offline"
+				        style = "@style/text_session_item_f4_tips"
+				        android:visibility="visible"
+				        />
+	            </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="fill_parent"
+			        android:gravity="center"
+			        android:layout_height="@dimen/help_content_item_hight"
+			        android:orientation="horizontal"
+		            >
+			        <TextView
+				        android:id="@+id/tv_help_call_offline_text_2"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+				    <TextView
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/help_content_status_offline"
+				        style = "@style/text_session_item_f4_tips"
+				        android:visibility="visible"
+				        />
+		            </LinearLayout>
+		            
+		            <TextView
+				        android:id="@+id/tv_help_call_online_text_1"
+				        android:layout_width="fill_parent"
+			            android:layout_height="@dimen/help_content_item_hight"
+				        android:gravity="center"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+		            
+		            <TextView
+				        android:id="@+id/tv_help_call_online_text_2"
+				        android:layout_width="fill_parent"
+				        android:layout_height="@dimen/help_content_item_hight"
+				        android:gravity="center"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+		    </LinearLayout>
+		    
+		    <!-- 2:call incoming offline-->
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        >
+		        <RelativeLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+		            android:background="#19181C26"
+				    android:gravity="center_vertical"
+			        android:orientation="horizontal"
+		            >
+		            <TextView
+				        android:layout_height="wrap_content"
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:singleLine="true"
+				        android:text="@string/help_content_buletooth_item_call_in"
+				        style = "@style/text_session_item_f4_tips"
+				        />
+		        </RelativeLayout>
+		        
+	            <LinearLayout 
+	                android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+			        android:gravity="center"
+		            android:layout_gravity="center_horizontal"
+		            >
+		            <TextView
+		                android:id="@+id/tv_help_incall_offline_text_1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+		            <TextView
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/help_content_status_offline"
+				        style = "@style/text_session_item_f4_tips"
+				        android:visibility="visible"
+				        />
+	            </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+				    android:gravity="center"
+		            android:layout_gravity="center_horizontal"
+			        android:orientation="horizontal"
+		            >
+			        <TextView
+				        android:id="@+id/tv_help_incall_offline_text_2"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/head"
+				        style = "@style/text_session_item_f3"
+				        android:visibility="visible"
+				        />
+				    <TextView
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/help_content_status_offline"
+				        style = "@style/text_session_item_f4_tips"
+				        android:visibility="visible"
+				        />
+		            </LinearLayout>
+		    </LinearLayout>
+		    
+		
+		   <!-- 3:send sms online-->
+		 <!--    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+		        android:orientation="vertical"
+		        >
+		        <RelativeLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+			        android:background="#19181C26"
+				    android:gravity="center_vertical"
+			        android:orientation="horizontal"
+		            >
+		            <TextView
+				        android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+				        android:layout_height="wrap_content"
+				        android:singleLine="true"
+				        android:text="@string/help_content_buletooth_item_send_sms"
+				        style = "@style/text_session_item_f4_tips"
+				        />
+		        </RelativeLayout>
+		        
+	            <TextView
+	                android:id="@+id/tv_help_send_sms_online_text_1"
+			        android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+				    android:gravity="center"
+		            android:layout_gravity="center_horizontal"
+			        android:singleLine="true"
+			        android:text="@string/head"
+			        style = "@style/text_session_item_f3"
+			        android:visibility="visible"
+			        />
+		        
+		        <TextView
+			        android:id="@+id/tv_help_send_sms_online_text_2"
+			        android:layout_width="fill_parent"
+			        android:layout_height="@dimen/help_content_item_hight"
+		            android:gravity="center"
+		            android:layout_gravity="center_horizontal"
+			        android:singleLine="true"
+			        android:text="@string/head"
+			        style = "@style/text_session_item_f3"
+			        android:visibility="visible"
+			        />
+		       </LinearLayout>  -->
+		       
+	    </LinearLayout>
+    </ScrollView>
+   </LinearLayout>
+   
+</LinearLayout>

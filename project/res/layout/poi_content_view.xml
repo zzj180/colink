@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayoutPoiHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <com.unisound.unicar.gui.view.ELinearLayout
+        android:id="@+id/listPoi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </com.unisound.unicar.gui.view.ELinearLayout>
+
+    <TextView
+        android:id="@+id/textViewDataSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_dianping_logo"
+        android:drawablePadding="3dp"
+        android:text="@string/dianping_provide"
+        android:textColor="@color/grey"
+        android:textSize="12sp" />
+
+</LinearLayout>

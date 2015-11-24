@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_weather_other_first"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <TextView
+            android:id="@+id/tv_otherday_title_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="47dp"
+            android:text="今天"
+            style="@style/text_session_item_f4" />
+
+        <ImageView
+            android:id="@+id/iv_otherday_weather_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_otherday_title_first"
+            android:src="@drawable/ic_weather_sunny" />
+
+        <TextView
+            android:id="@+id/tv_otherday_weather_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_otherday_weather_first"
+            android:text="晴"
+            style="@style/text_session_item_f4" />
+
+        <TextView
+            android:id="@+id/tv_otherday_temperature_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="18-26°C"
+            style="@style/text_session_item_f5_tips"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_weather_other_second"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <TextView
+            android:id="@+id/tv_otherday_title_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+             android:layout_marginLeft="16dp"
+            android:layout_marginRight="47dp"
+            android:text="明天"
+            style="@style/text_session_item_f4"/>
+
+        <ImageView
+            android:id="@+id/iv_otherday_weather_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_otherday_title_second"
+            android:src="@drawable/ic_weather_rain_heavy" />
+
+        <TextView
+            android:id="@+id/tv_otherday_weather_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_otherday_weather_second"
+            android:text="雷阵雨"
+            style="@style/text_session_item_f4"/>
+
+        <TextView
+            android:id="@+id/tv_otherday_temperature_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="14-29°C"
+            style="@style/text_session_item_f5_tips" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_weather_other_third"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <TextView
+            android:id="@+id/tv_otherday_title_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="31dp"
+            android:text="星期三"
+            style="@style/text_session_item_f4" />
+
+        <ImageView
+            android:id="@+id/iv_otherday_weather_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_otherday_title_third"
+            android:src="@drawable/ic_weather_rain_light" />
+
+        <TextView
+            android:id="@+id/tv_otherday_weather_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_otherday_weather_third"
+            android:text="小雨"
+            style="@style/text_session_item_f4"/>
+
+        <TextView
+            android:id="@+id/tv_otherday_temperature_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="16-24°C"
+            style="@style/text_session_item_f5_tips"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_weather_other_fourth"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <TextView
+            android:id="@+id/tv_otherday_title_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="31dp"
+            android:text="星期四"
+            style="@style/text_session_item_f4"/>
+
+        <ImageView
+            android:id="@+id/iv_otherday_weather_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_otherday_title_fourth"
+            android:src="@drawable/ic_weather_cloudy" />
+
+        <TextView
+            android:id="@+id/tv_otherday_weather_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_otherday_weather_fourth"
+            android:text="多云转晴"
+            style="@style/text_session_item_f4"/>
+
+        <TextView
+            android:id="@+id/tv_otherday_temperature_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="20-28°C"
+            style="@style/text_session_item_f5_tips"/>
+    </RelativeLayout>
+
+</LinearLayout>

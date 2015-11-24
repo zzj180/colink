@@ -1,0 +1,3350 @@
+[1mdiff --git a/project/.classpath b/project/.classpath[m
+[1mdeleted file mode 100644[m
+[1mindex 1457e3c..0000000[m
+[1m--- a/project/.classpath[m
+[1m+++ /dev/null[m
+[36m@@ -1,9 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<classpath>[m
+[31m-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>[m
+[31m-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>[m
+[31m-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>[m
+[31m-	<classpathentry kind="src" path="src"/>[m
+[31m-	<classpathentry kind="src" path="gen"/>[m
+[31m-	<classpathentry kind="output" path="bin/classes"/>[m
+[31m-</classpath>[m
+[1mdiff --git a/project/.project b/project/.project[m
+[1mdeleted file mode 100644[m
+[1mindex 666bc47..0000000[m
+[1m--- a/project/.project[m
+[1m+++ /dev/null[m
+[36m@@ -1,33 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<projectDescription>[m
+[31m-	<name>uniCarSolution</name>[m
+[31m-	<comment></comment>[m
+[31m-	<projects>[m
+[31m-	</projects>[m
+[31m-	<buildSpec>[m
+[31m-		<buildCommand>[m
+[31m-			<name>com.android.ide.eclipse.adt.ResourceManagerBuilder</name>[m
+[31m-			<arguments>[m
+[31m-			</arguments>[m
+[31m-		</buildCommand>[m
+[31m-		<buildCommand>[m
+[31m-			<name>com.android.ide.eclipse.adt.PreCompilerBuilder</name>[m
+[31m-			<arguments>[m
+[31m-			</arguments>[m
+[31m-		</buildCommand>[m
+[31m-		<buildCommand>[m
+[31m-			<name>org.eclipse.jdt.core.javabuilder</name>[m
+[31m-			<arguments>[m
+[31m-			</arguments>[m
+[31m-		</buildCommand>[m
+[31m-		<buildCommand>[m
+[31m-			<name>com.android.ide.eclipse.adt.ApkBuilder</name>[m
+[31m-			<arguments>[m
+[31m-			</arguments>[m
+[31m-		</buildCommand>[m
+[31m-	</buildSpec>[m
+[31m-	<natures>[m
+[31m-		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>[m
+[31m-		<nature>org.eclipse.jdt.core.javanature</nature>[m
+[31m-	</natures>[m
+[31m-</projectDescription>[m
+[1mdiff --git a/project/.settings/org.eclipse.jdt.core.prefs b/project/.settings/org.eclipse.jdt.core.prefs[m
+[1mdeleted file mode 100644[m
+[1mindex b080d2d..0000000[m
+[1m--- a/project/.settings/org.eclipse.jdt.core.prefs[m
+[1m+++ /dev/null[m
+[36m@@ -1,4 +0,0 @@[m
+[31m-eclipse.preferences.version=1[m
+[31m-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6[m
+[31m-org.eclipse.jdt.core.compiler.compliance=1.6[m
+[31m-org.eclipse.jdt.core.compiler.source=1.6[m
+[1mdiff --git a/project/AndroidManifest.xml b/project/AndroidManifest.xml[m
+[1mdeleted file mode 100644[m
+[1mindex c189b09..0000000[m
+[1m--- a/project/AndroidManifest.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,300 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="utf-8"?>[m
+[31m-<manifest xmlns:android="http://schemas.android.com/apk/res/android"[m
+[31m-    package="com.coogo.inet.vui.assistant.car"[m
+[31m-    android:versionCode="83"[m
+[31m-	android:sharedUserId="android.uid.phone"[m
+[31m-    android:versionName="3.10.1.8" >[m
+[31m-<!-- package="com.unisound.unicar.gui" -->[m
+[31m-    <uses-sdk[m
+[31m-        android:minSdkVersion="8"[m
+[31m-        android:targetSdkVersion="19" />[m
+[31m-[m
+[31m-    <uses-permission android:name="android.permission.RECORD_AUDIO" />[m
+[31m-    <uses-permission android:name="android.permission.INTERNET" />[m
+[31m-    <uses-permission android:name="android.permission.WAKE_LOCK" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_LOGS" />[m
+[31m-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />[m
+[31m-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />[m
+[31m-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />[m
+[31m-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />[m
+[31m-    <uses-permission android:name="android.permission.READ_CONTACTS" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />[m
+[31m-    <uses-permission android:name="android.permission.BLUETOOTH" />[m
+[31m-    <uses-permission android:name="android.permission.VIBRATE" />[m
+[31m-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.CALL_PHONE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.SEND_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />[m
+[31m-    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />[m
+[31m-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_GPS" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_MMS" />[m
+[31m-    <uses-permission android:name="android.permission.GET_TASKS" />[m
+[31m-    <uses-permission android:name="android.permission.READ_CHATHISTORY" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_CHATHISTORY" />[m
+[31m-    [m
+[31m-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />[m
+[31m- 	<uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />[m
+[31m-[m
+[31m-    <supports-screens[m
+[31m-        android:anyDensity="true"[m
+[31m-        android:largeScreens="true"[m
+[31m-        android:normalScreens="false"[m
+[31m-        android:resizeable="true"[m
+[31m-        android:smallScreens="true" />[m
+[31m-[m
+[31m-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />[m
+[31m-[m
+[31m-    <!-- vui assistant application -->[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-[m
+[31m-    <application[m
+[31m-        android:name="com.unisound.unicar.gui.application.CrashApplication"[m
+[31m-        android:allowBackup="true"[m
+[31m-        android:icon="@drawable/ic_launcher"[m
+[31m-        android:label="@string/app_name"[m
+[31m-        android:largeHeap="true"[m
+[31m-        android:persistent="true"[m
+[31m-        android:theme="@style/AppTheme" >[m
+[31m-        [m
+[31m-        <!--高德定位[m
+[31m-			| sign(正式签名) : d8165913749a3925d326b2d2e35a5bf0[m
+[31m-        	| tyz	  	   : 3392c2b2875dedb22a0d76ca14635649 [m
+[31m-        	| wanglp  	   : 32e412260949baa674e4da4146a19fc0[m
+[31m-        	| zhuoran      : 360894425b56be95aaab8b02edb63df5[m
+[31m-        	| xiaodong     : d65f20a272392daf37088fe1092824ba [m
+[31m-        	| 6ef833ab2042641d80efe95b7239097b[m
+[31m-        -->[m
+[31m-        <meta-data[m
+[31m-            android:name="com.amap.api.v2.apikey"[m
+[31m-            android:value="25de08e23637f3704b95ff832ded1b90" />[m
+[31m-        <!--百度定位[m
+[31m-        	| sign(正式签名) : 5izIo5E71pRpp4aQeoG3QVdw[m
+[31m-        	| zhuoran 	   : pha5tikVH6jPrSLAQYVruTCt  [m
+[31m-        -->[m
+[31m-        <meta-data[m
+[31m-            android:name="com.baidu.lbsapi.API_KEY"[m
+[31m-            android:value="aCaSGZAadqLjRjCNrq6cP6ge" />[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.WelcomeActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.GUIMainActivity"[m
+[31m-            android:label="@string/app_name" [m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.MAIN" />[m
+[31m-[m
+[31m-                <category android:name="android.intent.category.LAUNCHER" />[m
+[31m-            </intent-filter>[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-         <activity [m
+[31m-            android:name="com.unisound.unicar.gui.ui.PositionActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150713 added Begin -->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.FunctionHelpActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.OTAActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.AboutActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150713 added End -->[m
+[31m-[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.HelpActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <!-- xiaodong 20150609 added begin-->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.AllFunctionsActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.SettingsViewPagerActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <!-- SettingMapViewPagerActivity singleTop -->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.SettingMapViewPagerActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150609 added end -->[m
+[31m-  <!-- XD 20150825 added for default SMS Begin -->[m
+[31m-        <!-- Activity that allows the user to send new SMS/MMS messages -->[m
+[31m-        <activity android:name="com.unisound.unicar.gui.smsdefault.ComposeSmsActivity" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.SEND" />                [m
+[31m-                <action android:name="android.intent.action.SENDTO" />[m
+[31m-                <category android:name="android.intent.category.DEFAULT" />[m
+[31m-                <category android:name="android.intent.category.BROWSABLE" />[m
+[31m-                <data android:scheme="sms" />[m
+[31m-                <data android:scheme="smsto" />[m
+[31m-                <data android:scheme="mms" />[m
+[31m-                <data android:scheme="mmsto" />[m
+[31m-            </intent-filter>[m
+[31m-        </activity>[m
+[31m-[m
+[31m-        <!-- Service that delivers messages from the phone "quick response" -->[m
+[31m-        <service android:name="com.unisound.unicar.gui.smsdefault.HeadlessSmsSendService"[m
+[31m-                 android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"[m
+[31m-                 android:exported="true" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />[m
+[31m-                <category android:name="android.intent.category.DEFAULT" />[m
+[31m-                <data android:scheme="sms" />[m
+[31m-                <data android:scheme="smsto" />[m
+[31m-                <data android:scheme="mms" />[m
+[31m-                <data android:scheme="mmsto" />[m
+[31m-            </intent-filter>[m
+[31m-        </service>[m
+[31m-        [m
+[31m-        <!-- BroadcastReceiver that listens for incoming SMS messages -->[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.smsdefault.SmsReceiver"[m
+[31m-                android:permission="android.permission.BROADCAST_SMS">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.provider.Telephony.SMS_DELIVER" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- BroadcastReceiver that listens for incoming MMS messages -->[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.smsdefault.MmsReceiver"[m
+[31m-            android:permission="android.permission.BROADCAST_WAP_PUSH">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />[m
+[31m-                <data android:mimeType="application/vnd.wap.mms-message" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-        <!-- XD 20150825 added for default SMS End -->[m
+[31m-[m
+[31m-        <!-- Receiver -->[m
+[31m-        <receiver[m
+[31m-            android:name="com.unisound.unicar.gui.sms.SmsSendReceiver"[m
+[31m-            android:exported="false" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.MESSAGE_SENT" />[m
+[31m-                <data android:scheme="content" />[m
+[31m-            </intent-filter>[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.SEND_MESSAGE" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- xd added 20150710 begin-->[m
+[31m-        <receiver[m
+[31m-            android:name="com.unisound.unicar.gui.sms.MessageStatusReceiver"[m
+[31m-            android:exported="false" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.MESSAGE_STATUS_RECEIVED" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.phone.PhoneStateReceiver" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />[m
+[31m-                <action android:name="android.intent.action.PHONE_STATE" />[m
+[31m-                <action android:name="android.intent.action.BLUETOOTH_PHONE_STATE" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-        <!-- xd added 20150710 end-->[m
+[31m-[m
+[31m-        <!-- Service -->[m
+[31m-   <!--      <service android:name="com.unisound.unicar.gui.ui.WindowService" /> -->[m
+[31m-        <service android:name="cn.yunzhisheng.vui.assistant.WindowService" android:exported="true" />[m
+[31m-        [m
+[31m-        <!-- [m
+[31m-        <service android:name="com.unisound.unicar.gui.ui.KillNotificationService" />[m
+[31m-         -->[m
+[31m-        [m
+[31m-        <service android:name="com.unisound.unicar.gui.sms.SmsSenderService" />[m
+[31m-        [m
+[31m-        <service[m
+[31m-            android:name="com.android.kwmusic.KWMusicService"[m
+[31m-            android:persistent="true" android:exported="true" />[m
+[31m-        [m
+[31m-        <service[m
+[31m-            android:name="com.baidu.location.f"[m
+[31m-            android:enabled="true"[m
+[31m-            android:process=":remote" >[m
+[31m-        </service>[m
+[31m-        [m
+[31m-        <receiver android:name="com.unisound.unicar.gui.ui.MessageReceiver" >[m
+[31m-            <intent-filter android:priority="2147483646">[m
+[31m-                <action android:name="android.intent.action.BOOT_COMPLETED" />[m
+[31m-                 <category android:name="android.intent.category.LAUNCHER" />[m
+[31m-            </intent-filter>[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.VUI_SPEAK_ON_KEYEVENT" />[m
+[31m-                <action android:name="com.glsx.bootup.send.autonavi" />[m
+[31m-      [m
+[31m-                <action android:name="action.colink.remotecommand" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- yj 2015.8.13 -->[m
+[31m-        <provider[m
+[31m-            android:name="com.unisound.unicar.gui.chat.ChatContentProvider"[m
+[31m-            android:authorities="com.unisound.unicar.gui.chat.ChatProvider"[m
+[31m-            android:exported="true"[m
+[31m-            android:label="ChatContentProvider"[m
+[31m-            android:readPermission="android.permission.READ_CHATHISTORY"[m
+[31m-            android:writePermission="android.permission.WRITE_CHATHISTORY" />[m
+[31m-         <provider[m
+[31m-            android:name="com.unisound.unicar.gui.database.WakeUpSwitch"[m
+[31m-            android:authorities="com.coogo.inet.vui.assistant.car"[m
+[31m-            android:exported="true" />[m
+[31m-        [m
+[31m-[m
+[31m-    </application>[m
+[31m-</manifest>[m
+[1mdiff --git a/project/WindowService.java b/project/WindowService.java[m
+[1mdeleted file mode 100644[m
+[1mindex eed2951..0000000[m
+[1m--- a/project/WindowService.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,1852 +0,0 @@[m
+[31m-/**[m
+[31m- * Copyright (c) 2012-2013 Yunzhisheng(Shanghai) Co.Ltd. All right reserved.[m
+[31m- * @FileName : WindowService.java[m
+[31m- * @ProjectName : Voizard[m
+[31m- * @PakageName : cn.yunzhisheng.voizard.service[m
+[31m- * @Author : Brant[m
+[31m- * @CreateDate : 2013-5-27[m
+[31m- */[m
+[31m-package cn.yunzhisheng.vui.assistant;[m
+[31m-[m
+[31m-import java.util.ArrayList;[m
+[31m-import java.util.List;[m
+[31m-[m
+[31m-import org.json.JSONArray;[m
+[31m-import org.json.JSONException;[m
+[31m-import org.json.JSONObject;[m
+[31m-[m
+[31m-import android.annotation.SuppressLint;[m
+[31m-import android.app.AlertDialog;[m
+[31m-import android.app.AlertDialog.Builder;[m
+[31m-import android.app.Service;[m
+[31m-import android.content.BroadcastReceiver;[m
+[31m-import android.content.ComponentName;[m
+[31m-import android.content.Context;[m
+[31m-import android.content.DialogInterface;[m
+[31m-import android.content.DialogInterface.OnDismissListener;[m
+[31m-import android.content.Intent;[m
+[31m-import android.content.IntentFilter;[m
+[31m-import android.content.ServiceConnection;[m
+[31m-import android.content.pm.ActivityInfo;[m
+[31m-import android.database.ContentObserver;[m
+[31m-import android.graphics.PixelFormat;[m
+[31m-import android.graphics.Point;[m
+[31m-import android.media.AudioManager;[m
+[31m-import android.net.Uri;[m
+[31m-import android.os.Build;[m
+[31m-import android.os.CountDownTimer;[m
+[31m-import android.os.Handler;[m
+[31m-import android.os.IBinder;[m
+[31m-import android.os.Message;[m
+[31m-import android.os.RemoteException;[m
+[31m-import android.provider.Settings;[m
+[31m-import android.util.Log;[m
+[31m-import android.view.Display;[m
+[31m-import android.view.Gravity;[m
+[31m-import android.view.KeyEvent;[m
+[31m-import android.view.LayoutInflater;[m
+[31m-import android.view.MotionEvent;[m
+[31m-import android.view.View;[m
+[31m-import android.view.View.OnClickListener;[m
+[31m-import android.view.ViewGroup;[m
+[31m-import android.view.WindowManager;[m
+[31m-import android.widget.Button;[m
+[31m-import android.widget.TextView;[m
+[31m-[m
+[31m-import com.android.kwmusic.KWMusicService;[m
+[31m-import com.coogo.inet.vui.assistant.car.R;[m
+[31m-import com.unisound.unicar.framework.service.IMessageRouterCallback;[m
+[31m-import com.unisound.unicar.framework.service.IMessageRouterService;[m
+[31m-import com.unisound.unicar.gui.data.interfaces.IBaseListener;[m
+[31m-import com.unisound.unicar.gui.data.operation.AppsDataModel;[m
+[31m-import com.unisound.unicar.gui.data.operation.ContactDataModel;[m
+[31m-import com.unisound.unicar.gui.data.operation.MediaDataModel;[m
+[31m-import com.unisound.unicar.gui.location.interfaces.ILocationListener;[m
+[31m-import com.unisound.unicar.gui.location.operation.LocationModelProxy;[m
+[31m-import com.unisound.unicar.gui.model.LocationInfo;[m
+[31m-import com.unisound.unicar.gui.msg.ISystemCallTransitionListener;[m
+[31m-import com.unisound.unicar.gui.msg.SystemCallTransition;[m
+[31m-import com.unisound.unicar.gui.preference.CommandPreference;[m
+[31m-import com.unisound.unicar.gui.preference.Constant;[m
+[31m-import com.unisound.unicar.gui.preference.SessionPreference;[m
+[31m-import com.unisound.unicar.gui.preference.UserPerferenceUtil;[m
+[31m-import com.unisound.unicar.gui.preference.UserPreference;[m
+[31m-import com.unisound.unicar.gui.route.operation.GaodeUriApi;[m
+[31m-import com.unisound.unicar.gui.session.GUISessionManager;[m
+[31m-import com.unisound.unicar.gui.ui.MessageReceiver;[m
+[31m-import com.unisound.unicar.gui.ui.MessageSender;[m
+[31m-import com.unisound.unicar.gui.ui.SettingMapViewPagerActivity;[m
+[31m-import com.unisound.unicar.gui.utils.DeviceTool;[m
+[31m-import com.unisound.unicar.gui.utils.ErrorUtil;[m
+[31m-import com.unisound.unicar.gui.utils.GUIConfig;[m
+[31m-import com.unisound.unicar.gui.utils.JsonTool;[m
+[31m-import com.unisound.unicar.gui.utils.Logger;[m
+[31m-import com.unisound.unicar.gui.utils.PackageUtil;[m
+[31m-import com.unisound.unicar.gui.utils.TTSController;[m
+[31m-import com.unisound.unicar.gui.view.MicrophoneControl;[m
+[31m-import com.unisound.unicar.gui.view.MicrophoneControlDoresoView;[m
+[31m-import com.unisound.unicar.gui.view.SessionContainer;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout.DispatchKeyEventListener;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout.OnTouchEventListener;[m
+[31m-[m
+[31m-/**[m
+[31m- * @Module : 隶属模块名[m
+[31m- * @Comments : 描述[m
+[31m- * @Author : Brant[m
+[31m- * @CreateDate : 2013-5-27[m
+[31m- * @ModifiedBy : Brant[m
+[31m- * @ModifiedDate: 2013-5-27[m
+[31m- * @Modified: 2013-5-27: 实现基本功能[m
+[31m- */[m
+[31m-@SuppressLint("InlinedApi")[m
+[31m-public class WindowService extends Service {[m
+[31m-	private static final String TAG = "WindowService";[m
+[31m-	public static final String ACTION_SET_WAKEUP = "com.unisound.unicar.gui.ACTION.SET_WAKEUP";[m
+[31m-	public static final String ACTION_SET_TTSSPEED = "com.unisound.unicar.gui.ACTION.SET_TTSSPEED";[m
+[31m-	public static final String KEY_SET_TTSSPEED = "SET_TTSSPEED";[m
+[31m-	public static final String ACTION_START_REQUEST_MAKE_FINISHED = "com.unisound.unicar.gui.ACTION.REQUEST_MAKE_FINISHED"; // XD[m
+[31m-																															// added[m
+[31m-[m
+[31m-	public static final String ACTION_ACC_ON = "android.intent.action.ACC_ON_KEYEVENT";[m
+[31m-	public static final String ACTION_ACC_OFF = "android.intent.action.ACC_OFF_KEYEVENT";[m
+[31m-	public static final String ACTION_CLOSE_WAKEUP = "android.intent.action.CLOSE_WAKEUP";[m
+[31m-	public static final String ACTION_OPEN_WAKEUP = "android.intent.action.OPEN_WAKEUP";[m
+[31m-	public static final String ACTION_START_TALK = "cn.yunzhisheng.intent.action.START_TALK";[m
+[31m-	private static final String PLAY_TTS = "com.wanma.action.PLAY_TTS";[m
+[31m-[m
+[31m-	public static boolean accSwitch = true;[m
+[31m-	private boolean playTTs = true;[m
+[31m-[m
+[31m-	public static final String EXTRA_KEY_DISMISS_FLOAT_WINDOW = "DISMISS_FLOAT_WINDOW";[m
+[31m-	public static final int MSG_SET_STATE = 2001;[m
+[31m-	public static final int MSG_ON_RECORDING_START = 2002;[m
+[31m-	public static final int MSG_ON_RECORDING_STOP = 2003;[m
+[31m-	public static final int MSG_ON_SESSION_PROTOCAL = 2004;[m
+[31m-	public static final int MSG_IS_ASR_COMPILE_DONE = 2005;[m
+[31m-	public static final int MSG_ON_TTS_PLAY_END = 2007;[m
+[31m-	public static final int MSG_ON_RECORDING_PREPARED = 2008;[m
+[31m-	public static final int MSG_ON_RECORDING_RESULT = 2009;[m
+[31m-	public static final int MSG_ON_RECORDING_EXCEPTION = 2010; // XD 20150807[m
+[31m-																// added[m
+[31m-	public static final int MSG_ON_RECOGNIZER_TIMEOUT = 2011;[m
+[31m-	public static final int MSG_ON_CTT_CANCEL = 2012;[m
+[31m-[m
+[31m-	/* < XD 20150813 added Begin */[m
+[31m-	public static final int MSG_GUI_CANCEL_SESSION = 3100;[m
+[31m-	public static final int MSG_GUI_CANCEL_WAITTING_SESSION = 3101;[m
+[31m-	/* XD 20150813 added End > */[m
+[31m-[m
+[31m-	private Point mWindowSize = new Point();[m
+[31m-	private WindowManager mWindowManager;[m
+[31m-	private SessionLinearLayout mViewRoot;[m
+[31m-	private SessionContainer mSessionContainer;[m
+[31m-	private MicrophoneControl mMicrophoneControl;[m
+[31m-	private MicrophoneControlDoresoView mMicrophoneDoresoControl; //XD added 20150828[m
+[31m-	private GUISessionManager mSessionManager = null;[m
+[31m-	private WindowManager.LayoutParams mWindowParams = new WindowManager.LayoutParams();[m
+[31m-	private Context mContext;[m
+[31m-	private IMessageRouterService mMessageRouterService;[m
+[31m-	private SystemCallTransition messageTransCenter = null;[m
+[31m-	// private boolean isNeedRequestIsASRCompileFinished = false;[m
+[31m-[m
+[31m-	/* < XD 20150805 added for Mic float View Begin */[m
+[31m-	private List<String> mLauncherPackage;[m
+[31m-	// private FloatMicView mScreeFloatView;[m
+[31m-	private boolean mPendingStartMicChecker;[m
+[31m-[m
+[31m-	/** is Need Hide MicFloatView for some special case */[m
+[31m-	/* XD 20150805 added for Mic float View End > */[m
+[31m-[m
+[31m-	/*< XD 20150828 added for Music Doreso Begin */[m
+[31m-	/**[m
+[31m-	 * wake up success type[m
+[31m-	 * SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS[m
+[31m-	 * SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO[m
+[31m-	 */[m
+[31m-	private int mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS;[m
+[31m-	[m
+[31m-	public int getWakeupSuccessType() {[m
+[31m-		return mWakeupSuccessType;[m
+[31m-	}[m
+[31m-[m
+[31m-	// xd added 20150707[m
+[31m-	private static ArrayList<String> mOnlineSupportList = null;[m
+[31m-	private static ArrayList<String> mOfflineSupportList = null;[m
+[31m-	private String mSystemCallJson = "";[m
+[31m-[m
+[31m-	private ContactDataModel contactDataModel = null;[m
+[31m-[m
+[31m-	private MediaDataModel mediaDataModel = null;[m
+[31m-[m
+[31m-	private AppsDataModel appsDataModel = null;[m
+[31m-[m
+[31m-	private AudioManager mAudioManager;[m
+[31m-	AlertDialog mAlertDialog;[m
+[31m-	Button button1, button2;[m
+[31m-	UserPreference mUserPreference;[m
+[31m-[m
+[31m-	private DispatchKeyEventListener mDispatchKeyEventListener = new DispatchKeyEventListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public boolean dispatchKeyEvent(KeyEvent event) {[m
+[31m-			Logger.d(TAG,[m
+[31m-					"!--->dispatchKeyEvent()---keyCode = " + event.getKeyCode());[m
+[31m-			if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			}[m
+[31m-			return false;[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private OnTouchEventListener mOnTouchEventListener = new OnTouchEventListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public boolean onTouchEvent(MotionEvent event) {[m
+[31m-			Logger.d(TAG, "!--->onTouchEvent()---Action = " + event.getAction());[m
+[31m-			final int x = (int) event.getX();[m
+[31m-			final int y = (int) event.getY();[m
+[31m-			if ((event.getAction() == MotionEvent.ACTION_DOWN)[m
+[31m-					&& ((x < 0) || (x >= mViewRoot.getWidth()) || (y < 0) || (y >= mViewRoot[m
+[31m-							.getHeight()))) {[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			} else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			}[m
+[31m-			return false;[m
+[31m-		}[m
+[31m-[m
+[31m-	};[m
+[31m-[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	@Override[m
+[31m-	public void onCreate() {[m
+[31m-		Logger.d(TAG, "!--->onCreate");[m
+[31m-		super.onCreate();[m
+[31m-		mContext = this;[m
+[31m-		mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);[m
+[31m-		mUserPreference = new UserPreference(this);[m
+[31m-		Constant.setFirstStart(this, true);// XD 20150820 added[m
+[31m-		TTSController.getInstance(this).init();[m
+[31m-		/* < xd added 20150706 begin */[m
+[31m-		// if (PackageUtil.isRunningForeground(WindowService.this)) {[m
+[31m-		// mSessionManager.showWelcomeView(true);[m
+[31m-		// }[m
+[31m-		// startWelcomeActivity();// xd added 20150706[m
+[31m-		/* xd added 20150706 end > */[m
+[31m-[m
+[31m-		bindMessageRouterService();[m
+[31m-		updateMapConfig();[m
+[31m-		startKWMusicService();[m
+[31m-[m
+[31m-		mViewRoot = (SessionLinearLayout) View.inflate(this,[m
+[31m-				R.layout.window_service_main, null);[m
+[31m-		if (DeviceTool.getDeviceSDKVersion() > 13) {[m
+[31m-			mViewRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);// XD[m
+[31m-																					// added[m
+[31m-		} else {[m
+[31m-			Logger.d(TAG, "!--->DeviceSDKVersion <= 13");[m
+[31m-		}[m
+[31m-		findViews();[m
+[31m-		mSessionManager = new GUISessionManager(this, mSessionContainer,[m
+[31m-				mMicrophoneControl);// init framework & show prepare view[m
+[31m-[m
+[31m-		/* < XD 20150805 added for Mic float View Begin */[m
+[31m-		// mScreeFloatView = new FloatMicView(this);[m
+[31m-		mLauncherPackage = PackageUtil.getLauncherPackages(this);[m
+[31m-		/* XD 20150805 added for Mic float View End > */[m
+[31m-		initWindowParams();[m
+[31m-		registerListener();[m
+[31m-		/* < XD 20150805 added for Mic float View Begin */[m
+[31m-		registerReceiver();[m
+[31m-		mPendingStartMicChecker = true;[m
+[31m-		/* XD 20150805 added for Mic float View End > */[m
+[31m-		/* < xd delete 20150706 Begin */[m
+[31m-		// if (PackageUtil.isRunningForeground(WindowService.this)) {[m
+[31m-		// mSessionManager.showInitView(true);[m
+[31m-		// }[m
+[31m-		/* xd delete 20150706 End > */[m
+[31m-		// Intent killNotificationIntent = new Intent(this,[m
+[31m-		// KillNotificationService.class);[m
+[31m-		// startService(killNotificationIntent);[m
+[31m-		messageTransCenter = new SystemCallTransition();[m
+[31m-		messageTransCenter.setMessageTransListener(mMessageTransListener);[m
+[31m-[m
+[31m-		/* < XD 20150825 added for 4.4 default Sms App begin */[m
+[31m-		if (GUIConfig.isAllowGUIRequestAsDefaultSmsApp) {[m
+[31m-			DeviceTool.changeGUIToDefaultSmsApp(mContext);[m
+[31m-		}[m
+[31m-		/* XD 20150825 added for 4.4 default Sms App End > */[m
+[31m-[m
+[31m-		IntentFilter filter = new IntentFilter([m
+[31m-				GUIConfig.ACTION_SMS_SEND_SUCCESS);[m
+[31m-		filter.addAction(GUIConfig.ACTION_SMS_SEND_FAIL);[m
+[31m-		registerReceiver(mSmsSendStatusReceiver, filter);[m
+[31m-		writeContactsInfo();[m
+[31m-		if (MessageReceiver.readAccFile()) {[m
+[31m-			if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-				sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-						SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-			} else {[m
+[31m-				sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-						SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-			}[m
+[31m-		} else {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-		}[m
+[31m-		getContentResolver()[m
+[31m-				.registerContentObserver([m
+[31m-						Settings.System[m
+[31m-								.getUriFor(SettingMapViewPagerActivity.MAP_INDEX),[m
+[31m-						true, new ContentObserver(mUIHandler) {[m
+[31m-							@Override[m
+[31m-							public void onChange(boolean selfChange) {[m
+[31m-								updateMapConfig();[m
+[31m-							}[m
+[31m-						});[m
+[31m-[m
+[31m-	}[m
+[31m-[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	private void findViews() {[m
+[31m-		mSessionContainer = (SessionContainer) mViewRoot[m
+[31m-				.findViewById(R.id.sessionContainer);[m
+[31m-		mMicrophoneControl = (MicrophoneControl) mViewRoot[m
+[31m-				.findViewById(R.id.microphoneControl);[m
+[31m-		mMicrophoneDoresoControl = (MicrophoneControlDoresoView) mViewRoot[m
+[31m-				.findViewById(R.id.microphoneControl_doreso); //XD added 20150828[m
+[31m-	}[m
+[31m-[m
+[31m-	@SuppressWarnings("deprecation")[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	private void updateDisplaySize() {[m
+[31m-		Display display = mWindowManager.getDefaultDisplay();[m
+[31m-		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR2) {[m
+[31m-			mWindowSize.y = display.getHeight();[m
+[31m-			mWindowSize.x = display.getWidth();[m
+[31m-		} else {[m
+[31m-			display.getSize(mWindowSize);[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "!--->updateDisplaySize:x " + mWindowSize.x + ",y "[m
+[31m-				+ mWindowSize.y);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * when WindowService onCreate should show wake up status Toast XD 20150819[m
+[31m-	 * added[m
+[31m-	 */[m
+[31m-	private void showWakeupStatusToast() {[m
+[31m-		if (!Constant.isFirstStart(mContext)) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		/*[m
+[31m-		 * Logger.d(TAG, "!--->showWakeupStatusToast----"); if[m
+[31m-		 * (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-		 * Toast.makeText(mContext,[m
+[31m-		 * R.string.toast_wakeup_open,Toast.LENGTH_LONG).show(); } else {[m
+[31m-		 * Toast.makeText(mContext,[m
+[31m-		 * R.string.toast_wakeup_closed,Toast.LENGTH_SHORT).show(); }[m
+[31m-		 */[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * start WelcomeActivity xd added 20150706[m
+[31m-	 */[m
+[31m-	/*[m
+[31m-	 * private void startWelcomeActivity() { Logger.d(TAG,[m
+[31m-	 * "!--->---startWelcomeActivity()-----"); Intent intent = new Intent(this,[m
+[31m-	 * WelcomeActivity.class); intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);[m
+[31m-	 * // intent.setAction(WindowService.ACTION_START_REQUEST_MAKE_FINISHED);[m
+[31m-	 * startActivity(intent); }[m
+[31m-	 */[m
+[31m-[m
+[31m-	private void registerListener() {[m
+[31m-		mViewRoot.setDispatchKeyEventListener(mDispatchKeyEventListener);[m
+[31m-		mViewRoot.setOnTouchEventListener(mOnTouchEventListener);[m
+[31m-		/* < XD 20150805 added for float mic view Begin */[m
+[31m-		// mScreeFloatView.setOnClickListener(mOnClickListener);[m
+[31m-		// UserPerferenceUtil.registerOnSharedPreferenceChangeListener(this,[m
+[31m-		// mPreferenceChangeListener);[m
+[31m-		/* XD 20150805 added for float mic view End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	private void unregisterListener() {[m
+[31m-		mViewRoot.setDispatchKeyEventListener(null);[m
+[31m-		/* < XD 20150805 added for float mic view Begin */[m
+[31m-		// mScreeFloatView.setOnClickListener(null);[m
+[31m-		// UserPerferenceUtil.unregisterOnSharedPreferenceChangeListener(this,[m
+[31m-		// mPreferenceChangeListener);[m
+[31m-		/* XD 20150805 added for float mic view End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public IBinder onBind(Intent intent) {[m
+[31m-		return null;[m
+[31m-	}[m
+[31m-[m
+[31m-	private void resetWindowParamsFlags() {[m
+[31m-		Log.d(TAG, "!--->------resetWindowParamsFlags()------");[m
+[31m-		mWindowParams.flags &= ~(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL[m
+[31m-				| WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES[m
+[31m-				| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE[m
+[31m-				| WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE[m
+[31m-				| WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH[m
+[31m-				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS[m
+[31m-				| WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM[m
+[31m-				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_FULLSCREEN // xiaodong[m
+[31m-		);[m
+[31m-	}[m
+[31m-[m
+[31m-	private void initWindowParams() {[m
+[31m-		Log.d(TAG, "!--->initWindowParams()------");[m
+[31m-		mWindowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;[m
+[31m-		mWindowParams.format = PixelFormat.RGBA_8888;[m
+[31m-		resetWindowParamsFlags();[m
+[31m-		mWindowParams.flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH[m
+[31m-				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;[m
+[31m-		mWindowParams.gravity = Gravity.CENTER;[m
+[31m-		updateDisplaySize();[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public int onStartCommand(Intent intent, int flags, int startId) {[m
+[31m-		Logger.d(TAG, "!--->onStartCommand: intent " + intent);[m
+[31m-[m
+[31m-		boolean isUnicarServiceInstalled = DeviceTool[m
+[31m-				.isUnicarServiceInstalled(getApplicationContext());[m
+[31m-		if (!isUnicarServiceInstalled) {[m
+[31m-			Logger.e(TAG,[m
+[31m-					"!--->onStartCommand()---UnicarService not installed!");[m
+[31m-			mSessionManager[m
+[31m-					.showInitFailedView(getString(R.string.error_init_msg_vui_service_not_install));[m
+[31m-			// Toast.makeText(getApplicationContext(),[m
+[31m-			// "UnicarService not installed!", Toast.LENGTH_LONG).show();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (intent != null) {[m
+[31m-			String action = intent.getAction();[m
+[31m-			Logger.d(TAG, "!--->onStartCommand: action " + action);[m
+[31m-			if (MessageReceiver.ACTION_START_TALK.equals(action)) {[m
+[31m-				startTalk();[m
+[31m-			} else if(ACTION_START_TALK.equals(action)){[m
+[31m-				startTalk();[m
+[31m-			}else if (ACTION_START_REQUEST_MAKE_FINISHED.equals(action)) {[m
+[31m-				requestIsASRCompileFinished();[m
+[31m-			} else if (MessageReceiver.ACTION_START_CALL_OUT.equals(action)) {[m
+[31m-				requestCallOut();[m
+[31m-			} else if (MessageReceiver.ACTION_START_NAVIGATION.equals(action)) {[m
+[31m-				requestNavication();[m
+[31m-			} else if (MessageReceiver.ACTION_START_MUSIC.equals(action)) {[m
+[31m-				requestMusic();[m
+[31m-			} else if (MessageReceiver.ACTION_START_LOCAL_SEARCH.equals(action)) {[m
+[31m-				requestLocalSearch();[m
+[31m-			} else if (ACTION_SET_WAKEUP.equals(action)) {[m
+[31m-				if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-				} else {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-				}[m
+[31m-			} else if (ACTION_SET_TTSSPEED.equals(action)) {[m
+[31m-				int speed = UserPerferenceUtil.getTTSSpeed(mContext);[m
+[31m-				if (UserPerferenceUtil.VALUE_TTS_SPEED_SLOWLY == speed) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_SLOWLY);[m
+[31m-				} else if (UserPerferenceUtil.VALUE_TTS_SPEED_STANDARD == speed) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_STANDARD);[m
+[31m-				} else if (UserPerferenceUtil.VALUE_TTS_SPEED_FAST == speed) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_FAST);[m
+[31m-				}[m
+[31m-			} else if (MessageReceiver.ACTION_START_NAVI.equals(action)) {[m
+[31m-				CreateDialog(this);[m
+[31m-			}[m
+[31m-		}[m
+[31m-		return START_STICKY;[m
+[31m-	}[m
+[31m-[m
+[31m-	// 与Framework同步唤醒和TTS播报速度[m
+[31m-	private void syncConfigure() {[m
+[31m-		// send switch WakeUp[m
+[31m-		if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-		} else {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-		}[m
+[31m-		// send switch TTSSpeed[m
+[31m-		int speed = UserPerferenceUtil.getTTSSpeed(mContext);[m
+[31m-		if (UserPerferenceUtil.VALUE_TTS_SPEED_SLOWLY == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_SLOWLY);[m
+[31m-		} else if (UserPerferenceUtil.VALUE_TTS_SPEED_STANDARD == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_STANDARD);[m
+[31m-		} else if (UserPerferenceUtil.VALUE_TTS_SPEED_FAST == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,[m
+[31m-					SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_FAST);[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	private void startTalk() {[m
+[31m-		mSessionManager.startTalk();[m
+[31m-		//XD 20150827 added [m
+[31m-		mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS;[m
+[31m-		updateMicControlView(SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void onReset() {[m
+[31m-		Logger.d(TAG, "onReset");[m
+[31m-		dismiss();[m
+[31m-	}[m
+[31m-[m
+[31m-	private void show(View view) {[m
+[31m-		if (view == null || view.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		// 弹出框强制横屏[m
+[31m-		if (mWindowParams.screenOrientation != ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {[m
+[31m-			mWindowParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;[m
+[31m-		}[m
+[31m-[m
+[31m-		mWindowManager.addView(view, mWindowParams);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void addPrepareView(View view) {[m
+[31m-		if (view == null) {[m
+[31m-			Logger.w(TAG, "addSessionView: view null,return!");[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "!--->addPrepareView------");[m
+[31m-		dismiss();[m
+[31m-		WindowManager.LayoutParams WindowParams = new WindowManager.LayoutParams([m
+[31m-				WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,[m
+[31m-				WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);[m
+[31m-		WindowParams.gravity = Gravity.CENTER;[m
+[31m-		WindowParams.format = PixelFormat.RGBA_8888;[m
+[31m-		if (view.isShown()) {[m
+[31m-			mWindowManager.removeViewImmediate(view);[m
+[31m-		}[m
+[31m-		mWindowManager.addView(view, WindowParams);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void show() {[m
+[31m-		if (mViewRoot.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "show");[m
+[31m-[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		mPendingStartMicChecker = true;[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-[m
+[31m-		show(mViewRoot);[m
+[31m-[m
+[31m-	}[m
+[31m-[m
+[31m-	public void dismiss() {[m
+[31m-		playTTs = true;[m
+[31m-		if (!mViewRoot.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "dismiss");[m
+[31m-		mWindowManager.removeViewImmediate(mViewRoot);[m
+[31m-[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		if (mPendingStartMicChecker) {[m
+[31m-			mPendingStartMicChecker = false;[m
+[31m-		}[m
+[31m-		mUIHandler.postDelayed(mRecoverRunnable, 1500);[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	public void dimissView(View view) {[m
+[31m-		if (!view.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "dimissView---prepare view dismiss");[m
+[31m-		mWindowManager.removeViewImmediate(view);[m
+[31m-[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		if (mPendingStartMicChecker) {[m
+[31m-			mPendingStartMicChecker = false;[m
+[31m-		}[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	public Point getWindowSize() {[m
+[31m-		return mWindowSize;[m
+[31m-	}[m
+[31m-[m
+[31m-	public void addView(View view, int windowWidth, int windowHeight) {[m
+[31m-		Logger.d(TAG, "!--->addView:windowWidth " + windowWidth[m
+[31m-				+ ",windowHeight " + windowHeight);[m
+[31m-		mWindowParams.width = windowWidth;[m
+[31m-		mWindowParams.height = windowHeight;[m
+[31m-		addView(view);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void addView(View view) {[m
+[31m-		Logger.d(TAG, "addView");[m
+[31m-		dismiss();[m
+[31m-		mWindowParams.gravity = Gravity.CENTER;[m
+[31m-		mWindowParams.x = 0;[m
+[31m-		mWindowParams.y = 0;[m
+[31m-		resetWindowParamsFlags();[m
+[31m-		mWindowParams.flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH[m
+[31m-				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;[m
+[31m-		if (view == null || !canTextInput(view)) {[m
+[31m-			mWindowParams.flags |= WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;[m
+[31m-		}[m
+[31m-[m
+[31m-		if ((mWindowParams.softInputMode & WindowManager.LayoutParams.SOFT_INPUT_IS_FORWARD_NAVIGATION) == 0) {[m
+[31m-			mWindowParams.softInputMode |= WindowManager.LayoutParams.SOFT_INPUT_IS_FORWARD_NAVIGATION;[m
+[31m-		}[m
+[31m-[m
+[31m-		show(view);[m
+[31m-	}[m
+[31m-[m
+[31m-	static boolean canTextInput(View v) {[m
+[31m-		if (v.onCheckIsTextEditor()) {[m
+[31m-			return true;[m
+[31m-		}[m
+[31m-[m
+[31m-		if (!(v instanceof ViewGroup)) {[m
+[31m-			return false;[m
+[31m-		}[m
+[31m-[m
+[31m-		ViewGroup vg = (ViewGroup) v;[m
+[31m-		int i = vg.getChildCount();[m
+[31m-		while (i > 0) {[m
+[31m-			i--;[m
+[31m-			v = vg.getChildAt(i);[m
+[31m-			if (canTextInput(v)) {[m
+[31m-				return true;[m
+[31m-			}[m
+[31m-		}[m
+[31m-[m
+[31m-		return false;[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public void onLowMemory() {[m
+[31m-		super.onLowMemory();[m
+[31m-		Logger.d(TAG, "onLowMemory");[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public void onDestroy() {[m
+[31m-		Logger.d(TAG, "onDestroy");[m
+[31m-		super.onDestroy();[m
+[31m-		dismiss();[m
+[31m-		unregisterListener();[m
+[31m-		unBindService(mContext); // xd added 20150706[m
+[31m-		unregisterReceiver(mSmsSendStatusReceiver);// xd added 20150709[m
+[31m-[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		unregisterReceiver();[m
+[31m-		mLauncherPackage.clear();[m
+[31m-		mLauncherPackage = null;[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-		mLocateTime = 0;[m
+[31m-		mSessionManager.onDestroy();[m
+[31m-		// PhoneStateReceiver.release();[m
+[31m-		mSessionManager = null;[m
+[31m-		mWindowParams = null;[m
+[31m-		mWindowSize = null;[m
+[31m-		if (contactDataModel != null) {[m
+[31m-			contactDataModel.release();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (mediaDataModel != null) {[m
+[31m-			mediaDataModel.release();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (appsDataModel != null) {[m
+[31m-			appsDataModel.release();[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	public void bindMessageRouterService() {[m
+[31m-		try {[m
+[31m-			Logger.d(TAG, "!--->bindMessageRouterService");[m
+[31m-			Intent intent = new Intent([m
+[31m-					"com.unisound.unicar.messagerouter.start");[m
+[31m-			// intent.setPackage(getPackageName());[m
+[31m-			mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);[m
+[31m-			mContext.startService(intent);[m
+[31m-		} catch (Exception e) {[m
+[31m-			e.printStackTrace();[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	private void rebindMessageRouterService() {[m
+[31m-		if (mMessageRouterService == null) {[m
+[31m-			Logger.d(TAG, "rebindMessageRouterService");[m
+[31m-			bindMessageRouterService();[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	private void startKWMusicService() {[m
+[31m-		Intent intentMusic = new Intent(mContext, KWMusicService.class);[m
+[31m-		mContext.startService(intentMusic);[m
+[31m-	}[m
+[31m-[m
+[31m-	private ServiceConnection mConnection = new ServiceConnection() {[m
+[31m-		@Override[m
+[31m-		public void onServiceConnected(ComponentName componentName,[m
+[31m-				IBinder service) {[m
+[31m-			mMessageRouterService = IMessageRouterService.Stub[m
+[31m-					.asInterface(service);[m
+[31m-			try {[m
+[31m-				Logger.d(TAG, "!--->onServiceConnected()-----------");[m
+[31m-				mMessageRouterService.registerCallback(mCallback);[m
+[31m-				registSystemCall();[m
+[31m-				syncConfigure();[m
+[31m-				// if(isNeedRequestIsASRCompileFinished){[m
+[31m-				requestIsASRCompileFinished();[m
+[31m-				// }[m
+[31m-			} catch (RemoteException e) {[m
+[31m-				e.printStackTrace();[m
+[31m-			}[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onServiceDisconnected(ComponentName componentName) {[m
+[31m-			Logger.d(TAG, "onServiceDisconnected");[m
+[31m-			mMessageRouterService = null;[m
+[31m-			rebindMessageRouterService();[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private IMessageRouterCallback mCallback = new IMessageRouterCallback.Stub() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onCallBack(String callBackJson) throws RemoteException {[m
+[31m-			Logger.d(TAG, "!--->onCallBack : " + callBackJson);[m
+[31m-			onCallBackFunction(callBackJson);[m
+[31m-			mSystemCallJson = callBackJson;[m
+[31m-			checkIfNeedSendRespImmediately(callBackJson);[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private void onCallBackFunction(String callBackJson) {[m
+[31m-		messageTransCenter.handlerSystemCall(callBackJson);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * check If Need Send Response Immediately[m
+[31m-	 * [m
+[31m-	 * @param callBackJson[m
+[31m-	 */[m
+[31m-	private void checkIfNeedSendRespImmediately(String callBackJson) {[m
+[31m-		Logger.d(TAG, "!--->checkIfNeedSendRespImmediately----");[m
+[31m-		JSONObject obj = JsonTool.parseToJSONObject(callBackJson);[m
+[31m-		if (obj != null) {[m
+[31m-			JSONObject jobj = JsonTool.parseToJSONObject(callBackJson);[m
+[31m-			JSONObject data = JsonTool.getJSONObject(jobj,SessionPreference.KEY_DATA);[m
+[31m-			String functionName = JsonTool.getJsonValue(data,SessionPreference.KEY_FUNCTION_NAME, "");[m
+[31m-			JSONObject dataParams = JsonTool.getJSONObject(data,SessionPreference.KEY_PARAMS);[m
+[31m-[m
+[31m-			if (SessionPreference.VALUE_FUNCTION_NAME_ON_TALK_PROTOCOL.equals(functionName)) {[m
+[31m-				JSONObject typeObj = JsonTool.getJSONObject(dataParams,SessionPreference.KEY_TYPE);[m
+[31m-				String type = JsonTool.getJsonValue(typeObj,SessionPreference.KEY_TYPE);[m
+[31m-				String originType = JsonTool.getJsonValue(typeObj,SessionPreference.KEY_ORIGIN_TYPE);[m
+[31m-				if (dataParams != null[m
+[31m-						&& SessionPreference.VALUE_TYPE_WAITING.equals(type)[m
+[31m-						&& (SessionPreference.DOMAIN_ROUTE.equals(originType) || SessionPreference.DOMAIN_NEARBY_SEARCH[m
+[31m-								.equals(originType))) {[m
+[31m-					return;[m
+[31m-				} else {[m
+[31m-					sendResponse("");[m
+[31m-				}[m
+[31m-			} else {[m
+[31m-				sendResponse("");[m
+[31m-			}[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * TODO:if type in "data" is "CALL" need response to VUI XD modify 20150807[m
+[31m-	 * [m
+[31m-	 * @param callBackJson[m
+[31m-	 */[m
+[31m-[m
+[31m-	public void sendResponse(String params) {[m
+[31m-		sendResponse(params, "SUCCESS");[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * [m
+[31m-	 * @param params[m
+[31m-	 * @param state[m
+[31m-	 */[m
+[31m-	public void sendResponse(String params, String state) {[m
+[31m-		Logger.d(TAG, "sendResponse params : " + params + "; state : " + state);[m
+[31m-		Logger.d(TAG, "sendResponse mSystemCallJson : " + mSystemCallJson);[m
+[31m-		JSONObject jobj = JsonTool.parseToJSONObject(mSystemCallJson);[m
+[31m-		JSONObject data = JsonTool.getJSONObject(jobj,[m
+[31m-				SessionPreference.KEY_DATA);[m
+[31m-		String callName = JsonTool.getJsonValue(data,[m
+[31m-				SessionPreference.KEY_FUNCTION_NAME);[m
+[31m-		String callID = JsonTool.getJsonValue(jobj,[m
+[31m-				SessionPreference.KEY_CALL_ID);[m
+[31m-		String param = "";[m
+[31m-		String domain = "";[m
+[31m-		if (params != null && params.length() > 0) {[m
+[31m-			param = params;[m
+[31m-			// add tyz 0714[m
+[31m-			JSONObject params_ = JsonTool.getJSONObject(data, "params");[m
+[31m-			JSONObject type = JsonTool.getJSONObject(params_, "type");[m
+[31m-			domain = JsonTool.getJsonValue(type, "origin_type");[m
+[31m-			Logger.d(TAG, "sendResponse domain : " + domain);[m
+[31m-			// add tyz 0714[m
+[31m-		} else {[m
+[31m-			JSONObject dataParams = JsonTool.getJSONObject(data,[m
+[31m-					SessionPreference.KEY_PARAMS);[m
+[31m-			if (dataParams != null) {[m
+[31m-				param = dataParams.toString();[m
+[31m-			}[m
+[31m-		}[m
+[31m-[m
+[31m-		messageTransCenter.sendResponse(callID, callName, state, domain, param);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void unBindService(Context context) {[m
+[31m-		try {[m
+[31m-			Logger.d(TAG, "!--->unBindService");[m
+[31m-			context.unbindService(mConnection);[m
+[31m-		} catch (Exception e) {[m
+[31m-			e.printStackTrace();[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * SystemCall add in here[m
+[31m-	 * [m
+[31m-	 * @return[m
+[31m-	 */[m
+[31m-	private JSONArray setDataForSystemCall() {[m
+[31m-		ArrayList<String> namelist = new ArrayList<String>();[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_SET_STATE);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_IS_ASR_COMPILE_DONE);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_RECORDING_START);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_RECORDING_STOP);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_TALK_PROTOCOL);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_UPDATE_VOLUME);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_TTS_PLAY_END);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_RECORDING_PREPARED);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_RECORDING_EXCEPTION); // XD[m
+[31m-																					// 20150807[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_TALK_RESULT);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_FETCH_UPDATE_CONTACT_DONE);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_FETCH_UPDATE_MEDIA_DONE);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_FETCH_UPDATE_APP_DONE);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_RECOGNIZER_TIMEOUT);[m
+[31m-		namelist.add(SessionPreference.VALUE_FUNCTION_NAME_ON_CTT_CANCEL);// add[m
+[31m-																			// tyz[m
+[31m-																			// systemcall[m
+[31m-		JSONArray jsonArray = new JSONArray();[m
+[31m-		for (int i = 0; i < namelist.size(); i++) {[m
+[31m-			JSONObject name = new JSONObject();[m
+[31m-			try {[m
+[31m-				name.put("callName", namelist.get(i).toString());[m
+[31m-				jsonArray.put(name);[m
+[31m-			} catch (JSONException e) {[m
+[31m-				e.printStackTrace();[m
+[31m-			}[m
+[31m-		}[m
+[31m-		return jsonArray;[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * register System Call to VUI service 0 setState 1 onRecordingStart 2[m
+[31m-	 * onRecordingStop 3 isASRCompileDone[m
+[31m-	 */[m
+[31m-	private void registSystemCall() {[m
+[31m-[m
+[31m-		JSONObject main = new JSONObject();[m
+[31m-		JSONObject data = new JSONObject();[m
+[31m-		try {[m
+[31m-			main.put("type", "REG");[m
+[31m-			main.put("data", data);[m
+[31m-[m
+[31m-			data.put("version", PackageUtil.getAppVersionName(mContext));[m
+[31m-			data.put("moduleName", "GUI");[m
+[31m-			data.put("callNameList", setDataForSystemCall());[m
+[31m-[m
+[31m-		} catch (JSONException e) {[m
+[31m-			e.printStackTrace();[m
+[31m-		}[m
+[31m-[m
+[31m-		// String systemCall =[m
+[31m-		// "{\"type\":\"REG\",\"data\":{\"version\":\"v3.0\",\"moduleName\":\"GUI\",\"callNameList\":[{\"callName\":\"setState\"},{\"callName\":\"isASRCompileDone\"},{\"callName\":\"onRecordingStart\"},{\"callName\":\"onRecordingStop\"}]}}";[m
+[31m-[m
+[31m-		sendMsg(main.toString());[m
+[31m-[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * send message to framework service[m
+[31m-	 * [m
+[31m-	 * @param msgJson[m
+[31m-	 */[m
+[31m-	private void sendMsg(final String msgJson) {[m
+[31m-		rebindMessageRouterService();[m
+[31m-		if (mMessageRouterService != null) {[m
+[31m-			try {[m
+[31m-				Logger.d(TAG, "!--->sendMsg()----msgJson = " + msgJson);[m
+[31m-				mMessageRouterService.sendMessage(msgJson);[m
+[31m-			} catch (RemoteException e) {[m
+[31m-				e.printStackTrace();[m
+[31m-			}[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * when Click mic icon, send "PTT" event to start record when GUI is run in[m
+[31m-	 * background, send "WAKEUP" event[m
+[31m-	 */[m
+[31m-	public void sendPTT() {[m
+[31m-		Logger.d(TAG, "sendPTT");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_PTT);[m
+[31m-	}[m
+[31m-[m
+[31m-	/*< XD 20150828 added for Music Doreso Begin */[m
+[31m-	/**[m
+[31m-	 * sendPTTDoreso: "PTT_DORESO"[m
+[31m-	 */[m
+[31m-	public void sendPTTDoreso() {[m
+[31m-		Logger.d(TAG, "EVENT_NAME_PTT_DORESO");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_PTT_DORESO);[m
+[31m-	}[m
+[31m-	[m
+[31m-	/**[m
+[31m-	 * send PTT By WakeupSuccess Type[m
+[31m-	 */[m
+[31m-	public void sendPTTByWakeupSuccessType(){[m
+[31m-		Logger.d(TAG, "!--->sendPTTByWakeupSuccessType--mWakeupSuccessType = "+mWakeupSuccessType);[m
+[31m-		if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS == mWakeupSuccessType) {[m
+[31m-			sendPTT();[m
+[31m-		} else if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO == mWakeupSuccessType) {[m
+[31m-			sendPTTDoreso();[m
+[31m-		}[m
+[31m-	}[m
+[31m-	public void sendCancelEvent() {[m
+[31m-		Logger.d(TAG, "sendCancelEvent");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_CTT);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void sendStartLocalSearchNaviEvent() {[m
+[31m-		Logger.d(TAG, "sendStartLocalSearchNaviEvent");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_LOCALSERACH_NAVI);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void sendStartLocalSearchCallEvent() {[m
+[31m-		Logger.d(TAG, "sendStartLocalSearchCallEvent");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_LOCALSERACH_CALL);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * called on mUIHandler MSG_GUI_CANCEL_WAITTING_SESSION XD 20150813 modify[m
+[31m-	 */[m
+[31m-	private void sendWaittingCancelEvent() {[m
+[31m-		Logger.d(TAG, "sendWaittingCancelEvent");[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_WAITTING_CANCEL);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void sendResetWakeupWordEvent() {[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_RESET_WAKEUP_WORD);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void sendStopWakeupWordEvent() {[m
+[31m-		sendEvent(SessionPreference.EVENT_NAME_STOP_WAKEUP);[m
+[31m-	}[m
+[31m-[m
+[31m-	private void sendEvent(String eventName) {[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":"[m
+[31m-				+ eventName + "}}";[m
+[31m-		Logger.d(TAG, "-sendEvent- eventMsg : " + eventMsg);[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * [m
+[31m-	 * xd added 20150702[m
+[31m-	 * [m
+[31m-	 * @param eventName[m
+[31m-	 *            : ON_CONFIRM_OK, ON_CONFIRM_CANCEL, SELECT_ITEM[m
+[31m-	 * @param protol[m
+[31m-	 */[m
+[31m-	public void sendProtocolEvent(String eventName, String protol) {[m
+[31m-		Logger.d(TAG, "sendProtocolEvent()----eventName =" + eventName[m
+[31m-				+ "; protol = " + protol);[m
+[31m-		if (SessionPreference.EVENT_NAME_ON_CONFIRM_TIME_UP.equals(eventName)) {[m
+[31m-			protol = SessionPreference.EVENT_PROTOCAL_ON_CONFIRM_TIME_UP;[m
+[31m-		}[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\""[m
+[31m-				+ eventName + "\"},\"param\":" + protol + "}";[m
+[31m-		// {"type":"EVENT","data":{"moduleName":"GUI","eventName":"ON_CONFIRM_OK"},"param":{"service":"cn.yunzhisheng.setting","semantic":{"intent":{"confirm":"OK"}},"code":"SETTING_EXEC"}}[m
+[31m-		// {"type":"EVENT","data":{"moduleName":"GUI","eventName":"ON_CONFIRM_CANCEL"},"param":{"service":"cn.yunzhisheng.setting","semantic":{"intent":{"confirm":"CANCEL"}},"code":"SETTING_EXEC"}}[m
+[31m-		// {"type":"EVENT","data":{"moduleName":"GUI","eventName":"ON_CONFIRM_TIME_UP"},"param":{"service":"cn.yunzhisheng.setting","semantic":{"intent":{"confirm":"TIME_UP"}},"code":"SETTING_EXEC"}}[m
+[31m-		// {"type":"EVENT","data":{"moduleName":"GUI","eventName":"SMS_CONTENT_RETYPE"},"param":{"service":"cn.yunzhisheng.setting","semantic":{"intent":{"confirm":"SMS_CONTENT_RETYPE"}},"code":"SETTING_EXEC"}}[m
+[31m-		Logger.d(TAG, "!--->sendProtol()----eventMsg = " + eventMsg);[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * IS_ASR_COMPILE_FINISH[m
+[31m-	 */[m
+[31m-	public void requestIsASRCompileFinished() {[m
+[31m-		Logger.d(TAG, "!--->sendIsASRCompileFinished---Begin---");[m
+[31m-		if (mMessageRouterService == null) {[m
+[31m-			// isNeedRequestIsASRCompileFinished = true;[m
+[31m-			rebindMessageRouterService();[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"IS_ASR_COMPILE_FINISH\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-		Logger.d(TAG, "!--->sendIsASRCompileFinished---Finished---");[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * requestSupportDomainList xd added 20150702[m
+[31m-	 */[m
+[31m-	public void requestSupportDomainList() {[m
+[31m-		Logger.d(TAG, "!--->requestSupportDomainList()----");[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"GET_SUPPORT_DOMAIN_LIST\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * [m
+[31m-	 */[m
+[31m-	public void requestCallOut() {[m
+[31m-		Logger.d(TAG, "!--->requestCallOut()----");[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"MAIN_CALL_OUT\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void requestNavication() {[m
+[31m-		Logger.d(TAG, "!--->requestNavication()----");[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"MAIN_NAVIGATION\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void requestMusic() {[m
+[31m-		Logger.d(TAG, "!--->requestMusic()----");[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"MAIN_MUSIC\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * request Local Search XD added 20150713[m
+[31m-	 */[m
+[31m-	public void requestLocalSearch() {[m
+[31m-		Logger.d(TAG, "!--->requestLocalSearch()----");[m
+[31m-		String eventMsg = "{\"type\":\"EVENT\",\"data\":{\"moduleName\":\"GUI\",\"eventName\":\"MAIN_LOCAL_SEARCH\"}}";[m
+[31m-		sendMsg(eventMsg);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * write Contacts Info[m
+[31m-	 */[m
+[31m-	private void writeContactsInfo() {[m
+[31m-		Logger.d(TAG, "!--->writeContactsInfo()-----");[m
+[31m-		/* < XD added 20150706 begin */[m
+[31m-		if (PackageUtil.isRunningForeground(WindowService.this)) {[m
+[31m-			mSessionManager.showInitView(true);[m
+[31m-		}[m
+[31m-		if (!DeviceTool.isSdCardExist()) {[m
+[31m-			Logger.e(TAG, "!--->No SDCard mounted!");[m
+[31m-			mSessionManager.showInitFailedView(mContext[m
+[31m-					.getString(R.string.error_init_msg_no_sdcard));[m
+[31m-			// Toast.makeText(mContext,[m
+[31m-			// mContext.getString(R.string.error_init_msg_no_sdcard),[m
+[31m-			// Toast.LENGTH_LONG).show();[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		/* XD added 20150706 end > */[m
+[31m-		contactDataModel = new ContactDataModel(mContext);[m
+[31m-		contactDataModel.setDataModelListener(mDataModelListener);[m
+[31m-		contactDataModel.init();[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * write Medias Info[m
+[31m-	 */[m
+[31m-	private void writeMediasInfo() {[m
+[31m-		Logger.d(TAG, "!--->writeMediasInfo()-----");[m
+[31m-		mediaDataModel = new MediaDataModel(mContext);[m
+[31m-		mediaDataModel.setDataModelListener(mDataModelListener);[m
+[31m-		mediaDataModel.init();[m
+[31m-	}[m
+[31m-[m
+[31m-	// add by tyz 0709 write apps info[m
+[31m-	protected void writeAppsInfo() {[m
+[31m-		// TODO Auto-generated method stub[m
+[31m-		Logger.d(TAG, "!--->writeAppsInfo()-----");[m
+[31m-		appsDataModel = new AppsDataModel(mContext);[m
+[31m-		appsDataModel.setDataModelListener(mDataModelListener);[m
+[31m-		appsDataModel.init();[m
+[31m-	}[m
+[31m-[m
+[31m-	IBaseListener mDataModelListener = new IBaseListener() {[m
+[31m-		@Override[m
+[31m-		public void onDataDone(int type) {[m
+[31m-			switch (type) {[m
+[31m-			case SessionPreference.SAVE_CONTACT_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_CONTACTS_DONE);[m
+[31m-				break;[m
+[31m-			case SessionPreference.SAVE_MEDIA_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_MEDIAS_DONE);[m
+[31m-				break;[m
+[31m-			case SessionPreference.SAVE_APPS_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_APPS_DONE);[m
+[31m-				break;[m
+[31m-			case SessionPreference.SAVE_UPDATE_CONTACT_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_UPDATE_CONTACTS_DONE);[m
+[31m-				break;[m
+[31m-			case SessionPreference.SAVE_UPDATE_MEDIA_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_UPDATE_MEDIAS_DONE);[m
+[31m-				break;[m
+[31m-			case SessionPreference.SAVE_UPDATE_APPS_DATA_DONE:[m
+[31m-				sendDataDoneEvent(SessionPreference.EVENT_NAME_SAVE_UPDATE_APPS_DONE);[m
+[31m-				break;[m
+[31m-			}[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private void sendDataDoneEvent(String eventName) {[m
+[31m-		JSONObject objcData = new JSONObject();[m
+[31m-		try {[m
+[31m-			objcData.put("type", "EVENT");[m
+[31m-			JSONObject data = new JSONObject();[m
+[31m-			data.put("moduleName", "GUI");[m
+[31m-			data.put("eventName", eventName);[m
+[31m-			objcData.put("data", data);[m
+[31m-			sendMsg(objcData.toString());[m
+[31m-		} catch (JSONException e) {[m
+[31m-			e.printStackTrace();[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	ISystemCallTransitionListener mMessageTransListener = new ISystemCallTransitionListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void setState(int type) {[m
+[31m-			Logger.d(TAG, "!--->setState()----type = " + type);[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_SET_STATE;[m
+[31m-			msg.obj = type;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onTalkRecordingPrepared() {[m
+[31m-			playTTs = false;[m
+[31m-			Logger.d(TAG, "!--->---onTalkRecordingPrepared---");[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_RECORDING_PREPARED;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-			// mSessionManager.onTalkRecordingStart();[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onTalkRecordingException() {[m
+[31m-			playTTs = true;[m
+[31m-			mUIHandler.sendEmptyMessage(MSG_ON_RECORDING_EXCEPTION);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onTalkRecordingStart() {[m
+[31m-			playTTs = false;[m
+[31m-			Logger.d(TAG, "!--->---onTalkRecordingStart---");[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_RECORDING_START;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-			// mSessionManager.onTalkRecordingStart();[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onTalkRecordingStop() {[m
+[31m-			playTTs = true;[m
+[31m-			Logger.d(TAG, "!--->---onTalkRecordingStop---");[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_RECORDING_STOP;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-			// mSessionManager.onTalkRecordingStop();[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onTalkResult(String result) {[m
+[31m-			Logger.d(TAG, "!--->onTalkResult---result = " + result);[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_RECORDING_RESULT;[m
+[31m-			msg.obj = result;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onSessionProtocal(String protocol) {[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_SESSION_PROTOCAL;[m
+[31m-			msg.obj = protocol;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-			// mSessionManager.onSessionProtocal(protocol);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onSendMsg(String msg) {[m
+[31m-			sendMsg(msg);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onPlayEnd() {[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_TTS_PLAY_END;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-			// mSessionManager.onPlayEnd();[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onUpdateVolume(int volume) {[m
+[31m-			// xd added 20150714[m
+[31m-			// Logger.d(TAG, "!--->onUpdateVolume---volume = "+volume);[m
+[31m-			if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS == mWakeupSuccessType) {[m
+[31m-				mMicrophoneControl.setVoiceLevel(volume);[m
+[31m-			} else if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO == mWakeupSuccessType) {[m
+[31m-				mMicrophoneDoresoControl.setVoiceLevel(volume);[m
+[31m-			}[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onRecognizerTimeout() {[m
+[31m-			playTTs = true;[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_RECOGNIZER_TIMEOUT;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-		}[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onCTTCancel() {[m
+[31m-			playTTs = true;[m
+[31m-			Message msg = new Message();[m
+[31m-			msg.what = MSG_ON_CTT_CANCEL;[m
+[31m-			mUIHandler.sendMessage(msg);[m
+[31m-		}[m
+[31m-[m
+[31m-	};[m
+[31m-	private void updateMicControlView(int type){[m
+[31m-		Logger.d(TAG, "!--->updateMicControlView---type = " + type);[m
+[31m-		if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS == type) {[m
+[31m-			mMicrophoneControl.setVisibility(View.VISIBLE);[m
+[31m-			mMicrophoneDoresoControl.setVisibility(View.GONE);[m
+[31m-			mSessionManager.setMicrophoneControl(mMicrophoneControl); //XD 20150827 added[m
+[31m-		} else if (SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO == type){[m
+[31m-			mMicrophoneControl.setVisibility(View.GONE);[m
+[31m-			mMicrophoneDoresoControl.setVisibility(View.VISIBLE);[m
+[31m-			mSessionManager.setMicrophoneControl(mMicrophoneDoresoControl); //XD 20150827 added[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	@SuppressLint("HandlerLeak")[m
+[31m-	private Handler mUIHandler = new Handler() {[m
+[31m-		public void handleMessage(android.os.Message msg) {[m
+[31m-			switch (msg.what) {[m
+[31m-			case MSG_SET_STATE:[m
+[31m-				int type = (Integer) msg.obj;[m
+[31m-				switch (type) {[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_INIT_DONE:[m
+[31m-					// 唤醒已经打开 已经初始化完成，可以说命令词了[m
+[31m-					mSessionManager.onWakeUpInitDone();[m
+[31m-[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS:[m
+[31m-					// 唤醒成功 准备Mic状态 mic_prepare[m
+[31m-					mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS;[m
+[31m-					updateMicControlView(mWakeupSuccessType);[m
+[31m-					mSessionManager.onWakeUpSuccess();[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO:[m
+[31m-					// 我想哼歌 唤醒成功[m
+[31m-					mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO;[m
+[31m-					updateMicControlView(mWakeupSuccessType);[m
+[31m-					[m
+[31m-					mSessionManager.onWakeUpSuccessDoreso();[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_ASR_COMPILE_FINISH:[m
+[31m-					Logger.d(TAG,[m
+[31m-							"!--->VALUE_SET_STATE_TYPE_ASR_COMPILE_FINISH");[m
+[31m-					// 语法数据编译完成[m
+[31m-					mSessionManager.onTalkDataDone();[m
+[31m-					showWakeupStatusToast(); // XD 20150819 added[m
+[31m-					Constant.setFirstStart(mContext, false); // first start has[m
+[31m-																// finished.[m
+[31m-					requestSupportDomainList(); // xd added 20150702[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WRITE_CONTACT_INFO:[m
+[31m-					Logger.d(TAG,[m
+[31m-							"!--->VALUE_SET_STATE_TYPE_WRITE_CONTACT_INFO----");[m
+[31m-					writeContactsInfo();[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WRITE_MEDIA_INFO:[m
+[31m-					writeMediasInfo();[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_WRITE_APPS_INFO:[m
+[31m-					writeAppsInfo();[m
+[31m-					break;[m
+[31m-				case SessionPreference.VALUE_SET_STATE_TYPE_GET_SUPPORT_DOMAIN_LIST:[m
+[31m-					Logger.d(TAG,[m
+[31m-							"!--->VALUE_SET_STATE_TYPE_GET_SUPPORT_DOMAIN_LIST----");[m
+[31m-					// TODO:[m
+[31m-					String supportListProtocol = "";[m
+[31m-					onGetSupportListProtocol(supportListProtocol);[m
+[31m-					break;[m
+[31m-[m
+[31m-				default:[m
+[31m-					break;[m
+[31m-				}[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECORDING_PREPARED:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_RECORDING_PREPARED----");[m
+[31m-				getGeneralGPS();[m
+[31m-				mSessionManager.onTalkRecordingPrepared();[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECORDING_EXCEPTION:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_RECORDING_EXCEPTION-----");[m
+[31m-				mSessionManager.onTalkRecordingException();[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECORDING_START:[m
+[31m-				Logger.d(TAG, "!--->MSG_RECORDING_START----");[m
+[31m-				mSessionManager.onTalkRecordingStart();[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECORDING_STOP:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_RECORDING_STOP----");[m
+[31m-				// 正在识别[m
+[31m-				mSessionManager.onTalkRecordingStop();[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECORDING_RESULT:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_RECORDING_RESULT----");[m
+[31m-				String result = (String) msg.obj;[m
+[31m-				mSessionManager.onTalkRecordingResult(result);[m
+[31m-				break;[m
+[31m-			case MSG_ON_SESSION_PROTOCAL:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_SESSION_PROTOCAL----");[m
+[31m-				String sessionProtocol = (String) msg.obj;[m
+[31m-				mSessionManager.onSessionProtocal(sessionProtocol);[m
+[31m-				break;[m
+[31m-			case MSG_ON_TTS_PLAY_END:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_TTS_PLAY_END----");[m
+[31m-				mSessionManager.onTTSPlayEnd();[m
+[31m-				break;[m
+[31m-			case MSG_ON_RECOGNIZER_TIMEOUT:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_RECOGNIZER_TIMEOUT----");[m
+[31m-				mSessionManager.onRecognizerTimeout();[m
+[31m-				break;[m
+[31m-			case MSG_GUI_CANCEL_SESSION:[m
+[31m-				Logger.d(TAG, "!--->MSG_GUI_CANCEL_SESSION--cancelTalk--");[m
+[31m-				sendCancelEvent();[m
+[31m-				// mSessionManager.dismissWindowService(); //DELET do this on[m
+[31m-				// onCTTCancel() system call[m
+[31m-				break;[m
+[31m-			case MSG_GUI_CANCEL_WAITTING_SESSION:[m
+[31m-				Logger.d(TAG,"!--->MSG_GUI_CANCEL_WAITTING_SESSION--sendWaittingCancelEvent--");[m
+[31m-				sendWaittingCancelEvent();[m
+[31m-				break;[m
+[31m-			case MSG_ON_CTT_CANCEL:[m
+[31m-				Logger.d(TAG, "!--->MSG_ON_CTT_CANCEL----");[m
+[31m-				mSessionManager.onCTTCancel();[m
+[31m-				break;[m
+[31m-[m
+[31m-			default:[m
+[31m-				break;[m
+[31m-			}[m
+[31m-		};[m
+[31m-	};[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * Sms Send Status Receiver xd added 20150709[m
+[31m-	 */[m
+[31m-	private BroadcastReceiver mSmsSendStatusReceiver = new BroadcastReceiver() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onReceive(Context context, Intent intent) {[m
+[31m-			Logger.d(TAG,[m
+[31m-					"!--->mSmsSendStatusReceiver Action:" + intent.getAction());[m
+[31m-			if (GUIConfig.ACTION_SMS_SEND_SUCCESS.equals(intent.getAction())) {[m
+[31m-				mSessionManager.showSmsSendStatusView(GUIConfig.SMS_STATUS_SEND_SUCCESS);[m
+[31m-			} else if (GUIConfig.ACTION_SMS_SEND_FAIL.equals(intent.getAction())) {[m
+[31m-				mSessionManager.showSmsSendStatusView(GUIConfig.SMS_STATUS_SEND_FAIL);[m
+[31m-			}[m
+[31m-		}[m
+[31m-[m
+[31m-	};[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * TODO: xd added 20150702[m
+[31m-	 * [m
+[31m-	 * @param supportListProtocol[m
+[31m-	 */[m
+[31m-	private void onGetSupportListProtocol(String supportListProtocol) {[m
+[31m-		Logger.d(TAG, "!--->onGetSupportListProtocol()--supportListProtocol = "[m
+[31m-				+ supportListProtocol);[m
+[31m-		// mOnlineSupportList = null;[m
+[31m-		// mOfflineSupportList = null;[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * xd added 20150702[m
+[31m-	 * [m
+[31m-	 * @param hasNetWork[m
+[31m-	 * @return[m
+[31m-	 */[m
+[31m-	public static ArrayList<String> getSupportList(boolean hasNetWork) {[m
+[31m-		Logger.d(TAG, "!--->getSupportList----hasNetWork=" + hasNetWork);[m
+[31m-		if (null == mOnlineSupportList && null == mOfflineSupportList) {[m
+[31m-			testAddSupportList();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (hasNetWork) {[m
+[31m-			return mOnlineSupportList;[m
+[31m-		} else {[m
+[31m-			return mOfflineSupportList;[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * test function for Support List[m
+[31m-	 */[m
+[31m-	private static void testAddSupportList() {[m
+[31m-		mOnlineSupportList = new ArrayList<String>();[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_CALL);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_SMS);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_MUSIC);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_BROADCAST);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_ROUTE);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_WEATHER);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_SETTING);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_STOCK);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_LOCAL);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_TRAFFIC);[m
+[31m-		mOnlineSupportList.add(SessionPreference.DOMAIN_LIMIT);[m
+[31m-[m
+[31m-		mOfflineSupportList = new ArrayList<String>();[m
+[31m-		mOfflineSupportList.add(SessionPreference.DOMAIN_CALL);[m
+[31m-		mOfflineSupportList.add(SessionPreference.DOMAIN_MUSIC);[m
+[31m-		mOfflineSupportList.add(SessionPreference.DOMAIN_BROADCAST);[m
+[31m-		mOfflineSupportList.add(SessionPreference.DOMAIN_SETTING);[m
+[31m-	}[m
+[31m-[m
+[31m-	private long mLocateTime = 0;[m
+[31m-	public static LocationInfo mLocationInfo = null;[m
+[31m-	private long getGPSCacheTime = 20000;[m
+[31m-[m
+[31m-	private void getGeneralGPS() {[m
+[31m-		Logger.d(TAG, "getGeneralGPS start mLocateTime : " + mLocateTime);[m
+[31m-		final long now = System.currentTimeMillis();[m
+[31m-		if (now - mLocateTime >= getGPSCacheTime || mLocateTime == 0) {[m
+[31m-			Logger.d(TAG, "getGeneralGPS in!!!");[m
+[31m-			LocationModelProxy locationModel = LocationModelProxy[m
+[31m-					.getInstance(mContext);[m
+[31m-			locationModel.setLocationListener(new ILocationListener() {[m
+[31m-				@Override[m
+[31m-				public void onLocationResult(List<LocationInfo> infos,ErrorUtil code) {[m
+[31m-				}[m
+[31m-[m
+[31m-				@Override[m
+[31m-				public void onLocationChanged(LocationInfo locationInfo,ErrorUtil errorUtil) {[m
+[31m-					if (locationInfo != null) {[m
+[31m-						Logger.d(TAG, "getGeneralGPS end Latitude : "+ locationInfo.getLatitude() + ";Longitude : "+ locationInfo.getLongitude());[m
+[31m-						mLocateTime = now;[m
+[31m-						mLocationInfo = locationInfo;[m
+[31m-						if (mLocationInfo != null) {[m
+[31m-							sendProtocolEvent(SessionPreference.EVENT_NAME_GENERAL_GPS,"{\"gpsInfo\":" + "\""[m
+[31m-											+ mLocationInfo.getLatitude() + ","+ mLocationInfo.getLongitude()+ "\"}");[m
+[31m-						}[m
+[31m-					}[m
+[31m-				}[m
+[31m-			});[m
+[31m-			locationModel.startLocate();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (mLocationInfo != null) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_GENERAL_GPS,[m
+[31m-					"{\"gpsInfo\":" + "\"" + mLocationInfo.getLatitude() + "," + mLocationInfo.getLongitude() + "\"}");[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	/* < xiaodong 20150805 added for Mic float View Begin */[m
+[31m-	/*[m
+[31m-	 * private OnClickListener mOnClickListener = new OnClickListener() {[m
+[31m-	 * [m
+[31m-	 * @Override public void onClick(View v) { if (v ==[m
+[31m-	 * mScreeFloatView.getFloatMicInstance()) { Logger.d(TAG,[m
+[31m-	 * "!--->onClick mScreeFloatView"); startTalk(); } } };[m
+[31m-	 */[m
+[31m-[m
+[31m-	/*[m
+[31m-	 * private OnSharedPreferenceChangeListener mPreferenceChangeListener = new[m
+[31m-	 * OnSharedPreferenceChangeListener() {[m
+[31m-	 * [m
+[31m-	 * @Override public void onSharedPreferenceChanged( SharedPreferences[m
+[31m-	 * sharedPreferences, String key) { Logger.d(TAG,[m
+[31m-	 * "!--->onSharedPreferenceChanged: key " + key); if[m
+[31m-	 * (UserPerferenceUtil.KEY_ENABLE_FLOAT_MIC.equals(key)) {[m
+[31m-	 * updateEnableFloatMic(); if (mEnableFloatMic) { startFloatMicChecker(0); }[m
+[31m-	 * } } };[m
+[31m-	 */[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * ZZJ 20150828 added for RECEIVE mScreenReceiver[m
+[31m-	 */[m
+[31m-	private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onReceive(Context context, Intent intent) {[m
+[31m-			Logger.d(TAG, "!--->mScreenReceiver--onReceive:intent " + intent);[m
+[31m-			String action = intent.getAction();[m
+[31m-			if (Intent.ACTION_SCREEN_ON.equals(action)) {[m
+[31m-				mSessionManager.onResume();[m
+[31m-			} else if (Intent.ACTION_SCREEN_OFF.equals(action)) {[m
+[31m-				mSessionManager.onPause();[m
+[31m-			} else if (Intent.ACTION_USER_PRESENT.equals(action)) {[m
+[31m-				mSessionManager.onResume();[m
+[31m-			} else if (ACTION_ACC_OFF.equals(action)) {[m
+[31m-				if (!MessageReceiver.readAccFile()) {[m
+[31m-					TTSController.getInstance(mContext).destroy();[m
+[31m-					accSwitch = false;[m
+[31m-					mSessionManager.cancelSession();[m
+[31m-					mSessionManager.onPause();[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-					MessageSender messageSender = new MessageSender(context);[m
+[31m-					Intent stop = new Intent(CommandPreference.SERVICECMD);[m
+[31m-					stop.putExtra(CommandPreference.CMDNAME,[m
+[31m-							CommandPreference.CMDSTOP);[m
+[31m-					messageSender.sendOrderedMessage(stop, null);[m
+[31m-					context.sendBroadcast(new Intent("com.glsx.boot.ACCOFF"));[m
+[31m-				}[m
+[31m-[m
+[31m-			} else if (ACTION_ACC_ON.equals(action)) {[m
+[31m-				accSwitch = true;[m
+[31m-				TTSController.getInstance(mContext).init();[m
+[31m-				if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-				} else {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-				}[m
+[31m-				// 广联一键通[m
+[31m-				context.sendBroadcast(new Intent("com.glsx.boot.ACCON"));[m
+[31m-[m
+[31m-			} else if (ACTION_CLOSE_WAKEUP.equals(action)) {[m
+[31m-[m
+[31m-				mSessionManager.cancelSession();[m
+[31m-				mSessionManager.onPause();[m
+[31m-				sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-						SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-[m
+[31m-			} else if (ACTION_OPEN_WAKEUP.equals(action)) {[m
+[31m-[m
+[31m-				if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-				} else {[m
+[31m-					sendProtocolEvent([m
+[31m-							SessionPreference.EVENT_NAME_SWITCH_WAKEUP,[m
+[31m-							SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-				}[m
+[31m-[m
+[31m-			} else if (PLAY_TTS.equals(action)) {[m
+[31m-				if (playTTs) {[m
+[31m-					String playText = intent.getStringExtra("content");[m
+[31m-					TTSController.getInstance(context).playText(playText);[m
+[31m-				}[m
+[31m-			}[m
+[31m-[m
+[31m-		}[m
+[31m-[m
+[31m-	};[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * register mScreenReceiver ZZJ added 20150828[m
+[31m-	 */[m
+[31m-	private void registerReceiver() {[m
+[31m-		IntentFilter filter = new IntentFilter();[m
+[31m-		filter.addAction(Intent.ACTION_SCREEN_ON);[m
+[31m-		filter.addAction(Intent.ACTION_SCREEN_OFF);[m
+[31m-		filter.addAction(ACTION_ACC_ON);[m
+[31m-		filter.addAction(ACTION_ACC_OFF);[m
+[31m-		filter.addAction(ACTION_OPEN_WAKEUP);[m
+[31m-		filter.addAction(ACTION_CLOSE_WAKEUP);[m
+[31m-		filter.addAction(PLAY_TTS);[m
+[31m-		filter.addAction(Intent.ACTION_USER_PRESENT);[m
+[31m-		filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);[m
+[31m-		registerReceiver(mScreenReceiver, filter);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * unregister mScreenReceiver XD added 20150805[m
+[31m-	 */[m
+[31m-	private void unregisterReceiver() {[m
+[31m-		unregisterReceiver(mScreenReceiver);[m
+[31m-	}[m
+[31m-[m
+[31m-	/*[m
+[31m-	 * private void startFloatMicChecker(long delay) { //Logger.d(TAG,[m
+[31m-	 * "startFloatMicChecker: delay " + delay); mHandler.postDelayed(mRunnable,[m
+[31m-	 * delay); }[m
+[31m-	 * [m
+[31m-	 * private void stopFloatMicChecker() { Logger.d(TAG,[m
+[31m-	 * "stopFloatMicChecker"); setFloatMicEnable(false);[m
+[31m-	 * mHandler.removeCallbacks(mRunnable); }[m
+[31m-	 */[m
+[31m-[m
+[31m-	/*[m
+[31m-	 * private Runnable mRunnable = new Runnable() {[m
+[31m-	 * [m
+[31m-	 * @Override public void run() { if (mEnableFloatMic) {[m
+[31m-	 * //PackageUtil.isHome(WindowService.this, mLauncherPackage) if[m
+[31m-	 * (PackageUtil.isNeedHideFloatView(WindowService.this) ||[m
+[31m-	 * isNeedHideMicFloatView) { hideFloatView(); } else { showFloatView(); }[m
+[31m-	 * startFloatMicChecker(500); } else { hideFloatView(); } } };[m
+[31m-	 */[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * setNeedHideMicFloatView for some special case XD added 20150811[m
+[31m-	 * [m
+[31m-	 * @param isNeedHide[m
+[31m-	 */[m
+[31m-	/*[m
+[31m-	 * public void setNeedHideMicFloatView(boolean isNeedHide){ Logger.d(TAG,[m
+[31m-	 * "!--->setNeedHideMicFloatView---isNeedHide = "+isNeedHide);[m
+[31m-	 * isNeedHideMicFloatView = isNeedHide; }[m
+[31m-	 */[m
+[31m-	/*[m
+[31m-	 * public void showFloatView() { if (!mScreeFloatView.isShown()) {[m
+[31m-	 * Logger.d(TAG, "!--->showFloatView---"); mScreeFloatView.show(); } }[m
+[31m-	 * [m
+[31m-	 * public void hideFloatView() { if (mScreeFloatView.isShown()) {[m
+[31m-	 * Logger.d(TAG, "!--->hideFloatView---"); mScreeFloatView.hide(); } }[m
+[31m-	 */[m
+[31m-[m
+[31m-	/*[m
+[31m-	 * private void updateEnableFloatMic() { Logger.d(TAG,[m
+[31m-	 * "updateEnableFloatMic---isShowFloatMicView = "[m
+[31m-	 * +UserPerferenceUtil.isFloatMicEnable(this));[m
+[31m-	 * setFloatMicEnable(UserPerferenceUtil.isFloatMicEnable(this)); }[m
+[31m-	 */[m
+[31m-[m
+[31m-	/*[m
+[31m-	 * private void setFloatMicEnable(boolean enable) { Logger.d(TAG,[m
+[31m-	 * "setFloatMicEnable: enable " + enable); mEnableFloatMic = enable; }[m
+[31m-	 */[m
+[31m-	/* xiaodong 20150805 added for Mic float View End > */[m
+[31m-[m
+[31m-	/* < xiaodong 20150813 added for cancel button click Begin */[m
+[31m-	/**[m
+[31m-	 * [m
+[31m-	 */[m
+[31m-	public void onCancelTalk() {[m
+[31m-		mUIHandler.sendEmptyMessage(MSG_GUI_CANCEL_SESSION);[m
+[31m-		mUIHandler.removeMessages(MSG_ON_RECORDING_PREPARED);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * XD 20150813 added[m
+[31m-	 */[m
+[31m-	public void onWaittingSessionCancel() {[m
+[31m-		mUIHandler.sendEmptyMessage(MSG_GUI_CANCEL_WAITTING_SESSION);[m
+[31m-	}[m
+[31m-[m
+[31m-	/* xiaodong 20150813 added for for cancel button click End > */[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * by ZZJ[m
+[31m-	 */[m
+[31m-[m
+[31m-	OnClickListener l = new OnClickListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void onClick(View v) {[m
+[31m-			switch (v.getId()) {[m
+[31m-			case R.id.button1:[m
+[31m-				if (mAlertDialog != null) {[m
+[31m-					startNavi();[m
+[31m-				}[m
+[31m-				break;[m
+[31m-			default:[m
+[31m-				if (mAlertDialog != null) {[m
+[31m-					UserPreference userPreference = new UserPreference([m
+[31m-							WindowService.this);[m
+[31m-					userPreference.putFloat("lat", 0f);[m
+[31m-					userPreference.putFloat("lng", 0f);[m
+[31m-					userPreference.putString("address", "");[m
+[31m-					mAlertDialog.dismiss();[m
+[31m-				}[m
+[31m-				break;[m
+[31m-			}[m
+[31m-[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * by ZZJ[m
+[31m-	 */[m
+[31m-	public void CreateDialog(Context context) {[m
+[31m-		if (mAlertDialog != null) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		LayoutInflater inflater = LayoutInflater.from(context);[m
+[31m-		View v = inflater.inflate(R.layout.prepare_navi, null);[m
+[31m-		button1 = (Button) v.findViewById(R.id.button1);[m
+[31m-		button2 = (Button) v.findViewById(R.id.button2);[m
+[31m-		Builder builder = new AlertDialog.Builder(context);[m
+[31m-		button1.setOnClickListener(l);[m
+[31m-		button2.setOnClickListener(l);[m
+[31m-		((TextView) v.findViewById(R.id.textView1)).setText("导航到"[m
+[31m-				+ mUserPreference.getString("address",[m
+[31m-						UserPreference.PREPARE_NAVI_ADDRESS));[m
+[31m-		builder.setView(v);[m
+[31m-		Intent intent = new Intent("com.wanma.action.PLAY_TTS");[m
+[31m-		intent.putExtra("content", "收到一条预约导航指令");[m
+[31m-		context.sendBroadcast(intent);[m
+[31m-		mAlertDialog = builder.create();[m
+[31m-		mAlertDialog.setCanceledOnTouchOutside(false);[m
+[31m-		mAlertDialog.getWindow().setType([m
+[31m-				WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);// 显示[m
+[31m-		CountDown();[m
+[31m-		mAlertDialog.show();[m
+[31m-[m
+[31m-		mAlertDialog.setOnDismissListener(new OnDismissListener() {[m
+[31m-			@Override[m
+[31m-			public void onDismiss(DialogInterface dialog) {[m
+[31m-				mAlertDialog = null;[m
+[31m-				mUserPreference.putFloat("lat", 0f);[m
+[31m-				mUserPreference.putFloat("lng", 0f);[m
+[31m-				mUserPreference.putString("address", "");[m
+[31m-				if (mCountDownTimer != null) {[m
+[31m-					mCountDownTimer.cancel();[m
+[31m-					mCountDownTimer = null;[m
+[31m-				}[m
+[31m-			}[m
+[31m-		});[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * by ZZJ[m
+[31m-	 */[m
+[31m-	CountDownTimer mCountDownTimer;[m
+[31m-[m
+[31m-	private void CountDown() {[m
+[31m-		if (mCountDownTimer != null) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-[m
+[31m-		mCountDownTimer = new CountDownTimer(10000, 1000) {[m
+[31m-[m
+[31m-			@Override[m
+[31m-			public void onTick(long millisUntilFinished) {[m
+[31m-				button1.setText("开始(" + millisUntilFinished / 1000 + "s)");[m
+[31m-			}[m
+[31m-[m
+[31m-			@Override[m
+[31m-			public void onFinish() {[m
+[31m-				if (mAlertDialog != null) {[m
+[31m-					startNavi();[m
+[31m-				}[m
+[31m-			}[m
+[31m-[m
+[31m-		};[m
+[31m-		mCountDownTimer.start();[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * by ZZJ[m
+[31m-	 */[m
+[31m-	private void startNavi() {[m
+[31m-		int mapIndex = UserPerferenceUtil.getMapChoose(mContext);[m
+[31m-		switch (mapIndex) {[m
+[31m-		case 1:[m
+[31m-			GaodeUriApi.startNavi(mContext,[m
+[31m-					mUserPreference.getFloat("lat", 0f),[m
+[31m-					mUserPreference.getFloat("lng", 0f),[m
+[31m-					mUserPreference.getString("address", ""), 2, 0);[m
+[31m-			break;[m
+[31m-		default:[m
+[31m-			Intent intent = new Intent();[m
+[31m-			intent.setData(Uri.parse("bdnavi://plan?dest="[m
+[31m-					+ mUserPreference.getFloat("lat", 0f) + ","[m
+[31m-					+ mUserPreference.getFloat("lng", 0f) + ","[m
+[31m-					+ mUserPreference.getString("address", "") + ")"));[m
+[31m-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK[m
+[31m-					| Intent.FLAG_ACTIVITY_SINGLE_TOP);[m
+[31m-			mContext.startActivity(intent);[m
+[31m-			break;[m
+[31m-		}[m
+[31m-		mUserPreference.putFloat("lat", 0f);[m
+[31m-		mUserPreference.putFloat("lng", 0f);[m
+[31m-		mUserPreference.putString("address", "");[m
+[31m-		mAlertDialog.dismiss();[m
+[31m-	}[m
+[31m-[m
+[31m-	private Runnable mRecoverRunnable = new Runnable() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public void run() {[m
+[31m-			recover();[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private void recover() {[m
+[31m-		int volume = getAudioManager().getStreamVolume([m
+[31m-				AudioManager.STREAM_NOTIFICATION);[m
+[31m-		if (volume < 1) {[m
+[31m-			getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC, 0,[m
+[31m-					AudioManager.FLAG_ALLOW_RINGER_MODES);[m
+[31m-		} else {[m
+[31m-			getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,[m
+[31m-					volume * 2 + 1, AudioManager.FLAG_ALLOW_RINGER_MODES);[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	private AudioManager getAudioManager() {[m
+[31m-		if (mAudioManager == null) {[m
+[31m-			mAudioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);[m
+[31m-		}[m
+[31m-		return mAudioManager;[m
+[31m-	}[m
+[31m-[m
+[31m-	private void updateMapConfig() {[m
+[31m-		int map_index = Settings.System.getInt(getContentResolver(),[m
+[31m-				SettingMapViewPagerActivity.MAP_INDEX, 0);[m
+[31m-		if (map_index == 0) {[m
+[31m-			UserPerferenceUtil.setMapChoose(mContext,[m
+[31m-					UserPerferenceUtil.VALUE_MAP_BAIDU);[m
+[31m-		} else {[m
+[31m-			UserPerferenceUtil.setMapChoose(mContext,[m
+[31m-					UserPerferenceUtil.VALUE_MAP_AMAP);[m
+[31m-		}[m
+[31m-		// String poiVendor =[m
+[31m-		// cn.yunzhisheng.preference.PrivatePreference.getValue("poi_vendor",UserPreference.MAP_VALUE_AMAP);[m
+[31m-[m
+[31m-	}[m
+[31m-}[m
+[1mdiff --git a/project/assets/config.mg b/project/assets/config.mg[m
+[1mdeleted file mode 100644[m
+[1mindex d970855..0000000[m
+[1m--- a/project/assets/config.mg[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-default_location={"cityCode":"021","lat":31.177598,"lng":121.401098,"type":5,"address":"上海市 徐汇区 钦州北路 靠近电信恒联","destrict":"徐汇区","city":"上海"}[m
+\ No newline at end of file[m
+[1mdiff --git a/project/assets/debug.mg b/project/assets/debug.mg[m
+[1mdeleted file mode 100644[m
+[1mindex c00a613..0000000[m
+[1m--- a/project/assets/debug.mg[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-debug=true[m
+[1mdiff --git a/project/assets/json.txt b/project/assets/json.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 7a825fc..0000000[m
+[1m--- a/project/assets/json.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-{"origin_code":"SMS_SEND","data":{"content":"这是短信内容","name":"李白","schedule_type":"INPUT_CONTENT_SMS","number":"10086"},"domain":"SESSION_SHOW","type":"INPUT_CONTENT_SMS","origin_type":"cn.yunzhisheng.sms"}[m
+\ No newline at end of file[m
+[1mdiff --git a/project/bin/AndroidManifest.xml b/project/bin/AndroidManifest.xml[m
+[1mdeleted file mode 100644[m
+[1mindex c189b09..0000000[m
+[1m--- a/project/bin/AndroidManifest.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,300 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="utf-8"?>[m
+[31m-<manifest xmlns:android="http://schemas.android.com/apk/res/android"[m
+[31m-    package="com.coogo.inet.vui.assistant.car"[m
+[31m-    android:versionCode="83"[m
+[31m-	android:sharedUserId="android.uid.phone"[m
+[31m-    android:versionName="3.10.1.8" >[m
+[31m-<!-- package="com.unisound.unicar.gui" -->[m
+[31m-    <uses-sdk[m
+[31m-        android:minSdkVersion="8"[m
+[31m-        android:targetSdkVersion="19" />[m
+[31m-[m
+[31m-    <uses-permission android:name="android.permission.RECORD_AUDIO" />[m
+[31m-    <uses-permission android:name="android.permission.INTERNET" />[m
+[31m-    <uses-permission android:name="android.permission.WAKE_LOCK" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_LOGS" />[m
+[31m-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />[m
+[31m-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />[m
+[31m-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />[m
+[31m-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />[m
+[31m-    <uses-permission android:name="android.permission.READ_CONTACTS" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />[m
+[31m-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />[m
+[31m-    <uses-permission android:name="android.permission.BLUETOOTH" />[m
+[31m-    <uses-permission android:name="android.permission.VIBRATE" />[m
+[31m-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-    <uses-permission android:name="android.permission.CALL_PHONE" />[m
+[31m-    <uses-permission android:name="android.permission.READ_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.SEND_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />[m
+[31m-    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />[m
+[31m-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />[m
+[31m-    <uses-permission android:name="android.permission.ACCESS_GPS" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_SMS" />[m
+[31m-    <uses-permission android:name="android.permission.RECEIVE_MMS" />[m
+[31m-    <uses-permission android:name="android.permission.GET_TASKS" />[m
+[31m-    <uses-permission android:name="android.permission.READ_CHATHISTORY" />[m
+[31m-    <uses-permission android:name="android.permission.WRITE_CHATHISTORY" />[m
+[31m-    [m
+[31m-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />[m
+[31m- 	<uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />[m
+[31m-[m
+[31m-    <supports-screens[m
+[31m-        android:anyDensity="true"[m
+[31m-        android:largeScreens="true"[m
+[31m-        android:normalScreens="false"[m
+[31m-        android:resizeable="true"[m
+[31m-        android:smallScreens="true" />[m
+[31m-[m
+[31m-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />[m
+[31m-[m
+[31m-    <!-- vui assistant application -->[m
+[31m-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />[m
+[31m-[m
+[31m-    <application[m
+[31m-        android:name="com.unisound.unicar.gui.application.CrashApplication"[m
+[31m-        android:allowBackup="true"[m
+[31m-        android:icon="@drawable/ic_launcher"[m
+[31m-        android:label="@string/app_name"[m
+[31m-        android:largeHeap="true"[m
+[31m-        android:persistent="true"[m
+[31m-        android:theme="@style/AppTheme" >[m
+[31m-        [m
+[31m-        <!--高德定位[m
+[31m-			| sign(正式签名) : d8165913749a3925d326b2d2e35a5bf0[m
+[31m-        	| tyz	  	   : 3392c2b2875dedb22a0d76ca14635649 [m
+[31m-        	| wanglp  	   : 32e412260949baa674e4da4146a19fc0[m
+[31m-        	| zhuoran      : 360894425b56be95aaab8b02edb63df5[m
+[31m-        	| xiaodong     : d65f20a272392daf37088fe1092824ba [m
+[31m-        	| 6ef833ab2042641d80efe95b7239097b[m
+[31m-        -->[m
+[31m-        <meta-data[m
+[31m-            android:name="com.amap.api.v2.apikey"[m
+[31m-            android:value="25de08e23637f3704b95ff832ded1b90" />[m
+[31m-        <!--百度定位[m
+[31m-        	| sign(正式签名) : 5izIo5E71pRpp4aQeoG3QVdw[m
+[31m-        	| zhuoran 	   : pha5tikVH6jPrSLAQYVruTCt  [m
+[31m-        -->[m
+[31m-        <meta-data[m
+[31m-            android:name="com.baidu.lbsapi.API_KEY"[m
+[31m-            android:value="aCaSGZAadqLjRjCNrq6cP6ge" />[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.WelcomeActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.GUIMainActivity"[m
+[31m-            android:label="@string/app_name" [m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.MAIN" />[m
+[31m-[m
+[31m-                <category android:name="android.intent.category.LAUNCHER" />[m
+[31m-            </intent-filter>[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-         <activity [m
+[31m-            android:name="com.unisound.unicar.gui.ui.PositionActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150713 added Begin -->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.FunctionHelpActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.OTAActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.AboutActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150713 added End -->[m
+[31m-[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.HelpActivity"[m
+[31m-            android:launchMode="singleTask"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <!-- xiaodong 20150609 added begin-->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.AllFunctionsActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.SettingsViewPagerActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        [m
+[31m-        <!-- SettingMapViewPagerActivity singleTop -->[m
+[31m-        <activity[m
+[31m-            android:name="com.unisound.unicar.gui.ui.SettingMapViewPagerActivity"[m
+[31m-            android:launchMode="singleTop"[m
+[31m-            android:screenOrientation="landscape" [m
+[31m-            android:configChanges="orientation|keyboardHidden">[m
+[31m-        </activity>[m
+[31m-        <!-- xiaodong 20150609 added end -->[m
+[31m-  <!-- XD 20150825 added for default SMS Begin -->[m
+[31m-        <!-- Activity that allows the user to send new SMS/MMS messages -->[m
+[31m-        <activity android:name="com.unisound.unicar.gui.smsdefault.ComposeSmsActivity" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.SEND" />                [m
+[31m-                <action android:name="android.intent.action.SENDTO" />[m
+[31m-                <category android:name="android.intent.category.DEFAULT" />[m
+[31m-                <category android:name="android.intent.category.BROWSABLE" />[m
+[31m-                <data android:scheme="sms" />[m
+[31m-                <data android:scheme="smsto" />[m
+[31m-                <data android:scheme="mms" />[m
+[31m-                <data android:scheme="mmsto" />[m
+[31m-            </intent-filter>[m
+[31m-        </activity>[m
+[31m-[m
+[31m-        <!-- Service that delivers messages from the phone "quick response" -->[m
+[31m-        <service android:name="com.unisound.unicar.gui.smsdefault.HeadlessSmsSendService"[m
+[31m-                 android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"[m
+[31m-                 android:exported="true" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />[m
+[31m-                <category android:name="android.intent.category.DEFAULT" />[m
+[31m-                <data android:scheme="sms" />[m
+[31m-                <data android:scheme="smsto" />[m
+[31m-                <data android:scheme="mms" />[m
+[31m-                <data android:scheme="mmsto" />[m
+[31m-            </intent-filter>[m
+[31m-        </service>[m
+[31m-        [m
+[31m-        <!-- BroadcastReceiver that listens for incoming SMS messages -->[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.smsdefault.SmsReceiver"[m
+[31m-                android:permission="android.permission.BROADCAST_SMS">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.provider.Telephony.SMS_DELIVER" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- BroadcastReceiver that listens for incoming MMS messages -->[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.smsdefault.MmsReceiver"[m
+[31m-            android:permission="android.permission.BROADCAST_WAP_PUSH">[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />[m
+[31m-                <data android:mimeType="application/vnd.wap.mms-message" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-        <!-- XD 20150825 added for default SMS End -->[m
+[31m-[m
+[31m-        <!-- Receiver -->[m
+[31m-        <receiver[m
+[31m-            android:name="com.unisound.unicar.gui.sms.SmsSendReceiver"[m
+[31m-            android:exported="false" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.MESSAGE_SENT" />[m
+[31m-                <data android:scheme="content" />[m
+[31m-            </intent-filter>[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.SEND_MESSAGE" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- xd added 20150710 begin-->[m
+[31m-        <receiver[m
+[31m-            android:name="com.unisound.unicar.gui.sms.MessageStatusReceiver"[m
+[31m-            android:exported="false" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="com.unisound.intent.action.MESSAGE_STATUS_RECEIVED" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <receiver android:name="com.unisound.unicar.gui.phone.PhoneStateReceiver" >[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />[m
+[31m-                <action android:name="android.intent.action.PHONE_STATE" />[m
+[31m-                <action android:name="android.intent.action.BLUETOOTH_PHONE_STATE" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-        <!-- xd added 20150710 end-->[m
+[31m-[m
+[31m-        <!-- Service -->[m
+[31m-   <!--      <service android:name="com.unisound.unicar.gui.ui.WindowService" /> -->[m
+[31m-        <service android:name="cn.yunzhisheng.vui.assistant.WindowService" android:exported="true" />[m
+[31m-        [m
+[31m-        <!-- [m
+[31m-        <service android:name="com.unisound.unicar.gui.ui.KillNotificationService" />[m
+[31m-         -->[m
+[31m-        [m
+[31m-        <service android:name="com.unisound.unicar.gui.sms.SmsSenderService" />[m
+[31m-        [m
+[31m-        <service[m
+[31m-            android:name="com.android.kwmusic.KWMusicService"[m
+[31m-            android:persistent="true" android:exported="true" />[m
+[31m-        [m
+[31m-        <service[m
+[31m-            android:name="com.baidu.location.f"[m
+[31m-            android:enabled="true"[m
+[31m-            android:process=":remote" >[m
+[31m-        </service>[m
+[31m-        [m
+[31m-        <receiver android:name="com.unisound.unicar.gui.ui.MessageReceiver" >[m
+[31m-            <intent-filter android:priority="2147483646">[m
+[31m-                <action android:name="android.intent.action.BOOT_COMPLETED" />[m
+[31m-                 <category android:name="android.intent.category.LAUNCHER" />[m
+[31m-            </intent-filter>[m
+[31m-            <intent-filter>[m
+[31m-                <action android:name="android.intent.action.VUI_SPEAK_ON_KEYEVENT" />[m
+[31m-                <action android:name="com.glsx.bootup.send.autonavi" />[m
+[31m-      [m
+[31m-                <action android:name="action.colink.remotecommand" />[m
+[31m-            </intent-filter>[m
+[31m-        </receiver>[m
+[31m-[m
+[31m-        <!-- yj 2015.8.13 -->[m
+[31m-        <provider[m
+[31m-            android:name="com.unisound.unicar.gui.chat.ChatContentProvider"[m
+[31m-            android:authorities="com.unisound.unicar.gui.chat.ChatProvider"[m
+[31m-            android:exported="true"[m
+[31m-            android:label="ChatContentProvider"[m
+[31m-            android:readPermission="android.permission.READ_CHATHISTORY"[m
+[31m-            android:writePermission="android.permission.WRITE_CHATHISTORY" />[m
+[31m-         <provider[m
+[31m-            android:name="com.unisound.unicar.gui.database.WakeUpSwitch"[m
+[31m-            android:authorities="com.coogo.inet.vui.assistant.car"[m
+[31m-            android:exported="true" />[m
+[31m-        [m
+[31m-[m
+[31m-    </application>[m
+[31m-</manifest>[m
+[1mdiff --git a/project/bin/aidl/com/android/internal/telephony/ITelephony.aidl b/project/bin/aidl/com/android/internal/telephony/ITelephony.aidl[m
+[1mdeleted file mode 100644[m
+[1mindex f90c8c2..0000000[m
+[1m--- a/project/bin/aidl/com/android/internal/telephony/ITelephony.aidl[m
+[1m+++ /dev/null[m
+[36m@@ -1,87 +0,0 @@[m
+[31m-/*[m
+[31m- * AutoAnswer[m
+[31m- * Copyright (C) 2010 EverySoft[m
+[31m- *[m
+[31m- *   This program is free software: you can redistribute it and/or modify[m
+[31m- *   it under the terms of the GNU General Public License as published by[m
+[31m- *   the Free Software Foundation, either version 3 of the License, or[m
+[31m- *   (at your option) any later version.[m
+[31m- *[m
+[31m- *   This program is distributed in the hope that it will be useful,[m
+[31m- *   but WITHOUT ANY WARRANTY; without even the implied warranty of[m
+[31m- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the[m
+[31m- *   GNU General Public License for more details.[m
+[31m- *[m
+[31m- *   You should have received a copy of the GNU General Public License[m
+[31m- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.[m
+[31m- *[m
+[31m- * This file incorporates work covered by the following copyright and[m
+[31m- * permission notice:[m
+[31m- *[m
+[31m- *   Copyright (C) 2007 The Android Open Source Project[m
+[31m- *[m
+[31m- *   Licensed under the Apache License, Version 2.0 (the "License");[m
+[31m- *   you may not use this file except in compliance with the License.[m
+[31m- *   You may obtain a copy of the License at[m
+[31m- *[m
+[31m- *       http://www.apache.org/licenses/LICENSE-2.0[m
+[31m- *[m
+[31m- *   Unless required by applicable law or agreed to in writing, software[m
+[31m- *   distributed under the License is distributed on an "AS IS" BASIS,[m
+[31m- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.[m
+[31m- *   See the License for the specific language governing permissions and[m
+[31m- *   limitations under the License.[m
+[31m- */[m
+[31m-[m
+[31m-package com.android.internal.telephony;[m
+[31m-[m
+[31m-/**[m
+[31m- * Interface used to interact with the phone.  Mostly this is used by the[m
+[31m- * TelephonyManager class.  A few places are still using this directly.[m
+[31m- * Please clean them up if possible and use TelephonyManager insteadl.[m
+[31m- *[m
+[31m- */[m
+[31m-interface ITelephony {[m
+[31m-    /**[m
+[31m-     * Answer the currently-ringing call.[m
+[31m-     *[m
+[31m-     * If there's already a current active call, that call will be[m
+[31m-     * automatically put on hold.  If both lines are currently in use, the[m
+[31m-     * current active call will be ended.[m
+[31m-     *[m
+[31m-     * TODO: provide a flag to let the caller specify what policy to use[m
+[31m-     * if both lines are in use.  (The current behavior is hardwired to[m
+[31m-     * "answer incoming, end ongoing", which is how the CALL button[m
+[31m-     * is specced to behave.)[m
+[31m-     *[m
+[31m-     * TODO: this should be a oneway call (especially since it's called[m
+[31m-     * directly from the key queue thread).[m
+[31m-     */[m
+[31m-    void answerRingingCall();[m
+[31m-[m
+[31m-    /**[m
+[31m-     * Silence the ringer if an incoming call is currently ringing.[m
+[31m-     * (If vibrating, stop the vibrator also.)[m
+[31m-     *[m
+[31m-     * It's safe to call this if the ringer has already been silenced, or[m
+[31m-     * even if there's no incoming call.  (If so, this method will do nothing.)[m
+[31m-     *[m
+[31m-     * TODO: this should be a oneway call too (see above).[m
+[31m-     *       (Actually *all* the methods here that return void can[m
+[31m-     *       probably be oneway.)[m
+[31m-     */[m
+[31m-    void silenceRinger();[m
+[31m-    [m
+[31m-      /**[m
+[31m-     * End call if there is a call in progress, otherwise does nothing.[m
+[31m-     *[m
+[31m-     * @return whether it hung up[m
+[31m-     */[m
+[31m-    boolean endCall();[m
+[31m-    [m
+[31m-    /**[m
+[31m-     * Check if the phone is idle.[m
+[31m-     * @return true if the phone state is IDLE.[m
+[31m-     */[m
+[31m-    boolean isIdle();[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterCallback.aidl b/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterCallback.aidl[m
+[1mdeleted file mode 100644[m
+[1mindex 965a952..0000000[m
+[1m--- a/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterCallback.aidl[m
+[1m+++ /dev/null[m
+[36m@@ -1,5 +0,0 @@[m
+[31m-package com.unisound.unicar.framework.service;[m
+[31m-[m
+[31m-interface IMessageRouterCallback {[m
+[31m-    void onCallBack(String callBackJson);[m
+[31m-}[m
+[1mdiff --git a/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterService.aidl b/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterService.aidl[m
+[1mdeleted file mode 100644[m
+[1mindex d497f90..0000000[m
+[1m--- a/project/bin/aidl/com/unisound/unicar/framework/service/IMessageRouterService.aidl[m
+[1m+++ /dev/null[m
+[36m@@ -1,10 +0,0 @@[m
+[31m-package com.unisound.unicar.framework.service;[m
+[31m-import com.unisound.unicar.framework.service.IMessageRouterCallback;  [m
+[31m-[m
+[31m-interface IMessageRouterService {[m
+[31m-	void sendMessage(String messageJson);[m
+[31m-	void registerCallback(IMessageRouterCallback callback);[m
+[31m-	IMessageRouterCallback getCallback();[m
+[31m-	boolean isServiceStart();[m
+[31m-	void startMessageRoute();[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/project/bin/classes.dex b/project/bin/classes.dex[m
+[1mdeleted file mode 100644[m
+[1mindex 73b0852..0000000[m
+Binary files a/project/bin/classes.dex and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$1.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$1.class[m
+[1mdeleted file mode 100644[m
+[1mindex ea91488..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$1.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$10.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$10.class[m
+[1mdeleted file mode 100644[m
+[1mindex c4eb78d..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$10.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$11.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$11.class[m
+[1mdeleted file mode 100644[m
+[1mindex 0849e10..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$11.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$12.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$12.class[m
+[1mdeleted file mode 100644[m
+[1mindex 0714ac4..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$12.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$13.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$13.class[m
+[1mdeleted file mode 100644[m
+[1mindex 563b15f..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$13.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$14.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$14.class[m
+[1mdeleted file mode 100644[m
+[1mindex 90d56a3..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$14.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$2.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$2.class[m
+[1mdeleted file mode 100644[m
+[1mindex 2b11d3a..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$2.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$3.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$3.class[m
+[1mdeleted file mode 100644[m
+[1mindex 7e72dcd..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$3.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$4.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$4.class[m
+[1mdeleted file mode 100644[m
+[1mindex c674966..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$4.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$5.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$5.class[m
+[1mdeleted file mode 100644[m
+[1mindex 096633f..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$5.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$6.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$6.class[m
+[1mdeleted file mode 100644[m
+[1mindex 4fe77f6..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$6.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$7.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$7.class[m
+[1mdeleted file mode 100644[m
+[1mindex ffe5cb3..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$7.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$8.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$8.class[m
+[1mdeleted file mode 100644[m
+[1mindex bcf4568..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$8.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$9.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$9.class[m
+[1mdeleted file mode 100644[m
+[1mindex f34a8f2..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService$9.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.class b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.class[m
+[1mdeleted file mode 100644[m
+[1mindex 1eb0b40..0000000[m
+Binary files a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.class and /dev/null differ
+[1mdiff --git a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.java.bak b/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.java.bak[m
+[1mdeleted file mode 100644[m
+[1mindex 5f3e882..0000000[m
+[1m--- a/project/bin/classes/cn/yunzhisheng/vui/assistant/WindowService.java.bak[m
+[1m+++ /dev/null[m
+[36m@@ -1,1894 +0,0 @@[m
+[31m-/**[m
+[31m- * Copyright (c) 2012-2013 Yunzhisheng(Shanghai) Co.Ltd. All right reserved.[m
+[31m- * @FileName : WindowService.java[m
+[31m- * @ProjectName : Voizard[m
+[31m- * @PakageName : cn.yunzhisheng.voizard.service[m
+[31m- * @Author : Brant[m
+[31m- * @CreateDate : 2013-5-27[m
+[31m- */[m
+[31m-package cn.yunzhisheng.vui.assistant;[m
+[31m-[m
+[31m-import java.util.ArrayList;[m
+[31m-import java.util.List;[m
+[31m-[m
+[31m-import org.json.JSONArray;[m
+[31m-import org.json.JSONException;[m
+[31m-import org.json.JSONObject;[m
+[31m-[m
+[31m-import android.annotation.SuppressLint;[m
+[31m-import android.app.AlertDialog;[m
+[31m-import android.app.AlertDialog.Builder;[m
+[31m-import android.app.Service;[m
+[31m-import android.content.BroadcastReceiver;[m
+[31m-import android.content.ComponentName;[m
+[31m-import android.content.ContentValues;[m
+[31m-import android.content.Context;[m
+[31m-import android.content.DialogInterface;[m
+[31m-import android.content.DialogInterface.OnDismissListener;[m
+[31m-import android.content.Intent;[m
+[31m-import android.content.IntentFilter;[m
+[31m-import android.content.ServiceConnection;[m
+[31m-import android.content.pm.ActivityInfo;[m
+[31m-import android.database.ContentObserver;[m
+[31m-import android.graphics.PixelFormat;[m
+[31m-import android.graphics.Point;[m
+[31m-import android.media.AudioManager;[m
+[31m-import android.net.Uri;[m
+[31m-import android.os.Build;[m
+[31m-import android.os.CountDownTimer;[m
+[31m-import android.os.Handler;[m
+[31m-import android.os.IBinder;[m
+[31m-import android.os.Message;[m
+[31m-import android.os.PowerManager;[m
+[31m-import android.os.PowerManager.WakeLock;[m
+[31m-import android.os.RemoteException;[m
+[31m-import android.provider.Settings;[m
+[31m-import android.util.Log;[m
+[31m-import android.view.Display;[m
+[31m-import android.view.Gravity;[m
+[31m-import android.view.KeyEvent;[m
+[31m-import android.view.LayoutInflater;[m
+[31m-import android.view.MotionEvent;[m
+[31m-import android.view.View;[m
+[31m-import android.view.View.OnClickListener;[m
+[31m-import android.view.ViewGroup;[m
+[31m-import android.view.WindowManager;[m
+[31m-import android.widget.Button;[m
+[31m-import android.widget.TextView;[m
+[31m-[m
+[31m-import com.android.kwmusic.KWMusicService;[m
+[31m-import com.coogo.inet.vui.assistant.car.R;[m
+[31m-import com.unisound.unicar.framework.service.IMessageRouterCallback;[m
+[31m-import com.unisound.unicar.framework.service.IMessageRouterService;[m
+[31m-import com.unisound.unicar.gui.data.interfaces.IBaseListener;[m
+[31m-import com.unisound.unicar.gui.data.operation.AppsDataModel;[m
+[31m-import com.unisound.unicar.gui.data.operation.ContactDataModel;[m
+[31m-import com.unisound.unicar.gui.data.operation.MediaDataModel;[m
+[31m-import com.unisound.unicar.gui.database.WakeUpDB;[m
+[31m-import com.unisound.unicar.gui.database.WakeUpSwitch;[m
+[31m-import com.unisound.unicar.gui.location.interfaces.ILocationListener;[m
+[31m-import com.unisound.unicar.gui.location.operation.LocationModelProxy;[m
+[31m-import com.unisound.unicar.gui.model.LocationInfo;[m
+[31m-import com.unisound.unicar.gui.msg.ISystemCallTransitionListener;[m
+[31m-import com.unisound.unicar.gui.msg.SystemCallTransition;[m
+[31m-import com.unisound.unicar.gui.preference.CommandPreference;[m
+[31m-import com.unisound.unicar.gui.preference.Constant;[m
+[31m-import com.unisound.unicar.gui.preference.PrivatePreference;[m
+[31m-import com.unisound.unicar.gui.preference.SessionPreference;[m
+[31m-import com.unisound.unicar.gui.preference.UserPerferenceUtil;[m
+[31m-import com.unisound.unicar.gui.preference.UserPreference;[m
+[31m-import com.unisound.unicar.gui.route.operation.GaodeUriApi;[m
+[31m-import com.unisound.unicar.gui.session.GUISessionManager;[m
+[31m-import com.unisound.unicar.gui.ui.MessageReceiver;[m
+[31m-import com.unisound.unicar.gui.ui.MessageSender;[m
+[31m-import com.unisound.unicar.gui.ui.SettingMapViewPagerActivity;[m
+[31m-import com.unisound.unicar.gui.utils.DeviceTool;[m
+[31m-import com.unisound.unicar.gui.utils.ErrorUtil;[m
+[31m-import com.unisound.unicar.gui.utils.GUIConfig;[m
+[31m-import com.unisound.unicar.gui.utils.JsonTool;[m
+[31m-import com.unisound.unicar.gui.utils.Logger;[m
+[31m-import com.unisound.unicar.gui.utils.PackageUtil;[m
+[31m-import com.unisound.unicar.gui.utils.SystemPropertiesProxy;[m
+[31m-import com.unisound.unicar.gui.utils.TTSController;[m
+[31m-import com.unisound.unicar.gui.view.MicrophoneControl;[m
+[31m-import com.unisound.unicar.gui.view.MicrophoneControlDoresoView;[m
+[31m-import com.unisound.unicar.gui.view.SessionContainer;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout.DispatchKeyEventListener;[m
+[31m-import com.unisound.unicar.gui.view.SessionLinearLayout.OnTouchEventListener;[m
+[31m-[m
+[31m-/**[m
+[31m- * @Module : 隶属模块�?[m
+[31m- * @Comments : 描述[m
+[31m- * @Author : Brant[m
+[31m- * @CreateDate : 2013-5-27[m
+[31m- * @ModifiedBy : Brant[m
+[31m- * @ModifiedDate: 2013-5-27[m
+[31m- * @Modified: 2013-5-27: 实现基本功能[m
+[31m- */[m
+[31m-@SuppressLint("InlinedApi")[m
+[31m-public class WindowService extends Service {[m
+[31m-	private static final String COM_GLSX_BOOT_ACCON = "com.glsx.boot.ACCON";[m
+[31m-	private static final String COM_GLSX_BOOT_ACCOFF = "com.glsx.boot.ACCOFF";[m
+[31m-	private static final String TAG = "WindowService";[m
+[31m-	public static final String ACTION_SET_WAKEUP = "com.unisound.unicar.gui.ACTION.SET_WAKEUP";[m
+[31m-	public static final String ACTION_SET_TTSSPEED = "com.unisound.unicar.gui.ACTION.SET_TTSSPEED";[m
+[31m-	public static final String KEY_SET_TTSSPEED = "SET_TTSSPEED";[m
+[31m-	public static final String ACTION_START_REQUEST_MAKE_FINISHED = "com.unisound.unicar.gui.ACTION.REQUEST_MAKE_FINISHED"; // XD[m
+[31m-																															// added[m
+[31m-[m
+[31m-	public static final String ACTION_ACC_ON = "android.intent.action.ACC_ON_KEYEVENT";[m
+[31m-	public static final String ACTION_ACC_OFF = "android.intent.action.ACC_OFF_KEYEVENT";[m
+[31m-	public static final String ACTION_CLOSE_WAKEUP = "android.intent.action.CLOSE_WAKEUP";[m
+[31m-	public static final String ACTION_OPEN_WAKEUP = "android.intent.action.OPEN_WAKEUP";[m
+[31m-	public static final String ACTION_START_TALK = "cn.yunzhisheng.intent.action.START_TALK";[m
+[31m-	private static final String PLAY_TTS = "com.wanma.action.PLAY_TTS";[m
+[31m-	private static final String GL_PLAY_TTS = "com.glsx.tts.speaktext";[m
+[31m-[m
+[31m-	public static boolean accSwitch = true;[m
+[31m-	private boolean playTTs = true;[m
+[31m-[m
+[31m-	public static final String EXTRA_KEY_DISMISS_FLOAT_WINDOW = "DISMISS_FLOAT_WINDOW";[m
+[31m-	public static final int MSG_SET_STATE = 2001;[m
+[31m-	public static final int MSG_ON_RECORDING_START = 2002;[m
+[31m-	public static final int MSG_ON_RECORDING_STOP = 2003;[m
+[31m-	public static final int MSG_ON_SESSION_PROTOCAL = 2004;[m
+[31m-	public static final int MSG_IS_ASR_COMPILE_DONE = 2005;[m
+[31m-	public static final int MSG_ON_TTS_PLAY_END = 2007;[m
+[31m-	public static final int MSG_ON_RECORDING_PREPARED = 2008;[m
+[31m-	public static final int MSG_ON_RECORDING_RESULT = 2009;[m
+[31m-	public static final int MSG_ON_RECORDING_EXCEPTION = 2010; // XD 20150807[m
+[31m-																// added[m
+[31m-	public static final int MSG_ON_RECOGNIZER_TIMEOUT = 2011;[m
+[31m-	public static final int MSG_ON_CTT_CANCEL = 2012;[m
+[31m-[m
+[31m-	/* < XD 20150813 added Begin */[m
+[31m-	public static final int MSG_GUI_CANCEL_SESSION = 3100;[m
+[31m-	public static final int MSG_GUI_CANCEL_WAITTING_SESSION = 3101;[m
+[31m-	[m
+[31m-	/* < XD 20150914 added ZZJ */[m
+[31m-	private String CONSUMER_CODE = "ro.inet.consumer.code";[m
+[31m-	public static String custom_code;[m
+[31m-	[m
+[31m-	/* < XD 20150916 added ZZJ */[m
+[31m-	public static final String ACTION_CONTACT_DONE="com.colink.zzj.contact.donedial";[m
+[31m-	public static final String ACTION_CONTACT_START="com.colink.zzj.contact.start";[m
+[31m-	private static final String DOWNVOER = "通讯录导入结�?;[m
+[31m-	[m
+[31m-	/* XD 20150813 added End > */[m
+[31m-[m
+[31m-	private Point mWindowSize = new Point();[m
+[31m-	private WindowManager mWindowManager;[m
+[31m-	private SessionLinearLayout mViewRoot;[m
+[31m-	private SessionContainer mSessionContainer;[m
+[31m-	private MicrophoneControl mMicrophoneControl;[m
+[31m-	private MicrophoneControlDoresoView mMicrophoneDoresoControl; //XD added 20150828[m
+[31m-	private GUISessionManager mSessionManager = null;[m
+[31m-	private WindowManager.LayoutParams mWindowParams = new WindowManager.LayoutParams();[m
+[31m-	private Context mContext;[m
+[31m-	private IMessageRouterService mMessageRouterService;[m
+[31m-	private SystemCallTransition messageTransCenter = null;[m
+[31m-	// private boolean isNeedRequestIsASRCompileFinished = false;[m
+[31m-[m
+[31m-	/* < XD 20150805 added for Mic float View Begin */[m
+[31m-	private List<String> mLauncherPackage;[m
+[31m-	// private FloatMicView mScreeFloatView;[m
+[31m-	private boolean mPendingStartMicChecker;[m
+[31m-//	private Handler mHandler = new Handler();[m
+[31m-[m
+[31m-	/** is Need Hide MicFloatView for some special case */[m
+[31m-	/* XD 20150805 added for Mic float View End > */[m
+[31m-[m
+[31m-	/*< XD 20150828 added for Music Doreso Begin */[m
+[31m-	/**[m
+[31m-	 * wake up success type[m
+[31m-	 * SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS[m
+[31m-	 * SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS_DORESO[m
+[31m-	 */[m
+[31m-	private int mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS;[m
+[31m-	[m
+[31m-	public int getWakeupSuccessType() {[m
+[31m-		return mWakeupSuccessType;[m
+[31m-	}[m
+[31m-[m
+[31m-	// xd added 20150707[m
+[31m-	private static ArrayList<String> mOnlineSupportList = null;[m
+[31m-	private static ArrayList<String> mOfflineSupportList = null;[m
+[31m-	private String mSystemCallJson = "";[m
+[31m-	String playText = null ;  //add by ZZJ 20150909[m
+[31m-	private ContactDataModel contactDataModel = null;[m
+[31m-[m
+[31m-	private MediaDataModel mediaDataModel = null;[m
+[31m-[m
+[31m-	private AppsDataModel appsDataModel = null;[m
+[31m-[m
+[31m-	private AudioManager mAudioManager;[m
+[31m-	AlertDialog mAlertDialog;[m
+[31m-	Button button1, button2;[m
+[31m-	UserPreference mUserPreference;[m
+[31m-	private boolean startDownPhone;[m
+[31m-[m
+[31m-	private DispatchKeyEventListener mDispatchKeyEventListener = new DispatchKeyEventListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public boolean dispatchKeyEvent(KeyEvent event) {[m
+[31m-			Logger.d(TAG,[m
+[31m-					"!--->dispatchKeyEvent()---keyCode = " + event.getKeyCode());[m
+[31m-			if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {[m
+[31m-				getAudioManager().abandonAudioFocus(null);[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			}[m
+[31m-			return false;[m
+[31m-		}[m
+[31m-	};[m
+[31m-[m
+[31m-	private OnTouchEventListener mOnTouchEventListener = new OnTouchEventListener() {[m
+[31m-[m
+[31m-		@Override[m
+[31m-		public boolean onTouchEvent(MotionEvent event) {[m
+[31m-			Logger.d(TAG, "!--->onTouchEvent()---Action = " + event.getAction());[m
+[31m-			final int x = (int) event.getX();[m
+[31m-			final int y = (int) event.getY();[m
+[31m-			if ((event.getAction() == MotionEvent.ACTION_DOWN)[m
+[31m-					&& ((x < 0) || (x >= mViewRoot.getWidth()) || (y < 0) || (y >= mViewRoot[m
+[31m-							.getHeight()))) {[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			} else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {[m
+[31m-				mSessionManager.cancelTalk();[m
+[31m-				return true;[m
+[31m-			}[m
+[31m-			return false;[m
+[31m-		}[m
+[31m-[m
+[31m-	};[m
+[31m-[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	@Override[m
+[31m-	public void onCreate() {[m
+[31m-		Logger.d(TAG, "!--->onCreate");[m
+[31m-		super.onCreate();[m
+[31m-		mContext = this;[m
+[31m-		PrivatePreference.init(mContext);[m
+[31m-		mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);[m
+[31m-		mUserPreference = new UserPreference(this);[m
+[31m-		Constant.setFirstStart(this, true);// XD 20150820 added[m
+[31m-		TTSController.getInstance(this).init();[m
+[31m-		custom_code = SystemPropertiesProxy.get(this, CONSUMER_CODE);[m
+[31m-		/* < xd added 20150706 begin */[m
+[31m-		// if (PackageUtil.isRunningForeground(WindowService.this)) {[m
+[31m-		// mSessionManager.showWelcomeView(true);[m
+[31m-		// }[m
+[31m-		// startWelcomeActivity();// xd added 20150706[m
+[31m-		/* xd added 20150706 end > */[m
+[31m-[m
+[31m-		bindMessageRouterService();[m
+[31m-		updateMapConfig();[m
+[31m-		startKWMusicService();[m
+[31m-[m
+[31m-		mViewRoot = (SessionLinearLayout) View.inflate(this,[m
+[31m-				R.layout.window_service_main, null);[m
+[31m-		if (DeviceTool.getDeviceSDKVersion() > 13) {[m
+[31m-			mViewRoot.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);// added[m
+[31m-		} else {[m
+[31m-			Logger.d(TAG, "!--->DeviceSDKVersion <= 13");[m
+[31m-		}[m
+[31m-		findViews();[m
+[31m-		mSessionManager = new GUISessionManager(this, mSessionContainer,mMicrophoneControl);// init framework & show prepare view[m
+[31m-[m
+[31m-		/* < XD 20150805 added for Mic float View Begin */[m
+[31m-		// mScreeFloatView = new FloatMicView(this);[m
+[31m-		mLauncherPackage = PackageUtil.getLauncherPackages(this);[m
+[31m-		/* XD 20150805 added for Mic float View End > */[m
+[31m-		initWindowParams();[m
+[31m-		registerListener();[m
+[31m-		/* < XD 20150805 added for Mic float View Begin */[m
+[31m-		registerReceiver();[m
+[31m-		mPendingStartMicChecker = true;[m
+[31m-		/* XD 20150805 added for Mic float View End > */[m
+[31m-		/* < xd delete 20150706 Begin */[m
+[31m-		// if (PackageUtil.isRunningForeground(WindowService.this)) {[m
+[31m-		// mSessionManager.showInitView(true);[m
+[31m-		// }[m
+[31m-		/* xd delete 20150706 End > */[m
+[31m-		// Intent killNotificationIntent = new Intent(this,[m
+[31m-		// KillNotificationService.class);[m
+[31m-		// startService(killNotificationIntent);[m
+[31m-		messageTransCenter = new SystemCallTransition();[m
+[31m-		messageTransCenter.setMessageTransListener(mMessageTransListener);[m
+[31m-[m
+[31m-		/* < XD 20150825 added for 4.4 default Sms App begin */[m
+[31m-		if (GUIConfig.isAllowGUIRequestAsDefaultSmsApp) {[m
+[31m-			DeviceTool.changeGUIToDefaultSmsApp(mContext);[m
+[31m-		}[m
+[31m-		/* XD 20150825 added for 4.4 default Sms App End > */[m
+[31m-[m
+[31m-	/*	IntentFilter filter = new IntentFilter(GUIConfig.ACTION_SMS_SEND_SUCCESS);[m
+[31m-		filter.addAction(GUIConfig.ACTION_SMS_SEND_FAIL);[m
+[31m-		registerReceiver(mSmsSendStatusReceiver, filter);*/[m
+[31m-//		writeContactsInfo();[m
+[31m-[m
+[31m-		getContentResolver().registerContentObserver(Settings.System.getUriFor(SettingMapViewPagerActivity.MAP_INDEX),true, new ContentObserver(mUIHandler) {[m
+[31m-							@Override[m
+[31m-							public void onChange(boolean selfChange) {[m
+[31m-								updateMapConfig();[m
+[31m-							}[m
+[31m-						});[m
+[31m-[m
+[31m-	}[m
+[31m-[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	private void findViews() {[m
+[31m-		mSessionContainer = (SessionContainer) mViewRoot.findViewById(R.id.sessionContainer);[m
+[31m-		mMicrophoneControl = (MicrophoneControl) mViewRoot.findViewById(R.id.microphoneControl);[m
+[31m-		mMicrophoneDoresoControl = (MicrophoneControlDoresoView) mViewRoot.findViewById(R.id.microphoneControl_doreso); //XD added 20150828[m
+[31m-	}[m
+[31m-[m
+[31m-	@SuppressWarnings("deprecation")[m
+[31m-	@SuppressLint("NewApi")[m
+[31m-	private void updateDisplaySize() {[m
+[31m-		Display display = mWindowManager.getDefaultDisplay();[m
+[31m-		if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR2) {[m
+[31m-			mWindowSize.y = display.getHeight();[m
+[31m-			mWindowSize.x = display.getWidth();[m
+[31m-		} else {[m
+[31m-			display.getSize(mWindowSize);[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "!--->updateDisplaySize:x " + mWindowSize.x + ",y "[m
+[31m-				+ mWindowSize.y);[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * when WindowService onCreate should show wake up status Toast XD 20150819[m
+[31m-	 * added[m
+[31m-	 */[m
+[31m-	private void showWakeupStatusToast() {[m
+[31m-		if (!Constant.isFirstStart(mContext)) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		/*[m
+[31m-		 * Logger.d(TAG, "!--->showWakeupStatusToast----"); if[m
+[31m-		 * (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-		 * Toast.makeText(mContext,[m
+[31m-		 * R.string.toast_wakeup_open,Toast.LENGTH_LONG).show(); } else {[m
+[31m-		 * Toast.makeText(mContext,[m
+[31m-		 * R.string.toast_wakeup_closed,Toast.LENGTH_SHORT).show(); }[m
+[31m-		 */[m
+[31m-	}[m
+[31m-[m
+[31m-	/**[m
+[31m-	 * start WelcomeActivity xd added 20150706[m
+[31m-	 */[m
+[31m-	/*[m
+[31m-	 * private void startWelcomeActivity() { Logger.d(TAG,[m
+[31m-	 * "!--->---startWelcomeActivity()-----"); Intent intent = new Intent(this,[m
+[31m-	 * WelcomeActivity.class); intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);[m
+[31m-	 * // intent.setAction(WindowService.ACTION_START_REQUEST_MAKE_FINISHED);[m
+[31m-	 * startActivity(intent); }[m
+[31m-	 */[m
+[31m-[m
+[31m-	private void registerListener() {[m
+[31m-		mViewRoot.setDispatchKeyEventListener(mDispatchKeyEventListener);[m
+[31m-		mViewRoot.setOnTouchEventListener(mOnTouchEventListener);[m
+[31m-		/* < XD 20150805 added for float mic view Begin */[m
+[31m-		// mScreeFloatView.setOnClickListener(mOnClickListener);[m
+[31m-		// UserPerferenceUtil.registerOnSharedPreferenceChangeListener(this,[m
+[31m-		// mPreferenceChangeListener);[m
+[31m-		/* XD 20150805 added for float mic view End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	private void unregisterListener() {[m
+[31m-		mViewRoot.setDispatchKeyEventListener(null);[m
+[31m-		/* < XD 20150805 added for float mic view Begin */[m
+[31m-		// mScreeFloatView.setOnClickListener(null);[m
+[31m-		// UserPerferenceUtil.unregisterOnSharedPreferenceChangeListener(this,[m
+[31m-		// mPreferenceChangeListener);[m
+[31m-		/* XD 20150805 added for float mic view End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public IBinder onBind(Intent intent) {[m
+[31m-		return null;[m
+[31m-	}[m
+[31m-[m
+[31m-	private void resetWindowParamsFlags() {[m
+[31m-		Log.d(TAG, "!--->------resetWindowParamsFlags()------");[m
+[31m-		mWindowParams.flags &= ~(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL[m
+[31m-				| WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES[m
+[31m-				| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE[m
+[31m-				| WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE[m
+[31m-				| WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH[m
+[31m-				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS[m
+[31m-				| WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM[m
+[31m-				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_FULLSCREEN // xiaodong[m
+[31m-		);[m
+[31m-	}[m
+[31m-[m
+[31m-	private void initWindowParams() {[m
+[31m-		Log.d(TAG, "!--->initWindowParams()------");[m
+[31m-		mWindowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;[m
+[31m-		mWindowParams.format = PixelFormat.RGBA_8888;[m
+[31m-		resetWindowParamsFlags();[m
+[31m-		mWindowParams.flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;[m
+[31m-		mWindowParams.gravity = Gravity.CENTER;[m
+[31m-		updateDisplaySize();[m
+[31m-	}[m
+[31m-[m
+[31m-	@Override[m
+[31m-	public int onStartCommand(Intent intent, int flags, int startId) {[m
+[31m-		Logger.d(TAG, "!--->onStartCommand: intent " + intent);[m
+[31m-[m
+[31m-		boolean isUnicarServiceInstalled = DeviceTool.isUnicarServiceInstalled(getApplicationContext());[m
+[31m-		if (!isUnicarServiceInstalled) {[m
+[31m-			Logger.e(TAG,"!--->onStartCommand()---UnicarService not installed!");[m
+[31m-			mSessionManager.showInitFailedView(getString(R.string.error_init_msg_vui_service_not_install));[m
+[31m-			// Toast.makeText(getApplicationContext(),[m
+[31m-			// "UnicarService not installed!", Toast.LENGTH_LONG).show();[m
+[31m-		}[m
+[31m-[m
+[31m-		if (intent != null) {[m
+[31m-			String action = intent.getAction();[m
+[31m-			Logger.d(TAG, "!--->onStartCommand: action " + action);[m
+[31m-			if (MessageReceiver.ACTION_START_TALK.equals(action)) {[m
+[31m-				if (mViewRoot.isShown()) {[m
+[31m-					if (mSessionManager != null) {[m
+[31m-						mSessionManager.cancelTalk();[m
+[31m-					}[m
+[31m-				} else {[m
+[31m-					startTalk();[m
+[31m-					[m
+[31m-				}[m
+[31m-			} else if(ACTION_START_TALK.equals(action)){[m
+[31m-				if (mViewRoot.isShown()) {[m
+[31m-					if (mSessionManager != null) {[m
+[31m-						mSessionManager.cancelTalk();[m
+[31m-					}[m
+[31m-				} else {[m
+[31m-					startTalk();[m
+[31m-					[m
+[31m-				}[m
+[31m-			}else if (ACTION_START_REQUEST_MAKE_FINISHED.equals(action)) {[m
+[31m-				requestIsASRCompileFinished();[m
+[31m-			} else if (MessageReceiver.ACTION_START_CALL_OUT.equals(action)) {[m
+[31m-				requestCallOut();[m
+[31m-			} else if (MessageReceiver.ACTION_START_NAVIGATION.equals(action)) {[m
+[31m-				requestNavication();[m
+[31m-			} else if (MessageReceiver.ACTION_START_MUSIC.equals(action)) {[m
+[31m-				requestMusic();[m
+[31m-			} else if (MessageReceiver.ACTION_START_LOCAL_SEARCH.equals(action)) {[m
+[31m-				requestLocalSearch();[m
+[31m-			} else if (ACTION_SET_WAKEUP.equals(action)) {[m
+[31m-				if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-					sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-					ContentValues con = new ContentValues();[m
+[31m-					con.put(WakeUpDB.SWITCH,1);[m
+[31m-					getContentResolver().update(WakeUpSwitch.CONTENT_URI, con, null,null);[m
+[31m-				} else {[m
+[31m-					sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-					ContentValues con = new ContentValues();[m
+[31m-					con.put(WakeUpDB.SWITCH, 0);[m
+[31m-					getContentResolver().update(WakeUpSwitch.CONTENT_URI, con, null,null);[m
+[31m-				}[m
+[31m-			} else if (ACTION_SET_TTSSPEED.equals(action)) {[m
+[31m-				int speed = UserPerferenceUtil.getTTSSpeed(mContext);[m
+[31m-				if (UserPerferenceUtil.VALUE_TTS_SPEED_SLOWLY == speed) {[m
+[31m-					sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_SLOWLY);[m
+[31m-				} else if (UserPerferenceUtil.VALUE_TTS_SPEED_STANDARD == speed) {[m
+[31m-					sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_STANDARD);[m
+[31m-				} else if (UserPerferenceUtil.VALUE_TTS_SPEED_FAST == speed) {[m
+[31m-					sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_FAST);[m
+[31m-				}[m
+[31m-			} else if (MessageReceiver.ACTION_START_NAVI.equals(action)) {[m
+[31m-				CreateDialog(this);[m
+[31m-			}[m
+[31m-		}[m
+[31m-		return START_STICKY;[m
+[31m-	}[m
+[31m-[m
+[31m-	// 与Framework同步唤醒和TTS播报速度[m
+[31m-	private void syncConfigure() {[m
+[31m-		// send switch WakeUp[m
+[31m-		if (UserPerferenceUtil.isWakeupEnable(mContext)) {[m
+[31m-			Logger.d(TAG+1, "isWakeupEnable="+true);[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_START);[m
+[31m-			ContentValues con = new ContentValues();[m
+[31m-			con.put(WakeUpDB.SWITCH, 1);[m
+[31m-			getContentResolver().update(WakeUpSwitch.CONTENT_URI, con, null,null);[m
+[31m-		} else {[m
+[31m-			Logger.d(TAG+1, "isWakeupEnable="+false);[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_WAKEUP,SessionPreference.EVENT_PROTOCAL_SWITCH_WAKEUP_STOP);[m
+[31m-			ContentValues con = new ContentValues();[m
+[31m-			con.put(WakeUpDB.SWITCH, 0);[m
+[31m-			getContentResolver().update(WakeUpSwitch.CONTENT_URI, con, null,null);[m
+[31m-		}[m
+[31m-		// send switch TTSSpeed[m
+[31m-		int speed = UserPerferenceUtil.getTTSSpeed(mContext);[m
+[31m-		if (UserPerferenceUtil.VALUE_TTS_SPEED_SLOWLY == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_SLOWLY);[m
+[31m-		} else if (UserPerferenceUtil.VALUE_TTS_SPEED_STANDARD == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_STANDARD);[m
+[31m-		} else if (UserPerferenceUtil.VALUE_TTS_SPEED_FAST == speed) {[m
+[31m-			sendProtocolEvent(SessionPreference.EVENT_NAME_SWITCH_TTS_SPEED,SessionPreference.EVENT_PROTOCAL_SWITCH_TTS_SPEED_FAST);[m
+[31m-		}[m
+[31m-	}[m
+[31m-[m
+[31m-	private void startTalk() {[m
+[31m-		mSessionManager.startTalk();[m
+[31m-		//XD 20150827 added [m
+[31m-		mWakeupSuccessType = SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS;[m
+[31m-		updateMicControlView(SessionPreference.VALUE_SET_STATE_TYPE_WAKEUP_SUCCESS);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void onReset() {[m
+[31m-		Logger.d(TAG, "onReset");[m
+[31m-		dismiss();[m
+[31m-	}[m
+[31m-[m
+[31m-	private void show(View view) {[m
+[31m-		if (view == null || view.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		// 弹出框强制横�?[m
+[31m-		if (mWindowParams.screenOrientation != ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {[m
+[31m-			mWindowParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;[m
+[31m-		}[m
+[31m-[m
+[31m-		mWindowManager.addView(view, mWindowParams);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void addPrepareView(View view) {[m
+[31m-		if (view == null) {[m
+[31m-			Logger.w(TAG, "addSessionView: view null,return!");[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "!--->addPrepareView------");[m
+[31m-		dismiss();[m
+[31m-		WindowManager.LayoutParams WindowParams = new WindowManager.LayoutParams([m
+[31m-				WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,[m
+[31m-				WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);[m
+[31m-		WindowParams.gravity = Gravity.CENTER;[m
+[31m-		WindowParams.format = PixelFormat.RGBA_8888;[m
+[31m-		if (view.isShown()) {[m
+[31m-			mWindowManager.removeViewImmediate(view);[m
+[31m-		}[m
+[31m-		mWindowManager.addView(view, WindowParams);[m
+[31m-	}[m
+[31m-[m
+[31m-	public void show() {[m
+[31m-		if (mViewRoot.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		RomSystemSetting.setMute(mContext);[m
+[31m-		Logger.d(TAG, "show");[m
+[31m-		playTTs = false;[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		mPendingStartMicChecker = true;[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-[m
+[31m-		show(mViewRoot);[m
+[31m-[m
+[31m-	}[m
+[31m-[m
+[31m-	public void dismiss() {[m
+[31m-		playTTs = true;[m
+[31m-		if(playText!=null){[m
+[31m-			TTSController.getInstance(mContext).playText(playText);[m
+[31m-			playText=null;[m
+[31m-		}[m
+[31m-		if (!mViewRoot.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "dismiss");[m
+[31m-		mWindowManager.removeViewImmediate(mViewRoot);[m
+[31m-[m
+[31m-		/* < xiaodong 20150805 added for Float Mic View Begin */[m
+[31m-		if (mPendingStartMicChecker) {[m
+[31m-			mPendingStartMicChecker = false;[m
+[31m-		}[m
+[31m-		RomSystemSetting.setUnMute(mContext);[m
+[31m-		mUIHandler.postDelayed(mRecoverRunnable, 1500);[m
+[31m-		/* xiaodong 20150805 added for Float Mic View End > */[m
+[31m-	}[m
+[31m-[m
+[31m-	public void dimissView(View view) {[m
+[31m-		if (!view.isShown()) {[m
+[31m-			return;[m
+[31m-		}[m
+[31m-		Logger.d(TAG, "dimissView---prepare view dismiss");[m
+[31m-		mWindowManager.removeViewImmediate(view);[m
+[31m-[m
+
