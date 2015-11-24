@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string-array name="help_group_name">
+        <item>蓝牙通讯</item>
+        <item>音乐播放</item>
+        <item>收音机</item>
+        <item>地图导航</item>
+        <item>常用控制</item>
+        <item>天气预报</item>
+        <item>股票资讯</item>
+        <item>周边搜索</item>
+    </string-array>
+    <string-array name="help_child_content_1">
+        <item>打电话给姚明（离线）</item>
+        <item>拨打姚明的电话（离线）</item>
+        <item>打电话给10086</item>
+        <item>拨打工商银行的电话</item>
+        <item>发短信给姚明</item>
+        <item>发短消息</item>
+    </string-array>
+    <string-array name="help_child_content_2">
+        <item>播放音乐（离线）</item>
+        <item>听陈奕迅的歌（本地）</item>
+        <item>播放邓紫棋的泡沫</item>
+        <item>搜索周杰伦的新歌</item>
+    </string-array>
+    <string-array name="help_child_content_3">
+        <item>调频到99.5（离线）</item>
+        <item>收听87.5兆赫（离线）</item>
+    </string-array>
+    <string-array name="help_child_content_4">
+        <item>导航到东方明珠</item>
+        <item>怎么去钦州北路1198号</item>
+        <item>搜索去徐家汇智汇大厦的路线</item>
+    </string-array>
+    <string-array name="help_child_content_5">
+        <item>打开蓝牙（离线）</item>
+        <item>增大音量（离线）</item>
+        <item>关闭wifi（离线）</item>
+    </string-array>
+    <string-array name="help_child_content_6">
+        <item>上海的天气</item>
+        <item>上海明天会下雨吗</item>
+    </string-array>
+    <string-array name="help_child_content_7">
+        <item>工商银行的股票</item>
+        <item>股票行情</item>
+    </string-array>
+
+    <!-- xiaodong 20150713 added for function help activity Begin -->
+    <string name="help_content_status_offline">(离线)</string>
+
+    <!-- 1 bluetooth-1: call -->
+    <string name="help_content_buletooth_item_call_out">1：打电话</string>
+    <string name="help_content_buletooth_item_call_in">2：接听电话</string>
+    <string name="help_content_buletooth_item_send_sms">3：发短信</string>
+
+    <string-array name="help_child_content_outcall_online">
+        <item>“打电话给10086”</item>
+        <item>“拨打工商银行的电话”</item>
+    </string-array>
+    <string-array name="help_child_content_outcall_offline">
+        <item>“打电话”</item>
+        <item>“打电话给张三”</item>
+    </string-array>
+    <!-- 1 bluetooth-2: incoming call -->
+    <string-array name="help_child_content_incall_offline">
+        <item>“接听”</item>
+        <item>“挂断”</item>
+    </string-array>
+    <!-- 1 bluetooth-3 : sms -->
+<!--     <string-array name="help_child_content_sms_online">
+        <item>“发短信给张三”</item>
+        <item>“发短信给张三内容是:我正在开车”</item>
+    </string-array> -->
+
+    <!-- 2 navigation -->
+    <string-array name="help_child_content_navigation_online">
+        <item>“导航到东方明珠”</item>
+        <item>“怎么去钦州北路1198号”</item>
+        <item>“搜索去徐家汇智汇大厦的路线”</item>
+    </string-array>
+    <!--
+        <item>“回家”</item>
+        <item>“回公司”</item>
+    -->
+    <string-array name="help_child_content_navigation_offline"></string-array>
+
+    <!-- 3 music -->
+    <string-array name="help_child_content_music_online">
+        <item>“来一首小苹果”</item>
+        <item>“播放邓紫棋的泡沫”</item>
+        <item>“单曲循环”</item>
+        <item>“顺序播放”</item>
+        <item>“随机播放”</item>
+    </string-array>
+    <string-array name="help_child_content_music_offline">
+        <item>“播放音乐”</item>
+        <item>“上一首”</item>
+        <item>“下一首”</item>
+        <item>“播放”</item>
+        <item>“暂停”</item>
+        <item>“停止”</item>
+    </string-array>
+
+    <!-- 4 quick setting -->
+  <string-array name="help_child_content_setting_offline">
+        <item>“打开蓝牙”</item>
+        <item>“增大音量”</item>
+        <item>“关闭wifi”</item>
+        <item>“打开设置”</item>
+        <item>“打开/关闭 电子狗”</item>
+        <item>“打开/关闭 雷达”</item>
+        <item>“打开/关闭 行车记录仪”</item>
+        <item>“关闭导航,结束导航,停止导航,关掉导航”</item>
+        <item>“回公司,我想去公司,我要去公司”</item>
+        <item>“回家,我想回家,我要回家”</item>
+        <item>“打开/关闭 路口播报（限高德导航）”</item>
+        <item>“放大/缩小地图（限高德导航）”</item>
+        <item>“车头朝上模式（限高德导航）”</item>
+        <item>“北上模式（限高德导航）”</item>
+        <item>“2D模式（限高德导航）”</item>
+        <item>“3D模式（限高德导航）”</item>
+        <item>“一键导航,人工导航,电话导航”</item>
+        <item>“查看通话记录,通话记录”</item>
+        <item>“实时路况”</item>
+        <item>“关屏,关闭屏幕,免打扰模式,免打扰,打开免打扰模式,进入免打扰”</item>
+    </string-array>
+
+    <!-- 5 net radio -->
+    <string-array name="help_child_content_net_radio_online">
+        <item>“上一首”</item>
+        <item>“下一首”</item>
+        <item>“我想听郭德纲的相声”</item>
+        <item>“我想听单田芳的评书”</item>
+    </string-array>
+    <string-array name="help_child_content_net_radio_offline">
+        <item>“暂停”</item>
+        <item>“继续播放”</item>
+    </string-array>
+    
+    <!-- 6 weather -->
+    <string-array name="help_child_content_weather_online">
+        <item>“上海的天气”</item>
+        <item>“明天北京的天气”</item>
+    </string-array>
+
+    <!-- 7 stock -->
+    <string-array name="help_child_content_stock_online">
+        <item>“工商银行的股票”</item>
+        <item>“股票行情”</item>
+    </string-array>
+
+    <!-- 8 local search -->
+    <string-array name="help_child_content_local_search_online">
+        <item>“附近的餐馆”</item>
+        <item>“最近的加油站”</item>
+        <item>“哪里有超市”</item>
+    </string-array>
+
+    <!-- 9 traffic -->
+    <string-array name="help_child_content_traffic_online">
+        <item>“内环堵不堵”</item>
+        <item>“前方路况怎么样”</item>
+        <item>“深南大道的路况信息”</item>
+    </string-array>
+
+    <!-- 10 limit -->
+    <string-array name="help_child_content_limit_online">
+        <item>“今天的限行尾号”</item>
+        <item>“明天限行吗”</item>
+        <item>“杭州明天的限行号码”</item>
+    </string-array>
+    
+    <!-- 11 radio -->
+   <string-array name="help_child_content_radio_online">
+        <item>“调频到99.5”</item>
+        <item>“收听87.5兆赫”</item>
+        <item>“调幅465千赫”</item>
+    </string-array>
+    <string-array name="help_child_content_radio_offline">
+        <item>“关闭发射”</item>
+        <item>“关闭广播”</item>
+        <item>“关闭调频”</item>
+    </string-array>
+    
+        <string-array name="holf">
+        <item>森林狼</item>
+        <item>野狼</item>
+        <item>战狼</item>
+        <item>苍狼</item>
+        <item>图狼</item>
+        <item>土狼</item>
+        <item>黑狼</item>
+        <item>雪狼</item>
+        <item>烽火狼</item>
+        <item>寂狼</item>
+        <item>衰狼</item>
+        <item>贰狼</item>
+        <item>赤狼</item>
+        <item>财狼</item>
+        <item>银狼</item>
+        <item>青海狼</item>
+        <item>小狼</item>
+    </string-array>
+    <!-- xiaodong 20150713 added for function help activity End -->
+
+    <string name="music_buffer">音乐缓冲中...</string>
+    <string name="music_play_error">该歌曲播放异常</string>
+    <string name="wake_up_remind">注意：开启语音唤醒功能后会消耗更多电量！</string>
+    <string name="result_nofind">抱歉，未找到结果</string>
+    <string name="map_suggestions">起点或终点有歧义,建议：</string>
+    <string name="route_planning">路线规划</string>
+    <string name="gaode_result_nofind">没有找到结果</string>
+    <string name="gaode_check_net">没有网络连接，请检查网络</string>
+    <string name="gaode_nofind_map">没有安装高德地图或高德导航</string>
+    <string name="gaode_install_map">安装高德地图客户端体验会更好哦</string>
+    <string name="gaode_nofind_route">很抱歉，没有找到合适的路线</string>
+    <string name="view_sorry">对不起，无法打开网页，可能您的设备中没有安装浏览器</string>
+    <string name="domain_alarm">提醒</string>
+    <string name="domain_app">应用</string>
+    <string name="domain_call">电话</string>
+    <string name="domain_contact">联系人</string>
+    <string name="domain_flight">机票</string>
+    <string name="domain_local_search">周边查询</string>
+    <string name="domain_music">音乐</string>
+    <string name="domain_nearby_search">搜索</string>
+    <string name="domain_position">线路</string>
+    <string name="domain_sitemap">网站导航</string>
+    <string name="domain_sms">短信</string>
+    <string name="domain_stock">股票</string>
+    <string name="domain_train">火车票</string>
+    <string name="domain_tv">电视预告</string>
+    <string name="domain_weather">天气</string>
+    <string name="domain_yellow_page">常用号码</string>
+    <string name="domain_news">新闻</string>
+    <string name="domain_cookbook">菜谱</string>
+    <string name="domain_translation">翻译</string>
+    <string name="domain_setting">手机设置</string>
+    <string name="domain_movie">电影</string>
+    <string name="domain_novel">小说</string>
+    <string name="domain_video">视频</string>
+    <string name="feedback_error_">错误内容已反馈，</string>
+    <string name="page_number">第 <xliff:g id="page1">%1$s</xliff:g>页 (共 <xliff:g id="page2">%2$s</xliff:g>页)</string>
+    <string name="stock_pening_price">今开价： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_closing_price">昨收价： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_highest_price">最高价： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_lowest_price">最低价： <xliff:g>%1$s</xliff:g></string>
+    <string name="weather_haze">霾</string>
+    <string name="weather_blizzard">暴雪</string>
+    <string name="weather_snow_heavy">大雪</string>
+    <string name="weather_snow_moderate">中雪</string>
+    <string name="weather_snow_light">小雪</string>
+    <string name="weather_snow_shower">阵雪</string>
+    <string name="weather_rainstorm_super">特大暴雨</string>
+    <string name="weather_rainstorm_big">大暴雨</string>
+    <string name="weather_rainstorm">暴雨</string>
+    <string name="weather_rain_heavy">大雨</string>
+    <string name="weather_rain_moderate">中雨</string>
+    <string name="weather_rain_light">小雨</string>
+    <string name="weather_sleety">雨夹雪</string>
+    <string name="weather_hail">雷阵雨伴有冰雹</string>
+    <string name="weather_thunder_rain">雷阵雨</string>
+    <string name="weather_shower">阵雨</string>
+    <string name="weather_icerain">冻雨</string>
+    <string name="weather_sandstorm_strong">强沙尘暴</string>
+    <string name="weather_sandstorm">沙尘暴</string>
+    <string name="weather_dust">浮尘</string>
+    <string name="weather_dustblow">扬沙</string>
+    <string name="weather_foggy">雾</string>
+    <string name="weather_overcast">阴</string>
+    <string name="weather_cloudy">多云</string>
+    <string name="weather_sunny">晴</string>
+    <string name="weather_data"><xliff:g>%1$s</xliff:g>月<xliff:g>%2$s</xliff:g>日</string>
+    <string name="operation_cancel">操作已取消</string>
+    <string name="number_capital">零一二三四五六七八九</string>
+    <string name="error_number">惭愧！您说的频率没有找到，可以再换一个吗？</string>
+    <string name="search_in">请在FM87.5-108兆赫中搜索</string>
+    <string name="now_fm">正在为您调频<xliff:g>%1$s</xliff:g></string>
+    <string name="now_am">正在为您调幅<xliff:g>%1$s</xliff:g></string>
+    <string name="call_phone_delay">吾秒后为您接通<xliff:g>%1$s</xliff:g>电话</string>
+    <string name="call_phone_confirm">拨打<xliff:g>%1$s</xliff:g>确定还是取消</string>
+    <string name="call_phone_confirm_number">拨打<xliff:g>%1$s</xliff:g>的<xliff:g>%2$s</xliff:g>确定还是取消</string>
+    <string name="connect_number">正在接通<xliff:g>%1$s</xliff:g></string>
+    <string name="connect_name">正在接通<xliff:g>%1$s</xliff:g>的电话</string>
+    <string name="no_support_phone">--不支持打电话--</string>
+    <string name="no_support_phone_toast">此设备不支持打电话功能</string>
+    <string name="say_number_choose">可说“第1个”选择</string>
+    <string name="now_last_page">已经是最后一页</string>
+    <string name="now_first_page">已经是第一页</string>
+    <string name="next_page_protocal">{\"service\":\"DOMAIN_LOCAL\",\"message\":\"下一页\",\"select\":\"101\"}</string>
+    <string name="up_page_protocal">{\"service\":\"DOMAIN_LOCAL\",\"message\":\"上一页\",\"select\":\"100\"}</string>
+    <string name="sms_is">短信内容是:<xliff:g>%1$s</xliff:g></string>
+    <string name="sms_no_new">没有新的短信</string>
+    <string name="phone_answer_cancel">来电,接听还是挂断?</string>
+    <string name="stranger">陌生人</string>
+    <string name="mms_from_confirm">短信来自<xliff:g>%1$s</xliff:g>,播报还是取消</string>
+    <string name="click_mic">您取消了录音，请点击麦克风重新录音</string>
+    <string name="unknown_error">未知错误</string>
+    <string name="now_distinguish">正在识别，不进行处理</string>
+    <string name="now_wakeup">正在唤醒，不进行处理</string>
+    <string name="try_process">试用处理，其他</string>
+    <string name="not_activated">未激活</string>
+    <string name="operation_cancel2">本次操作已取消</string>
+    <string name="me_think">让我想一想</string>
+    <string name="no_phone_run_sms">--没有电话中，启动短信TTS--</string>
+    <string name="open_3g">已为你打开移动网络</string>
+    <string name="close_3g">已为你关闭移动网络</string>
+    <string name="open_display_settings">已为你打开显示设置</string>
+    <string name="open_bluetooth">已打开蓝牙</string>
+    <string name="close_bluetooth">已关闭蓝牙</string>
+    <string name="open_time_settings">已为你打开时间设置</string>
+    <string name="increase_volumne">已增大音量</string>
+    <string name="decrease_volumne">已减小音量</string>
+    <string name="max_volumne">最大音量</string>
+    <string name="min_volumne">最小音量</string>
+    <string name="wait_open_setting_inair">设置为飞行模式，需要一定的时间，请耐心等待</string>
+    <string name="wait_close_setting_inair">关闭飞行模式，需要一定的时间，请耐心等待</string>
+    <string name="open_model_mute">已设置为静音模式</string>
+    <string name="close_model_mute">已关闭静音模式</string>
+    <string name="open_model_vibra">已设置为振动模式</string>
+    <string name="close_model_vibra">已关闭振动模式</string>
+    <string name="open_sound_setting">已为你打开声音设置</string>
+    <string name="open_rotation">已打开自动旋转屏幕</string>
+    <string name="close_rotation">已关闭自动旋转屏幕</string>
+    <string name="open_wallpaper_setting">已为你打开壁纸设置</string>
+    <string name="open_wifi">已打开无线网络</string>
+    <string name="close_wifi">已关闭无线网络</string>
+    <string name="open_wifi_spot">已打开WIFI热点</string>
+    <string name="close_wifi_spot">已关闭WIFI热点</string>
+    <string name="cancel_random_play">已取消随机播放</string>
+    <string name="random_play">已为您随机播放</string>
+    <string name="sequence_play">已为您顺序播放</string>
+    <string name="single_cycle">已为您单曲循环</string>
+    <string name="list_cycle">已为您列表循环播放</string>
+    <string name="full_cycle">已为您全部循环播放</string>
+    <string name="close_desk_lyric">已关闭桌面歌词</string>
+    <string name="open_desk_lyric">已打开桌面歌词</string>
+    <string name="camera_complain">已打开电子眼投诉</string>
+    <string name="open_edog">已打开电子狗</string>
+    <string name="open_navi">已打开导航</string>
+    <string name="close_navi">已关闭导航</string>
+    <string name="one_navi">发送一键导航</string>
+    <string name="close_edog">已关闭电子狗</string>
+    <string name="open_play">打开路口播报</string>
+    <string name="close_play">关闭路口播报</string>
+    <string name="previous">已执行上一个</string>
+    <string name="next">已执行下一个</string>
+    <string name="play">已执行播放</string>
+    <string name="pause">已执行暂停</string>
+    <string name="recovery">已执行恢复</string>
+    <string name="stop">已执行停止</string>
+    <string name="play_previous">已播放上一首</string>
+     <string name="open_calllog">已为您打开通话记录</string>
+    <string name="open_carcoder">为您打开行车记录仪</string>
+    <string name="close_carcoder">为您关闭行车记录仪</string>
+    <string name="close_fm">为您关闭FM</string>
+    <string name="return_home">已为您返回主界面</string>
+    <string name="go_home">为您设置回家的路线</string>
+    <string name="go_company">为您设置回公司的路线</string>
+    <string name="zoomin_map">放大地图</string>
+     <string name="zoomout_map">缩小地图</string>
+     <string name="close_screen">进入免打扰模式</string>
+     
+    <string name="sms_content">短信内容</string>
+    <string name="cancal">取消</string>
+    <string name="no_support_cmd">不支持<xliff:g>%1$s</xliff:g>命令</string>
+    <string name="executed">已执行</string>
+    <string name="to_stock">的股票</string>
+    <string name="nofind_contact">没有找到联系人</string>
+    <string name="to">到</string>
+    <string name="turn">转</string>
+    <string name="city">市</string>
+    <string name="no_weather_info">没有获取到天气信息</string>
+    <string name="concrete">具体</string>
+    <string name="open_music">正在为您打开音乐</string>
+    <string name="for_find">正在为您查找</string>
+    <string name="map_or_navigation">地图或导航</string>
+    <string name="baidumap_or_navigation">百度地图或导航</string>
+    <string name="gaodemap_or_navigation">高德地图或导航</string>
+    <string name="onfind_place">{0}应用的收藏夹中未找到地点\'{1}\'</string>
+    <string name="sms_re_enter">{\"message\":\"重新输入\",\"service\":\"DOMAIN_LOCAL\",\"confirm\":\"clean\"}</string>
+    <string name="music_center_text">00:14/06:07</string>
+    <string name="artist">Artist</string>
+    <string name="song">Song</string>
+    <string name="splash_text1">北京云知声信息技术有限公司</string>
+    <string name="splash_version">Version：V2.0.1.1.119</string>
+    <string name="baidu_text">TextView</string>
+    <string name="station">Station</string>
+    <string name="frequency">Frequency</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
+    <string name="answer">接听</string>
+    <string name="hang_up">挂断</string>
+    <string name="head">Head</string>
+    <string name="open_web">点击打开网页</string>
+    <string name="item">Item</string>
+    <string name="previous_page">上一页</string>
+    <string name="next_page">下一页</string>
+    <string name="text_number">45566</string>
+    <string name="title">Title</string>
+    <string name="memo_due_date">Date:2012-11-28</string>
+    <string name="today2">（今天）</string>
+    <string name="time">Time:</string>
+    <string name="no_reminder">暂无提醒</string>
+    <string name="app">App</string>
+    <string name="bluetooth_conn">蓝牙通讯</string>
+    <string name="map_navigation">导 航</string>
+    <string name="music_play">音 乐</string>
+    <!-- xiaodong added 20150609 Begin -->
+    <string name="main_phone_call">打电话</string>
+    <string name="main_more">更多</string>
+    <string name="main_all_function">全部功能</string>
+    <!-- xiaodong added 20150609 End -->
+    <string name="common_control">设置</string>
+    <string name="main_local_search">周 边</string>
+
+    <!-- all function -->
+    <string name="function_quick_setting">快捷控制</string>
+    <string name="function_net_radio">网络电台</string>
+    <string name="radio">收音机</string>
+    <string name="weather_query">查天气</string>
+    <string name="stock_info">查股票</string>
+    <string name="function_traffic">实时路况</string>
+    <string name="function_limit">尾号限行</string>
+     <string name="function_wakeup">唤醒口令</string>
+    <string name="sort">sort</string>
+    <string name="mobile_phone_assistant">语音魔方手机助手 | </string>
+    <string name="beta_verion">beta 1.0.1</string>
+    <string name="copyright">北京云知声 版权所有</string>
+    <string name="channel">Channel</string>
+    <string name="empty_time">00:00:00</string>
+    <string name="tts_date">年$2月$3日</string>
+    <string name="per_capita">人均：￥</string>
+    <string name="create_success">创建成功</string>
+    <string name="sms_date_format">MM月dd日kk:mm</string>
+
+    <!-- weather domain -->
+    <string name="weather_pm25">PM 2.5 : </string>
+    <string name="weather_air_quality">空气质量： </string>
+    <string name="weather_car_wash">洗车指数： </string>
+    <string name="weather_update_time">天气数据更新于： </string>
+    <string name="weather_today">今天</string>
+    <string name="weather_tomorrow">明天</string>
+    
+     <string name="question_answer1">注意了哦,我可是野狼战队的一员哦</string>
+    <string name="question_answer2">野狼战队成立于2015年9月24日</string>
+    <string name="question_total">野狼战队有成员17名，分别是森林狼，野狼，战狼,苍狼,雪狼,烽火狼,图狼,土狼,寂狼,贰狼,衰狼,赤狼,财狼,银狼,青海狼,小狼,黑狼等等</string>
+    <string name="question_sll">原名王进辉,代号森林狼,编号01,战术高超,是战队的团长,素有王牌团长之称,于2015年9月24日创建野狼战队</string>
+    <string name="question_el">原名杨晋源,代号贰狼,编号02,所以他真的很贰,于2015年9月24日加入野狼战队</string>
+    <string name="question_xl">原名陈泽立,代号雪狼,编号03,于2015年9月24日加入野狼战队</string>
+    <string name="question_yl">原名覃士春,代号野狼,编号05,头脑灵活,面对无数困难,依然让战队玩转东方市场,于2015年9月24日加入野狼战队</string>
+    <string name="question_cl">原名成超,代号苍狼,编号06,专注于前瞻，拥有独特的耐力，于2015年9月24日加入野狼战队</string>
+    <string name="question_toul">原名陈金全,代号土狼,编号07,于2015年9月24日加入野狼战队</string>
+    <string name="question_zl">原名李振威,代号战狼,编号08,拥有敏锐的目光和超强的战斗力,为战队的未来扫清障碍，于2015年9月24日加入野狼战队</string>
+    <string name="question_fhl">原名柏斌,代号烽火狼,编号09,他是在漫天烽火中蜕变成长的狼，于2015年9月24日加入野狼战队</string>
+    <string name="question_hl">原名周银义,代号黑狼,编号10,不怕艰苦，敢于拼搏，有着不达目的不罢休的作战精神，于2015年9月24日加入野狼战队</string>
+    <string name="question_sl">原名陈堇书,代号衰狼,编号11,嘿嘿,来宝贝,我这里才是突破口,过来呀,于2015年9月24日加入野狼战队</string>
+    <string name="question_tl">原名周钟江,代号图狼,编号12,总是能在迷茫中找到正确的道路，于2015年9月24日加入野狼战队</string>
+    <string name="question_jl">原名王磊,代号寂狼,编号13,于2015年9月24日加入野狼战队</string>
+    <string name="question_yinl">原名何应辉,代号银狼,编号15,拥有粗犷的性格，狼的团队精神，于2015年9月24日加入野狼战队</string>
+    <string name="question_qhl">原名潘英权,代号青海狼,编号16,于2015年9月24日加入野狼战队</string>
+    <string name="question_cail">原名黄承财,代号财狼,编号17,于2015年9月24日加入野狼战队</string>
+    <string name="question_xiaol">原名陈晓思,代号小狼,编号20,于2015年10月10日加入野狼战队</string>
+    <string name="question_chil">原名许富荣,代号赤狼,编号21,于2015年9月24日加入野狼战队</string>
+    <!--
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    -->
+
+</resources>

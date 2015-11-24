@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_hide_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dip" >
+        </View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line_list_divider" >
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/help_menu_press_bg"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/menuTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/help_menu_margin"
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:paddingBottom="@dimen/help_menu_text_padding"
+            android:paddingTop="@dimen/help_menu_text_padding"
+            android:text="@string/baidu_text"
+            android:textColor="@color/grey_white"
+            android:textSize="@dimen/bigger_text_size" />
+
+        <ImageView
+            android:id="@+id/foldBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/title_setting_margin"
+            android:background="@drawable/btn_help_fold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_list_divider" >
+    </View>
+
+</LinearLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/session_view_bg"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/textViewStockName"
+            style="@style/text_session_item_f3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=" 9"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewStockCode"
+            style="@style/text_session_item_f3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@id/textViewStockName"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text=" 8" />
+
+        <TextView
+            android:id="@+id/textViewStockCurrentPrice"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockName"
+            android:layout_marginTop="10dp"
+            android:ellipsize="marquee"
+            android:maxWidth="120dp"
+            android:singleLine="true"
+            android:text="7 "
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/textViewStockChangeAmount"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockCurrentPrice"
+            android:layout_marginTop="10dp"
+            android:text=" 6"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/textViewStockChangeRate"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockCurrentPrice"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/textViewStockChangeAmount"
+            android:text="5 "
+            android:textColor="@color/red" />
+
+        <!--
+             <ImageView
+            android:id="@+id/imgViewStockTrend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="24dp"
+            android:layout_alignTop="@id/textViewStockCurrentPrice"
+            android:layout_alignBottom="@id/textViewStockChangeAmount"
+            android:layout_toRightOf="@id/textViewStockChangeRate"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+        -->
+
+        <TextView
+            android:id="@+id/textViewStockTodayOpeningPrice"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockChangeAmount"
+            android:layout_marginTop="5dp"
+            android:text=" 4" />
+
+        <TextView
+            android:id="@+id/textViewStockYesterdayClosingPrice"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockTodayOpeningPrice"
+            android:layout_marginTop="5dp"
+            android:text="3 " />
+        <!-- android:layout_toRightOf="@id/textViewStockTodayOpeningPrice" -->
+
+        <TextView
+            android:id="@+id/textViewStockHighestPrice"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockYesterdayClosingPrice"
+            android:layout_marginTop="5dp"
+            android:text="2 " />
+
+        <TextView
+            android:id="@+id/textViewStockLowestPrice"
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStockHighestPrice"
+            android:layout_marginTop="5dp"
+            android:text="1 " />
+        <!-- android:layout_toRightOf="@id/textViewStockHighestPrice" -->
+
+        <ImageView
+            android:id="@+id/imgViewStockChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/textViewStockLowestPrice"
+            android:layout_alignTop="@id/textViewStockCurrentPrice"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/textViewStockChangeRate"
+            android:adjustViewBounds="true"
+            android:background="@android:color/black"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+</LinearLayout>

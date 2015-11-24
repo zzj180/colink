@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/session_item_hight"
+        android:background="@drawable/selector_btn_session"
+        android:duplicateParentState="true" >
+
+        <TextView
+            android:id="@+id/textViewNo"
+            style="@style/text_session_item_f3"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/pickview_item_number_bg"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            style="@style/text_session_item_f3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/textViewNo"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            style="@style/text_session_item_f4_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewName"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/textViewNo"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xiaodong 20150611 modify -->
+<com.unisound.unicar.gui.view.SessionLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/session_page_background"
+    android:orientation="horizontal" >
+
+    <com.unisound.unicar.gui.view.MicrophoneControl
+        android:id="@+id/microphoneControl"
+        android:layout_width="102dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dip"
+        android:gravity="center_vertical" >
+    </com.unisound.unicar.gui.view.MicrophoneControl>
+
+    <com.unisound.unicar.gui.view.MicrophoneControlDoresoView
+        android:id="@+id/microphoneControl_doreso"
+        android:layout_width="102dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dip"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="13dp"
+        android:gravity="center" >
+
+        <!-- XD 20150921 modify -->
+
+        <com.unisound.unicar.gui.view.SessionContainer
+            android:id="@+id/sessionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:fillViewport="true" >
+        </com.unisound.unicar.gui.view.SessionContainer>
+
+        <!--
+        xiaodong 20150615 delete this view is no use any more 
+        <View
+            android:id="@+id/cancelDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/bottomCancelBtn"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/line_list_divider"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bottomCancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_call_ok_bg"
+            android:text="@string/cancel"
+            android:textColor="@color/grey_white"
+            android:textSize="@dimen/smaller_text_size"
+            android:visibility="gone" />
+        -->
+    </RelativeLayout>
+
+</com.unisound.unicar.gui.view.SessionLinearLayout>

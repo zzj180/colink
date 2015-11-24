@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutCALLTxtItem"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/session_view_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/callViewHead"
+            style="@style/text_session_title_f2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/head" />
+
+        <TextView
+            android:id="@+id/tv_incall_location"
+            style="@style/text_session_item_f4_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/iv_contact_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_contact_avatar" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/receiveCallPannel"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/session_button_hight"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/answerBtn"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_incall_answer"
+            android:gravity="center"
+            android:text="@string/answer" />
+
+        <Button
+            android:id="@+id/hangupBtn"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_incall_hungup"
+            android:gravity="center"
+            android:text="@string/hang_up" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mycontent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/main_icon_margin_left"
+    android:layout_marginRight="@dimen/main_icon_margin_right"
+    android:background="@color/main_page_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/firstlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal" >
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_bluetooth"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_bluetooth"
+            Text="@string/bluetooth_conn" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_navigation"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_navigation"
+            Text="@string/map_navigation" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_music"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_music"
+            Text="@string/music_play" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_quick_setting"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_setting"
+            Text="@string/function_quick_setting" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal" >
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_net_radio"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_net_fm"
+            Text="@string/function_net_radio" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_weather"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_weather"
+            Text="@string/weather_query" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_stock"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_stock"
+            Text="@string/stock_info" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+
+        <com.unisound.unicar.gui.view.ImageViewWithText
+            android:id="@+id/btn_function_local_search"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            ImageSrc="@drawable/icon_feature_local_search"
+            Text="@string/domain_local_search" >
+        </com.unisound.unicar.gui.view.ImageViewWithText>
+    </LinearLayout>
+
+</LinearLayout>
