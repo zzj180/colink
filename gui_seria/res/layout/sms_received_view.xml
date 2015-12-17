@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_received_sms_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <!-- sms content -->
+
+    <LinearLayout
+        android:id="@+id/ll_sms_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/session_content_padding_head_title"
+        android:background="@drawable/selector_sms_received_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_received_sms_content"
+            style="@style/text_session_item_f3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:minHeight="80dp"
+            android:text="@string/head" />
+    </LinearLayout>
+
+    <!-- button layout -->
+
+    <LinearLayout
+        android:id="@+id/btnLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/session_button_hight"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_sms_broadcast"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_session"
+            android:text="@string/sms_received_btn_broadcast" />
+
+        <Button
+            android:id="@+id/btn_sms_reply"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_session"
+            android:text="@string/sms_received_btn_reply"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_sms_fast_reply"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_session"
+            android:text="@string/sms_received_btn_fast_reply" />
+
+        <Button
+            android:id="@+id/btn_sms_received_cancel"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_session"
+            android:text="@string/cancel" />
+    </LinearLayout>
+
+</LinearLayout>

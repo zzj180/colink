@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="number_width">131dp</dimen>
+    <dimen name="number_height">105dp</dimen>
+    <dimen name="del_x">842dp</dimen>
+    <dimen name="del_width">99dp</dimen>
+    <dimen name="show_width">691dp</dimen>
+    <dimen name="show_height">76dp</dimen>
+    
+    <dimen name="num_x1">253dp</dimen>
+     <dimen name="num_x2">387dp</dimen>
+    <dimen name="num_x3">521dp</dimen>
+     <dimen name="num_x4">655dp</dimen>
+     
+     <dimen name="num_y1">225dp</dimen>
+     <dimen name="num_y2">334dp</dimen>
+    <dimen name="num_y3">443dp</dimen>
+    
+    <dimen name="home_width">120dp</dimen>
+    <dimen name="home_height">78dp</dimen>
+    
+    <dimen name="button_home_left">84dp</dimen>
+    <dimen name="button_home_right">815dp</dimen>
+    
+    <dimen name="button_home_width">152dp</dimen>
+    <dimen name="button_home_height">117dp</dimen>
+    <dimen name="button_home">96dp</dimen>
+    <dimen name="button_home_on">211dp</dimen>
+    <dimen name="button_home_middle">329dp</dimen>
+    <dimen name="button_home_lower">448dp</dimen>
+    
+    
+    <dimen name="button_contact_on">117dp</dimen>
+    <dimen name="button_contact_middle">253dp</dimen>
+    <dimen name="button_contact_lower">389dp</dimen>
+    
+    <dimen name="button_contact_left">82dp</dimen>
+    
+    <dimen name="contact_bg_width">728dp</dimen>
+    <dimen name="contact_bg_height">426dp</dimen>
+    <dimen name="contact_bg_x">228dp</dimen>
+    <dimen name="contact_bg_y">117dp</dimen>
+    
+    <dimen name="button_contact_back_width">113dp</dimen>
+    <dimen name="button_contact_back_height">34dp</dimen>
+    <dimen name="button_contact_back_x">846dp</dimen>
+    <dimen name="button_contact_back_y">77dp</dimen>
+    
+    
+    <dimen name="button_incalling_width">126dp</dimen>
+    <dimen name="button_incalling_height">161dp</dimen>
+    <dimen name="button_incalling_left">369dp</dimen>
+    <dimen name="button_incalling_right">536dp</dimen>
+    <dimen name="button_incalling_y">339dp</dimen>
+    
+    
+    <dimen name="middle_music_size">266dp</dimen>
+    <dimen name="middle_music_x">380dp</dimen>
+    <dimen name="middle_music_y">88dp</dimen>
+    
+    <dimen name="button_sound_width">83dp</dimen>
+    <dimen name="button_sound_height">95dp</dimen>
+    <dimen name="button_sound_x">223dp</dimen>
+    <dimen name="button_sound_y">398dp</dimen>
+    
+    <dimen name="button_prev_x">337dp</dimen>
+    
+    <dimen name="button_play_width">111dp</dimen>
+    <dimen name="button_play_height">127dp</dimen>
+    <dimen name="button_play_x">453dp</dimen>
+    <dimen name="button_play_y">385dp</dimen>
+    
+    <dimen name="voice_volume_y">515dp</dimen>
+    
+    <dimen name="button_next_x">602dp</dimen>
+    
+    <dimen name="button_stop_x">720dp</dimen>
+    
+    <dimen name="text_music_x">65dp</dimen>
+     
+    <dimen name="text_bluestate_y">36dp</dimen>
+    <dimen name="text_devicename_y">66dp</dimen>
+    
+    
+    <dimen name="set_beijing_width">679dp</dimen>
+    <dimen name="set_beijing_height">337dp</dimen>
+    
+     <dimen name="set_home_width">97dp</dimen>
+    <dimen name="set_home_height">58dp</dimen>
+    
+     <dimen name="set_button_width">171dp</dimen>
+    <dimen name="set_button_height">114dp</dimen>
+    
+     <dimen name="set_kg_width">106dp</dimen>
+    <dimen name="set_kg_height">48dp</dimen>
+    
+     <dimen name="set_zidong_width">125dp</dimen>
+    <dimen name="set_zidong_height">35dp</dimen>
+    
+    <dimen name="set_margintop_home">15dp</dimen>
+    <dimen name="set_marginleft_home">30dp</dimen>
+    <dimen name="set_marginbuttum_home">45dp</dimen>
+    <dimen name="set_marginleft_zidong">15dp</dimen>
+    <dimen name="set_margin_text">20dp</dimen>
+    
+    <dimen name="set_textsize">28sp</dimen>
+</resources>

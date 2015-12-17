@@ -1,0 +1,457 @@
+<resources>
+
+    <string name="app_name">&#160;UniDrive</string>
+    <string name="app_version">V 1.0.0.8</string>
+    <string name="china_mobile">中國移動</string>
+    <string name="china_unicom">中國聯通</string>
+    <string name="china_telecom">中國電信</string>
+    <string name="cancel">取消</string>
+    <string name="ok">確定</string>
+    <string name="send">發送</string>
+    <string name="reput">重新輸入</string>
+    <string name="prompt">提示</string>
+    <string name="failed">失敗</string>
+    <string name="fetching_data">獲取數據中,請稍後</string>
+    <string name="day_after_tomorrow">後天</string>
+    <string name="tomorrow">明天</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="day_before_yesterday">前天</string>
+    <string name="load_more">查看更多</string>
+    <string name="dianping_provide">大衆點評dianping.com</string>
+    <string name="download">下載</string>
+    <string name="downloading">下載中…</string>
+    <string name="contact_format">姓名：%1$s\n號碼：%2$s</string>
+    <string name="poi_geo_null">很抱歉，該地點沒有位置，無法爲您打開地圖</string>
+    <string name="forward_sms_answer">轉發%1$s的信息</string>
+    <string name="send_sms_answer">給%1$s的%2$s號碼發短信</string>
+    <string name="view_source_web">查看網頁</string>
+    <string name="data_empty">暫無</string>
+    <string name="send_sms_exception">短信功能異常，發送短信失敗</string>
+    <string name="loading_text">准備中,請稍等</string>
+    <string name="help_title">使用幫助</string>
+
+    <!-- 設置界面 -->
+    <string name="preference_general_setting">通用設置</string>
+    <string name="setting_help">使用幫助</string>
+
+    <!-- talk -->
+    <string name="talk_network_exception">沒有找到可用的網絡，您可以檢查一下網絡設置</string>
+    <string name="talk_server_exception">好像網絡不給力哦，要不您一會兒再試一下？</string>
+    <string name="talk_communication_err">網絡出了點狀況，請稍候再試一下</string>
+    <string name="talk_network_outtime">當前網絡有點繁忙，請過會再試</string>
+
+    <!-- Mic -->
+    <string name="mic_exception">麥克風異常!</string>
+    <string name="mic_prepare">正在准備...</string>
+    <string name="mic_recording">正在傾聽</string>
+    <string name="mic_processing">正在識別...</string>
+    <string name="mic_idle">點擊說話</string>
+    <string name="initing">數據准備中，請稍等...</string>
+    <string name="grammar_data_compile">數據准備中...</string>
+    <string name="see_help">查看幫助</string>
+    <string name="mic_prepare_doreso">請哼唱出你想聽的歌</string>
+    <string name="cancel_text_doreso">我不想哼歌了</string>
+    <string name="mic_oneshot_recoginzer_timeout">這樣說:%1$s,打電話給張三</string>
+    <!-- Memo -->
+    <string name="memo">提醒</string>
+    <string name="memo_list">提醒列表</string>
+    <string name="to_do">待辦</string>
+    <string name="completed">已完成</string>
+    <string name="close">關閉</string>
+    <string name="missed_reminder_during_shutdown">不要忘記這些提醒哦：%s</string>
+    <string name="missed_reminder">錯過的提醒</string>
+    <string name="reminder">提醒</string>
+    <string name="memo_date_format">日期：%s</string>
+    <string name="memo_time_format">時間：%s</string>
+    <string name="memo_tostring_format">%1$s提醒您%2$s</string>
+    <string name="delete_memo_prompt">確定刪除嗎？</string>
+    <string name="memo_time_length_prompt_dd_hh_mm">%1$s天%2$s小時%3$s分鍾</string>
+    <string name="memo_time_length_prompt_hh_mm">%1$s小時%2$s分鍾</string>
+    <string name="memo_time_length_prompt_mm_ss">%1$s分%2$s秒</string>
+    <string name="register_reminder_prompt">%s後提示</string>
+    <string name="edit_datetime">編輯時間</string>
+    <string name="hour">時</string>
+    <string name="minute">分</string>
+    <string name="memo_due_time_earlier_than_now">提醒時間早于現在哦</string>
+    <string name="readable_time_yesterday">（昨天）</string>
+    <string name="readable_time_day_before_yesterday">（前天）</string>
+    <string name="readable_time_day_after_tomorrow">（後天）</string>
+    <string name="readable_time_today">（今天）</string>
+    <string name="readable_time_tomorrow">（明天）</string>
+    <string name="three_days_later">（三天後）</string>
+    <string name="four_days_later">（四天後）</string>
+    <string name="five_days_later">（五天後）</string>
+    <string name="six_days_later">（六天後）</string>
+    <string name="seven_days_later">（七天後）</string>
+    <string name="future">（未來）</string>
+
+    <!-- Wakeup XD 20150819 added -->
+    <string name="toast_wakeup_open">我是您的小助手，名字叫“%1$s”</string>
+    <string name="toast_wakeup_closed">語音喚醒已關閉</string>
+    <string name="wakeup_status_mic_open">喚醒口令</string>
+    <string name="wakeup_status_mic_closed">喚醒已關閉</string>
+
+    <!-- Map -->
+    <string name="locating">正在定位中，請稍候…</string>
+    <string name="open_map">打開地圖</string>
+    <string name="select_map">選擇地圖</string>
+    <string name="amap">高德地圖</string>
+    <string name="baidu">百度地圖</string>
+    <string name="amap_with_bracket">(高德地圖)</string>
+    <string name="baidu_with_bracket">(百度地圖)</string>
+
+    <!-- Nearby -->
+    <string name="geo_reverse">解析地址中…</string>
+    <string name="locate_failed">很抱歉，獲取當前位置失敗，無法提供查詢服務</string>
+    <string name="current_city">當前城市</string>
+    <string name="current_position">當前位置</string>
+    <!-- XD 20150803 added for local search Begin -->
+    <string name="title_format_arg_info">信息</string>
+    <string name="local_search_no_number">暫無號碼</string>
+    <string name="local_search_distance">距離%1$.2fKM</string>
+    <string name="local_search_food_price">人均： ¥</string>
+    <string name="local_search_rating_code">評分：%1$.1f</string>
+    <!-- XD 20150803 added for local search End -->
+
+
+    <!-- Call -->
+    <string name="unknown">未知</string>
+    <string name="call_ok">立即撥打</string>
+    <string name="call_cancel">取消</string>
+    <string name="answer_call">接聽電話</string>
+    <string name="end_call">挂斷電話</string>
+    <string name="call_canceled">電話已挂斷</string>
+    <string name="call_receive">接聽</string>
+    <string name="call_reject">挂斷</string>
+
+    <!-- Call xiaodong added 20150615 Begin -->
+    <string name="call_out">確定</string>
+    <string name="call_out_name">呼叫%1$s :</string>
+    <string name="call_out_input_contact_title">打電話給誰？</string>
+    <string name="input_contact_tips">請說聯系人，如“%1$s”</string>
+    <string name="call_out_title_muti_contacts">找到%1$d個聯系人 :</string>
+    <string name="call_out_title_name_muti_number">找到\t%1$s\t的%2$d個號碼 :</string>
+    <string name="call_find_no_person">沒有找到相關聯系人</string>
+    <string name="call_find_contact_no_number">沒有找到該聯系人的號碼</string>
+    <string name="default_name_no_contact_offline">“某某某”</string>
+    <string name="default_name_no_contact_online">10086</string>
+    <string name="button_text_i_know">我知道了</string>
+    <string name="call_incoming_title_contact">%1$s\t來電</string>
+    <string name="contact_name_default">張三</string>
+    <!-- Call xiaodong added 20150615 End -->
+
+    <string name="i_know_weather_error">天氣查詢失敗，請說查詢指定城市的天氣</string>
+    <string name="appmgr_find_no_app">沒有找到相關應用</string>
+    <string name="local_out_title_muti">找到以下%1$s,請選擇:</string>
+    <string name="local_data_form">數據來源于大衆點評網</string>
+    <string name="local_data_is_no">大衆點評網數據爲空</string>
+    <string name="local_data_is_no_amap">定位出了點小問題！</string>
+    <string name="brodcast_data_is_no_amap">您說的頻段我還不支持！</string>
+
+    <!-- Search -->
+    <string name="search">搜索</string>
+    <string name="music_url_empty">很抱歉，歌曲地址無法獲取</string>
+
+    <!-- Music -->
+    <string name="music_recording">正在識別音樂旋律...</string>
+    <string name="music_processing">讓我想一想...</string>
+    <string name="music_title_result_play">馬上爲你播放：</string>
+    <string name="music_title_result_unknow">未能識別聽到的音樂.</string>
+    <string name="music_search_result">共爲您找到%s首相關歌曲，點擊查看</string>
+    <string name="music_search_failed">很抱歉，沒有找到相關歌曲</string>
+    <string name="exit_music">退出音樂播放嗎？</string>
+    <string name="music_service_binder_error">音樂服務連接異常，請重試</string>
+    <string name="music_playing">音樂已在播放中</string>
+
+    <!-- Route -->
+    <string name="location_heard_title_prefix">找到位置  “</string>
+    <string name="location_heard_title_suffix">”</string>
+    
+    <string name="start_poi">起點：</string>
+    <string name="end_poi">終點：</string>
+    <string name="start_poi_location">我的位置</string>
+    <string name="poi_data_empty">很抱歉，路線起點和終點數據爲空，無法爲您查找路線。</string>
+    <string name="route_searching">查找路線中，請稍候&#8230;</string>
+    <string name="bus_route_city_unequal">起止城市不相同，無法爲您查詢公交路線。</string>
+    <string name="geo_reversing">解析位置中，請稍候&#8230;</string>
+    <string name="geo_reverse_failed">很抱歉，解析位置失敗</string>
+    <string name="no_route_found">很抱歉，沒有查找到路線</string>
+    <string name="search_timeout">很抱歉，查找地圖超時</string>
+    <string name="retry">重試</string>
+    <string name="location_change_default_hint">請輸入地址</string>
+    <string name="location_search_default_hint_route">請說地址，如“徐家彙”</string>
+    <string name="location_search_default_hint_localsearch">請說周邊類別的名稱</string>
+    
+    <string name="toast_input_location">請輸入地址，如“徐家彙”</string>
+    <string name="toast_input_location_error">格式不正確，請輸入地址，如“徐家彙”</string>
+    <string name="toast_input_localsearch_type">請輸入周邊類別的名稱，如“酒店”</string>
+    <string name="toast_input_localsearch_type_error">格式不正確，請輸入周邊類別的名稱，如“酒店”</string>
+
+    <!-- Route TTS XD added 20150914 -->
+    <string name="tts_route_arrive_destination">"到達目的地"</string>
+    <string name="tts_route_calculate_route_failure">"路徑計算失敗，請檢查網絡或輸入參數"</string>
+    <string name="tts_route_calculate_route_success">"路徑計算就緒"</string>
+    <string name="tts_route_end_navi">"導航結束"</string>
+    <string name="tts_route_recalculate_for_traffic_jam">"前方路線擁堵，路線重新規劃"</string>
+    <string name="tts_route_yaw">"您已偏離航線"</string>
+
+    <!-- Train -->
+    <string name="tarin_query_prompt_format">已爲您查詢到%1$s到%2$s的火車</string>
+
+    <!-- Flight -->
+    <string name="flight_query_prompt_format">已爲您查詢到 %1$s%2$s到%3$s的航班</string>
+
+    <!-- Poi -->
+    <string name="start_from_here">從這裏出發</string>
+    <string name="go_to_here">到這裏去</string>
+    <string name="save">保存</string>
+    <string name="forwarding">轉發</string>
+    <string name="more">更多</string>
+    <string name="geocode_prompt">解析地址中</string>
+    <string name="geocode_failed">很抱歉，無法解析地址</string>
+    <string name="address">地址：</string>
+    <string name="phone">電話：</string>
+    <string name="left_parentheses">（</string>
+    <string name="right_parentheses">）</string>
+
+    <!-- Stock -->
+    <string name="stock_query_empty">很抱歉，股票代碼或者交易所名稱爲空，無法爲您查詢股票信息</string>
+
+    <!-- Broadcast -->
+    <string name="broadcast_query_result">爲您找到如下電台信息：</string>
+    <string name="broadcast_query_result_empty">馬上爲你打開收音機</string>
+    <string name="change_broadcast_format">調到%1$S</string>
+    <string name="open_broadcast">打開電台應用</string>
+
+    <!-- Traffic Control xiaodong 20150730 added Begin -->
+    <string name="traffic_control_title">限行尾號：</string>
+    <string name="traffic_control_text_and">和</string>
+    <string name="traffic_control_rule_title">限行規則</string>
+    <string name="week_monday">周一</string>
+    <string name="week_tuesday">周二</string>
+    <string name="week_wednesday">周三</string>
+    <string name="week_thursday">周四</string>
+    <string name="week_friday">周五</string>
+    <string name="week_saturday">周六</string>
+    <string name="week_weekend">周末</string>
+    <string name="traffic_control_rule_no_limit">不限</string>
+    <!-- Traffic Control xiaodong 20150730 added End -->
+
+
+    <!-- FM xiaodong added 20151008 -->
+    <string name="audio_no_previous">已經是第一首了</string>
+    <string name="audio_no_next">已經是最後一首了</string>
+
+    <!-- Preference -->
+    <string name="preference_version">版本號</string>
+    <string name="preference_about">關于我們</string>
+
+    <!-- Preference UserPreference -->
+    <string name="PreferenceSettingAutoOpenMic">啓動後自動開始錄音</string>
+    <string name="PreferenceAutoOpenMic">啓動語音助手後將自動開始錄音</string>
+    <string name="PreferenceClickOpenMic">啓動語音助手後需要點擊按鈕開始錄音</string>
+    <!-- component -->
+
+
+    <!-- 關于 -->
+    <string name="company">北京雲知聲信息技術有限公司</string>
+    <string name="about_version">版本: %1$s</string>
+    <string name="about_author">作者: 北京雲知聲信息技術有限公司</string>
+    <string name="about_content_line2">打電話時搜索聯系人很麻煩？用鍵盤發短信太繁瑣？ \n雲知聲語音助手來幫助你解決這些問題。\n</string>
+    <string name="about_content_line3">【産品特點】\n
+	    1、打電話、發短信，簡單方便  \n
+	    2、天氣查詢、打開應用、搜索內容 \n
+	    3、完美普通話支持，語音無處不在 \n
+	    4、更多功能正在火速搭建中 \n
+	</string>
+    <string name="about_content_line4">【産品反饋】\n
+	    歡迎大家@雲知聲，反饋您寶貴的意見 \n
+	    我們會做得更好！ \n
+	    \n
+	    新浪微博：http://e.weibo.com/bjyzs \n
+	    官方郵箱：ishuoshuo@yunzhisheng.cn \n
+	    商務郵箱：support@yunzhisheng.cn \n
+	    官方QQ：1172977637 \n
+	    官方QQ群：145167715 \n
+	</string>
+    <string name="about_content_line5">【免責申明】\n
+	    1、雲知聲語音助手的內容來自于互聯網及用戶自主分享，所有內容並不反映雲知聲任何意見及觀點 \n
+	    2、如果雲知聲語音助手的內容有侵犯到您的權益，請立即與我們聯系，我們將在第一時間對內容進行處理 \n
+	</string>
+    <string name="about_copyright_line1">Copyright© 2012 Unisound Information Technology Co., Ltd.</string>
+    <string name="about_copyright_line2">All rights reserved.</string>
+
+    <!-- SMS -->
+    <string name="sms_input_contact_title">發短信給誰？</string>
+    <string name="sms_to">發短信給\t%1$s:</string>
+    <string name="sms_speak_content">請說短信內容</string>
+    <string name="sms_activity_not_found">該設備暫不支持發送短信</string>
+    <string name="smsMessageQueued">當前無法發送信息，將在服務恢複後發送</string>
+    <string name="sms_sent_success">短信已發送！</string>
+    <!-- xd added 20150709 Begin -->
+    <string name="sms_sending">短信發送中...</string>
+    <string name="sms_sent_fail">短信發送失敗！</string>
+    <!-- xd added 20150709 End -->
+
+
+    <!-- xd 20150717 added for SMS received -->
+    <string name="sms_received_title_from">來自\t%1$s\t的新短信！</string>
+    <string name="sms_received_btn_broadcast">播報</string>
+    <string name="sms_received_btn_fast_reply">快捷回複</string>
+    <string name="sms_received_btn_reply">回複</string>
+    <string name="sms_content_fast_reply">"我正在開車，稍後再回複。"</string>
+
+    <!-- 2013.03.07 amend by shichao for setting activity -->
+    <string name="speech_category_title">語音播報設置</string>
+    <string name="other_setting">其他設置</string>
+
+    <!-- 2013.03.11 added by shichao for tv_recomm -->
+    <string name="tv_recomm_channel">頻道</string>
+    <string name="tv_recomm_time">時間</string>
+    <string name="tv_recomm_detail">詳情</string>
+    <string name="no_recommend_programme">沒有具體信息</string>
+    <string name="tv_recommend_title">熱門電視節目推薦</string>
+    <string name="tv_recommend_no_recomm">沒有熱門電視節目推薦</string>
+    <string name="mobile_type">移動</string>
+    <string name="unicom_type">聯通</string>
+    <string name="telecom_type">電信</string>
+
+    <!-- 2013.03.21 add by shichao for notify user no speech when phone in slice or vibrate mode -->
+    <string name="delete_sms_notice_title">提示</string>
+    <string name="delete_sms_notice">確認要刪除這條短信嗎？</string>
+    <string name="delete_sms_confirm">確認</string>
+    <string name="delete_sms_cancel">取消</string>
+    <!-- end -->
+    <!-- 2013.03.29 added by shichao for play music in service -->
+    <string name="music_play_background">後台音樂播放</string>
+    <string name="music_play_background_on">後台音樂播放開啓</string>
+    <string name="music_play_background_off">後台音樂播放關閉</string>
+    <!-- end -->
+    <!-- 2013.04.09 add by shichao for translate number to text -->
+    <string name="text_to_zero">零</string>
+    <string name="text_to_one">腰</string>
+    <string name="text_to_two">二</string>
+    <string name="text_to_three">三</string>
+    <string name="text_to_four">四</string>
+    <string name="text_to_five">五</string>
+    <string name="text_to_six">六</string>
+    <string name="text_to_seven">七</string>
+    <string name="text_to_eight">八</string>
+    <string name="text_to_nine">九</string>
+    <!-- end -->
+    <string name="tts_choose_title">語音識別引擎選擇</string>
+    <string name="tts_choose_dialog_title">語音識別引擎選擇</string>
+    <string name="mulapp_chooseTitle">請選擇應用</string>
+    <!-- ImageView描述 -->
+    <string name="descriptionForImageView">這是個圖像</string>
+    <string name="bluetooth">藍牙通訊</string>
+    <string name="poi">導航</string>
+    <string name="music">聽音樂</string>
+    <string name="setting">快捷控制</string>
+    <string name="broadcast">收音機</string>
+
+    <!-- Help Text -->
+    <string name="help_text_chat_exit_command">你可以說“取消”退出聊天</string>
+    
+    <!-- setting -->
+    <string name="default_hint_edit_wakeup_word">請輸入新的喚醒詞</string>
+    <string name="edit_wakeupword_tip_1">1、只支持漢字，不支持英文字母、阿拉伯數字。最好給我取個四個字的名字，這樣我會比較靈敏的。</string>
+    <string name="edit_wakeupword_tip_2">2、名字對我很重要的，最好別是一樣的字，一樣的發音，否則我有時候會亂跳出來的。</string>
+    <string name="edit_wakeupword_tip_3">3、要是新名字您覺得不好用，你就把我改回我的本名“你好魔方”吧。</string>
+    
+    <string name="wakeup_word_default">你好魔方</string>
+    <string name="setting_title_wakeup">語音喚醒</string>
+    <string name="setting_wakeup_status_closed">已關閉</string>
+    <string name="setting_title_map_choose">地圖選擇</string>
+    <string name="setting_map_choose_gaode">高德</string>
+    <string name="setting_map_choose_baidu">百度</string>
+    <string name="setting_map_choose_tuba">圖吧</string>
+    <string name="setting_map_choose_daodaotong">道道通</string>
+    <string name="setting_title_tts_speed">播報速度</string>
+    <string name="setting_tts_speed_slowly">較慢</string>
+    <string name="setting_tts_speed_standard">標准</string>
+    <string name="setting_tts_speed_fast">較快</string>
+    <string name="setting_title_float_mic">懸浮麥克風</string>
+    <string name="setting_float_mic_open">已打開</string>
+    <string name="setting_float_mic_closed">已關閉</string>
+    
+    <string name="setting_title_oneshot">OneShot</string>
+    <string name="setting_title_oneshot_hint">如“%1$s,打開藍牙”</string>
+    
+    <string name="setting_title_version_mode">對話模式</string>
+    <string name="setting_version_mode_exp">體驗</string>
+    <string name="setting_version_mode_standard">經典</string>
+    <string name="setting_version_mode_high">高階</string>
+    
+    <string name="setting_title_aec">播報打斷</string>
+    <string name="setting_title_aec_hint">在語音播報時,可打斷</string>
+    <string name="setting_title_ota">版本升級</string>
+    <string name="setting_ota_text_version">UniDrive\t%1$s</string>
+    <string name="setting_ota_text_newest_version">當前爲最新版本。</string>
+    <string name="setting_title_about_us">關于我們</string>
+    <string name="setting_title_more">更多</string>
+
+    <string name="setting_help_text_wakeup">說固定的語音口令，可以喚醒呼出語音系統，進行語音操作。點擊“鉛筆”圖標可以修改喚醒名字。</string>
+    <string name="setting_help_text_float_mic">開啓後，主界面和其它應用程序界面會顯示一個圓形麥克風圖標，點擊可以開啓語音操作。</string>
+    <string name="setting_help_text_oneshot">喚醒詞+命令，一句話喚醒語音系統，同時執行相應的命令。例子：在語音系統休眠狀態下， 說“%1$s，查找附近的加油站”，就可以快速實現周邊查詢。</string>
+    <string name="setting_help_text_aec">當輸入的語音指令識別後，語音合成（TTS）會回複相應的反饋。開啓後，可說當前支持的命令（如“第一個”），來中斷當前的TTS，直接執行下一步驟，提高操作效率。</string>
+    
+    <string name="setting_help_title_version_mode_1">體驗模式（不推薦）</string>
+    <string name="setting_help_text_version_mode_1">當會話流程結束後，會自動開啓錄音。此模式適用于體驗和嘗試語音的各功能，不推薦實際駕駛時使用。</string>
+    <string name="setting_help_title_version_mode_2">經典模式（默認）</string>
+    <string name="setting_help_text_version_mode_2">每次會話，都需要先開啓語音系統（說喚醒口令或者點擊話筒圖標），才能輸入語音指令。</string>
+    <string name="setting_help_title_version_mode_3">高階模式</string>
+    <string name="setting_help_text_version_mode_3">喚醒詞+命令，一句話喚醒語音系統，同時執行相應的命令。如：“%1$s，查找附近的加油站”，就可以快速實現周邊查詢。</string>
+
+    <!--
+    <string name="tts_speed_slow_with_bracket">(慢速)</string>
+    <string name="tts_speed_default_with_bracket">(正常)</string>
+    <string name="tts_speed_fast_with_bracket">(快速)</string>
+    <string name="gerneral_setting">通用設置</string>
+    <string name="float_window">懸浮麥克風按鈕</string>
+
+    -->
+
+    <string name="main_auto_help_text_begin">點擊試試說\t</string>
+    <string name="main_help_text_wakeup_prefix">可以說&#160;</string>
+    <string name="main_help_text_wakeup_suffix">&#160;喚醒語音</string>
+    <string name="main_help_text_no_network">請連網後操作</string>
+    <string name="function_help_view_title">你可以這樣跟我說：</string>
+    <string name="toast_click_again_to_exit">再按一次退出程序</string>
+    <!-- error message -->
+    <string name="error_no_network_connect">網絡連接異常</string>
+    <string name="error_unknown">請聽提示哦！本次操作已取消了。</string>
+    <string name="error_init_title_failed">初始化失敗</string>
+    <string name="error_init_msg_vui_service_not_install">服務未安裝!</string>
+    <string name="error_init_msg_no_sdcard">SD卡未安裝!</string>
+
+    <!-- AMap -->
+    <string name="amap_error_network">搜索失敗,請檢查網絡連接！</string>
+    <string name="amap_error_key">key驗證無效！</string>
+    <string name="amap_error_other">未知錯誤，請稍後重試!錯誤碼爲</string>
+    <string name="amap_no_result">對不起，沒有搜索到相關數據！</string>
+    
+    <!-- WakeUp Mutiple&Confirm Answer Text -->
+    <string name="mutiple_ansewer_text">請說第幾個或說取消</string>
+    <string name="call_confirm_ansewer_text">請說確定或說取消</string>
+    <string name="localSearch_confirm_ansewer_text">請說導航或說打電話</string>
+    <string name="localSearch_confirm_no_phone_ansewer_text">請說導航</string>
+    <string name="mutiple_hand_choose_ansewer_text">請手動選擇</string>
+    
+    <!-- webview loading Text -->
+    <string name="map_webview_loading_text">地圖拼命加載中...</string>
+    <string name="chat_webview_loading">馬上就好，讓你調戲...</string>
+    
+    <!-- add by zzj -->
+    <string name="cancel_prepnavi">開始(%1$ss)</string>
+    <string name="receive_prepnavi_command">收到一條預約導航指令</string>
+    <string name="prepnavi_endpoi">導航到%1$s</string>
+    <string name="prepnavi_address">預約地址</string>
+    <string name="serch_music_fail">在線歌曲搜索失敗！</string>
+    <string name="luxianguihua">路線規劃功能</string>
+     <string name="prep_search">正在查找路線:</string>
+    <!-- 
+    <string name="tts_experience_mode_recording_start">還有其他吩咐嗎</string>
+    -->
+</resources>

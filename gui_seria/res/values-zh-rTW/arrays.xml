@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="days_of_week">
+        <item>星期日</item>
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+    </string-array>
+    <string-array name="memo_indicator">
+        <item>@string/to_do</item>
+        <item>@string/completed</item>
+    </string-array>
+    <string-array name="knowledge_stage_contact_not_found">
+        <item>對不起，沒有找到%1$s</item>
+        <item>對不起，不存在聯系人%1$s</item>
+        <item>對不起，沒有找到這個聯系人</item>
+    </string-array>
+    <string-array name="knowledge_stage_contact_auto_pick">
+        <item>正在爲你選擇第%1$s個聯系人</item>
+        <item>幫你選擇了第%1$s個聯系人</item>
+    </string-array>
+    <string-array name="knowledge_stage_number_not_found">
+        <item> 對不起，該聯系人沒有保存電話號碼</item>
+        <item>對不起，%1$s還沒有保存號碼</item>
+        <item>對不起，找不到%1$s的可用號碼</item>
+    </string-array>
+    <string-array name="knowledge_stage_number_auto_pick">
+        <item>正在爲你選擇第%1$s個號碼</item>
+        <item>幫你選擇了第%1$s個號碼</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name">
+        <item>打給誰？</item>
+        <item>你准備給誰打電話?</item>
+        <item>請說出你要撥打人的姓名</item>
+        <item>你想打電話給誰?</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_recognise_result_1">
+        <item>對不起，請說通訊錄中存在的聯系人姓名</item>
+        <item>對不起，並未找到你說的聯系人，請重新說</item>
+        <item>對不起，聯系人不存在，請再說一次</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_recognise_result_2">
+        <item>又錯了？請務必說通訊錄中存在的聯系人的姓名，或者說取消來退出電話功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_recognise_result_3">
+        <item>我很抱歉，我無法找到您想要聯系的人，我將退出電話功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_input_1">
+        <item>對不起，請在聽到提示音之後開始說話</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_input_2">
+        <item>又錯了？是不是離麥克風太遠了，請離麥克風近一點</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_contact_name_no_input_3">
+        <item>我很抱歉，我沒有聽到你說的話，我將退出電話功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_call_dialing">
+        <item>正在爲你接通%1$s的電話</item>
+        <item>正在撥打%1$s的電話</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_contact_name">
+        <item>請說聯系人姓名</item>
+        <item>你想給誰發信息</item>
+        <item>請說出你要發短信的人的姓名</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_content">
+        <item>請說短信內容</item>
+        <item>請告訴我短信內容</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_content_continue">
+        <item>請繼續說短信內容或者說發送</item>
+        <item>你可以繼續說短信內容或者說發送</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_contact_name_no_recognise_result_1">
+        <item>對不起，請說通訊錄中存在的聯系人姓名</item>
+        <item>對不起，並未找到你說的聯系人，請重新說</item>
+        <item>對不起，聯系人不存在，請再說一次</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_contact_name_no_recognise_result_2">
+        <item>又錯了？請務必說通訊錄中存在的聯系人的姓名，或者說取消來退出短信功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_sms_contact_name_no_recognise_result_3">
+        <item>我很抱歉，我無法找到您想要聯系的人，我將退出短信功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime">
+        <item>請說提醒時間</item>
+        <item>請告訴我什麽時候提醒你</item>
+        <item>請告訴我提醒的具體時間</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_created">
+        <item>提醒創建成功</item>
+        <item>已爲您創建提醒成功</item>
+        <item>好的，我將在%1$s提醒你</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_expired_1">
+        <item>對不起，不能使用過去的時間作爲提醒時間，請重新說提醒時間</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_expired_2">
+        <item>時間已經過去了，沒辦法再回頭，請說一個未來的時間</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_expired_3">
+        <item>對不起，我實在沒辦法回到過去去提醒你，我將退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_no_recognise_result_1">
+        <item>對不起，請說提醒時間，比如明天早上八點</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_no_recognise_result_2">
+        <item>又錯了？請盡可能清楚的再說一次，或者說取消來退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_memo_datetime_no_recognise_result_3">
+        <item>我很抱歉，我不知道該什麽時候提醒你，我將退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_open_name">
+        <item>你要打開什麽軟件</item>
+        <item>請說軟件名稱</item>
+        <item>請說應用的名稱</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_not_found">
+        <item>對不起，沒有找到應用</item>
+        <item>對不起，應用%1$s不存在</item>
+        <item>不好意思，你手機裏沒有這個應用</item>
+    </string-array>
+    <string-array name="knowledge_stage_web_not_found">
+        <item>對不起，沒有找到該網頁</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_auto_pick">
+        <item>正在爲你選擇第%1$s個應用</item>
+        <item>幫你選擇了第%1$s個應用</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_opening">
+        <item>正在爲你打開%1$s</item>
+        <item>正在打開%1$s</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_open_name_no_recognise_result_1">
+        <item>對不起，請說應用的名稱</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_open_name_no_recognise_result_2">
+        <item>又錯了？請盡可能清楚的再說一次，或者說取消來退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_open_name_no_recognise_result_3">
+        <item> 我很抱歉，我不知道該打開什麽應用，我將退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_uninstall_name">
+        <item>你要卸載什麽軟件</item>
+        <item>請說軟件名稱</item>
+        <item>請說應用的名稱</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_uninstalling">
+        <item>正在爲你卸載應用%1$s</item>
+        <item>正在卸載%1$s</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_uninstall_name_no_recognise_result_1">
+        <item>對不起，請說應用的名稱</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_uninstall_name_no_recognise_result_2">
+        <item>又錯了？請盡可能清楚的再說一次，或者說取消來退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_app_uninstall_name_no_recognise_result_3">
+        <item> 我很抱歉，我不知道該卸載什麽應用，我將退出這個功能</item>
+    </string-array>
+    <string-array name="knowledge_stage_weather_fetching">
+        <item> 正在獲取天氣數據，請稍等</item>
+        <item>讀取天氣數據中，請稍後</item>
+    </string-array>
+    <string-array name="knowledge_stage_network_exception">
+        <item> 對不起，網絡不給力</item>
+        <item>對不起，網絡不給力，請稍後重試</item>
+    </string-array>
+    <string-array name="knowledge_stage_no_network">
+        <item> 對不起，無法訪問網絡，請檢查網絡連接設置</item>
+    </string-array>
+    <string-array name="knowledge_stage_network_timeout">
+        <item> 對不起，網絡不給力，請稍後再試</item>
+    </string-array>
+    <string-array name="knowledge_stage_weather_city_not_found">
+        <item>對不起，沒有找到城市：%1$s</item>
+        <item>對不起，暫時不支持這個城市</item>
+    </string-array>
+    <string-array name="knowledge_stage_weather_locate_failed">
+        <item>對不起，獲取當前位置失敗，無法提供天氣服務</item>
+        <item>對不起，無法得知你當前所在的城市，無法提供天氣服務</item>
+    </string-array>
+    <string-array name="knowledge_stage_search_keyword">
+        <item>請問你要搜索什麽</item>
+        <item>請說你要搜索的關鍵字</item>
+        <item>請說你要查詢什麽</item>
+    </string-array>
+    <string-array name="knowledge_stage_no_recognise_result">
+        <item>對不起，暫時還不支持這個功能，我會盡快學會的</item>
+        <item>對不起，我無法理解您的話</item>
+        <item>很抱歉，我無法回答您的問題</item>
+        <item>你的這句話我沒學過，我會繼續努力學習的</item>
+        <item>對不起，我聽不懂這個命令哦！</item>
+    </string-array>
+    <string-array name="knowledge_stage_music_not_found">
+        <item>對不起，沒有找到%1$s</item>
+        <item>很抱歉，沒有找到%1$s這首歌曲，你可以再試一次</item>
+    </string-array>
+    <string-array name="knowledge_stage_no_input">
+        <item>不知道說什麽嗎？試試“打電話給某某”吧</item>
+        <item>不知道說什麽嗎？試試“發短信給某某”吧</item>
+        <item>可能您說話聲音太小，沒聽清楚，能重複下嗎？</item>
+    </string-array>
+    <string-array name="knowledge_stage_help">
+        <item>您好，有什麽可以幫您的？</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_call">
+        <item>電話</item>
+        <item>撥通</item>
+        <item>呼叫</item>
+        <item>手機</item>
+        <item>家裏的電話</item>
+        <item>座機</item>
+        <item>小靈通</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_sms">
+        <item>短信</item>
+        <item>短消息</item>
+        <item>簡訊</item>
+        <item>消息</item>
+        <item>告訴</item>
+        <item>信息</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_weather">
+        <item>天氣</item>
+        <item>溫度</item>
+        <item>氣溫</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_app">
+        <item>打開</item>
+        <item>啓動</item>
+        <item>軟件</item>
+        <item>程序</item>
+        <item>加載</item>
+        <item>運行</item>
+        <item>卸載</item>
+        <item>刪除</item>
+        <item>開啓</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_memo">
+        <item>提醒</item>
+        <item>鬧鍾</item>
+        <item>開會</item>
+        <item>叫醒</item>
+        <item>記一下</item>
+        <item>備忘</item>
+        <item>記下</item>
+    </string-array>
+    <string-array name="knowledge_grammer_keyword_search">
+        <item>搜索</item>
+        <item>收縮</item>
+        <item>收索</item>
+        <item>百度</item>
+        <item>谷歌</item>
+        <item>搜狗</item>
+        <item>必應</item>
+        <item>雅虎</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_call">
+        <item>失敗了嗎？你可以說“打電話給某某某”來給ta打電話的！</item>
+        <item>失敗了嗎？你可以嘗試說“給某某某打電話”來給ta打電話的！</item>
+        <item>失敗了嗎？你還可以說“打某某某的電話”來給ta打電話的！</item>
+        <item>你可以說“打電話給某某某”來給ta打電話的！</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_sms">
+        <item>失敗了，你可以說“發短信給某某某”來給ta發短信！</item>
+        <item>你可以說“發短信給某某某”來給ta發短信！</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_weather">
+        <item>查詢天氣的話可以說“天氣查詢”！</item>
+        <item>你可以說“今天天氣怎麽樣”來查詢最近本地天氣！</item>
+        <item>失敗了嗎？你還可以說“北京天氣怎麽樣”來查詢最近北京的天氣！</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_app">
+        <item>想打開相機可以說“打開相機”！</item>
+        <item>你可以說“打開微信”來打開手機裏安裝的微信應用！</item>
+        <item>失敗了嗎？你還可以說“打開應用”！</item>
+        <item>失敗了嗎？你還可以說“打開程序”！</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_memo">
+        <item>你可以說“提醒”來設置提醒！</item>
+        <item>你可以說“提醒我”來設置提醒！</item>
+        <item>你可以說“提醒一下”來設置提醒！</item>
+    </string-array>
+    <string-array name="knowledge_grammer_example_search">
+        <item>你可以說“搜索劉翔”來搜索關鍵字“劉翔”！</item>
+        <item>失敗了嗎？你也可以說“百度搜索中國好聲音”</item>
+        <item>失敗了嗎？你還可以說“谷歌上海”，使用谷歌搜索“上海”！</item>
+    </string-array>
+
+    <!-- xd 20150708 modify Begin -->
+    <!-- Main page help text & Unsupport domain Function help view text -->
+    <!-- Call -->
+    <string-array name="function_example_call">
+        <item>打電話給%1$s</item>
+        <item>打電話</item>
+        <item>打電話給10086</item>
+        <item>撥打工商銀行的電話</item>
+    </string-array>
+    <string-array name="function_example_call_offline">
+        <item>打電話</item>
+        <item>打電話給%1$s</item>
+    </string-array>
+    <string-array name="function_example_call_no_contact">
+        <item>打電話</item>
+    </string-array>
+
+    <!-- SMS -->
+    <string-array name="function_example_sms">
+        <item>發短信給%1$s</item>
+    </string-array>
+    <string-array name="function_example_sms_no_contact">
+        <item>發短信</item>
+    </string-array>
+
+    <!-- Music -->
+    <string-array name="function_example_music">
+        <item>來一首小蘋果</item>
+        <item>播放鄧紫棋的泡沫</item>
+        <item>播放音樂</item>
+        <item>下一首</item>
+    </string-array>
+    <string-array name="function_example_music_offline">
+        <item>播放音樂</item>
+        <item>下一首</item>
+    </string-array>
+
+    <!-- Broadcast -->
+    <string-array name="function_example_broadcast">
+        <item>調頻到99.5兆赫</item>
+    </string-array>
+    <string-array name="function_example_broadcast_offline">
+        <item>打開收音機</item>
+    </string-array>
+
+    <!-- MapRoute -->
+    <string-array name="function_example_route">
+        <item>導航到東方明珠</item>
+        <item>怎麽去欽州北路1198號</item>
+        <item>搜索去徐家彙智彙大廈的路線</item>
+    </string-array>
+    <!--
+    <item>回家</item>
+    <item>回公司</item>
+
+    -->
+    <string-array name="function_example_route_offline"></string-array>
+
+    <!-- Weather -->
+    <string-array name="function_example_weather">
+        <item>上海的天氣</item>
+    </string-array>
+
+    <!-- setting -->
+    <string-array name="function_example_setting">
+        <item>打開藍牙</item>
+    </string-array>
+    <string-array name="function_example_setting_offline">
+        <item>打開藍牙</item>
+    </string-array>
+
+    <!-- stock -->
+    <string-array name="function_example_stock">
+        <item>中國石化的股票</item>
+    </string-array>
+    <!-- xd 20150708 modify End -->
+
+    <string-array name="function_example_app">
+        <item>應用管理</item>
+        <item>打開設置</item>
+    </string-array>
+    <string-array name="function_example_search">
+        <item>搜索引擎</item>
+        <item>百度一下雲知聲</item>
+        <item>搜索一下雲知聲</item>
+        <item>百度搜索中國好聲音</item>
+        <item>百度搜索劉德華的照片</item>
+        <item>搜索雲知聲</item>
+    </string-array>
+    <string-array name="function_example_memo">
+        <item>設置提醒</item>
+        <item>提醒我明天早上八點出門</item>
+        <item>明天早上九點提醒我開會</item>
+    </string-array>
+    <string-array name="function_example_nearby">
+        <item>周邊商戶</item>
+        <item>上海火車站附近有沒有肯德基</item>
+        <item>附近有什麽酒店嗎</item>
+        <item>查找附近的美食</item>
+        <item>徐家彙附近有沒有KTV</item>
+        <item>陸家嘴附近有沒有什麽好吃的</item>
+    </string-array>
+    <string-array name="function_example_tv">
+        <item>電視節目</item>
+        <item>中央一套的節目預告</item>
+        <item>中央一套放什麽節目</item>
+        <item>查詢中央一套的節目單</item>
+    </string-array>
+    <string-array name="function_example_flight">
+        <item>查詢航班</item>
+        <item>查詢北京到上海的航班</item>
+        <item>幫我查一下北京到上海的飛機票</item>
+        <item>幫我找找北京到上海的機票</item>
+    </string-array>
+    <string-array name="function_example_train">
+        <item>查火車票</item>
+        <item>查詢北京到上海的火車票</item>
+        <item>幫我查一下北京到上海的高鐵票</item>
+        <item>幫我找找北京到上海的動車</item>
+    </string-array>
+    <string-array name="function_example_yellowpage">
+        <item>常用號碼</item>
+        <item>撥打中國移動的客服電話</item>
+        <item>打電話給10086</item>
+        <item>接通招商銀行的客服電話</item>
+    </string-array>
+    <string-array name="function_example_sitemap">
+        <item>網站導航</item>
+        <item>打開土豆網</item>
+        <item>打開百度</item>
+        <item>打開新浪網</item>
+    </string-array>
+    <string-array name="function_example_cookbook">
+        <item>烹饪菜譜</item>
+        <item>水煮牛肉</item>
+        <item>肉末茄子怎麽做</item>
+        <item>糖醋排骨的做法</item>
+    </string-array>
+    <string-array name="function_example_news">
+        <item>新聞搜索</item>
+        <item>今天有什麽新聞</item>
+        <item>娛樂新聞</item>
+        <item>我想看看新聞</item>
+    </string-array>
+    <string-array name="function_example_translation">
+        <item>翻譯</item>
+        <item>“英文翻譯早上好”</item>
+        <item>“酸奶翻譯成英文”</item>
+        <item>“這個多少錢翻譯成英語”</item>
+    </string-array>
+    <string-array name="function_example_movie">
+        <item>電影資訊</item>
+        <item>最近有什麽好看的電影</item>
+        <item>有什麽即將上映的電影</item>
+        <item>今天有什麽電影</item>
+    </string-array>
+    <string-array name="function_example_video">
+        <item>視頻搜索</item>
+        <item>我想看視頻</item>
+        <item>娛樂視頻</item>
+        <item>幫我找找街舞的視頻</item>
+    </string-array>
+    <string-array name="function_example_novel">
+        <item>小說搜索</item>
+        <item>最新的小說</item>
+        <item>勵志方面的小說</item>
+        <item>幫我找一下鬥破蒼穹這本小說</item>
+    </string-array>
+    <string-array name="function_example_contact">
+        <item>聯系人</item>
+        <item>姚明的電話是多少</item>
+        <item>查看聯系人姚明</item>
+        <item>把姚明的電話發給李四</item>
+    </string-array>
+    <string-array name="function_example_talk">
+        <item>聊天</item>
+        <item>今天是多少號</item>
+        <item>十萬加一百萬等于多少</item>
+        <item>講個笑話吧</item>
+    </string-array>
+    <string-array name="map_selection">
+        <item>@string/amap</item>
+        <item>@string/baidu</item>
+    </string-array>
+    <string-array name="wakeup_success_prompt">
+        <item>魔方在</item>
+        <item>請說指令</item>
+        <item>我在呢</item>
+        <item>要我幹啥</item>
+    </string-array>
+    <string-array name="tts_speed_selection">
+        <item>低速</item>
+        <item>正常</item>
+        <item>快速</item>
+    </string-array>
+    <string-array name="flight_tips">
+        <item>您可以說：查詢明天深圳到上海的機票</item>
+        <item>您可以說：明天、後天、2015年10月31日等，來確定日期</item>
+        <item>您可以說：深圳、上海、北京等城市名字，來確定出發地</item>
+        <item>您可以說：深圳、上海、北京等城市名字，來確定目的地</item>
+        <item>您可以說：重新開始，來進行新一輪機票查詢</item>
+        <item>您可以說：查返程票，來進行返程機票查詢</item>
+        <item>您可以說：退出，來退出機票對話流程</item>
+        <item>查詢到機票後，您可以說：前一天、後一天，來調整日期</item>
+        <item>您可以說：2015年10月31日，從深圳到上海的機票</item>
+    </string-array>
+
+</resources>

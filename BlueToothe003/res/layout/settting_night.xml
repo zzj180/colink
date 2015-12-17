@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fouces"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijin"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/home_night_button" />
+
+        <Button
+            android:id="@+id/duankai"
+            android:layout_width="@dimen/set_button_width"
+            android:layout_height="@dimen/set_button_height"
+            android:text="断开"
+            android:textSize="20sp"
+             android:gravity="bottom|center_horizontal"
+            android:textColor="@color/blue"
+            android:background="@drawable/duankai_button_night"
+             />
+
+        <Button
+            android:id="@+id/xiugai"
+            android:layout_width="@dimen/set_button_width"
+            android:layout_height="@dimen/set_button_height"
+            android:text="修改名称"
+            android:gravity="bottom|center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            android:background="@drawable/xiugai_button_night" />
+
+        <Button
+            android:id="@+id/pin"
+            android:layout_width="@dimen/set_button_width"
+            android:layout_height="@dimen/set_button_height"
+             android:text="修改PIN"
+             android:textSize="20sp"
+              android:gravity="bottom|center_horizontal"
+            android:textColor="@color/blue"
+            android:background="@drawable/pin_button_night" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <requestFocus />
+
+        <RelativeLayout
+            android:layout_width="@dimen/set_beijing_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/back_button_night" />
+        </RelativeLayout>
+        <View android:layout_width="@dimen/set_beijing_width"
+            android:layout_height="5dp"/>
+
+        <RelativeLayout
+            android:layout_width="@dimen/set_beijing_width"
+            android:layout_height="@dimen/set_beijing_height"
+            android:background="@drawable/beijin"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="46dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ToggleButton
+                    android:id="@+id/autoConn"
+                    android:layout_width="@dimen/set_kg_width"
+                    android:layout_height="@dimen/set_kg_height"
+                    android:background="@android:color/transparent"
+                    android:button="@drawable/switch_btn_night"
+                    android:checked="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                    android:text="自动连接"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/set_textsize"
+                     />
+
+                <ToggleButton
+                    android:id="@+id/autoCall"
+                    android:layout_width="@dimen/set_kg_width"
+                    android:layout_height="@dimen/set_kg_height"
+                    android:layout_marginLeft="@dimen/set_marginleft_home"
+                    android:background="@android:color/transparent"
+                    android:button="@drawable/switch_btn_night"
+                    android:checked="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                     android:text="自动接听"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/set_textsize"
+                     />
+            </LinearLayout>
+
+            <!--
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/linearLayout1"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal" >
+
+                <ToggleButton
+                    android:id="@+id/autoA2DP"
+                    android:layout_width="@dimen/set_kg_width"
+                    android:layout_height="@dimen/set_kg_height"
+                    android:background="@android:color/transparent"
+                    android:button="@drawable/switch_btn"
+                    android:checked="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                    android:text="蓝牙音乐(蓝牙重启后生效)"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </LinearLayout>
+            -->
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/linearLayout1"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/set_marginbuttum_home"
+                android:text="已连接:"
+                 android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <TextView
+                android:id="@+id/devicePair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView2"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                android:layout_toRightOf="@+id/textView2"
+                android:scrollHorizontally="true"
+                android:text="无"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_below="@+id/textView2"
+                android:layout_marginTop="@dimen/set_margin_text"
+                android:text="设备名称:"
+                 android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <EditText
+                android:id="@+id/blueName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView1"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                android:layout_toRightOf="@+id/textView1"
+                android:background="@null"
+                android:imeOptions="flagNoExtractUi|actionDone"
+                android:inputType="textCapCharacters"
+                android:maxLength="32"
+                android:scrollHorizontally="true"
+                android:text="无"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="@dimen/set_margin_text"
+                android:text="PIN码:"
+                 android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+
+            <EditText
+                android:id="@+id/pinValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView4"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/set_marginleft_zidong"
+                android:layout_toRightOf="@+id/textView4"
+                android:background="@null"
+                android:imeOptions="flagNoExtractUi|actionDone"
+                android:inputType="number"
+                android:maxLength="16"
+                android:text="0000"
+                 android:textColor="@color/blue"
+                android:textSize="@dimen/set_textsize" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

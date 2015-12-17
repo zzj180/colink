@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.coogo.inet.vui.assistant.car"
+    android:sharedUserId="android.uid.phone"
+    android:versionCode="180"
+    android:versionName="3.0.2.180" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_CHATHISTORY" />
+    <uses-permission android:name="android.permission.WRITE_CHATHISTORY" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+ 	<uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+ 	<uses-permission android:name="android.permission.DEVICE_POWER" />
+ 	<uses-permission android:name="android.permission.STATUS_BAR" />
+ 	<uses-permission android:name="android.permission.DISABLE_STATUS_BAR"/>   
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+
+    <!-- vui assistant application -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="com.unisound.unicar.gui.application.CrashApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
+
+        <!--
+            | 高德定位
+            | sign(正式签名) : d8165913749a3925d326b2d2e35a5bf0
+            | tyz          : 3392c2b2875dedb22a0d76ca14635649 
+            | wanglp       : 32e412260949baa674e4da4146a19fc0
+            | zhuoran      : 360894425b56be95aaab8b02edb63df5
+            | xiaodong     : d65f20a272392daf37088fe1092824ba 
+            | 6ef833ab2042641d80efe95b7239097b        -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="25de08e23637f3704b95ff832ded1b90" />
+        <!--
+            | 百度定位
+            | sign(正式签名) : 5izIo5E71pRpp4aQeoG3QVdw
+            | zhuoran      : pha5tikVH6jPrSLAQYVruTCt  
+            | xiaodong     : 4qZ9V59xCSNwljity2Huhkww
+            | backup       : dmrMgwfUee42qpQo6kU7DaM4        -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="aCaSGZAadqLjRjCNrq6cP6ge" />
+
+        <activity
+            android:name="com.unisound.unicar.gui.ui.WelcomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.ui.GUIMainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- xiaodong 20150713 added Begin -->
+        <activity
+            android:name="com.unisound.unicar.gui.ui.FunctionHelpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.ui.OTAActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.ui.AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        <!-- xiaodong 20150713 added End -->
+
+        <activity
+            android:name="com.unisound.unicar.gui.ui.HelpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <!-- xiaodong 20150609 added begin -->
+        <activity
+            android:name="com.unisound.unicar.gui.ui.AllFunctionsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.ui.SettingsViewPagerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <!-- XD 20151020 added for Baidu PositionActivity -->
+        <activity
+            android:name="com.unisound.unicar.gui.ui.PositionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <!-- SettingMapViewPagerActivity singleTop -->
+        <activity
+            android:name="com.unisound.unicar.gui.ui.SettingMapViewPagerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        <!-- xiaodong 20150609 added end -->
+
+
+        <!-- xiaodong 20150911 added for map route Begin -->
+        <activity
+            android:name="com.unisound.unicar.gui.route.operation.GaodeLocationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.route.operation.GaodeRouteActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.route.baidu.LocationOverlayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.route.baidu.RouteOverlayNoMap"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.unisound.unicar.gui.route.baidu.RouteOverlayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+        <!-- xiaodong 20150911 added for map route End -->
+
+        <!-- AMapPoiAroundSearchActivity -->
+        <activity
+            android:name="com.unisound.unicar.gui.ui.AMapPoiAroundSearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <!-- XD 20150825 added for default SMS Begin -->
+        <!-- Activity that allows the user to send new SMS/MMS messages -->
+        <activity android:name="com.unisound.unicar.gui.smsdefault.ComposeSmsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </activity>
+        <!--add by ch 2015-11-02 add Amap TrafficShowView  -->
+        <activity android:name="com.unisound.unicar.gui.ui.AmapTrafficShowActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <!-- Service that delivers messages from the phone "quick response" -->
+        <service
+            android:name="com.unisound.unicar.gui.smsdefault.HeadlessSmsSendService"
+            android:exported="true"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE" >
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
+
+        <!-- BroadcastReceiver that listens for incoming SMS messages -->
+        <receiver
+            android:name="com.unisound.unicar.gui.smsdefault.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- BroadcastReceiver that listens for incoming MMS messages -->
+        <receiver
+            android:name="com.unisound.unicar.gui.smsdefault.MmsReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+        <!-- XD 20150825 added for default SMS End -->
+
+
+        <!-- Receiver -->
+        <receiver
+            android:name="com.unisound.unicar.gui.sms.SmsSendReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.MESSAGE_SENT" />
+
+                <data android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.SEND_MESSAGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- xd added 20150710 begin -->
+        <receiver
+            android:name="com.unisound.unicar.gui.sms.MessageStatusReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.MESSAGE_STATUS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.unisound.unicar.gui.phone.PhoneStateReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+                <action android:name="android.intent.action.BLUETOOTH_PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <!-- xd added 20150710 end -->
+
+
+        <!-- Service -->
+        <service android:name="cn.yunzhisheng.vui.assistant.WindowService" android:exported="true" />
+
+        <!-- <service android:name="com.unisound.unicar.gui.ui.KillNotificationService" /> -->
+
+        <service android:name="com.unisound.unicar.gui.sms.SmsSenderService" />
+
+        <!-- xiaodong 20150923 added for UniDriveFm -->
+        <service android:name="com.unisound.unicar.gui.fm.UniDriveFmGuiService" >
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.START_UNIDRIVE_FM" />
+            </intent-filter>
+        </service>
+        <service android:name="com.unisound.unicar.gui.fm.XmFmGuiService" >
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.START_XM_FM" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.android.kwmusic.KWMusicService"
+            android:persistent="true" />
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+
+        <receiver android:name="com.unisound.unicar.gui.ui.MessageReceiver" >
+            <intent-filter android:priority="2147483646">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.unisound.intent.action.PLAY_TTS" />
+                 <action android:name="android.intent.action.VUI_SPEAK_ON_KEYEVENT" />
+                <action android:name="com.glsx.bootup.send.autonavi" />
+                <action android:name="action.colink.remote_navi" />
+      
+                <action android:name="action.colink.remotecommand" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Receiver -->
+        <receiver android:name="com.unisound.unicar.gui.oem.RomCustomReceiver" >
+            <intent-filter>
+                <action android:name="cn.yunzhisheng.intent.action.custom.order.contact" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- yj 2015.8.13 -->
+        <provider
+            android:name="com.unisound.unicar.gui.chat.ChatContentProvider"
+            android:authorities="com.unisound.unicar.gui.chat.ChatProvider"
+            android:exported="true"
+            android:label="ChatContentProvider"
+            android:readPermission="android.permission.READ_CHATHISTORY"
+            android:writePermission="android.permission.WRITE_CHATHISTORY" />
+           <provider
+            android:name="com.unisound.unicar.gui.database.WakeUpSwitch"
+            android:authorities="com.coogo.inet.vui.assistant.car"
+            android:exported="true" />
+    </application>
+
+</manifest>

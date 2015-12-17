@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_title_call_out_name"
+        style="@style/text_session_title_f2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="马上为你导航" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/session_view_bg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:drawableLeft="@drawable/icon_poi_from"
+                android:text="@string/start_poi" />
+
+            <TextView
+                android:id="@+id/startPOIText"
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/start_poi_location" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:drawableLeft="@drawable/icon_poi_to"
+                android:text="@string/end_poi" />
+
+            <TextView
+                android:id="@+id/endPOIText"
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageViewBuffering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="14dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerInside"
+            android:src="@anim/waiting"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/session_button_hight"
+        android:orientation="horizontal"
+        android:visibility="invisible" >
+
+        <!-- Call Out and ProgerssBar -->
+
+        <FrameLayout
+            android:id="@+id/fl_route_ok"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:gravity="center" >
+
+            <ProgressBar
+                android:id="@+id/progressBarWaiting"
+                style="@style/ProgressBarWebViewLoadingStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:visibility="invisible" />
+
+            <TextView
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="@string/call_out" />
+        </FrameLayout>
+
+        <!-- Call Cancel and Time Left -->
+
+        <RelativeLayout
+            android:id="@+id/rl_route_cancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_route_cancel"
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="@string/call_cancel" />
+
+            <TextView
+                android:id="@+id/tv_route_cancel_time"
+                style="@style/text_session_item_f4_time"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_route_cancel"
+                android:gravity="center"
+                android:text="" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

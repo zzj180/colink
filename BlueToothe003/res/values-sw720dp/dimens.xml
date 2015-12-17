@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="number_width">157dp</dimen>
+    <dimen name="number_height">126dp</dimen>
+    <dimen name="del_x">1009dp</dimen>
+    <dimen name="del_width">124dp</dimen>
+    <dimen name="show_width">829dp</dimen>
+    <dimen name="show_height">91dp</dimen>
+    
+    <dimen name="num_x1">301dp</dimen>
+     <dimen name="num_x2">462dp</dimen>
+    <dimen name="num_x3">623dp</dimen>
+     <dimen name="num_x4">783dp</dimen>
+     
+     <dimen name="num_y1">270dp</dimen>
+     <dimen name="num_y2">401dp</dimen>
+    <dimen name="num_y3">532dp</dimen>
+    
+    <dimen name="home_width">144dp</dimen>
+    <dimen name="home_height">94dp</dimen>
+    
+    <dimen name="button_home_left">101dp</dimen>
+    <dimen name="button_home_right">978dp</dimen>
+    
+    <dimen name="button_home_width">182dp</dimen>
+    <dimen name="button_home_height">140dp</dimen>
+    <dimen name="button_home">115dp</dimen>
+    <dimen name="button_home_on">253dp</dimen>
+    <dimen name="button_home_middle">395dp</dimen>
+    <dimen name="button_home_lower">538dp</dimen>
+    
+    
+    <dimen name="button_contact_on">140dp</dimen>
+    <dimen name="button_contact_middle">304dp</dimen>
+    <dimen name="button_contact_lower">467dp</dimen>
+    
+    <dimen name="button_contact_left">98dp</dimen>
+    
+    <dimen name="contact_bg_width">874dp</dimen>
+    <dimen name="contact_bg_height">511dp</dimen>
+    <dimen name="contact_bg_x">274dp</dimen>
+    <dimen name="contact_bg_y">140dp</dimen>
+    
+    <dimen name="button_contact_back_width">136dp</dimen>
+    <dimen name="button_contact_back_height">41dp</dimen>
+    <dimen name="button_contact_back_x">1015dp</dimen>
+    <dimen name="button_contact_back_y">92dp</dimen>
+    
+    
+    <dimen name="button_incalling_width">151dp</dimen>
+    <dimen name="button_incalling_height">193dp</dimen>
+    <dimen name="button_incalling_left">443dp</dimen>
+    <dimen name="button_incalling_right">643dp</dimen>
+    <dimen name="button_incalling_y">407dp</dimen>
+</resources>
+

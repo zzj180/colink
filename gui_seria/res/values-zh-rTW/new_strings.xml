@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string-array name="help_group_name">
+        <item>藍牙通訊</item>
+        <item>音樂播放</item>
+        <item>收音機</item>
+        <item>地圖導航</item>
+        <item>常用控制</item>
+        <item>天氣預報</item>
+        <item>股票資訊</item>
+        <item>周邊搜索</item>
+    </string-array>
+    <string-array name="help_child_content_1">
+        <item>打電話給姚明（離線）</item>
+        <item>撥打姚明的電話（離線）</item>
+        <item>打電話給10086</item>
+        <item>撥打工商銀行的電話</item>
+        <item>發短信給姚明</item>
+        <item>發短消息</item>
+    </string-array>
+    <string-array name="help_child_content_2">
+        <item>播放音樂（離線）</item>
+        <item>聽陳奕迅的歌（本地）</item>
+        <item>播放鄧紫棋的泡沫</item>
+        <item>搜索周傑倫的新歌</item>
+    </string-array>
+    <string-array name="help_child_content_3">
+        <item>調頻到99.5（離線）</item>
+        <item>收聽87.5兆赫（離線）</item>
+    </string-array>
+    <string-array name="help_child_content_4">
+        <item>導航到東方明珠</item>
+        <item>怎麽去欽州北路1198號</item>
+        <item>搜索去徐家匯智匯大廈的路線</item>
+    </string-array>
+    <string-array name="help_child_content_5">
+        <item>打開藍牙（離線）</item>
+        <item>增大音量（離線）</item>
+        <item>關閉wifi（離線）</item>
+    </string-array>
+    <string-array name="help_child_content_6">
+        <item>上海的天氣</item>
+        <item>上海明天會下雨嗎</item>
+    </string-array>
+    <string-array name="help_child_content_7">
+        <item>工商銀行的股票</item>
+        <item>股票行情</item>
+    </string-array>
+
+    <!-- xiaodong 20150713 added for function help activity Begin -->
+    <string name="help_content_status_offline">(離線)</string>
+
+    <!-- 1 bluetooth-1: call -->
+    <string name="help_content_buletooth_item_call_out">1：打電話</string>
+    <string name="help_content_buletooth_item_call_in">2：接聽電話</string>
+    <string name="help_content_buletooth_item_send_sms">3：發短信</string>
+
+    <string-array name="help_child_content_outcall_online">
+        <item>“打電話給10086”</item>
+        <item>“撥打工商銀行的電話”</item>
+    </string-array>
+    <string-array name="help_child_content_outcall_offline">
+        <item>“打電話”</item>
+        <item>“打電話給張三”</item>
+    </string-array>
+    <!-- 1 bluetooth-2: incoming call -->
+    <string-array name="help_child_content_incall_offline">
+        <item>“接聽”</item>
+        <item>“掛斷”</item>
+    </string-array>
+    <!-- 1 bluetooth-3 : sms -->
+<!--     <string-array name="help_child_content_sms_online">
+        <item>“發短信給張三”</item>
+        <item>“發短信給張三內容是:我正在開車”</item>
+    </string-array> -->
+
+    <!-- 2 navigation -->
+    <string-array name="help_child_content_navigation_online">
+        <item>“導航到常德市桃源縣”</item>
+        <item>“怎麽去常德市木塘垸鄉”</item>
+        <item>“搜索去常德市桃源壹中的路線”</item>
+    </string-array>
+    <!--
+        <item>“回家”</item>
+        <item>“回公司”</item>
+
+    -->
+    <string-array name="help_child_content_navigation_offline"></string-array>
+
+    <!-- 3 music -->
+    <string-array name="help_child_content_music_online">
+        <item>“來壹首小蘋果”</item>
+        <item>“播放鄧紫棋的泡沫”</item>
+    </string-array>
+    <string-array name="help_child_content_music_offline">
+        <item>“播放音樂”</item>
+        <item>“上壹首”</item>
+        <item>“下壹首”</item>
+        <item>“單曲循環”</item>
+        <item>“順序播放”</item>
+        <item>“隨機播放”</item>
+         <item>“播放”</item>
+        <item>“暫停”</item>
+        <item>“停止”</item>
+    </string-array>
+
+    <!-- 4 quick setting -->
+    <string-array name="help_child_content_setting_offline">
+        <item>“打開藍牙”</item>
+        <item>“增大音量”</item>
+        <item>“關閉wifi”</item>
+        <item>“打開設置”</item>
+        <item>“打開/關閉 電子狗”</item>
+        <item>“打開/關閉 雷達”</item>
+        <item>“打開/關閉 行車記錄儀”</item>
+        <item>“關閉導航,結束導航,停止導航,關掉導航”</item>
+        <item>“回公司,我想去公司,我要去公司”</item>
+        <item>“回家,我想回家,我要回家”</item>
+        <item>“壹鍵導航,人工導航,電話導航”</item>
+        <item>“查看通話記錄,通話記錄”</item>
+        <item>“實時路況”</item>
+        <item>“電子眼投訴”</item>
+        <item>“關屏,關閉屏幕,免打擾模式,免打擾,打開免打擾模式,進入免打擾”</item>
+        <item>“打開/關閉 路口播報（限高德導航）”</item>
+        <item>“放大/縮小地圖（限高德導航）”</item>
+        <item>“車頭朝上模式（限高德導航）”</item>
+        <item>“北上模式（限高德導航）”</item>
+        <item>“2D模式（限高德導航）”</item>
+        <item>“3D模式（限高德導航）”</item>
+    </string-array>
+
+    <!-- 5 net radio -->
+    <string-array name="help_child_content_net_radio_online">
+        <item>“我想聽郭德綱的相聲”</item>
+        <item>“我想聽單田芳的評書”</item>
+        <item>“上壹首”</item>
+        <item>“下壹首”</item>
+    </string-array>
+    <string-array name="help_child_content_net_radio_offline">
+        <item>“暫停”</item>
+        <item>“繼續播放”</item>
+    </string-array>
+    
+    <!-- 6 weather -->
+    <string-array name="help_child_content_weather_online">
+        <item>“上海的天氣”</item>
+        <item>“明天北京的天氣”</item>
+    </string-array>
+
+    <!-- 7 stock -->
+    <string-array name="help_child_content_stock_online">
+        <item>“工商銀行的股票”</item>
+        <item>“股票行情”</item>
+    </string-array>
+
+    <!-- 8 local search -->
+    <string-array name="help_child_content_local_search_online">
+        <item>“附近的餐館”</item>
+        <item>“最近的加油站”</item>
+        <item>“哪裏有超市”</item>
+    </string-array>
+
+    <!-- 9 traffic -->
+    <string-array name="help_child_content_traffic_online">
+        <item>“內環堵不堵”</item>
+        <item>“前方路況怎麽樣”</item>
+        <item>“深南大道的路況信息”</item>
+    </string-array>
+
+    <!-- 10 limit -->
+    <string-array name="help_child_content_limit_online">
+        <item>“今天的限行尾號”</item>
+        <item>“明天限行嗎”</item>
+        <item>“杭州明天的限行號碼”</item>
+    </string-array>
+    
+    <!-- 11 radio -->
+    <string-array name="help_child_content_radio_online">
+        <item>“調頻到99.5”</item>
+        <item>“收聽87.5兆赫”</item>
+    </string-array>
+    <string-array name="help_child_content_radio_offline">
+        <item>“關閉發射”</item>
+        <item>“關閉廣播”</item>
+        <item>“關閉調頻”</item>
+    </string-array>
+     <string-array name="holf">
+        <item>森林狼</item>
+        <item>野狼</item>
+        <item>戰狼</item>
+        <item>蒼狼</item>
+        <item>圖狼</item>
+        <item>土狼</item>
+        <item>黑狼</item>
+        <item>雪狼</item>
+        <item>烽火狼</item>
+        <item>寂狼</item>
+        <item>衰狼</item>
+        <item>貳狼</item>
+        <item>赤狼</item>
+        <item>財狼</item>
+        <item>銀狼</item>
+        <item>青海狼</item>
+        <item>小狼</item>
+    </string-array>
+    <!-- xiaodong 20150713 added for function help activity End -->
+
+    <string name="music_buffer">音樂緩沖中...</string>
+    <string name="music_play_error">該歌曲播放異常</string>
+    <string name="wake_up_remind">註意：開啟語音喚醒功能後會消耗更多電量！</string>
+    <string name="result_nofind">抱歉，未找到結果</string>
+    <string name="map_suggestions">起點或終點有歧義,建議：</string>
+    <string name="route_planning">路線規劃</string>
+    <string name="gaode_result_nofind">沒有找到結果</string>
+    <string name="gaode_check_net">沒有網絡連接，請檢查網絡</string>
+    <string name="gaode_nofind_map">沒有安裝高德地圖或高德導航</string>
+    <string name="gaode_install_map">安裝高德地圖客戶端體驗會更好哦</string>
+    <string name="gaode_nofind_route">很抱歉，沒有找到合適的路線</string>
+    <string name="view_sorry">對不起，無法打開網頁，可能您的設備中沒有安裝瀏覽器</string>
+    <string name="domain_alarm">提醒</string>
+    <string name="domain_app">應用</string>
+    <string name="domain_call">電話</string>
+    <string name="domain_contact">聯系人</string>
+    <string name="domain_flight">機票</string>
+    <string name="domain_local_search">周邊查詢</string>
+    <string name="domain_music">音樂</string>
+    <string name="domain_nearby_search">搜索</string>
+    <string name="domain_position">線路</string>
+    <string name="domain_sitemap">網站導航</string>
+    <string name="domain_sms">短信</string>
+    <string name="domain_stock">股票</string>
+    <string name="domain_train">火車票</string>
+    <string name="domain_tv">電視預告</string>
+    <string name="domain_weather">天氣</string>
+    <string name="domain_yellow_page">常用號碼</string>
+    <string name="domain_news">新聞</string>
+    <string name="domain_cookbook">菜譜</string>
+    <string name="domain_translation">翻譯</string>
+    <string name="domain_setting">手機設置</string>
+    <string name="domain_movie">電影</string>
+    <string name="domain_novel">小說</string>
+    <string name="domain_video">視頻</string>
+    <string name="feedback_error_">錯誤內容已反饋，</string>
+    <string name="page_number">第 <xliff:g id="page1">%1$s</xliff:g>頁 (共 <xliff:g id="page2">%2$s</xliff:g>頁)</string>
+    <string name="stock_pening_price">今開價： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_closing_price">昨收價： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_highest_price">最高價： <xliff:g>%1$s</xliff:g></string>
+    <string name="stock_lowest_price">最低價： <xliff:g>%1$s</xliff:g></string>
+    <string name="weather_haze">霾</string>
+    <string name="weather_blizzard">暴雪</string>
+    <string name="weather_snow_heavy">大雪</string>
+    <string name="weather_snow_moderate">中雪</string>
+    <string name="weather_snow_light">小雪</string>
+    <string name="weather_snow_shower">陣雪</string>
+    <string name="weather_rainstorm_super">特大暴雨</string>
+    <string name="weather_rainstorm_big">大暴雨</string>
+    <string name="weather_rainstorm">暴雨</string>
+    <string name="weather_rain_heavy">大雨</string>
+    <string name="weather_rain_moderate">中雨</string>
+    <string name="weather_rain_light">小雨</string>
+    <string name="weather_sleety">雨夾雪</string>
+    <string name="weather_hail">雷陣雨伴有冰雹</string>
+    <string name="weather_thunder_rain">雷陣雨</string>
+    <string name="weather_shower">陣雨</string>
+    <string name="weather_icerain">凍雨</string>
+    <string name="weather_sandstorm_strong">強沙塵暴</string>
+    <string name="weather_sandstorm">沙塵暴</string>
+    <string name="weather_dust">浮塵</string>
+    <string name="weather_dustblow">揚沙</string>
+    <string name="weather_foggy">霧</string>
+    <string name="weather_overcast">陰</string>
+    <string name="weather_cloudy">多雲</string>
+    <string name="weather_sunny">晴</string>
+    <string name="weather_data"><xliff:g>%1$s</xliff:g>月<xliff:g>%2$s</xliff:g>日</string>
+    <string name="operation_cancel">操作已取消</string>
+    <string name="number_capital">零壹二三四五六七八九</string>
+    <string name="error_number">慚愧！您說的頻率沒有找到，可以再換壹個嗎？</string>
+    <string name="search_in">請在FM87.5-108兆赫中搜索</string>
+    <string name="now_fm">正在為您調頻<xliff:g>%1$s</xliff:g></string>
+    <string name="now_am">正在為您調幅<xliff:g>%1$s</xliff:g></string>
+    <string name="call_phone_delay">吾秒後為您接通<xliff:g>%1$s</xliff:g>電話</string>
+    <string name="call_phone_confirm">撥打<xliff:g>%1$s</xliff:g>確定還是取消</string>
+    <string name="call_phone_confirm_number">撥打<xliff:g>%1$s</xliff:g>的<xliff:g>%2$s</xliff:g>確定還是取消</string>
+    <string name="connect_number">正在接通<xliff:g>%1$s</xliff:g></string>
+    <string name="connect_name">正在接通<xliff:g>%1$s</xliff:g>的電話</string>
+    <string name="no_support_phone">--不支持打電話--</string>
+    <string name="no_support_phone_toast">此設備不支持打電話功能</string>
+    <string name="say_number_choose">可說“第1個”選擇</string>
+    <string name="now_last_page">已經是最後壹頁</string>
+    <string name="now_first_page">已經是第壹頁</string>
+    <string name="next_page_protocal">{\"service\":\"DOMAIN_LOCAL\",\"message\":\"下壹頁\",\"select\":\"101\"}</string>
+    <string name="up_page_protocal">{\"service\":\"DOMAIN_LOCAL\",\"message\":\"上壹頁\",\"select\":\"100\"}</string>
+    <string name="sms_is">短信內容是:<xliff:g>%1$s</xliff:g></string>
+    <string name="sms_no_new">沒有新的短信</string>
+    <string name="phone_answer_cancel">來電,接聽還是掛斷?</string>
+    <string name="stranger">陌生人</string>
+    <string name="mms_from_confirm">短信來自<xliff:g>%1$s</xliff:g>,播報還是取消</string>
+    <string name="click_mic">您取消了錄音，請點擊麥克風重新錄音</string>
+    <string name="unknown_error">未知錯誤</string>
+    <string name="now_distinguish">正在識別，不進行處理</string>
+    <string name="now_wakeup">正在喚醒，不進行處理</string>
+    <string name="try_process">試用處理，其他</string>
+    <string name="not_activated">未激活</string>
+    <string name="operation_cancel2">本次操作已取消</string>
+    <string name="me_think">讓我想壹想</string>
+    <string name="no_phone_run_sms">--沒有電話中，啟動短信TTS--</string>
+    <string name="open_3g">已為妳打開移動網絡</string>
+    <string name="close_3g">已為妳關閉移動網絡</string>
+    <string name="open_display_settings">已為妳打開顯示設置</string>
+    <string name="open_bluetooth">已打開藍牙</string>
+    <string name="close_bluetooth">已關閉藍牙</string>
+    <string name="open_time_settings">已為妳打開時間設置</string>
+    <string name="increase_volumne">已增大音量</string>
+    <string name="decrease_volumne">已減小音量</string>
+    <string name="max_volumne">最大音量</string>
+    <string name="min_volumne">最小音量</string>
+    <string name="wait_open_setting_inair">設置為飛行模式，需要壹定的時間，請耐心等待</string>
+    <string name="wait_close_setting_inair">關閉飛行模式，需要壹定的時間，請耐心等待</string>
+    <string name="open_model_mute">已設置為靜音模式</string>
+    <string name="close_model_mute">已關閉靜音模式</string>
+    <string name="open_model_vibra">已設置為振動模式</string>
+    <string name="close_model_vibra">已關閉振動模式</string>
+    <string name="open_sound_setting">已為妳打開聲音設置</string>
+    <string name="open_rotation">已打開自動旋轉屏幕</string>
+    <string name="close_rotation">已關閉自動旋轉屏幕</string>
+    <string name="open_wallpaper_setting">已為妳打開壁紙設置</string>
+    <string name="open_wifi">已打開無線網絡</string>
+   <string name="open_calllog">已為您打開通話記錄</string>
+    <string name="open_carcoder">為您打開行車記錄儀</string>
+    <string name="close_carcoder">為您關閉行車記錄儀</string>
+    <string name="close_wifi">已關閉無線網絡</string>
+    <string name="close_fm">為您關閉FM</string>
+    <string name="return_home">已為您返回主界面</string>
+    <string name="go_home">為您設置回家的路線</string>
+    <string name="go_company">為您設置回公司的路線</string>
+    <string name="open_wifi_spot">已打開WIFI熱點</string>
+    <string name="close_wifi_spot">已關閉WIFI熱點</string>
+    <string name="cancel_random_play">已取消隨機播放</string>
+    <string name="random_play">已為您隨機播放</string>
+    <string name="sequence_play">已為您順序播放</string>
+    <string name="single_cycle">已為您單曲循環</string>
+    <string name="list_cycle">已為您列表循環播放</string>
+    <string name="full_cycle">已為您全部循環播放</string>
+    <string name="close_desk_lyric">已關閉桌面歌詞</string>
+    <string name="open_desk_lyric">已打開桌面歌詞</string>
+    <string name="previous">已執行上壹個</string>
+    <string name="next">已執行下壹個</string>
+    <string name="play">已執行播放</string>
+    <string name="pause">已執行暫停</string>
+    <string name="recovery">已執行恢復</string>
+    <string name="stop">已執行停止</string>
+    <string name="play_previous">已播放上壹首</string>
+    <string name="sms_content">短信內容</string>
+    <string name="cancal">取消</string>
+    <string name="no_support_cmd">不支持<xliff:g>%1$s</xliff:g>命令</string>
+    <string name="executed">已執行</string>
+    <string name="to_stock">的股票</string>
+    <string name="nofind_contact">沒有找到聯系人</string>
+    <string name="to">到</string>
+    <string name="turn">轉</string>
+    <string name="city">市</string>
+    <string name="no_weather_info">沒有獲取到天氣信息</string>
+    <string name="concrete">具體</string>
+    <string name="open_music">正在為您打開音樂</string>
+    <string name="for_find">正在為您查找</string>
+    <string name="map_or_navigation">地圖或導航</string>
+    <string name="baidumap_or_navigation">百度地圖或導航</string>
+    <string name="gaodemap_or_navigation">高德地圖或導航</string>
+    <string name="onfind_place">{0}應用的收藏夾中未找到地點\'{1}\'</string>
+    <string name="sms_re_enter">{\"message\":\"重新輸入\",\"service\":\"DOMAIN_LOCAL\",\"confirm\":\"clean\"}</string>
+    <string name="music_center_text">00:14/06:07</string>
+    <string name="artist">Artist</string>
+    <string name="song">Song</string>
+    <string name="splash_text1">北京雲知聲信息技術有限公司</string>
+    <string name="splash_version">Version：V2.0.1.1.119</string>
+    <string name="baidu_text">TextView</string>
+    <string name="station">Station</string>
+    <string name="frequency">Frequency</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
+    <string name="answer">接聽</string>
+    <string name="hang_up">掛斷</string>
+    <string name="head">Head</string>
+    <string name="open_web">點擊打開網頁</string>
+    <string name="item">Item</string>
+    <string name="previous_page">上壹頁</string>
+    <string name="next_page">下壹頁</string>
+    <string name="text_number">45566</string>
+    <string name="title">Title</string>
+    <string name="memo_due_date">Date:2012-11-28</string>
+    <string name="today2">（今天）</string>
+    <string name="time">Time:</string>
+    <string name="no_reminder">暫無提醒</string>
+    <string name="app">App</string>
+    <string name="bluetooth_conn">藍牙通訊</string>
+    <string name="map_navigation">導 航</string>
+    <string name="music_play">音 樂</string>
+    <!-- xiaodong added 20150609 Begin -->
+    <string name="main_phone_call">打電話</string>
+    <string name="main_more">更多</string>
+    <string name="main_all_function">全部功能</string>
+    <!-- xiaodong added 20150609 End -->
+    <string name="common_control">設置</string>
+    <string name="main_local_search">周 邊</string>
+
+    <!-- all function -->
+    <string name="function_quick_setting">快捷控制</string>
+    <string name="function_net_radio">網絡電臺</string>
+    <string name="radio">收音機</string>
+     <string name="function_wakeup">喚醒口令</string>
+    <string name="weather_query">查天氣</string>
+    <string name="stock_info">查股票</string>
+    <string name="function_traffic">實時路況</string>
+    <string name="function_limit">尾號限行</string>
+    <string name="sort">sort</string>
+    <string name="mobile_phone_assistant">語音魔方手機助手 | </string>
+    <string name="beta_verion">beta 1.0.1</string>
+    <string name="copyright">北京雲知聲 版權所有</string>
+    <string name="channel">Channel</string>
+    <string name="empty_time">00:00:00</string>
+    <string name="tts_date">年$2月$3日</string>
+    <string name="per_capita">人均：￥</string>
+    <string name="create_success">創建成功</string>
+    <string name="sms_date_format">MM月dd日kk:mm</string>
+
+    <!-- weather domain -->
+    <string name="weather_pm25">PM 2.5 : </string>
+    <string name="weather_air_quality">空氣質量： </string>
+    <string name="weather_car_wash">洗車指數： </string>
+    <string name="weather_update_time">天氣數據更新於： </string>
+    <string name="weather_today">今天</string>
+    <string name="weather_tomorrow">明天</string>
+    
+     <string name="question_answer1">註意了哦,我可是野狼戰隊的壹員哦</string>
+    <string name="question_answer2">野狼戰隊成立於2015年9月24日</string>
+    <string name="question_total">野狼戰隊有成員17名，分別是森林狼，野狼，戰狼,蒼狼,雪狼,烽火狼,圖狼,土狼,寂狼,貳狼,衰狼,赤狼,財狼,銀狼,青海狼,小狼,黑狼等等</string>
+    <string name="question_sll">原名王進輝,代號森林狼,編號01,戰術高超,是戰隊的團長,素有王牌團長之稱,於2015年9月24日創建野狼戰隊</string>
+    <string name="question_el">原名楊晉源,代號貳狼,編號02,腦洞過大無法控制以致於時常範二,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_xl">原名陳澤立,代號雪狼,編號03,冰天雪地,勇往直前,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_yl">原名覃仕春,代號野狼,編號05,頭腦靈活,面對無數困難,依然讓戰隊玩轉東方市場,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_cl">原名成超,代號蒼狼,編號06,專註於前瞻，擁有獨特的耐力，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_toul">原名陳金全,代號土狼,編號07,萬物之根基,奉行深耕細作，精益求精,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_zl">原名李振威,代號戰狼,編號08,擁有敏銳的目光和超強的戰鬥力,為戰隊的未來掃清障礙，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_fhl">原名柏斌,代號烽火狼,編號09,他是在漫天烽火中蛻變成長的狼，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_hl">原名周銀義,代號黑狼,編號10,不怕艱苦，敢於拼搏，有著不達目的不罷休的作戰精神，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_sl">原名陳堇書,代號衰狼,編號11,熱愛專研,常常沈寂在壹個問題中不能自拔,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_tl">原名周鐘江,代號圖狼,編號12,總是能在迷茫中找到正確的道路，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_jl">原名王磊,代號寂狼,編號13,是壹個寂寞孤獨的狼,只因為找不到對手,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_yinl">原名何應輝,代號銀狼,編號15,擁有粗獷的性格，狼的團隊精神，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_qhl">原名潘英權,代號青海狼,編號16,青山依舊,大海無邊,有狼出沒,與狼共舞,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_cail">原名黃承財,代號財狼,編號17,不想被欺負,就要武裝自己,是狼就要戰鬥到底，於2015年9月24日加入野狼戰隊</string>
+    <string name="question_chil">原名許富榮,代號赤狼,編號21,壹寸赤心,存於道,只為壹誠碎,於2015年9月24日加入野狼戰隊</string>
+    <string name="question_xiaol">原名陳曉思,代號小狼,編號20,於2015年10月10日加入野狼戰隊</string>
+
+</resources>

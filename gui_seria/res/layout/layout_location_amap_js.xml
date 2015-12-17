@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <WebView
+        android:id="@+id/js_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/js_loadingview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_webview_loading_background"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            style="@style/text_webview_f2"
+            android:text="@string/map_webview_loading_text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical" >
+
+        <include layout="@layout/layout_search_location" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="6dip"
+        android:indeterminateOnly="false"
+        android:max="100" 
+        android:progressDrawable="@drawable/webview_progress_bar"/>
+
+</FrameLayout>

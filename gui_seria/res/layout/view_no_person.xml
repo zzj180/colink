@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical" >
+
+    <TextView
+        android:id="@+id/tv_title_noperson"
+        style="@style/text_session_title_f1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/tv_noperson_tips"
+        style="@style/text_session_item_f3_tips"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_title_noperson"
+        android:layout_marginTop="27dp"
+        android:gravity="center_vertical" />
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+         <item
+        android:drawable="@drawable/ic_voice_microphone"
+        android:maxLevel="0"/>
+    -->
+
+    <item
+        android:drawable="@drawable/mic_recording_voice"
+        android:maxLevel="1"/>
+    <item
+        android:drawable="@drawable/mic_recording_voice"
+        android:maxLevel="2"/>
+    <!--
+    <item
+        android:drawable="@drawable/ic_voice_volume01"
+        android:maxLevel="1"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume02"
+        android:maxLevel="2"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume03"
+        android:maxLevel="3"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume04"
+        android:maxLevel="4"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume05"
+        android:maxLevel="5"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume06"
+        android:maxLevel="6"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume07"
+        android:maxLevel="7"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume08"
+        android:maxLevel="8"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume09"
+        android:maxLevel="9"/>
+    <item
+        android:drawable="@drawable/ic_voice_volume10"
+        android:maxLevel="10"/>
+    -->
+
+</level-list>

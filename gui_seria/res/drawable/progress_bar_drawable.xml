@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- xiaodong 20150616 modified -->
+    <!-- background android:drawable = @drawable/session_button_normal or null -->
+    <!--
+    <item android:id="@android:id/background"
+          android:drawable="@drawable/session_button_normal" > 
+    </item>
+    -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="0dp" />
+
+            <gradient
+                android:centerColor="@android:color/transparent"
+                android:endColor="@android:color/transparent"
+                android:startColor="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <nine-patch android:src="@drawable/session_button_progress" />
+        </clip>
+    </item>
+
+    <!-- old style ： -->
+    <!--
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="0dp" />
+
+            <gradient
+                android:centerColor="@color/music_item_bg_normal"
+                android:endColor="@color/music_item_bg_normal"
+                android:startColor="@color/music_item_bg_normal" />
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="0dp" />
+
+                <gradient
+                    android:centerColor="@color/light_grey"
+                    android:endColor="@color/light_grey"
+                    android:startColor="@color/light_grey" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="0dp" />
+
+                <gradient
+                    android:centerColor="@color/state_focused"
+                    android:endColor="@color/state_focused"
+                    android:startColor="@color/state_focused" />
+            </shape>
+        </clip>
+    </item>
+    -->
+
+</layer-list>

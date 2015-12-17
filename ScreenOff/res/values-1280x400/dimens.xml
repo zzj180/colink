@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="imageview_width">192dp</dimen>
+    <dimen name="imageview_height">104dp</dimen>
+    <dimen name="road_textsize">28sp</dimen>
+    <dimen name="distance_textsize">44sp</dimen>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical" >
+
+    <!-- show mic status text -->
+
+    <TextView
+        android:id="@+id/tv_session_mic_status"
+        style="@style/text_session_title_f1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/mic_prepare" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        style="@style/text_session_item_f3"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/session_button_hight"
+        android:layout_below="@+id/tv_session_mic_status"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/selector_btn_session"
+        android:gravity="center"
+        android:text="@string/cancel_text_doreso"
+        android:visibility="gone" />
+
+</RelativeLayout>

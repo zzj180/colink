@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- xd added 20150720  for Mi pad Begin -->
+    <dimen name="voice_level_view_margin_top">665dp</dimen>
+    <!-- xd added 20150720 End -->
+
+</resources>

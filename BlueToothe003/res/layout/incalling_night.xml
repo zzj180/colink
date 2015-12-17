@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijin" >
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/text_name_top"
+        android:text="未知"
+        android:textColor="@color/blue"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/text_number_top"
+        android:text="13728623945"
+        android:textColor="@color/blue"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/text_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/text_state_top" />
+
+    <Chronometer
+        android:id="@+id/calltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_state"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/call_time_top"
+        android:textColor="@color/blue"
+        android:visibility="invisible" />
+
+		<com.colink.util.WaitSliderRelativeLayout
+		    android:id="@+id/slider_layout"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@android:color/transparent"
+		    android:layout_marginLeft="70dp"
+		    android:layout_marginRight="70dp"
+		    android:layout_alignParentBottom="true"
+		     >
+
+		 <TextView  android:id="@+id/slider_icon"
+            android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    android:layout_marginLeft="5dip"
+		    android:layout_centerInParent="true"
+		    android:background="@drawable/contral_button_night">
+		</TextView>
+		<ImageView 
+		     android:id="@+id/wait_answer"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:background="@drawable/dial_hangup"
+		     android:layout_centerVertical="true"
+		     />
+	      <ImageView
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"         
+	         android:layout_toRightOf="@+id/wait_answer"
+			 android:background="@drawable/hangup_pro"
+			 android:layout_centerVertical="true"
+			 android:layout_marginLeft="10dp"
+			 />	
+
+     <ImageView
+         android:id="@+id/wait_reject"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerVertical="true"  
+          android:layout_alignParentRight="true"       
+         android:background="@drawable/dial_connect" />
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerVertical="true"         
+         android:layout_toLeftOf="@+id/wait_reject"
+         android:background="@drawable/conntect_pro"
+         android:layout_marginRight="10dp" />
+     
+        </com.colink.util.WaitSliderRelativeLayout>
+ 	<RelativeLayout
+ 	    android:id="@+id/linear2"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:visibility="gone"
+ 	    android:layout_alignParentBottom="true"
+ 	     android:layout_marginBottom="@dimen/linear2_buttom"  >
+
+ 	    <TextView
+ 	        android:id="@+id/textView2"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_alignParentBottom="true"
+ 	        android:layout_centerHorizontal="true"
+ 	        android:text="挂断"
+ 	        android:textColor="@color/blue"
+ 	        android:textSize="24sp" />
+
+ 	    <TextView
+ 	        android:id="@+id/textView1"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_alignParentBottom="true"
+ 	          android:layout_toRightOf="@+id/textView2"
+ 	        android:layout_marginLeft="90dp"
+ 	        android:text="声音切换"
+ 	        android:textSize="20sp"
+ 	         android:textColor="@color/blue"
+ 	         />
+
+ 	    <ImageButton
+ 	        android:id="@+id/hangup"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_above="@+id/textView2"
+ 	        android:layout_centerHorizontal="true"
+ 	        android:background="@drawable/hangup_contral_night" />
+
+ 	    <ImageButton
+ 	        android:id="@+id/incalling"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_above="@+id/textView1"
+ 	        android:layout_marginLeft="34dp"
+ 	        android:layout_toRightOf="@+id/hangup"
+ 	        android:background="@drawable/change_phone_night_button" />
+
+ 	</RelativeLayout>
+
+</RelativeLayout>

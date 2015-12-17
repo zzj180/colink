@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/pick_header_contact"
+    android:layout_gravity="center_vertical"
+    android:orientation="horizontal"
+    android:gravity="center_vertical" >
+
+    <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+        <TextView 
+            style="@style/text_session_title_f2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_heard_title_prefix"
+            />
+
+        <TextView
+            android:id="@+id/tv_header_location_keyword"
+            style="@style/text_title_location_keyword_f2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView 
+            style="@style/text_session_title_f2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_heard_title_suffix"
+            />
+    </LinearLayout>
+
+    <ImageView 
+        android:id="@+id/iv_edit_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="11dp"
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/selector_btn_edit_location"
+        />
+</LinearLayout>

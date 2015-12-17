@@ -1,0 +1,252 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijin"
+    tools:ignore="Deprecated" >
+
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="@dimen/home_width"
+        android:layout_height="@dimen/show_height"
+        android:layout_marginLeft="@dimen/button_home_left"
+        android:layout_marginTop="@dimen/button_home"
+        android:background="@drawable/home_button" />
+
+    <TextView
+        android:id="@+id/show"
+        android:layout_width="@dimen/show_width"
+        android:layout_height="@dimen/show_height"
+        android:layout_marginLeft="@dimen/num_x1"
+        android:layout_marginTop="@dimen/button_home"
+        android:background="@drawable/show"
+        android:ellipsize="marquee"
+        android:gravity="center|end"
+        android:paddingRight="@dimen/del_width"
+        android:scrollbars="horizontal"
+        android:singleLine="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="34sp" />
+
+    <ImageButton
+        android:id="@+id/contact"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_marginLeft="@dimen/button_home_left"
+        android:layout_marginTop="@dimen/button_home_on"
+        android:background="@drawable/contact_button" />
+
+    <ImageButton
+        android:id="@+id/music"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_alignLeft="@+id/contact"
+        android:layout_below="@+id/log"
+        android:layout_toEndOf="@+id/contact"
+        android:background="@drawable/music_button" />
+
+    <Button
+        android:id="@+id/num1"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x1"
+        android:layout_marginTop="@dimen/num_y1"
+        android:background="@drawable/num_button"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num2"
+       android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x2"
+        android:layout_marginTop="@dimen/num_y1"
+        android:background="@drawable/num_button"
+        android:text="2"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num3"
+         android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x3"
+        android:layout_marginTop="@dimen/num_y1"
+        android:background="@drawable/num_button"
+        android:text="3"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/numjin"
+         android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x4"
+        android:layout_marginTop="@dimen/num_y1"
+        android:background="@drawable/num_button"
+        android:text="#"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num4"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x1"
+        android:layout_marginTop="@dimen/num_y2"
+        android:background="@drawable/num_button"
+        android:text="4"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num5"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x2"
+        android:layout_marginTop="@dimen/num_y2"
+        android:background="@drawable/num_button"
+        android:text="5"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num6"
+       android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x3"
+        android:layout_marginTop="@dimen/num_y2"
+        android:background="@drawable/num_button"
+        android:text="6"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num0"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x4"
+        android:layout_marginTop="@dimen/num_y2"
+        android:background="@drawable/num_button"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num7"
+       android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x1"
+        android:layout_marginTop="@dimen/num_y3"
+        android:background="@drawable/num_button"
+        android:text="7"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num8"
+       android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x2"
+        android:layout_marginTop="@dimen/num_y3"
+        android:background="@drawable/num_button"
+        android:text="8"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/num9"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x3"
+        android:layout_marginTop="@dimen/num_y3"
+        android:background="@drawable/num_button"
+        android:text="9"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/xin"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_marginLeft="@dimen/num_x4"
+        android:layout_marginTop="@dimen/num_y3"
+        android:background="@drawable/num_button"
+        android:text="*"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/dial"
+      android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_marginLeft="@dimen/button_home_right"
+        android:layout_marginTop="@dimen/button_home_on"
+        android:background="@drawable/dial_button" />
+
+    <ImageButton
+        android:id="@+id/change"
+       android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_alignLeft="@+id/dial"
+        android:layout_below="@+id/dial"
+        android:layout_toEndOf="@+id/dial"
+        android:background="@drawable/change_button" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_alignLeft="@+id/change"
+        android:layout_below="@+id/change"
+        android:layout_toEndOf="@+id/change"
+        android:background="@drawable/setting_button" />
+
+    <TextView
+        android:id="@+id/bluestate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/button_home_left"
+        android:layout_marginTop="@dimen/text_bluestate_y"
+        android:text="@string/unconnect" />
+
+    <TextView
+        android:id="@+id/bluename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/button_home_left"
+        android:layout_marginTop="@dimen/text_devicename_y"
+        android:text="无" />
+
+    <ImageButton
+        android:id="@+id/log"
+       android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_alignLeft="@+id/contact"
+        android:layout_below="@+id/contact"
+        android:layout_toEndOf="@+id/contact"
+        android:background="@drawable/state_button" />
+
+    <ImageButton
+        android:id="@+id/del"
+        android:layout_width="@dimen/del_width"
+        android:layout_height="@dimen/show_height"
+        android:layout_alignRight="@+id/show"
+        android:layout_alignTop="@+id/show"
+        android:background="@drawable/del" />
+
+</RelativeLayout>
