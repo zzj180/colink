@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginRight="8dp"
+    android:orientation="vertical" >
+
+    <!-- xiaodong 20150730 added layout for traffic control -->
+
+    <TextView
+        android:id="@+id/tv_traffic_control_title"
+        style="@style/text_session_title_f2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="@string/traffic_control_title" />
+
+    <LinearLayout
+        android:id="@+id/bottomPannel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/session_view_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:scrollbars="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/text_session_item_f4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="7月29日 星期三" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_traffic_control_number_today_1"
+                        style="@style/text_traffic_control_number_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3" />
+
+                    <!--
+                    <TextView
+	                    android:id="@+id/tv_text_and"
+	                    style="@style/text_session_item_f4_tips"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_toRightOf="@id/tv_traffic_control_number_today_1"
+	                    android:layout_marginLeft="8dp"
+	                    android:layout_marginRight="8dp"
+	                    android:layout_marginBottom="8dp"
+	                    android:layout_alignBottom="@id/tv_traffic_control_number_today_1"
+	                    android:text="@string/traffic_control_text_and" />
+	
+	                <TextView
+	                    android:id="@+id/tv_traffic_control_number_today_2"
+	                    style="@style/text_traffic_control_number_f1"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_toRightOf="@id/tv_text_and"
+	                    android:text="7" />
+                    -->
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_traffic_control_rule_title"
+                    style="@style/text_session_item_f4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/traffic_control_rule_title" />
+
+                <!--
+                <LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center"
+	                android:layout_marginTop="8dp"
+	                android:orientation="vertical" >
+	                <View 
+	                    android:layout_width="match_parent"
+	                	android:layout_height="1dp"
+	                	android:background="#7291b7"
+	                    />
+	                <LinearLayout
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content"
+		                android:layout_gravity="center"
+		                android:orientation="horizontal" >
+		                <View 
+		                    android:layout_width="1dp"
+		                	android:layout_height="match_parent"
+		                	android:background="#7291b7"
+		                    />
+		                week 1
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_monday"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_monday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w1"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="1,9" />
+		                </RelativeLayout>
+		                week 2
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_tuesday"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_tuesday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w2"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="2,8" />
+		                </RelativeLayout>
+		                week 3
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_wednesday"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_wednesday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w3"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="3,7" />
+		                </RelativeLayout>
+		                week 4
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_thursday"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_thursday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w4"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="4,6" />
+		                </RelativeLayout>
+		                week 5
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_friday"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_friday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w5"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="5,0" />
+		                </RelativeLayout>
+		                weekend
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_weekend"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_saturday" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w6"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/traffic_control_rule_no_limit" />
+		                </RelativeLayout>
+		                 weekend
+	                    <RelativeLayout
+	                        android:id="@+id/rl_traffic_control_weekend1"
+			                android:layout_width="0dp"
+			                android:layout_height="48dp"
+			                android:layout_weight="1"
+			                android:layout_gravity="center"
+			                android:orientation="vertical" >
+			                <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5_tips"
+				                android:layout_alignParentTop="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/week_weekend" />
+		                
+			                <TextView
+			                    android:id="@+id/tv_traffic_control_number_w7"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                style="@style/text_session_item_f5"
+				                android:layout_alignParentBottom="true"
+				                android:gravity="center_horizontal"
+				                android:text="@string/traffic_control_rule_no_limit" />
+		                </RelativeLayout>
+		                <View 
+		                    android:layout_width="1dp"
+		                	android:layout_height="match_parent"
+		                	android:background="#7291b7"
+		                    />
+	                </LinearLayout>
+	                <View 
+	                    android:layout_width="match_parent"
+	                	android:layout_height="1dp"
+	                	android:background="#7291b7"
+	                    />
+	            </LinearLayout>
+                -->
+
+                <TextView
+                    android:id="@+id/tv_traffic_control_rule_content"
+                    style="@style/text_session_item_f5_tips"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/traffic_control_rule_title" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

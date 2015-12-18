@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_header_title"
+        style="@style/text_session_title_f2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="@string/head" />
+
+    <LinearLayout
+        android:id="@+id/bottomPannel"
+        android:layout_width="fill_parent"
+        android:layout_height="260dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/session_view_bg"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list_view_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@null"
+            android:minHeight="200dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_search_location"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/session_page_background"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+    
+    <LinearLayout
+        android:id="@+id/ll_edit_around_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/et_focus"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+        
+        <EditText
+            android:id="@+id/et_around_search_keyword"
+            style="@style/text_session_item_f3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="@string/location_search_default_hint_localsearch"
+            android:maxLines="3" />
+    
+       <ImageView
+            android:id="@+id/iv_more_search_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:contentDescription="@string/app_name"
+            android:src="@drawable/btn_help_fold"
+            />
+       
+        <ImageView 
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+            android:contentDescription="@string/app_name"
+            android:visibility="gone"
+            android:background="@drawable/ic_search"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_search_list"
+        android:layout_width="fill_parent"
+        android:layout_height="260dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/session_view_bg"
+        android:visibility="gone"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lv_search_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@null"
+            android:minHeight="200dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_edit_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_edit_ok"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/ok" />
+
+        <Button
+            android:id="@+id/btn_edit_cancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:gravity="center"
+            android:text="@string/cancel" />
+    </LinearLayout>
+    
+</LinearLayout>

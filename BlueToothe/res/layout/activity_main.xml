@@ -1,0 +1,200 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home"
+    tools:ignore="Deprecated" >
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="@dimen/home_width"
+        android:layout_height="@dimen/home_height"
+        android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/button_home"
+        android:background="@drawable/home_button" />
+
+    <TextView
+        android:id="@+id/show"
+        android:layout_width="@dimen/show_width"
+        android:layout_height="@dimen/show_height"
+        android:layout_x="@dimen/num_x1"
+        android:layout_y="@dimen/button_home"
+      	android:ellipsize="marquee"
+            android:gravity="center|end"
+            android:scrollbars="horizontal"
+            android:singleLine="true"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="#ffffff"
+        android:textSize="34sp"
+        android:paddingRight="@dimen/del_width"
+        android:background="@drawable/show" />
+
+    <ImageButton
+        android:id="@+id/del"
+        android:layout_width="@dimen/del_width"
+        android:layout_height="@dimen/show_height"
+        android:layout_x="@dimen/del_x"
+        android:layout_y="@dimen/button_home"
+        android:background="@drawable/del_button" />
+
+    <ImageButton
+        android:id="@+id/contact"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/button_home_on"
+        android:background="@drawable/contact_button" />
+
+    <ImageButton
+        android:id="@+id/log"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/button_home_middle"
+        android:background="@drawable/state_button" />
+
+    <ImageButton
+        android:id="@+id/music"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/button_home_lower"
+        android:background="@drawable/music_button" />
+
+    <ImageButton
+        android:id="@+id/num1"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x1"
+        android:layout_y="@dimen/num_y1"
+        android:background="@drawable/num1_button" />
+
+    <ImageButton
+        android:id="@+id/num2"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x2"
+        android:layout_y="@dimen/num_y1"
+        android:background="@drawable/num2_button" />
+
+    <ImageButton
+        android:id="@+id/num3"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x3"
+        android:layout_y="@dimen/num_y1"
+        android:background="@drawable/num3_button" />
+
+    <ImageButton
+        android:id="@+id/numjin"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x4"
+        android:layout_y="@dimen/num_y1"
+        android:background="@drawable/jin_button" />
+
+    <ImageButton
+        android:id="@+id/num4"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x1"
+        android:layout_y="@dimen/num_y2"
+        android:background="@drawable/num4_button" />
+
+    <ImageButton
+        android:id="@+id/num5"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x2"
+        android:layout_y="@dimen/num_y2"
+        android:background="@drawable/num5_button" />
+
+    <ImageButton
+        android:id="@+id/num6"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x3"
+        android:layout_y="@dimen/num_y2"
+        android:background="@drawable/num6_button" />
+
+    <ImageButton
+        android:id="@+id/num0"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x4"
+        android:layout_y="@dimen/num_y2"
+        android:background="@drawable/num0_button" />
+
+    <ImageButton
+        android:id="@+id/num7"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x1"
+        android:layout_y="@dimen/num_y3"
+        android:background="@drawable/num7_button" />
+
+    <ImageButton
+        android:id="@+id/num8"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x2"
+        android:layout_y="@dimen/num_y3"
+        android:background="@drawable/num8_button" />
+
+    <ImageButton
+        android:id="@+id/num9"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x3"
+        android:layout_y="@dimen/num_y3"
+        android:background="@drawable/num9_button" />
+
+    <ImageButton
+        android:id="@+id/xin"
+        android:layout_width="@dimen/number_width"
+        android:layout_height="@dimen/number_height"
+        android:layout_x="@dimen/num_x4"
+        android:layout_y="@dimen/num_y3"
+        android:background="@drawable/xin_button" />
+
+    <ImageButton
+        android:id="@+id/dial"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_right"
+        android:layout_y="@dimen/button_home_on"
+        android:background="@drawable/dial_button" />
+
+    <ImageButton
+        android:id="@+id/change"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_right"
+        android:layout_y="@dimen/button_home_middle"
+        android:background="@drawable/change_button" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="@dimen/button_home_width"
+        android:layout_height="@dimen/button_home_height"
+        android:layout_x="@dimen/button_home_right"
+        android:layout_y="@dimen/button_home_lower"
+        android:background="@drawable/setting_button" />
+
+    <TextView
+        android:id="@+id/bluestate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/text_bluestate_y"
+        android:text="@string/unconnect" />
+
+    <TextView
+        android:id="@+id/bluename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_x="@dimen/button_home_left"
+        android:layout_y="@dimen/text_devicename_y"
+        android:text="无" />
+
+</AbsoluteLayout>
