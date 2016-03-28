@@ -1,0 +1,66 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    
+   
+    <!-- 定义对话框样式 -->  
+    <style name="Dialog" parent="android:style/Theme.Dialog">  
+        <item name="android:windowBackground">@null</item>  
+        <item name="android:windowNoTitle">true</item>  
+        <item name="android:windowIsFloating">true</item>  
+    </style>  
+       
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="ProgressBarHorizontalStyle" parent="android:style/Widget.ProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:progressDrawable">@drawable/progress_bar_drawable</item>
+    </style>
+
+    <style name="testProgressBarStyle" parent="@android:style/Widget.ProgressBar.Large">
+        <item name="android:minHeight">90dip</item>
+        <item name="android:minWidth">90dip</item>
+        <item name="android:maxHeight">90dip</item>
+        <item name="android:maxWidth">90dip</item>
+    </style>
+
+    <style name="myact">
+        <item name="@android:activityOpenEnterAnimation">@anim/fade</item>
+        <item name="@android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="@android:activityCloseEnterAnimation">@anim/fade</item>
+        <item name="@android:activityCloseExitAnimation">@anim/hold</item>
+    </style>
+
+    <style name="mytheme" parent="@android:style/Theme">
+        <item name="@android:windowAnimationStyle">@style/myact</item>
+    </style>
+
+    <style name="styleName" parent="android:Widget.Holo.TextView">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="notfullscreen">
+        <item name="android:windowBackground">@drawable/platformbackground</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+    </style>
+
+</resources>

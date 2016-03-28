@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="number_width">70dp</dimen>
+    <dimen name="number_height">56dp</dimen>
+    <dimen name="del_x">449dp</dimen>
+    <dimen name="del_width">46dp</dimen>
+    <dimen name="show_width">369dp</dimen>
+    <dimen name="show_height">41dp</dimen>
+    
+    <dimen name="num_x1">128dp</dimen>
+     <dimen name="num_x2">199dp</dimen>
+    <dimen name="num_x3">271dp</dimen>
+     <dimen name="num_x4">342dp</dimen>
+     
+     <dimen name="num_y1">120dp</dimen>
+     <dimen name="num_y2">178dp</dimen>
+    <dimen name="num_y3">236dp</dimen>
+    
+    <dimen name="home_width">64dp</dimen>
+    <dimen name="home_height">42dp</dimen>
+    
+    <dimen name="button_home_left">45dp</dimen>
+    <dimen name="button_home_right">435dp</dimen>
+    
+    <dimen name="button_home_width">62dp</dimen>
+    <dimen name="button_home_height">62dp</dimen>
+    <dimen name="button_home">51dp</dimen>
+    <dimen name="button_home_on">113dp</dimen>
+    <dimen name="button_home_middle">175dp</dimen>
+    <dimen name="button_home_lower">239dp</dimen>
+    
+    
+    <dimen name="button_contact_on">42dp</dimen>
+    <dimen name="button_contact_middle">115dp</dimen>
+    <dimen name="button_contact_lower">187dp</dimen>
+    
+    <dimen name="button_contact_left">44dp</dimen>
+    
+    <dimen name="contact_bg_width">388dp</dimen>
+    <dimen name="contact_bg_height">227dp</dimen>
+    <dimen name="contact_bg_x">122dp</dimen>
+    <dimen name="contact_bg_y">42dp</dimen>
+    
+    <dimen name="button_contact_back_width">60dp</dimen>
+    <dimen name="button_contact_back_height">18dp</dimen>
+    <dimen name="button_contact_back_x">451dp</dimen>
+    <dimen name="button_contact_back_y">21dp</dimen>
+    
+    <dimen name="button_incalling_width">67dp</dimen>
+    <dimen name="button_incalling_height">86dp</dimen>
+    <dimen name="button_incalling_left">197dp</dimen>
+    <dimen name="button_incalling_right">286dp</dimen>
+    <dimen name="button_incalling_y">181dp</dimen>
+    
+    <dimen name="rect_activity_left">10dp</dimen>
+    <dimen name="rect_activity_top">10dp</dimen>
+    <dimen name="rect_activity_right">10dp</dimen>
+    <dimen name="rect_activity_bottom">10dp</dimen>
+</resources>

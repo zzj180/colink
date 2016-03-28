@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home" >
+    <ImageButton
+        android:id="@+id/falg"
+        android:layout_width="@dimen/button_incalling_width"
+        android:layout_height="@dimen/button_incalling_height"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/button_incalling_y"
+        android:visibility="invisible"
+        android:background="@drawable/change_button_incalling" />
+    <ImageButton
+        android:id="@+id/answer"
+        android:layout_width="@dimen/button_incalling_width"
+        android:layout_height="@dimen/button_incalling_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/button_incalling_left"
+        android:layout_marginTop="@dimen/button_incalling_y"
+        android:background="@drawable/answer_button" />
+
+ 	<TextView
+ 	    android:id="@+id/text_name"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_alignParentTop="true"
+ 	    android:layout_centerHorizontal="true"
+ 	    android:layout_marginTop="29dp"
+ 	    android:textSize="25sp"
+ 	    android:text="未知"
+ 	    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+ 	<TextView
+ 	    android:id="@+id/text_number"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_below="@+id/text_name"
+ 	    android:layout_centerHorizontal="true"
+ 	    android:layout_marginTop="10dp"
+ 	    android:textSize="30sp"
+ 	    android:text="13728623945"
+ 	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+ 	<ImageView
+ 	    android:id="@+id/text_state"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_below="@+id/text_number"
+ 	    android:layout_centerHorizontal="true"
+ 	    android:layout_marginTop="20dp"
+ 	     />
+
+ 	 <Chronometer
+ 	     android:id="@+id/calltime"
+ 	     android:layout_width="wrap_content"
+ 	     android:layout_height="wrap_content"
+ 	     android:layout_below="@+id/text_state"
+ 	     android:layout_marginTop="10dp"
+ 	     android:layout_centerHorizontal="true"
+ 	     android:visibility="invisible" />
+
+ 	 <ImageButton
+ 	     android:id="@+id/incalling"
+ 	     android:layout_width="@dimen/button_incalling_width"
+ 	     android:layout_height="@dimen/button_incalling_height"
+ 	     android:layout_alignTop="@+id/falg"
+ 	     android:layout_toLeftOf="@+id/falg"
+ 	     android:background="@drawable/change_button_incalling" />
+
+ 	 <ImageButton
+ 	     android:id="@+id/hangup"
+ 	     android:layout_width="@dimen/button_incalling_width"
+ 	     android:layout_height="@dimen/button_incalling_height"
+ 	     android:layout_alignTop="@+id/falg"
+ 	     android:layout_toRightOf="@+id/falg"
+ 	     android:background="@drawable/handup_button" />
+
+</RelativeLayout>
