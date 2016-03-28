@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">免打擾模式</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="mi">%1$d米</string>
+	<string name="gl">%1$.2f公裏</string>
+	<string name="doubleclick">雙擊屏幕喚醒</string>
+</resources>
