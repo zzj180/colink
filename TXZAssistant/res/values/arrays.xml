@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+   
+
+    <string-array name="open_screenOff" >
+        <item>免打扰</item>
+        <item>免打扰模式</item>
+        <item>关屏</item>
+        <item>关闭屏幕</item>
+    </string-array>
+    
+     <string-array name="open_edog" >
+        <item>打开电子狗</item>
+        <item>电子狗打开</item>
+    </string-array>
+    
+    <string-array name="close_edog" >
+        <item>关闭电子狗</item>
+        <item>电子狗关闭</item>
+    </string-array>
+    
+     <string-array name="close_fm" >
+        <item>关闭发射</item>
+        <item>关闭广播</item>
+        <item>关闭电台</item>
+        <item>关闭调频</item>
+        <item>关闭FM</item>
+    </string-array>
+    
+      <string-array name="open_fm" >
+        <item>打开发射</item>
+        <item>打开广播</item>
+        <item>打开电台</item>
+        <item>打开调频</item>
+        <item>打开FM</item>
+    </string-array>
+    
+     <string-array name="open_radar" >
+        <item>打开雷达</item>
+        <item>雷达打开</item>
+    </string-array>
+    
+    <string-array name="close_radar" >
+        <item>关闭雷达</item>
+        <item>雷达关闭</item>
+    </string-array>
+    
+     <string-array name="one_navi" >
+        <item>一键导航</item>
+        <item>人工导航</item>
+        <item>电话导航</item>
+        <item>一键通</item>
+    </string-array>
+    
+     <string-array name="home_page" >
+        <item>主界面</item>
+        <item>返回桌面</item>
+        <item>返回主界面</item>
+        <item>回到桌面</item>
+        <item>回到主界面</item>
+    </string-array>
+
+   
+</resources>
