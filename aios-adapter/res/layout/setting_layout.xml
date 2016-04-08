@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_setting_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/txt_setting_title"
+        style="@style/TitleTextStyle"
+        android:text="@string/help_title"/>
+
+    <ImageView
+        android:id="@+id/setting_bt_close_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bt_tips_close" />
+
+    <LinearLayout
+        android:id="@+id/setting_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/setting_line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settings_item_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon_setting_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_setting_phone" />
+
+            <TextView
+                android:id="@+id/text_setting_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_type_text_margin_left"
+                android:text="默认电话应用"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_big" />
+
+            <Spinner
+                android:id="@+id/spinner_setting_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_spinner_margin_left" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/setting_line2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settings_item_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon_setting_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_setting_music" />
+
+            <TextView
+                android:id="@+id/text_setting_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_type_text_margin_left"
+                android:text="默认音乐应用"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_big" />
+
+            <Spinner
+                android:id="@+id/spinner_setting_music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_spinner_margin_left" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/setting_line3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settings_item_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon_setting_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_setting_map" />
+
+            <TextView
+                android:id="@+id/text_setting_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_type_text_margin_left"
+                android:text="默认地图应用"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_big" />
+
+            <Spinner
+                android:id="@+id/spinner_setting_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/settings_spinner_margin_left" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/setting_help_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/setting_help_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_setting_time_cn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_copyright_cn"
+                android:textColor="@color/text_version"
+                android:textScaleX="1.05"
+                android:textSize="@dimen/version_medium" />
+
+
+            <TextView
+                android:id="@+id/tv_setting_time_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_copyright_en"
+                android:textColor="@color/text_version"
+                android:textScaleX="1.541"
+                android:textSize="@dimen/versions_medium" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginLeft="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_aispeech" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/c_stock_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/d_stock_des"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="35dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="-8dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/d_stock_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/text_white"
+            android:textSize="14sp"
+            android:text="科大讯飞"
+            />
+
+        <TextView
+            android:id="@+id/d_stock_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/d_stock_company"
+            android:textColor="@color/text_white"
+            android:textSize="14sp"
+            android:text="sz002230"
+            />
+
+        <TextView
+            android:id="@+id/d_stock_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/text_white"
+            android:textSize="14sp"
+            android:text="2016/02/03 11:35:54"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/c_stock_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        >
+
+        <RelativeLayout
+            android:id="@+id/c_stock_des"
+            android:layout_marginTop="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/c_stock_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25.98"
+                android:textColor="@color/text_stock_green"
+                android:textSize="40sp"
+                />
+
+            <ImageView
+                android:id="@+id/c_stock_status_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@id/c_stock_value"
+                android:src="@drawable/stock_down"
+                />
+
+            <TextView
+                android:id="@+id/c_stock_float_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/c_stock_value"
+                android:layout_below="@id/c_stock_value"
+                android:text="-100.30"
+                android:textColor="@color/text_stock_green"
+                android:textSize="13.5sp"
+                />
+
+            <TextView
+                android:id="@+id/c_stock_float_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/c_stock_value"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/c_stock_float_value"
+                android:text="-100.30%"
+                android:textColor="@color/text_stock_green"
+                android:textSize="13.5sp"
+                />
+
+            <ImageView
+                android:id="@+id/c_stock_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/c_stock_value"
+                android:layout_alignTop="@id/c_stock_value"
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="38dp"
+                android:layout_toRightOf="@id/c_stock_status_icon"
+                android:background="@drawable/stock_vertical_line"
+                />
+
+            <TextView
+                android:id="@+id/c_stock_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/c_stock_value"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/c_stock_line"
+                android:text="科大讯飞"
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/c_stock_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/c_stock_value"
+                android:layout_alignLeft="@id/c_stock_company"
+                android:layout_marginBottom="5dp"
+                android:text="sz002230"
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/c_stock_chart_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            android:orientation="horizontal"
+            >
+
+            <com.aispeech.aios.adapter.ui.view.StockChartView
+                android:id="@+id/c_stock_chart"
+                android:layout_width="193dp"
+                android:layout_height="142dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:background="@color/black"
+                android:scaleType="centerCrop"/>LinearLayout   <!--<com.aispeech.aios.adapter.ui.view.StockChartView
+                android:id="@+id/c_stock_chart"
+                android:layout_width="193dp"
+                android:layout_height="142dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:scaleType="centerCrop"
+                stock:stock_base_color="@color/white"
+                stock:corvered_color="@color/navi_gray"
+                stock:grid_line_type="dash"
+                stock:paint_width="1.0"
+                stock:rect_line_color="@color/black"
+                stock:polyline_color="@color/text_red_color"
+                stock:grid_line_color="@color/navi_gray"
+                stock:stock_down_color="@color/green"
+                stock:stock_up_color="@color/text_red_color"
+                stock:stock_volume_color="@color/black"
+                stock:bg_color="@color/text_white"
+                stock:title_text_color="@color/black"
+                stock:stock_text_size="10"
+                stock:title_text_size="10"
+                android:background="@color/text_red_color"
+                />
+-->
+
+            <ListView
+                android:id="@+id/c_stock_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/c_stock_chart"
+                android:divider="@null"
+                android:scrollbars="none"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

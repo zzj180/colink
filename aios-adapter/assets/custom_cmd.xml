@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (url)*>
+
+    <!ELEMENT url (cmd)+>
+    <!ATTLIST url name CDATA #REQUIRED>
+
+    <!ELEMENT cmd (#PCDATA)>
+    <!ATTLIST cmd name CDATA #REQUIRED>
+    ]>
+<!--说明：自定义控制命令-->
+<root>
+
+    <url name="/customize/go/home/page">
+        <cmd name="回到桌面"/>
+        <cmd name="打开桌面"/>
+        <cmd name="返回桌面"/>
+        <cmd name="回到首页"/>
+        <cmd name="回到主页"/>
+        <cmd name="返回首页"/>
+        <cmd name="返回主页"/>
+        <cmd name="回到主界面"/>
+        <cmd name="返回主界面"/>
+    </url>
+
+    <url name="/customize/turn/on/fm">
+        <cmd name="打开FM"/>
+         <cmd name="打开发射"/>
+          <cmd name="打开调频"/>
+        <cmd name="打开电台"/>
+        <cmd name="打开喜马拉雅"/>
+    </url>
+
+    <url name="/customize/turn/off/fm">
+        <cmd name="关闭FM"/>
+        <cmd name="关闭发射"/>
+          <cmd name="关闭调频"/>
+        <cmd name="关闭电台"/>
+        <cmd name="关闭喜马拉雅"/>
+    </url>
+    
+     <url name="/customize/no/disturb">
+        <cmd name="免打扰"/>
+        <cmd name="免打扰模式"/>
+        <cmd name="关屏"/>
+    </url>
+    
+     <url name="/customize/one/navi">
+        <cmd name="一键通"/>
+        <cmd name="一键导航"/>
+        <cmd name="电话导航"/>
+         <cmd name="人工导航"/>
+    </url>
+    
+     <url name="/customize/open/radar">
+        <cmd name="打开雷达"/>
+    </url>
+    
+      <url name="/customize/close/radar">
+        <cmd name="关闭雷达"/>
+    </url>
+
+</root>

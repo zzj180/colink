@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (tips)*>
+    <!ELEMENT tips (tip)+>
+    <!ATTLIST tips id CDATA #REQUIRED>
+    <!ELEMENT tip (#PCDATA)>
+    <!ATTLIST tip name CDATA #REQUIRED>
+    ]>
+<!--说明：这里面自定义通用反馈语，对接者只能扩展或修改每个<tips>里面的<tip>，不能更改<tips>的id属性-->
+<root>
+
+    <!--唤醒后的提示语-->
+    <tips id="hi">
+        <tip name="主人你好啊"/>
+        <tip name="有什么可以帮您"/>
+        <tip name="您有什么需要"/>
+        <tip name="我在,你有什么指示"/>
+        <tip name="需要我为你做什么"/>
+    </tips>
+
+    <!--退出时的提示语-->
+    <tips id="bye">
+        <tip name="主人再见"/>
+        <tip name="再见，随时为您服务哦"/>
+    </tips>
+
+    <!--没有识别到说话的提示语-->
+    <tips id="silence">
+        <tip name="没听清哦，能再说一遍吗"/>
+        <tip name="没有听清哦，能重说一遍吗"/>
+        <tip name="对不起，可以再说一遍吗"/>
+    </tips>
+
+    <!--3次没有识别到说话的提示语-->
+    <tips id="wakeup_again">
+        <tip name="主人我累了，请重新唤醒使用其他功能"/>
+    </tips>
+
+    <tips id="repeat_again">
+        <tip name="我没听清，请再说一遍"/>
+    </tips>
+
+    <!--没有网络时的提示语-->
+    <tips id="network_abnomal">
+        <tip name="网络条件不佳，请使用本地功能"/>
+        <tip name="网络不给力,请使用本地功能"/>
+    </tips>
+
+    <!--没有网络，并且语音命令导航时的提示语-->
+    <tips id="network_abnomal_navi">
+        <tip name="网络已断开， 请使用本地导航"/>
+    </tips>
+
+    <!--没有连接蓝牙时，语音命令打电话给谁的提示语-->
+    <tips id="bluetooth_disconnect">
+        <tip name="连接蓝牙后我才能帮您打电话哦"/>
+    </tips>
+
+    <!--联系人没有同步成功，语音命令打电话给谁的提示语-->
+    <tips id="contacts_unsync">
+        <tip name="联系人没有同步成功"/>
+    </tips>
+
+</root>

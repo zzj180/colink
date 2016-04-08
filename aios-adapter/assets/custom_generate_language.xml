@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (domain)*>
+    <!ELEMENT domain (tips)*>
+    <!ATTLIST domain id CDATA #REQUIRED>
+    <!ELEMENT tips (tip)+>
+    <!ATTLIST tips id CDATA #REQUIRED>
+    <!ELEMENT tip (#PCDATA)>
+    <!ATTLIST tip name CDATA #REQUIRED>
+    ]>
+<!--说明：自定义自然语言生成文本，对接者只能增加，删除<tip>标签，修改name属性值-->
+<root>
+
+    <!--导航领域-->
+    <domain id="navi">
+        <tips id="enter">
+            <tip name="您要导航去哪里呢？"/>
+            <tip name="请说您要去的地方！"/>
+            <tip name="请问你要去哪？"/>
+        </tips>
+        <tips id="bye">
+            <tip name="再见！"/>
+        </tips>
+        <tips id="overflow">
+            <tip name="您的选择超出范围，请重新选择！"/>
+            <tip name="请在可选范围内重新选择！"/>
+        </tips>
+    </domain>
+
+    <!--音乐领域-->
+    <domain id="music">
+        <tips id="enter">
+            <tip name="请问您要听什么歌？"/>
+        </tips>
+        <tips id="bye">
+            <tip name="再见！"/>
+        </tips>
+        <tips id="overflow">
+            <tip name="您的选择超出范围，请重新选择！"/>
+            <tip name="请在可选范围内重新选择！"/>
+        </tips>
+    </domain>
+
+    <!--附近领域-->
+    <domain id="nearby">
+        <tips id="enter">
+            <tip name="您要去哪里呢？"/>
+            <tip name="请说您要找的地方！"/>
+            <tip name="请问你要去哪？"/>
+        </tips>
+        <tips id="bye">
+            <tip name="再见！"/>
+        </tips>
+        <tips id="overflow">
+            <tip name="您的选择超出范围，请重新选择！"/>
+            <tip name="请在可选范围内重新选择！"/>
+        </tips>
+        <tips id="offerdo">
+            <tip name="已经确定[single_offer]，请问您要导航还是打电话？...{single_offer}"/>
+        </tips>
+    </domain>
+
+    <!--电话领域-->
+    <domain id="phonecall">
+        <tips id="enter">
+            <tip name="您要打给谁呢？"/>
+            <tip name="请说联系人名字。"/>
+        </tips>
+        <tips id="bye">
+            <tip name="再见！"/>
+        </tips>
+        <tips id="overflow">
+            <tip name="您的选择超出范围，请重新选择！"/>
+            <tip name="请在可选范围内重新选择！"/>
+        </tips>
+    </domain>
+
+</root>

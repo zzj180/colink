@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 波形控件自定义属性 -->
+    <declare-styleable name="SoundWaveView">
+        <attr name="sound_wave_line_color" format="color" />
+        <attr name="sound_wave_background" format="color" />
+    </declare-styleable>
+
+</resources>

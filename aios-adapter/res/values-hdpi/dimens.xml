@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mic_margin">30dp</dimen>
+    <dimen name="float_list_margin">10dp</dimen>
+    <dimen name="float_content_margin">10dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_small_size">14sp</dimen>
+    <dimen name="font_middle_size">18sp</dimen>
+    <dimen name="font_middle_large_size">24sp</dimen>
+    <dimen name="font_large_size">28sp</dimen>
+    <dimen name="font_large_large_size">32sp</dimen>
+    <dimen name="font_extra_large_size">40sp</dimen>
+    <dimen name="font_max_large_size">85sp</dimen>
+
+    <!-- dialpad contactcall_list -->
+    <dimen name="dialpad_num_text_size">30sp</dimen>
+
+    <!-- 车载APP UI规范 -->
+    <dimen name="font_mini_small">12sp</dimen>
+    <dimen name="font_extreme_small">13.5sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_big">20sp</dimen>
+    <dimen name="font_extreme_big">32sp</dimen>
+
+    <!-- 自定义尺寸 -->
+    <dimen name="float_content_top_margin">18dp</dimen>
+    <dimen name="float_content_bottom_margin">18dp</dimen>
+    <dimen name="float_content_right_margin">10dp</dimen>
+    <dimen name="plist_padding">10dp</dimen>
+    <dimen name="mlist_padding">25dp</dimen>
+    <dimen name="llist_padding">20dp</dimen>
+
+    <!-- Settings -->
+    <dimen name="settings_item_height">62dp</dimen>
+    <dimen name="settings_type_text_margin_left">28dp</dimen>
+    <dimen name="settings_spinner_margin_left">40dp</dimen>
+    <dimen name="settings_spinner_item_min_width">100dp</dimen>
+
+    <dimen name="tips_left_margin">0dp</dimen>
+    <dimen name="tips_type_left_right_margin">20dp</dimen>
+    <dimen name="tips_title_margin">20dp</dimen>
+    <dimen name="tips_list_top_bottom_margin">20dp</dimen>
+    <dimen name="tips_list_item_min_height">42dp</dimen>
+
+    <dimen name="general_margin_left_right">18dp</dimen>
+    <dimen name="general_margin_top_bottom">6dp</dimen>
+    <dimen name="list_title_bottom_margin">10dp</dimen>
+
+    <dimen name="result_list_item_min_height">59dp</dimen>
+    <dimen name="nav_list_distance_width">100dp</dimen>
+    <dimen name="nav_list_area_margin_left">30dp</dimen>
+
+    <dimen name="music_list_item_min_height">60dp</dimen>
+    <dimen name="music_list_title_max_width">250dp</dimen>
+
+    <dimen name="nearby_list_addr_max_width">210dp</dimen>
+    <dimen name="result_text_max_width">350dp</dimen>
+
+    <!-- phone -->
+    <dimen name="phone_list_item_name_width">150dp</dimen>
+    <dimen name="phone_list_item_number_width">200dp</dimen>
+</resources>

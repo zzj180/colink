@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- font sizes -->
+    <dimen name="font_small_size">14sp</dimen>
+    <dimen name="font_middle_size">18sp</dimen>
+    <dimen name="font_middle_large_size">24sp</dimen>
+    <dimen name="font_large_size">24sp</dimen>
+    <dimen name="font_large_large_size">35sp</dimen>
+    <dimen name="font_extra_large_size">40sp</dimen>
+    <dimen name="font_max_large_size">85sp</dimen>
+
+    <!-- dialpad contactcall_list -->
+    <dimen name="dialpad_num_text_size">30sp</dimen>
+
+    <!-- 车载APP UI规范 -->
+    <dimen name="font_mini_small">11sp</dimen>
+    <dimen name="font_extreme_small">13.5sp</dimen>
+    <dimen name="font_small">16sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="version_medium">10sp</dimen>
+    <dimen name="versions_medium">8sp</dimen>
+    <dimen name="font_big">20sp</dimen>
+    <dimen name="font_extreme_big">32sp</dimen>
+
+    <!-- 自定义尺寸 -->
+    <dimen name="float_content_top_margin">30dp</dimen>
+    <dimen name="float_content_bottom_margin">10dp</dimen>
+    <dimen name="mic_size">100dp</dimen>
+    <dimen name="mic_margin">20dp</dimen>
+    <dimen name="float_list_margin">10dp</dimen>
+    <dimen name="float_content_margin">10dp</dimen>
+    <dimen name="plist_padding">30dp</dimen>
+    <dimen name="mlist_padding">25dp</dimen>
+    <dimen name="llist_padding">60dp</dimen>
+
+    <!-- Settings -->
+    <dimen name="settings_item_height">62dp</dimen>
+    <dimen name="settings_type_text_margin_left">36dp</dimen>
+    <dimen name="settings_spinner_margin_left">72dp</dimen>
+    <dimen name="settings_spinner_item_min_width">72dp</dimen>
+
+    <dimen name="tips_left_margin">100dp</dimen>
+    <dimen name="tips_title_margin">20dp</dimen>
+    <dimen name="version_title_margins">0dp</dimen>
+    <dimen name="version_bottom">20dp</dimen>
+    <dimen name="setting_start">22dp</dimen>
+    <dimen name="setting_font_size">16sp</dimen>
+
+    <!-- result-->
+    <dimen name="result_list_item_min_height">83dp</dimen>
+    <dimen name="nearby_list_addr_max_width">450dp</dimen>
+
+    <!-- phone -->
+    <dimen name="phone_list_item_name_width">200dp</dimen>
+    <dimen name="phone_list_item_number_width">300dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

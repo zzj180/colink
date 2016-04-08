@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/small_window_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8000000"
+    android:keepScreenOn="true"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/general_margin_left_right"
+            android:layout_marginTop="@dimen/general_margin_top_bottom"
+            android:clickable="true"
+            android:padding="@dimen/general_margin_top_bottom"
+            android:src="@drawable/bt_subspend_close_normal" />
+
+        <ImageView
+            android:id="@+id/iv_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/general_margin_top_bottom"
+            android:layout_marginLeft="@dimen/general_margin_left_right"
+            android:clickable="true"
+            android:padding="@dimen/general_margin_top_bottom"
+            android:src="@drawable/bt_tips_normal" />
+
+        <include
+            android:id="@+id/mic_view"
+            layout="@layout/robot_view" />
+
+    </RelativeLayout>
+
+    <!-- 右边所有View -->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:paddingBottom="@dimen/float_content_bottom_margin"
+        android:paddingRight="@dimen/float_content_right_margin"
+        android:paddingTop="@dimen/float_content_top_margin">
+
+        <!-- 打电话确认框 -->
+        <include layout="@layout/phone_wait_layout" />
+
+        <LinearLayout
+            android:id="@+id/linLayout_context"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/img_search_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/anim_search_loading"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:text="你好呀"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_large_large_size" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/resualtLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txt_Content_title"
+                style="@style/TitleTextStyle"
+                android:drawableLeft="@drawable/icon_phone_mapmark"
+                android:text="@string/list_title_result" />
+
+            <ListView
+                android:id="@+id/resualtListView"
+                style="@style/ListStyle"
+                android:layout_below="@+id/txt_Content_title" />
+
+            <com.aispeech.aios.adapter.ui.widget.StockLayout
+                android:id="@+id/linlayout_stock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/txt_Content_title"
+                android:visibility="gone" />
+
+            <com.aispeech.aios.adapter.ui.widget.WeatherLayout
+                android:id="@+id/linlayout_weather"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/txt_Content_title"
+                android:visibility="gone" />
+
+            <com.aispeech.aios.adapter.ui.widget.VehLayout
+                android:id="@+id/linlayout_veh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/txt_Content_title"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <com.aispeech.aios.adapter.ui.widget.SettingsHelpLayout
+            android:id="@+id/linLayout_settings_help"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

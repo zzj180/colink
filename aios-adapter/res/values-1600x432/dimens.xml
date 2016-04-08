@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mic_margin">120dp</dimen>
+    <dimen name="float_content_margin">10dp</dimen>
+    <dimen name="plist_padding">90dp</dimen>
+    <dimen name="mlist_padding">75dp</dimen>
+    <dimen name="llist_padding">180dp</dimen>
+</resources>

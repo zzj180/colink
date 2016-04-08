@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.aispeech.aios.adapter"
+    >
+  <!--   android:sharedUserId="android.uid.system" -->
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  <!--   <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" /> -->
+
+    <application
+        android:name=".AdapterApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon_app_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.SettingActivity"
+            android:exported="true"
+            android:label="AIOS-Adapter-设置"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.FloatWindowService">
+            <intent-filter>
+                <action android:name="android.intent.action.START_FLOATWINDOW" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".receiver.MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="aios.intent.action.STATE" />
+                <action android:name="aios.intent.action.START_PHONE_NODE" />
+                <action android:name="aios.intent.action.START_NAVIGATION_NODE" />
+                <action android:name="aios.intent.action.START_MUSIC_NODE" />
+                <action android:name="aios.intent.action.START_NEARBY_NODE" />
+                <action android:name="aios.intent.action.START_WEATHER_NODE" />
+                <action android:name="aios.intent.action.START_MYLOCATION_NODE" />
+                <action android:name="aios.intent.action.START_SYSTEM_NODE" />
+                <action android:name="aios.intent.action.START_NETFM_NODE" />
+                <action android:name="aios.intent.action.START_CHAT_NODE" />
+                <action android:name="aios.intent.action.START_RADIO_NODE" />
+                <action android:name="aios.intent.action.START_VEHICLERESTRICTION_NODE" />
+                <action android:name="aios.intent.action.START_STOCK_NODE" />
+                <action android:name="android.intent.action.ACC_ON_KEYEVENT" />
+                <action android:name="android.intent.action.ACC_OFF_KEYEVENT" />
+                <action android:name="aios.intent.action.NOTIFY_WECHAT_RESUME" />
+                <action android:name="aios.intent.action.NOTIFY_WECHAT_PAUSE" />
+                <action android:name="aios.intent.action.WECHAT_PICK" />
+                <action android:name="android.media.VOLUME_CHANGED_ACTION" />
+            </intent-filter>
+        </receiver>
+        
+         <receiver
+            android:name=".receiver.PhoneBookReceive"
+            tools:ignore="ExportedReceiver" >
+            <intent-filter>
+                <action android:name="com.colink.zzj.contact.done" />
+                <action android:name="com.wanma.action.PLAY_TTS" />
+                <action android:name="com.glsx.tts.speaktext" />
+            </intent-filter>
+        </receiver>
+        
+         <service android:name=".service.PhoneBookService" >
+        </service>
+
+        <service
+            android:name=".localScanService.service.LocalMusicScanService"
+            android:process=":localScanService" />
+      
+        <service android:name="com.amap.api.location.APSService" />
+        
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="70774dde56947a9ee2bf3c968225572a" />
+
+    </application>
+
+</manifest>

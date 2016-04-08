@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/result_list_item_min_height"
+    android:gravity="center_vertical"
+    android:descendantFocusability="blocksDescendants"
+    >
+    <TextView
+        android:id="@+id/nav_distance"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/plist_padding"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/font_medium"
+        android:layout_alignParentTop="true"
+        />
+    <LinearLayout 
+        android:id="@+id/ll_nav_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/nav_distance"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+        <TextView 
+	        android:id="@+id/nav_address"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/font_big"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:textColor="@color/text_white"
+            android:singleLine="true"
+        />
+    
+	    <TextView
+	        android:id="@+id/nav_area"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="40dp"
+            android:textColor="@color/text_grey"
+	        android:textSize="@dimen/font_medium"
+            android:ellipsize="end"
+            android:singleLine="true"
+	        />
+    </LinearLayout>
+    
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AIOS-Adapter</string>
+    <string name="package_status_name">PackageStatus</string>
+
+    <!-- Do not translate. Duration format for duration < 1 hour -->
+    <!-- Do not translate. Duration format for duration >= 1 hour -->
+    <string name="default_music_name">"小苹果"</string>
+
+    <string name="list_title_result">&#160;/&#160;为您找到的&#160;“&#160;%1$s&#160;”</string>
+    <!-- music -->
+    <string name="music_result_tip">&#160;/&#160;为您找到的&#160;“&#160;%1$s&#160;”</string>
+
+    <!-- fm -->
+    <string name="fm_result_tip">&#160;/&#160;为您找到的&#160;“&#160;%1$s&#160;”</string>
+
+    <string name="weather_city">%1$s-%2$s</string>
+    <string name="weather_type">%1$s</string>
+    <string name="weather_current_temp">%1$s</string>
+
+    <string name="weather_title_prompt">&#160;/&#160;为您找到的&#160;“&#160;%1$s&#160;”&#160;天气</string>
+    <string name="weather_temp_range_prompt">全天气温</string>
+    <string name="weather_temp_range">%1$s&#160;~&#160;%2$s</string>
+    <string name="weather_wind_direction_prompt">风向</string>
+    <string name="weather_wind_direction">%1$s</string>
+    <string name="weather_wind_power_prompt">风力</string>
+    <string name="weather_wind">%1$s&#160;%2$s</string>
+    <string name="weather_forecast_temp_range">%1$s/%2$s</string>
+
+    <!-- TIPS -->
+    <string name="tips_phone">“打电话给张三”</string>
+    <string name="tips_music">“我要听最炫民族风”</string>
+    <string name="tips_nav">“去大梅沙怎么走”</string>
+    <string name="tips_near">“附近哪有加油站”</string>
+    <string name="settings_copyright_cn">版权所有 © 2007-%d&#160;思必驰信息科技有限公司保留一切权利</string>
+    <string name="tips_version_two">2018</string>
+    <string name="tips_version_three">&#160;思必驰信息科技有限公司保留一切权利</string>
+    <string name="settings_copyright_en">Copyright © 2007-%d&#160;AISpeech All Rights Reserved</string>
+    <string name="tips_versions_three">&#160;AISpeech All Rights Reserved</string>
+
+    <string name="contacts_synchronized">联系人同步完成</string>
+
+    <!--ERROR-->
+    <string name="error_loc">定位失败</string>
+
+    <string name="help_title">您可以这样说</string>
+    <string name="settings_title">默认应用设置</string>
+
+    <array name="help_tips_type">
+        <item>电话</item>
+        <item>音乐</item>
+        <item>导航</item>
+        <item>附近</item>
+    </array>
+
+    <array name="help_tips_home">
+        <item>“打电话给张三”</item>
+        <item>“我要听最炫民族风”</item>
+        <item>“去大梅沙怎么走”</item>
+        <item>“附近哪有加油站”</item>
+    </array>
+
+    <array name="help_tips_music">
+        <item>· 我要听刘德华的歌</item>
+        <item>· 第二个</item>
+        <item>· 下一页、上一页</item>
+        <item>· 音量大一点、音量小一点</item>
+        <item>· 播放、暂停、下一首</item>
+    </array>
+
+    <array name="help_tips_phone">
+        <item>· 打电话给张三</item>
+        <item>· 打电话给138xxxxxxxx</item>
+        <item>· 第二个</item>
+        <item>· 下一页、上一页</item>
+    </array>
+
+    <array name="help_tips_navigation">
+        <item>· 导航到火车站</item>
+        <item>· 附近哪有加油站</item>
+        <item>· 第二个</item>
+        <item>· 下一页、上一页</item>
+    </array>
+
+    <array name="help_tips_weather">
+        <item>· 深圳今天天气怎么样</item>
+        <item>· 上海明天天气怎么样</item>
+        <item>· 北京后天天气怎么样</item>
+    </array>
+
+    <array name="help_tips_stock">
+        <item>· 查一下谷歌的股票</item>
+        <item>· 查询一下恒生指数</item>
+        <item>· 查询纳斯达克指数</item>
+    </array>
+
+    <array name="help_tips_veh">
+        <item>· 深圳今天的限行情况</item>
+        <item>· 北京明天的限行尾号</item>
+        <item>· 查一下限行情况</item>
+    </array>
+
+    <array name="week">
+        <item>周日</item>
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+    </array>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (tip)*>
+    <!ELEMENT tip (#PCDATA)>
+    <!ATTLIST tip
+        path CDATA #REQUIRED
+        tip CDATA #REQUIRED>
+    ]>
+<!--自定义音频资源-->
+<root>
+
+    <!--用音频资源文件替换系统反馈语TTS合成音-->
+    <tip path="/mnt/sdcard/nihaoya.wav" tip="你好呀"/>
+    <tip path="/mnt/sdcard/nihaoya.wav" tip="我先开个小差"/>
+
+
+</root>

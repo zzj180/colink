@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_p30">#FF55575c</color>
+    <color name="white_p0">#99444444</color>
+    <color name="black">#FF000000</color>
+    <color name="green">#FF07B642</color>
+    <color name="text_yellow_color">#FFFF8C00</color>
+    <color name="text_blue_color">#FF00BFFF</color>
+    <color name="text_green_color">#FF07B642</color>
+    <color name="text_red_color">#FFC9572C</color>
+    <color name="text_white_color">#FFFFFFFF</color>
+    <color name="disabled_text_color">#3B3E43</color>
+    <color name="speed_normal_text_color">#29bcbf</color>
+    <color name="main_screen_wakeupstyle_text_color">#a8a8a8</color>
+
+
+    <!-- dialpad -->
+    <color name="music_playlist_title_color">#59616c</color>
+    <color name="music_playlist_item_color_hight">#01e4ff</color>
+    <color name="music_playlist_item_color">#8b96a6</color>
+
+    <!-- 车载APP UI规范 -->
+    <color name="common_bg">#24272b</color>
+    <color name="common_font">#dfdfe0</color>
+    <color name="common_tip_title">#59616c</color>
+    <color name="common_settings_pressed">#2b2f34</color>
+    <color name="special_text_highlight">#ff6400</color>
+    <color name="common_listview_selected">#212428</color>
+
+    <!-- 导航 -->
+    <color name="navi_gray">#59616c</color>
+    <color name="navi_green">#5fe80d</color>
+    <color name="gps_count_green">#ff5fe80d</color>
+    <color name="gps_count_red">#FFC9572C</color>
+
+    <!-- 附近 -->
+    <color name="poi_location_bottom_bg">#1f2225</color>
+
+    <!-- setting -->
+    <color name="man_setting_spinner_highlight">#2E3236</color>
+    <color name="man_setting_popup_bg">#34383E</color>
+    <color name="text_status_color">#59616c</color>
+    
+    <color name="text_white">#FFE6F7FF</color>
+    <color name="text_grey">#4a4e50</color>
+    <color name="text_dark_grey">#7e8588</color>
+    <color name="text_version">#42464c</color>
+    <color name="text_versions">#fa42464c</color>
+    <color name="text_hightlight">#ff7e00</color>
+
+    <color name="text_stock_green">#00f806</color>
+    <color name="text_stock_red">#ff3817</color>
+    <color name="stock_background">#e8000000</color>
+
+    <!-- ListView分割线颜色 -->
+    <color name="listview_divider_color">#3F4145</color>
+</resources>
