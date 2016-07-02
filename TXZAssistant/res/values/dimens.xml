@@ -3,5 +3,25 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
+  <!-- XD 20150724 added  Begin -->
+    <dimen name="text_size_f1">36dp</dimen>
+    <dimen name="text_size_f2">24dp</dimen>
+    <dimen name="text_size_f3">20dp</dimen>
+    <dimen name="text_size_f4">16dp</dimen>
+    <dimen name="text_size_f5">12dp</dimen>
+    <dimen name="text_size_f6">9dp</dimen>
+    <!-- XD 20150724 added End -->
+     <dimen name="title_setting_margin">4dp</dimen>
+      <dimen name="bottom_indicator_height">32dp</dimen>
+       <!-- xd 20150714 added for setting page Begin -->
+    <dimen name="setting_page1_title_margin_top">12dp</dimen>
+    <dimen name="setting_page1_status_text_margin_top">4dp</dimen>
+    <dimen name="setting_page1_status_image_margin_top">16dp</dimen>
+    <!-- xd 20150714 added for setting page End -->
+       <!-- setting -->
+    <dimen name="height_setting_status_text">32dp</dimen>
+    
+    <dimen name="session_button_hight">69dp</dimen>
+    
+      
 </resources>

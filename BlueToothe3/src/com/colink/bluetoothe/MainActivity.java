@@ -12,12 +12,14 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.Paint;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -28,14 +30,15 @@ import android.widget.Toast;
 
 import com.colink.application.Application;
 import com.colink.bluetoolthe.R;
-import com.colink.service.BootReceiver;
 import com.colink.service.TelphoneService;
 import com.colink.service.TelphoneService.localBinder;
+import com.colink.util.APPUtil;
 import com.colink.util.Constact;
 
 public class MainActivity extends Activity implements OnClickListener, Constact {
 
 	private static final String GLSX_AUTONAVI = "com.glsx.autonavi";
+	private static final String TIANAN_AUTONAVI = "com.share.android";
 	private final static String ONE_NAVI= "ONE_NAVI";
 
 	private TextView phone_view;
@@ -99,9 +102,8 @@ public class MainActivity extends Activity implements OnClickListener, Constact 
 
 		setContentView(R.layout.activity_main);
 		phone_view = (TextView) findViewById(R.id.show);
-
 		blueName = (TextView) findViewById(R.id.bluename);
-
+		phone_view.setGravity(Gravity.CENTER|Gravity.END);
 		blueState = (TextView) findViewById(R.id.bluestate);
 		
 		IntentFilter filter=new IntentFilter();
@@ -145,11 +147,8 @@ public class MainActivity extends Activity implements OnClickListener, Constact 
 		});
 
 		for (int i = 0; i < 12; i++) {
-
 			View v = findViewById(R.id.num1 + i);
-
 			v.setOnClickListener(this);
-
 		}
 
 		initSound();
@@ -192,6 +191,7 @@ public class MainActivity extends Activity implements OnClickListener, Constact 
 
 	}
 
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -332,31 +332,11 @@ public class MainActivity extends Activity implements OnClickListener, Constact 
 			break;
 
 		case R.id.music:
-			int navi = Settings.System.getInt(getContentResolver(), ONE_NAVI, 0);
-			switch (navi) {
-			case 1:
-				ComponentName componetName1 = new ComponentName("com.coagent.app","com.coagent.activity.SettingActivity");
-				Intent intent1 = new Intent();
-				intent1.setComponent(componetName1);
-				intent1.setAction("android.intent.action.view");
-				intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-				try {
-					startActivity(intent1);
-				} catch (Exception e) {
-					Toast.makeText(this, "未找到翼卡服务", Toast.LENGTH_SHORT).show();
-				}
-				break;
-
-			default:
-				doStartApplicationWithPackageName(GLSX_AUTONAVI);
-				break;
-			}
-			/*if(getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(A2DP_SWITCH, false)){
-				startActivity(new Intent(this, MusicActivity.class));
-				overridePendingTransition(R.anim.fade, R.anim.hold);
-			}else{
-				TTSController.getInstance(this).playText(show_info);
-			}*/
+			ComponentName name = new ComponentName("com.zzj.softwareservice", "com.zzj.softwareservice.SoftwareManager");
+			Intent intent =new Intent("com.zzj.software.APP_MANAGER");
+			intent.putExtra("control", "ONE_NAVI_OPEN");
+			intent.setComponent(name);
+			startService(intent);
 			break;
 
 		case R.id.setting:

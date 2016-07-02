@@ -7,9 +7,8 @@ import com.aispeech.aios.adapter.bean.PoiBean;
 
 /**
  * @desc 凯立德接口类
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class KLDOperate {
     private static final String TAG = "AIOS-Adapter-KLDOperate";

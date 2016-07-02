@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.aispeech.aimusic.config.MusicConfig;
 import com.aispeech.aimusic.model.MusicBean;
 import com.aispeech.aios.adapter.R;
+import com.aispeech.aios.adapter.ui.view.MarqueeTextView;
 import com.aispeech.aios.adapter.util.StringUtil;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class SearchMusicAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = View.inflate(mContext, R.layout.music_result_list_item, null);
             holder.mIndexTv = (TextView) convertView.findViewById(R.id.index_text_view);
-            holder.mTitle = (TextView) convertView.findViewById(R.id.title_text_view);
+            holder.mTitle = (MarqueeTextView) convertView.findViewById(R.id.title_text_view);
             holder.mImage = (ImageView) convertView.findViewById(R.id.image);
             holder.mSrcTxt = (TextView) convertView.findViewById(R.id.music_source);
             convertView.setTag(holder);
@@ -87,7 +88,7 @@ public class SearchMusicAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView mIndexTv;
         ImageView mImage;
-        TextView mTitle;
+        MarqueeTextView mTitle;
         TextView mSrcTxt;
     }
 

@@ -2,8 +2,11 @@ package com.aispeech.aios.adapter.node;
 
 import android.content.IntentFilter;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.aispeech.ailog.AILog;
+import com.aispeech.aimusic.AIMusic;
+import com.aispeech.aimusic.config.MusicConfig;
 import com.aispeech.aios.BaseNode;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.AdapterApplication;
@@ -26,7 +29,7 @@ import com.aispeech.aios.adapter.util.SystemOperateUtil;
  */
 public class CustomizeNode extends BaseNode {
 
-    private static final String TAG = "AIOS-Adapter-CustomizeNode";
+    private static final String TAG = "CustomizeNode";
     private static volatile CustomizeNode mInstance;
     private CustomizeNodeReceiver mCustomizeNodeReceiver;
 
@@ -54,12 +57,12 @@ public class CustomizeNode extends BaseNode {
 
     @Override
     public BusClient.RPCResult onCall(String url, byte[]... bytes) throws Exception {
-        AILog.i(TAG, url, bytes);
+        Log.i(TAG, url);
 
         if (!TextUtils.isEmpty(url)) {
             if (url.startsWith(CustomVoiceData.CallBack.APP_OPEN)) {//根据应用名打开应用
-
                 String pkgName = url.replace(CustomVoiceData.CallBack.APP_OPEN, "");
+                Log.i(TAG, pkgName);
                 APPUtil.getInstance().openApplication(pkgName);
 
             } else if (url.startsWith(CustomVoiceData.CallBack.APP_CLOSE)) {//根据应用名关闭应用
@@ -67,6 +70,8 @@ public class CustomizeNode extends BaseNode {
                 String pkgName = url.replace(CustomVoiceData.CallBack.APP_CLOSE, "");
                 if(SystemOperateUtil.CAMERA2_PKG.equals(pkgName)){
                 	SystemOperateUtil.getInstance().closeDrivingRecorder();
+                }else if(MusicConfig.Package.MUSIC_KW.equals(pkgName)){
+                    AIMusic.closeKuWoMusic();
                 }
             //    APPUtil.getInstance().killProcess(pkgName);
 

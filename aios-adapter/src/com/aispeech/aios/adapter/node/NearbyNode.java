@@ -1,6 +1,7 @@
 package com.aispeech.aios.adapter.node;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import com.aispeech.ailog.AILog;
@@ -11,6 +12,7 @@ import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.bean.PoiBean;
 import com.aispeech.aios.adapter.config.AiosApi;
 import com.aispeech.aios.adapter.config.Configs;
+import com.aispeech.aios.adapter.config.Configs.MapConfig;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.util.LocationUtil;
@@ -139,7 +141,7 @@ public class NearbyNode extends BaseNode {
                 }
                 AILog.d(TAG, "Nearby searchKey : " + searchKey);
                 AILog.d(TAG, "Nearby city : " + city);
-                String currentMap = Configs.getMapName(PreferenceHelper.getInstance().getCurrentMapType());//读取当前配置地图
+                String currentMap = Configs.getMapName(Settings.System.getInt(AdapterApplication.getContext().getContentResolver(),"MAP_INDEX", MapConfig.GDMAP));//读取当前配置地图
                 AILog.d(TAG, "当前设置地图： " + currentMap);
                 if ("高德地图".equals(currentMap.trim())) {//高德地图
                     bc.call("/data/nearby/poi/search", args[0], "autonav".getBytes(), city.getBytes());
@@ -208,6 +210,9 @@ public class NearbyNode extends BaseNode {
                     break;
                 case 1://没结果
                     bc.publish("nearby.search.result", null, "not found");
+                    break;
+                case 3://网络条件不佳
+                    bc.publish("nearby.search.result", null, "timeout");
                     break;
                 case 2://定位失败
                     TTSNode.getInstance().play(mContext.getString(R.string.error_loc));

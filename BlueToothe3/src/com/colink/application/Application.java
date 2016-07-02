@@ -37,16 +37,6 @@ public class Application extends android.app.Application {
 	public static boolean auto_call = false;
 	public static int state;
 
-//	public static MainActivity mainActivity;
-
-//	public static SettingActivity settingActivity;
-
-//	public static CallLogActivity callLogActivity;
-
-//	public static ContactActivity contactActivity;
-
-//	public static MusicActivity musicActivity;
-
 	public SerialPort getSerialPort() throws SecurityException, IOException,InvalidParameterException {
 		if (mSerialPort == null) {
 		//	mSerialPort = new SerialPort("/dev/ttyS1", 9600, 0);
@@ -61,8 +51,8 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		changeMetrics(getBaseContext());
 		instance = this;
-	//	CrashHandler crashHandler = CrashHandler.getInstance();
-	//	crashHandler.init(getApplicationContext());
+//		CrashHandler crashHandler = CrashHandler.getInstance();
+//		crashHandler.init(getApplicationContext());
 	}
 
 	public void closeSerialPort() {
@@ -72,15 +62,7 @@ public class Application extends android.app.Application {
 		}
 	}
 
-	/*// 添加Activity到容器中
-	public void addActivity(Activity activity) {
-		activityList.add(activity);
-	}
-
-	public void removeActivity(Activity activity) {
-		activityList.remove(activity);
-	}
-*/
+	
 	public static Application getInstance() {
 		if (null == instance) {
 			instance = new Application();
@@ -88,26 +70,6 @@ public class Application extends android.app.Application {
 		return instance;
 	}
 
-	// 遍历所有Activity并finish
-/*	public void exit() {
-
-		if (dialActivity != null)
-			dialActivity.finish();
-		if (settingActivity != null)
-			settingActivity.finish();
-		if (callLogActivity != null)
-			callLogActivity.finish();
-		if (contactActivity != null)
-			contactActivity.finish();
-		if (mainActivity != null)
-			mainActivity.finish();
-	}*/
-
-	/*public boolean isExist(Activity activity) {
-
-		return activityList.indexOf(activity) != -1;
-
-	}*/
 
 
 	//

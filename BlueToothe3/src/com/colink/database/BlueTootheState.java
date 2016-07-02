@@ -38,16 +38,16 @@ public class BlueTootheState extends ContentProvider {
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 		int match = sURLMatcher.match(uri);
 		switch (match) {
-		case ALARMS:
-			qb.setTables(BlueTootheDB.TNAME);
-			break;
-		case ALARMS_ID:
-			qb.setTables(BlueTootheDB.TNAME);
-			qb.appendWhere("_id=");
-			qb.appendWhere(uri.getPathSegments().get(1));
-			break;
-		default:
-			throw new IllegalArgumentException("Unknown URL " + uri);
+			case ALARMS:
+				qb.setTables(BlueTootheDB.TNAME);
+				break;
+			case ALARMS_ID:
+				qb.setTables(BlueTootheDB.TNAME);
+				qb.appendWhere("_id=");
+				qb.appendWhere(uri.getPathSegments().get(1));
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown URL " + uri);
 		}
 		SQLiteDatabase db = mOpenHelper.getReadableDatabase();
 		Cursor cur = qb.query(db, projection, selection, selectionArgs, null,
@@ -65,12 +65,12 @@ public class BlueTootheState extends ContentProvider {
 		int match = sURLMatcher.match(uri);
 
 		switch (match) {
-		case ALARMS:
-			return "vnd.android.cursor.dir/alarms";
-		case ALARMS_ID:
-			return "vnd.android.cursor.item/alarms";
-		default:
-			throw new IllegalArgumentException("Unknown URL");
+			case ALARMS:
+				return "vnd.android.cursor.dir/alarms";
+			case ALARMS_ID:
+				return "vnd.android.cursor.item/alarms";
+			default:
+				throw new IllegalArgumentException("Unknown URL");
 		}
 
 	}
@@ -107,47 +107,46 @@ public class BlueTootheState extends ContentProvider {
 		int count;
 		long rowId = 0;
 		switch (sURLMatcher.match(uri)) {
-		case ALARMS:
-			count = db.delete(BlueTootheDB.TNAME, selection, selectionArgs);
-			break;
-		case ALARMS_ID:
-			String segment = uri.getPathSegments().get(1);
-			rowId = Long.parseLong(segment);
-			if (TextUtils.isEmpty(selection)) {
-				selection = "_id=" + rowId;
-			} else {
-				selection = "_id=" + rowId + " AND (" + selection + ")";
-			}
-			count = db.delete(BlueTootheDB.TNAME, selection, selectionArgs);
-			break;
-		default:
-			throw new IllegalArgumentException("Cannot delete from URL: " + uri);
-		}
+			case ALARMS:
+				count = db.delete(BlueTootheDB.TNAME, selection, selectionArgs);
+				break;
+			case ALARMS_ID:
+				String segment = uri.getPathSegments().get(1);
+				rowId = Long.parseLong(segment);
+				if (TextUtils.isEmpty(selection)) {
+					selection = "_id=" + rowId;
+				} else {
+					selection = "_id=" + rowId + " AND (" + selection + ")";
+				}
+				count = db.delete(BlueTootheDB.TNAME, selection, selectionArgs);
+				break;
+			default:
+				throw new IllegalArgumentException("Cannot delete from URL: " + uri);
+		 }
 		getContext().getContentResolver().notifyChange(uri, null);
 		return count;
 
 	}
 
 	@Override
-	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 		int count;
 		long rowId = 0;
 		int match = sURLMatcher.match(uri);
 		SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		switch (match) {
-		case ALARMS_ID: {
-			String segment = uri.getPathSegments().get(1);
-			rowId = Long.parseLong(segment);
-			count = db.update(BlueTootheDB.TNAME, values, "_id=" + rowId, null);
-			break;
-		}
-		case ALARMS:
-			count = db.update(BlueTootheDB.TNAME, values, null, null);
-			break;
-		default: {
-			throw new UnsupportedOperationException("Cannot update URL: " + uri);
-		}
+			case ALARMS_ID: {
+				String segment = uri.getPathSegments().get(1);
+				rowId = Long.parseLong(segment);
+				count = db.update(BlueTootheDB.TNAME, values, "_id=" + rowId, null);
+				break;
+			}
+			case ALARMS:
+				count = db.update(BlueTootheDB.TNAME, values, null, null);
+				break;
+			default: {
+				throw new UnsupportedOperationException("Cannot update URL: " + uri);
+			}
 		}
 		getContext().getContentResolver().notifyChange(uri, null);
 		return count;

@@ -410,5 +410,51 @@ public final class DateUtils {
         }
         return dateString;
     }
+
+    public static String getWeekDate(Context context, String today, String day) {
+        String[] mWeeks = context.getResources().getStringArray(R.array.week);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        Calendar calendar = Calendar.getInstance();
+        String dateString = mWeeks[calendar.get(Calendar.DAY_OF_WEEK) - 1];
+        try {
+            Date todayDate = format.parse(today);
+            Date otherDate = format.parse(day);
+
+            calendar.setTime(todayDate);
+
+            for (int i = -1; i < 7; i++) {
+                if (i >= 0) {
+                    calendar.add(Calendar.DATE, 1);
+                } else {
+                    calendar.add(Calendar.DATE, i);
+                }
+
+                if (format.format(calendar.getTime()).equals(format.format(otherDate))) {
+                    switch (i) {
+                        case -1:
+                            dateString = "昨天";
+                            break;
+                        case 0:
+                            dateString = "今天";
+                            break;
+                        case 1:
+                            dateString = "明天";
+                            break;
+                        case 2:
+                            dateString = "后天";
+                            break;
+                        default:
+                            dateString = mWeeks[calendar.get(Calendar.DAY_OF_WEEK) - 1];
+                    }
+
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateString;
+    }
 }
 

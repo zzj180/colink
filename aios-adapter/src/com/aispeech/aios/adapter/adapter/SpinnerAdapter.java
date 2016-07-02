@@ -37,6 +37,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
 
         //此处text1是Spinner默认的用来显示文字的TextView
         TextView tv = (TextView) convertView.findViewById(R.id.spinner_text);
+        if(position < mStringArray.length)
         tv.setText(mStringArray[position]);
         return convertView;
 
@@ -53,6 +54,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
 
         //此处text1是Spinner默认的用来显示文字的TextView
         TextView tv = (TextView) convertView.findViewById(R.id.spinner_text);
+        if(position < mStringArray.length)
         tv.setText(mStringArray[position]);
         return convertView;
     }

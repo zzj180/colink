@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/list_select" >
+    android:background="@drawable/list_select"
+    android:gravity="center" >
 
     <TextView
         android:id="@+id/textView1"
@@ -11,8 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_margin="8dp"
         android:textSize="28dp"
-        android:maxEms="4"
+        android:maxEms="6"
         android:ellipsize="marquee"
+        android:singleLine="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -24,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:textSize="28dp"
         android:maxEms="7"
+        android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

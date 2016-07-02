@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <View
+        android:layout_width="@dimen/main_icon_margin_left"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+
+    <!-- 1-Phone Call -->
+
+    <FrameLayout
+        android:id="@+id/bluetooth"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/main_phone_call"
+                android:src="@drawable/icon_home_call" />
+
+            <TextView
+                android:id="@+id/bluetooth_text"
+                style="@style/text_session_item_f4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/homepage_text_margin_icon"
+                android:text="@string/main_phone_call" />
+            
+            <TextView 
+                android:id="@+id/tv_help_text_call"
+                style="@style/text_session_item_f4_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/homepage_text_margin_text"
+                />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- 
+    <View
+        android:id="@+id/line1"
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+ -->
+    <!-- 2-Navigation -->
+
+    <FrameLayout
+        android:id="@+id/poi"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/poi_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/map_navigation"
+                android:src="@drawable/icon_home_navigation" />
+
+            <TextView
+                android:id="@+id/poi_text"
+                style="@style/text_session_item_f4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/homepage_text_margin_icon"
+                android:text="@string/map_navigation" />
+
+            <TextView 
+                android:id="@+id/tv_help_text_poi"
+                style="@style/text_session_item_f4_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/homepage_text_margin_text"
+                />
+        </LinearLayout>
+    </FrameLayout>
+<!-- 
+    <View
+        android:id="@+id/line2"
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+ -->
+    <!-- 3-music -->
+
+    <FrameLayout
+        android:id="@+id/music"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/music_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/music_play"
+                android:src="@drawable/icon_home_music" />
+
+            <TextView
+                android:id="@+id/music_text"
+                style="@style/text_session_item_f4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/homepage_text_margin_icon"
+                android:text="@string/music_play" />
+
+            <TextView 
+                android:id="@+id/tv_help_text_music"
+                style="@style/text_session_item_f4_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/homepage_text_margin_text"
+                />
+        </LinearLayout>
+    </FrameLayout>
+<!-- 
+    <View
+        android:id="@+id/line3"
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+ -->
+    <!-- 4-local search -->
+
+    <FrameLayout
+        android:id="@+id/main_local_search"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_local_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/domain_local_search"
+                android:src="@drawable/icon_home_local_search" />
+
+            <TextView
+                android:id="@+id/local_search_text"
+                style="@style/text_session_item_f4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/homepage_text_margin_icon"
+                android:text="@string/main_local_search" />
+
+            <TextView 
+                android:id="@+id/tv_help_text_local_search"
+                style="@style/text_session_item_f4_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/homepage_text_margin_text"
+                />
+        </LinearLayout>
+    </FrameLayout>
+<!-- 
+    <View
+        android:id="@+id/line4"
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+ -->
+    <View
+        android:layout_width="@dimen/main_icon_margin_right"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+
+</LinearLayout>

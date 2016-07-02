@@ -12,7 +12,7 @@ import com.colink.zzj.txzassistant.AdapterApplication;
  * @date 2016-03-16
  */
 public class PreferenceHelper {
-    private static final String CONFIG_FILE_NAME = "AIOSAdapterConfigs";
+    private static final String CONFIG_FILE_NAME = "ZZJConfigs";
 
     public static final String PREF_KEY_LAST_HOME = "pref_key_last_home";
     public static final String PREF_KEY_LAST_COMPANY = "pref_key_last_company";
@@ -116,10 +116,10 @@ public class PreferenceHelper {
     /**
      * 获取系统媒体类型音量
      *
-     * @return 音量值，默认为最大15
+     * @return 音量值，默认为7
      */
     public int getVolume() {
-        return mSp.getInt(PREF_KEY_MEDIA_VOLUME, 15);
+        return mSp.getInt(PREF_KEY_MEDIA_VOLUME, 7);
     }
 
     public void setVolume(int volume) {

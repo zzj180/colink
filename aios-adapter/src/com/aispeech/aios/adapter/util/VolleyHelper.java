@@ -24,7 +24,7 @@ public class VolleyHelper {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
-    private VolleyHelper() {                  
+    private VolleyHelper() {
         mRequestQueue = getRequestQueue();
 
         mImageLoader = new ImageLoader(mRequestQueue,
@@ -43,6 +43,7 @@ public class VolleyHelper {
                     }
                 });
     }
+
 
     /**
      * @return VolleyHelper实例

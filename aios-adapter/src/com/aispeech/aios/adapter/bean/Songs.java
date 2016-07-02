@@ -3,7 +3,7 @@ package com.aispeech.aios.adapter.bean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/3/28.
+ * Created by zzj on 2016/3/28.
  */
 public class Songs {
 

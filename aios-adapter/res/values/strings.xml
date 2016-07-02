@@ -38,7 +38,10 @@
     <string name="tips_version_three">&#160;思必驰信息科技有限公司保留一切权利</string>
     <string name="settings_copyright_en">Copyright © 2007-%d&#160;AISpeech All Rights Reserved</string>
     <string name="tips_versions_three">&#160;AISpeech All Rights Reserved</string>
-
+    <string name="tips_loading">&#160;正在加载，请稍候</string>
+    <string name="tips_playing">正在播放</string>
+    <string name="tips_stop_voice">停止播放</string>
+    <string name="playing_voice">正在为您讲</string>
     <string name="contacts_synchronized">联系人同步完成</string>
 
     <!--ERROR-->
@@ -48,6 +51,7 @@
     <string name="settings_title">默认应用设置</string>
 
     <array name="help_tips_type">
+        <item>唤醒</item>
         <item>电话</item>
         <item>音乐</item>
         <item>导航</item>
@@ -55,6 +59,7 @@
     </array>
 
     <array name="help_tips_home">
+        <item>叫“%1$s”可以唤醒</item>
         <item>“打电话给张三”</item>
         <item>“我要听最炫民族风”</item>
         <item>“去大梅沙怎么走”</item>
@@ -110,4 +115,11 @@
         <item>周五</item>
         <item>周六</item>
     </array>
+    
+       <string name="prepnavi_address">预约地址</string>
+        
+           <string name="prepnavi_endpoi">导航到%1$s</string>
+           
+            <string name="receive_prepnavi_command">收到一条预约导航指令</string>
+             <string name="cancel_prepnavi">开始(%1$ss)</string>
 </resources>

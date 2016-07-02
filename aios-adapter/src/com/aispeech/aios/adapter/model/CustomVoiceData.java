@@ -46,13 +46,13 @@ public class CustomVoiceData {
                 String appName = info.activityInfo.loadLabel(context.getPackageManager()).toString();
                 String pkg = info.activityInfo.packageName;
 
-                if (appName.contains("电话")) {
+              /*  if (appName.contains("电话")) {
                     json.put("打开电话", CallBack.APP_OPEN + info.activityInfo.packageName);
                     json.put("打开蓝牙电话", CallBack.APP_OPEN + info.activityInfo.packageName);
                     json.put("关闭电话", CallBack.APP_CLOSE + info.activityInfo.packageName);
                     json.put("关闭蓝牙电话", CallBack.APP_CLOSE + info.activityInfo.packageName);
                     continue;
-                }
+                }*/
                 json.put("打开" + appName, CallBack.APP_OPEN + pkg);
                 json.put("关闭" + appName, CallBack.APP_CLOSE + pkg);
             }

@@ -921,11 +921,17 @@ containing a value of this type.
   <dimen name="button_next_x">394dp</dimen> 
   <dimen name="button_next_x">394dp</dimen> 
   <dimen name="button_next_x">394dp</dimen> 
+  <dimen name="button_next_x">394dp</dimen> 
+  <dimen name="button_next_x">394dp</dimen> 
+  <dimen name="button_next_x">394dp</dimen> 
          */
         public static final int button_next_x=0x7f080046;
         public static final int button_play_height=0x7f080042;
         public static final int button_play_width=0x7f080041;
         /**    <dimen name="button_play_x">296dp</dimen> 
+   <dimen name="button_play_x">296dp</dimen> 
+   <dimen name="button_play_x">296dp</dimen> 
+   <dimen name="button_play_x">296dp</dimen> 
    <dimen name="button_play_x">296dp</dimen> 
    <dimen name="button_play_x">296dp</dimen> 
    <dimen name="button_play_x">296dp</dimen> 
@@ -938,6 +944,9 @@ containing a value of this type.
    <dimen name="button_prev_x">221dp</dimen> 
    <dimen name="button_prev_x">221dp</dimen> 
    <dimen name="button_prev_x">221dp</dimen> 
+   <dimen name="button_prev_x">221dp</dimen> 
+   <dimen name="button_prev_x">221dp</dimen> 
+   <dimen name="button_prev_x">221dp</dimen> 
          */
         public static final int button_prev_x=0x7f080040;
         public static final int button_sound_height=0x7f08003d;
@@ -945,6 +954,9 @@ containing a value of this type.
         public static final int button_sound_x=0x7f08003e;
         public static final int button_sound_y=0x7f08003f;
         /**  <dimen name="button_stop_x">471dp</dimen> 
+ <dimen name="button_stop_x">471dp</dimen> 
+ <dimen name="button_stop_x">471dp</dimen> 
+ <dimen name="button_stop_x">471dp</dimen> 
  <dimen name="button_stop_x">471dp</dimen> 
  <dimen name="button_stop_x">471dp</dimen> 
  <dimen name="button_stop_x">471dp</dimen> 
@@ -1497,6 +1509,7 @@ containing a value of this type.
         public static final int callin=0x7f0b0016;
         public static final int calling=0x7f0b0017;
         public static final int callwait=0x7f0b0018;
+        public static final int clearBook=0x7f0b0021;
         public static final int connected=0x7f0b0019;
         public static final int count=0x7f0b0015;
         public static final int hello_world=0x7f0b000e;
@@ -1505,6 +1518,7 @@ containing a value of this type.
         public static final int preference_key_tts_pitch=0x7f0b0014;
         public static final int preference_key_tts_speed=0x7f0b0012;
         public static final int preference_key_tts_volume=0x7f0b0013;
+        public static final int reDownBook=0x7f0b0020;
         public static final int unconnect=0x7f0b001a;
     }
     public static final class style {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	根标签为animation-list，其中oneshot代表着是否只展示一遍，设置为false会不停的循环播放动画
+	根标签下，通过item标签对动画中的每一个图片进行声明
+	android:duration 表示展示所用的该图片的时间长度
+ -->
+ <animation-list
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:oneshot="false" >
+     
+    <item android:drawable="@drawable/sll" android:duration="300"></item>
+    <item android:drawable="@drawable/cail" android:duration="300"></item>
+    <item android:drawable="@drawable/cl" android:duration="300"></item>
+    <item android:drawable="@drawable/chil" android:duration="300"></item>
+    <item android:drawable="@drawable/fhl" android:duration="300"></item>
+    <item android:drawable="@drawable/hl" android:duration="300"></item>
+    <item android:drawable="@drawable/jl" android:duration="300"></item>
+    <item android:drawable="@drawable/qhl" android:duration="300"></item>
+    <item android:drawable="@drawable/sl" android:duration="300"></item>
+    <item android:drawable="@drawable/xl" android:duration="300"></item>
+    <item android:drawable="@drawable/yinl" android:duration="300"></item>
+    <item android:drawable="@drawable/yl" android:duration="300"></item>
+    <item android:drawable="@drawable/zl" android:duration="300"></item>
+  	<item android:drawable="@drawable/tul" android:duration="300"></item>
+  	<item android:drawable="@drawable/tl" android:duration="300"></item>
+  	
+ </animation-list>

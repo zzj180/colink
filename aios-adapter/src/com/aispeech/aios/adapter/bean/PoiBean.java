@@ -117,4 +117,22 @@ public class PoiBean extends BaseBean {
                 ", mTelephone='" + mTelephone + '\'' +
                 '}';
     }
+
+    /**
+     * 火星坐标系 (GCJ-02)   To 百度坐标系 (BD-09) 的转换算法
+     * 将 GCJ-02 坐标转换成 BD-09 坐标
+     */
+    public static PoiBean gcj02_To_Bd09(double lat, double lng) {
+
+        double pi = 3.1415926535897932384626;
+        double x = lng, y = lat;
+        double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * (pi * 3000.0 / 180.0));
+        double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * (pi * 3000.0 / 180.0));
+        double bd_lon = z * Math.cos(theta) + 0.0065;
+        double bd_lat = z * Math.sin(theta) + 0.006;
+        PoiBean b=new PoiBean();
+        b.setLatitude(bd_lat);
+        b.setLongitude(bd_lon);
+        return b;
+    }
 }

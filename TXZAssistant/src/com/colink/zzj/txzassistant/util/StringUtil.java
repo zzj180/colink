@@ -4,6 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import android.text.TextUtils;
+
 /**
  * @desc  字符数据转换工具
  * @auth zzj
@@ -38,6 +40,32 @@ public class StringUtil {
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(str);
         return m.replaceAll("").trim();
+    }
+    
+    public static String clearSpecial(String str) throws PatternSyntaxException {
+        if (null == str || "".equals(str)) {
+            return str;
+        }
+        String regEx = "[`~#^&()|{}''\\[\\]<>#￥……&（）——|{}【】‘”“’]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("");
+    }
+    /**
+     * 
+     * @param text
+     * @return
+     */
+    public static String addDoubleQuotationMarks(String text) {
+        if (TextUtils.isEmpty(text)) {
+            return text;
+        }
+        if (text.startsWith("“") && text.endsWith("”")) {
+            return text;
+        } else {
+            text = "“" + text + "”";
+            return text;
+        }
     }
 
 }

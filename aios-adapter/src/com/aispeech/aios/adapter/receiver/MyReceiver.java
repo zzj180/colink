@@ -15,14 +15,13 @@ import com.aispeech.aios.adapter.node.CommonPoiNode;
 import com.aispeech.aios.adapter.node.HomeNode;
 import com.aispeech.aios.adapter.node.MusicNode;
 import com.aispeech.aios.adapter.node.PhoneNode;
-import com.aispeech.aios.adapter.node.TTSNode;
+import com.aispeech.aios.adapter.node.SystemNode;
 import com.aispeech.aios.adapter.service.FloatWindowService;
 import com.aispeech.aios.adapter.ui.MyWindowManager;
 import com.aispeech.aios.adapter.util.APPUtil;
 import com.aispeech.aios.adapter.util.AssetsXmlUtil;
 import com.aispeech.aios.adapter.util.NotificationUtil;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
-import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 
 /**
  * @desc adapter的接收器
@@ -36,12 +35,29 @@ public class MyReceiver extends BroadcastReceiver {
     private Service service;
     private final String keyAttrConfigFile = "configs/cfgs.xml";
 
+    private static boolean rebooting = false;
+
     @Override
     public void onReceive(final Context context, Intent intent) {
         AILog.i(TAG, "onReceive - " + intent.getAction());
 
         String action = intent.getAction();
         service = FloatWindowService.getRunningService();
+
+        if (rebooting) {
+            return;
+        }
+
+        if (action.equals("aios.intent.action.REBOOT")) {
+            rebooting = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // exit, AIOS daemon will start adapter node one by one
+                    System.exit(0);
+                }
+            }, 3000);
+        }
 
         if (action.startsWith("aios.intent.action.STATE")) {
             String state = intent.getStringExtra("aios.intent.extra.STATE");
@@ -59,28 +75,31 @@ public class MyReceiver extends BroadcastReceiver {
                 AdapterApplication.getContext().sendBroadcast(new Intent(PhoneNode.AIOS_BT_STATUS_REQ));
                 MusicNode.getInstance().onAiosStarted();
 
-                if (TTSNode.getInstance().getBusClient() == null) {
-                    TTSNode.getInstance().start();
-                }
+                /* In DaemonNode.java, system node is defined as 'ready' state's prerequisite
+                 * do not use other node here
+                 */
+                SystemNode.getInstance().start();
 
                 String jsonStr = AssetsXmlUtil.readXmlFile(AdapterApplication.getContext(), keyAttrConfigFile);
                 String basicAttr = AssetsXmlUtil.getBasicAttrs(jsonStr);
                 String cluStatus = AssetsXmlUtil.getClusterStatus(jsonStr);
                 int volume = AssetsXmlUtil.getTtsVolume(jsonStr);
 
-                TTSNode.getInstance().call("/keys/modules/include", "set", basicAttr);
-                TTSNode.getInstance().call("/keys/sds/cluster", "set", cluStatus);
-                TTSNode.getInstance().call("/keys/tts/volume", "set", String.valueOf(volume));
-
-                BusClient.RPCResult result = TTSNode.getInstance().call("/keys/modules/include", "get");
-                if (result != null && result.retval != null) {
-                    try {
-                        AILog.json(TAG, new String((result.retval == null) ? "unknown".getBytes() : result.retval, "utf-8"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        AILog.i(TAG, "have no get modules status");
+                if (SystemNode.getInstance().getBusClient() != null) {
+                    SystemNode.getInstance().getBusClient().call("/keys/modules/include", "set", basicAttr);
+                    SystemNode.getInstance().getBusClient().call("/keys/sds/cluster", "set", cluStatus);
+                    SystemNode.getInstance().getBusClient().call("/keys/tts/volume", "set", String.valueOf(volume));
+                    BusClient.RPCResult result = SystemNode.getInstance().getBusClient().call("/keys/modules/include", "get");
+                    if (result != null && result.retval != null) {
+                        try {
+                            AILog.json(TAG, new String((result.retval == null) ? "unknown".getBytes() : result.retval, "utf-8"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            AILog.i(TAG, "have no get modules status");
+                        }
                     }
                 }
+
 
                 String jsonstr = "[" +
                         "{\"folder\":\"/mnt/sdcard/Music\"},\n" +
@@ -92,31 +111,6 @@ public class MyReceiver extends BroadcastReceiver {
                 jsonIntent.putExtra("aios.intent.extra.TEXT", jsonstr);
                 AdapterApplication.getContext().sendBroadcast(jsonIntent);
             }
-
-
-        } else if (action.equals("com.android.action_acc_off")) {
-            //休眠
-            AILog.e(TAG, "acc_off__________________________");
-            SendBroadCastUtil.getInstance().sendBroadCast("com.aispeech.acc.status", "status", "off");
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    AILog.e(TAG, "acc_off__stopservice________________________");
-//                    context.stopService(new Intent(context, FloatWindowService.class));
-//                }
-//            }, 5000);
-
-        } else if (action.equals("com.android.action_acc_on")) {
-            //唤醒
-            AILog.e(TAG, "acc_on__________________________");
-//            context.startService(new Intent(context, FloatWindowService.class));
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    AILog.e(TAG, "acc_on__startservice________________________");
-                    SendBroadCastUtil.getInstance().sendBroadCast("com.aispeech.acc.status", "status", "on");
-                }
-            }, 5000);
         }
         //回家
         else if (action.equals(AiosApi.Other.ACTION_SLIDE_LEFT)) {
@@ -155,9 +149,7 @@ public class MyReceiver extends BroadcastReceiver {
             AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             int currVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);// 当前的媒体音量
             AILog.d("VOLUME_CHANGED_ACTION" + currVolume);
-            if (currVolume != 0) {
-                PreferenceHelper.getInstance().setVolume(currVolume);
-            }
+          
         }
     }
 

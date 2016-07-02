@@ -43,6 +43,7 @@
         <cmd name="免打扰"/>
         <cmd name="免打扰模式"/>
         <cmd name="关屏"/>
+        <cmd name="关闭屏幕"/>
     </url>
     
      <url name="/customize/one/navi">

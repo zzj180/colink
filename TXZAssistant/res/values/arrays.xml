@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
    
-
     <string-array name="open_screenOff" >
         <item>免打扰</item>
+        <item>进入免打扰</item>
         <item>免打扰模式</item>
+        <item>打开免打扰模式</item>
         <item>关屏</item>
         <item>关闭屏幕</item>
+        <item>关闭显示屏</item>
     </string-array>
     
      <string-array name="open_edog" >
@@ -55,11 +56,89 @@
     
      <string-array name="home_page" >
         <item>主界面</item>
+        <item>打开桌面</item>
         <item>返回桌面</item>
+        <item>打开主界面</item>
         <item>返回主界面</item>
         <item>回到桌面</item>
         <item>回到主界面</item>
     </string-array>
-
+    
+    <string-array name="close_carcorder" >
+        <item>关闭行车记录仪</item>
+        <item>退出行车记录仪</item>
+        <item>推出行车记录仪</item>
+        <item>关闭记录仪</item>
+        <item>退出记录仪</item>
+    </string-array>
+    
+    <string-array name="in_com" >
+        <item>公司简介</item>
+        <item>查一下轩辕科技</item>
+        <item>介绍一下轩辕电子</item>
+         <item>介绍轩辕电子</item>
+    </string-array>
+    
+     <string-array name="go_com" >
+        <item>去轩辕电子</item>
+        <item>我要去轩辕电子</item>
+        <item>导航到轩辕电子</item>
+        <item>导航去轩辕电子</item>
+    </string-array>
+   <!--  <string-array name="open_music" >
+        <item>打开音乐</item>       
+    </string-array> -->
+     <string-array name="capture_wakeup" >
+        <item>拍照拍照</item>
+        <item>我要拍照</item>
+        <item>抓拍照片</item>
+    </string-array>
+    
+     
+    <!-- cunstom Asr wakeup -->
+     <string-array name="play_music" >
+        <item>播放音乐</item>
+        <item>播放播放</item>
+        <item>播放歌曲</item>
+    </string-array>
+     
+    <string-array name="next_music" >
+        <item>下一首</item>
+        <item>下一曲</item>
+    </string-array>
+    
+     <string-array name="prev_music" >
+        <item>上一首</item>
+        <item>上一曲</item>
+    </string-array>
+    
+      <string-array name="pause_music" >
+        <item>暂停暂停</item>
+        <item>暂停播放</item>
+        <item>暂停音乐</item>
+        <item>暂停歌曲</item>
+    </string-array>
+    
+       <string-array name="stop_music" >
+        <item>关闭音乐</item>
+        <item>停止播放</item>
+        <item>停止音乐</item>
+        <item>停止歌曲</item>
+    </string-array>
+    
+    <string-array name="raise_volume" >
+        <item>增大音量</item>
+        <item>增加音量</item>
+        <item>增大声音</item>
+        <item>增加声音</item>
+        <item>增高音量</item>
+    </string-array>
+    
+     <string-array name="lower_volume" >
+        <item>减小音量</item>
+        <item>降低音量</item>
+        <item>减小声音</item>
+        <item>降低声音</item>
+    </string-array>
    
 </resources>

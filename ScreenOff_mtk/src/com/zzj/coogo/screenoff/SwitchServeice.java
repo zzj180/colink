@@ -25,6 +25,7 @@ public class SwitchServeice extends Service {
 	private static final String CAMERA_ACTIVITY = "com.android.camera.CameraActivity";
 	private static final String CAMERA2_APP = "com.android.camera2";
 	private static final String GAODE_MAP_ACTIVITY = "com.autonavi.map.activity.NewMapActivity";
+	private static final String GAODE_CAR_ACTIVITY = "com.autonavi.auto.MainMapActivity";
 /*	private static final String GOOGLE_MAP_APP = "com.google.android.apps.maps";
 	private static final String GOOGLE_MAP_ACTIVITY = "com.google.android.maps.MapsActivity";*/
 	private static final String BAIDU_NAVI_ACTIVITY = "com.baidu.navi.NaviActivity";
@@ -214,6 +215,7 @@ public class SwitchServeice extends Service {
 						&& switchView != null) {
 					if (BAIDU_NAVI_ACTIVITY.equals(tasksInfo.get(0).topActivity
 							.getClassName())) {
+						SwitchServeice.this.sendBroadcast(new Intent("hiden_systemui"));
 						if (MainApplication.gaodeisnavi) {
 							switchView.setVisibility(View.VISIBLE);
 						} else {
@@ -221,8 +223,13 @@ public class SwitchServeice extends Service {
 						}
 					} else if (GAODE_MAP_ACTIVITY.equals(tasksInfo.get(0).topActivity
 							.getClassName())) {
+						SwitchServeice.this.sendBroadcast(new Intent("hiden_systemui"));
 						switchView.setVisibility(View.VISIBLE);
-					} /*else if (GOOGLE_MAP_ACTIVITY.equals(tasksInfo.get(0).topActivity
+					} else if (GAODE_CAR_ACTIVITY.equals(tasksInfo.get(0).topActivity
+							.getClassName())) {
+						switchView.setVisibility(View.VISIBLE);
+					} 
+					/*else if (GOOGLE_MAP_ACTIVITY.equals(tasksInfo.get(0).topActivity
 							.getClassName())) {
 						synchronized (this) {
 							if (switchView.getVisibility() == View.GONE && !showInput) {
@@ -235,6 +242,7 @@ public class SwitchServeice extends Service {
 							}
 						}
 					}*/ else {
+						SwitchServeice.this.sendBroadcast(new Intent("show_systemui"));
 						switchView.setVisibility(View.GONE);
 					}
 				}

@@ -12,8 +12,11 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.TreeSet;
 
+import com.colink.util.Constact;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -79,10 +82,18 @@ public class CrashHandler implements UncaughtExceptionHandler {
             } catch (InterruptedException e) {   
             }   
             Process.killProcess(Process.myPid());
+            SharedPreferences sp = mContext.getSharedPreferences(Constact.BLUETOOTH, Context.MODE_PRIVATE);
+            final int errorCount = sp.getInt("errorCount", 0);
+            if(errorCount < 5 ){
+            	sp.edit().putInt(Constact.BLUETOOTH, errorCount+1).apply();
+            }else{
+            	sp.edit().putInt(Constact.BLUETOOTH, 0).apply();
+            }
             new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
+					if(errorCount < 5) 
 					mContext.startService(new Intent("cn.colink.service.Telphone_Service"));
 				}
 			}).start();

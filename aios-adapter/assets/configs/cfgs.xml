@@ -23,9 +23,9 @@
         <item key="cluster" value="disable"/>
     </config>
 
-    <!-- 合成音音量 取值范围0~100 默认50 -->
+    <!-- 合成音音量 取值范围0~50 默认50 -->
     <config name="volume">
-        <item key="volume" value="52"/>
+        <item key="volume" value="50"/>
     </config>
     
     

@@ -3,7 +3,7 @@
  * @ProjectName :
  * @PakageName : com.android.kwmusic
  * @Author : zzj
- * @CreateDate : 2016-3-17
+ * @CreateDate : 2015-3-17
  */
 package com.android.kwmusic;
 
@@ -36,14 +36,14 @@ import cn.kuwo.autosdk.bean.Music;
 @SuppressLint("HandlerLeak")
 public class KWMusicService extends Service implements OnSearchListener {
 	private static final String SCRRENOFF_ACTIVITY = "com.zzj.coogo.screenoff.ScrrenoffActivity";
-	private static final int MUSIC_SET_DELAYTIME = 500;
+	private static final int MUSIC_SET_DELAYTIME = 600;
 	private static final int WHAT_PLAY_PAUSE = 1001;
 	private ComponentName remComponenName;
 
 	private KWAPI mKwapi;
 	private Context mContext;
 
-	// 由于单曲循环的设置和暂停都不能和播放指令同时发出，所以设置一个延时时间
+//  由于单曲循环的设置和暂停都不能和播放指令同时发出，所以设置一个延时时间
 	private Handler musicHandler;
 
 	Runnable r = new Runnable() {
@@ -141,26 +141,20 @@ public class KWMusicService extends Service implements OnSearchListener {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		if (intent != null) {
 			String action = intent.getAction();
-			if (action != null) {
 				String cmd = intent.getStringExtra(CommandPreference.CMDNAME);
 				if (CommandPreference.CMDCLOSE_DESK_LYRIC.equals(action)) {
 					closeDeskLyric();
 				} else if (CommandPreference.CMDOPEN_DESK_LYRIC.equals(action)) {
 					openDeskLyric();
-				} else if (CommandPreference.CMDTOGGLEPAUSE.equals(cmd)
-						|| CommandPreference.TOGGLEPAUSE_ACTION.equals(action)) {
+				} else if (CommandPreference.CMDTOGGLEPAUSE.equals(cmd)|| CommandPreference.TOGGLEPAUSE_ACTION.equals(action)) {
 					setPlayState(KWPlayState.STATE_PAUSE);
-				} else if (CommandPreference.CMDPAUSE.equals(cmd)
-						|| CommandPreference.PAUSE_ACTION.equals(action)) {
-					musicHandler.sendEmptyMessageDelayed(WHAT_PLAY_PAUSE,
-							MUSIC_SET_DELAYTIME);
+				} else if (CommandPreference.CMDPAUSE.equals(cmd)|| CommandPreference.PAUSE_ACTION.equals(action)) {
+					musicHandler.sendEmptyMessageDelayed(WHAT_PLAY_PAUSE,MUSIC_SET_DELAYTIME);
 				} else if (CommandPreference.CMDPLAY.equals(cmd)) {
 					setPlayState(KWPlayState.STATE_PLAY);
-				} else if (CommandPreference.CMDPREVIOUS.equals(cmd)
-						|| CommandPreference.PREVIOUS_ACTION.equals(action)) {
+				} else if (CommandPreference.CMDPREVIOUS.equals(cmd)|| CommandPreference.PREVIOUS_ACTION.equals(action)) {
 					setPlayState(KWPlayState.STATE_PRE);
-				} else if (CommandPreference.CMDNEXT.equals(cmd)
-						|| CommandPreference.NEXT_ACTION.equals(action)) {
+				} else if (CommandPreference.CMDNEXT.equals(cmd)|| CommandPreference.NEXT_ACTION.equals(action)) {
 					setPlayState(KWPlayState.STATE_NEXT);
 				} else if (CommandPreference.CMDSTOP.equals(cmd)) {
 					exitKwApp();
@@ -184,12 +178,14 @@ public class KWMusicService extends Service implements OnSearchListener {
 							.getStringExtra(CommandPreference.MUSIC_KEY);
 					searchOnlineMusic(key);
 				} else if (CommandPreference.ACTION_MUSIC_LOCAL.equals(action)) {
-					String path = intent
-							.getStringExtra(CommandPreference.MUSIC_PATH);
+					String path = intent.getStringExtra(CommandPreference.MUSIC_PATH);
 					playLocalMusic(path);
+				} else if(CommandPreference.ACTION_MUSIC_DATA_RAW.equals(action)){
+					String title = intent.getStringExtra(CommandPreference.TITLE_KEY);
+					String artist = intent.getStringExtra(CommandPreference.ARTIST_KEY);
+					playClientMusics(title, artist, null);
 				}
 
-			}
 		}
 		return START_NOT_STICKY;
 	}
@@ -417,7 +413,6 @@ public class KWMusicService extends Service implements OnSearchListener {
 
 	/**
 	 * 重新创建对象
-	 * 
 	 * @return
 	 */
 	private void reCreateKWAPI() {
@@ -426,8 +421,7 @@ public class KWMusicService extends Service implements OnSearchListener {
 
 	/**
 	 * 播放模式
-	 * 
-	 * @author kevin
+	 * @author zzj
 	 */
 	private enum KWPlayMode {
 		MODE_ALL_CIRCLE, MODE_SINGLE_CIRCLE, MODE_ALL_ORDER, MODE_ALL_RANDOM;
@@ -435,8 +429,7 @@ public class KWMusicService extends Service implements OnSearchListener {
 
 	/**
 	 * 播放状态
-	 * 
-	 * @author kevin
+	 * @author zzj
 	 */
 	private enum KWPlayState {
 		STATE_PLAY, STATE_PAUSE, STATE_PRE, STATE_NEXT;
@@ -444,14 +437,13 @@ public class KWMusicService extends Service implements OnSearchListener {
 
 	/**
 	 * KW PlayerStatus INIT, //启动没播过歌 PLAYING, //正在播放 BUFFERING, //播放中，等待缓冲
-	 * PAUSE, //暂停 STOP, //停止 XD added 20150929
+	 * PAUSE, //暂停 STOP, //停止 zzj added 20150929
 	 */
 	private static PlayerStatus mPlayerStatus = PlayerStatus.INIT;
 
 	/**
 	 * getPlayerStatus
-	 * 
-	 * @author xiaodong.he
+	 * @author zzj
 	 * @return PlayerStatus
 	 */
 	public static PlayerStatus getPlayerStatus() {
@@ -460,8 +452,7 @@ public class KWMusicService extends Service implements OnSearchListener {
 
 	/**
 	 * is KWMusic Playing
-	 * 
-	 * @author xiaodong.he
+	 * @author zzj
 	 * @return
 	 */
 	public static boolean isKWMusicPlaying() {
@@ -474,7 +465,7 @@ public class KWMusicService extends Service implements OnSearchListener {
 	}
 
 	/**
-	 * register WK Play Listener XD added 20150929
+	 * register WK Play Listener zzj added 20150929
 	 */
 	private void registerPlayListener() {
 		if (null == mKwapi) {

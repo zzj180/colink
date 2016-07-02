@@ -4,6 +4,11 @@ public interface Constact {
 	public static final String CONTENT_CONTACT = "content://cn.yunzhisheng.vui.provider.ContactProvider/contact";
 	public static final String CONTENT_PHONE = "content://cn.yunzhisheng.vui.provider.ContactProvider/phone";
 	public static final String DEFAULT_NAME = "CARKIT";
+	public static final String PLAY_TTS = "com.wanma.action.PLAY_TTS";
+	public static final String OVERDOWN = "导入通讯录结束";
+	public static final String TTS_KEY = "content";
+	public static final String CONTACTS_KEY = "contacts";
+	public static final String ISOVER_KEY = "isover";
 	public static final String KEY_PRE = "name";
 	public static final String BLUETOOTH = "bluetooth";
 	public static final int DISCONNECTED = 0;

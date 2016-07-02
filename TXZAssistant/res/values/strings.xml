@@ -4,5 +4,41 @@
     <string name="app_name">TXZAssistant</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
- <string name="serch_music_fail">在线歌曲搜索失败！</string>
+    <string name="serch_music_fail">在线歌曲搜索失败！</string>
+    <string name="common_control">设置</string>
+    <string name="setting_title_wakeup">语音唤醒</string>
+    <string name="setting_wakeup_status_closed">已关闭</string>
+    <string name="setting_title_tts_speed">播报速度</string>
+    <string name="setting_tts_speed_slowly">较慢</string>
+    <string name="setting_tts_speed_standard">标准</string>
+    <string name="setting_tts_speed_fast">较快</string>
+    <string name="setting_title_float_mic">悬浮麦克风</string>
+    <string name="setting_float_mic_open">已打开</string>
+    <string name="setting_float_mic_closed">已关闭</string>
+    <string name="setting_title_asr_marks">唤醒灵敏度</string>
+    <string name="setting_title_aes_marks">识别灵敏度</string>
+    <string name="setting_help_text_wakeup">说固定的语音口令，可以唤醒呼出语音系统，进行语音操作。点击“铅笔”图标可以修改唤醒名字。</string>
+    <string name="setting_help_text_float_mic">开启后，主界面和其它应用程序界面会显示一个圆形麦克风图标，点击可以开启语音操作。</string>
+    <string name="location_change_default_hint">请输入名字</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="edit_wakeupword_tip_1">1、只支持汉字，不支持英文字母、阿拉伯数字。最好给我取个四个字的名字，这样我会比较灵敏的。</string>
+    <string name="edit_wakeupword_tip_2">2、名字对我很重要的，最好别是一样的字，一样的发音，否则我有时候会乱跳出来的。</string>
+    <string name="edit_wakeupword_tip_3">3、要是新名字您觉得不好用，你就把我改回我的本名“你好狼仔”吧。</string>
+    <string name="button_text_i_know">我知道了</string>
+    <string name="route_planning">路线规划</string>
+    <string name="luxianguihua">路线规划功能</string>
+    <string name="prepnavi_address">预约地址</string>
+    <string name="prepnavi_endpoi">导航到%1$s</string>
+    <string name="receive_prepnavi_command">收到一条预约导航指令</string>
+    <string name="cancel_prepnavi">开始(%1$ss)</string>
+    
+     <string name="playvoice">语音助手初始化成功,请说%1$s</string>
+    <string name="in_com">广东轩辕电子科技有限公司创建于2007年，它一直秉承“以人为本，顾客至上，锐意进取，共同发展”的经营理念，在2000年新时代的电子科技产品行业中遥遥领先，轩辕的成绩大家是有目共睹的，在中国汽车领域不断开拓创新！2007年至今与本田汽车、广汽传祺汽车、大众汽车、江淮汽车等汽车生产厂商配套合作；主要为汽车生产商提供优质的汽车配件及汽车智能电子产品。
+近几年来，公司自主研发生产的汽车互联网电子产品，更是受到市场一致好评，享誉国内外，受到越来越多的国人和外国好友青睐。
+全体同仁本着：“人无我有，人有我专，人专我精”的产品设计开发理念来服务好每一位用户，与时并进，公司还会致力打造精致的服务体系，为全国车主会员们提供贵族般的汽车售后市场增值服务。
+</string>
+
+    
+    
 </resources>

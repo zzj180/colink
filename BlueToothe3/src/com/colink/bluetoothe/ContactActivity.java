@@ -99,10 +99,6 @@ public class ContactActivity extends Activity implements OnClickListener,
 		findViewById(R.id.contact_del).setOnClickListener(this);
 		findViewById(R.id.contact_dial).setOnClickListener(this);
 		findViewById(R.id.back).setOnClickListener(this);
-		// 从数据库获取联系人姓名和电话号码
-		// cursor = managedQuery(
-		// ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-		// null,null,Phone.SORT_KEY_PRIMARY);
 		mAdapter = new SimpleCursorAdapter(this, R.layout.contact_item, cursor,new String[] { Phone.DISPLAY_NAME, Phone.NUMBER }, new int[] {R.id.textView1, R.id.textView2 },CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 		listView.setAdapter(mAdapter);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -181,13 +177,13 @@ public class ContactActivity extends Activity implements OnClickListener,
 
 		case R.id.download:
 
-			dialog1("重新下载电话会清空当前电话本");
+			dialog1(getString(R.string.reDownBook));
 
 			break;
 
 		case R.id.contact_del:
 
-			dialog2("是否清空当前电话本");
+			dialog2(getString(R.string.clearBook));
 
 			// getContentResolver().delete(EcarConatactsProvider.CONTENT_URI, null, null);
 
@@ -237,9 +233,6 @@ public class ContactActivity extends Activity implements OnClickListener,
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		this.cursor = cursor;
-		// The asynchronous load is complete and the data
-		// is now available for use. Only now can we associate
-		// the queried Cursor with the SimpleCursorAdapter.
 		if (cursor != null && textView != null)
 			textView.setText(Html.fromHtml(String.format(getResources().getString(R.string.count), cursor.getCount())));
 		if (mAdapter != null)

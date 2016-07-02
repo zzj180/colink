@@ -16,6 +16,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +26,6 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.aispeech.ailog.AILog;
 import com.aispeech.aimusic.model.MusicBean;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.AdapterApplication;
@@ -61,9 +61,8 @@ import java.util.List;
 
 /**
  * @desc 实现悬浮窗管理的类，在进行UI定制的时候，请实现此类的定制借口
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 
 public class MyWindowManager {
@@ -91,6 +90,8 @@ public class MyWindowManager {
 
     private boolean isListFirstPage = true;
     private boolean isListLastPage = false;
+    /**是否已经打开控制笑话/故事/段子播放的悬浮窗 **/
+    private boolean isVoiceWindow = false;
 
     private int LIST_ITEMS_PER_PAGE = 4;
 
@@ -100,9 +101,8 @@ public class MyWindowManager {
     private boolean isShowPicker = false;
     private Bitmap mWindowBgBitmap;
     private PickerView mView;
-    private Handler mHandler = new Handler() {
-        @SuppressLint("NewApi")
-		@Override
+    private Handler mHandler = new Handler(AdapterApplication.getContext().getMainLooper()) {
+        @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
@@ -144,7 +144,7 @@ public class MyWindowManager {
      */
     public static synchronized MyWindowManager getInstance() {
         if (mInstance == null || mInstance.smallWindow == null) {
-            AILog.e(TAG, "getInstance");
+            Log.e(TAG, "getInstance");
             //Context为从全局获取Service
             mInstance = new MyWindowManager(FloatWindowService.getRunningService());
         }
@@ -155,9 +155,8 @@ public class MyWindowManager {
      * 初始化悬浮窗的位置、大小
      */
     private void initLayoutParams() {
-        if (smallWindowParams == null) {
             smallWindowParams = new LayoutParams();
-            smallWindowParams.type = LayoutParams.TYPE_SYSTEM_ALERT; //TYPE_PHONE;
+            smallWindowParams.type = 2009; //TYPE_PHONE;
             smallWindowParams.format = PixelFormat.RGBA_8888;
             smallWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
             smallWindowParams.x = 0; //起点x
@@ -165,7 +164,21 @@ public class MyWindowManager {
             smallWindowParams.width = LayoutParams.MATCH_PARENT; //长
             smallWindowParams.height = LayoutParams.MATCH_PARENT; //宽
             smallWindowParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-        }
+    }
+
+    /**
+     * 初始化播放声音时的悬浮窗
+     */
+    private void initVoiceLayoutParams(){
+            smallWindowParams.type = 2009; //TYPE_PHONE;
+            smallWindowParams.format = PixelFormat.RGBA_8888;
+            smallWindowParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
+            smallWindowParams.x = 0; //起点x
+            smallWindowParams.y = 0; //起点y
+            smallWindowParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE;
+            smallWindowParams.width = LayoutParams.MATCH_PARENT; //长
+            smallWindowParams.height = LayoutParams.WRAP_CONTENT; //宽
+            smallWindowParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
     }
 
     private OnClickListener mOnClickListener = new OnClickListener() {
@@ -184,11 +197,16 @@ public class MyWindowManager {
                 case R.id.iv_close:
                     UiEventDispatcher.notifyUpdateUI(UIType.Awake);
                     UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow);
+                    removeVehLargeImage();
                     if (null != bc) {
                         bc.publish(AiosApi.Other.UI_PAUSE);
                     }
                     break;
-
+                case R.id.rl_voice:
+                    if (null != bc) {
+                        bc.publish(AiosApi.Other.UI_PAUSE);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -265,7 +283,7 @@ public class MyWindowManager {
     private OnNavigListItemClickListener mNavigListClickListener = new OnNavigListItemClickListener() {
         @Override
         public void onItemClick(List<Object> navigList, int position) {
-            AILog.d(TAG, "navigList:" + navigList);
+            Log.d(TAG, "navigList:" + navigList);
             HomeNode.getInstance().getBusClient().publish(AiosApi.Other.UI_CLICK);//语音交互停止
 
             try {
@@ -297,8 +315,8 @@ public class MyWindowManager {
         float radius = 4f;
         int mBitmapWidth = mWindowBgBitmap.getWidth();
         int mBitmapHeith = mWindowBgBitmap.getHeight();
-        AILog.i(TAG, "bitmap width = " + mBitmapWidth);
-        AILog.i(TAG, "bitmap height = " + mBitmapHeith);
+        Log.i(TAG, "bitmap width = " + mBitmapWidth);
+        Log.i(TAG, "bitmap height = " + mBitmapHeith);
 
         Matrix matrix = new Matrix();
         matrix.postScale(0.2f, 0.2f); // 长和宽放大缩小的比例
@@ -309,6 +327,7 @@ public class MyWindowManager {
 //        Bitmap bitmap = mWindowBgBitmap.copy(mWindowBgBitmap.getConfig(), true);
         Allocation input = Allocation.createFromBitmap(rs, mWindowBgBitmap, Allocation.MipmapControl.MIPMAP_NONE,
                 Allocation.USAGE_SCRIPT);
+        
         Allocation output = Allocation.createTyped(rs, input.getType());
         ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
         script.setRadius(radius /* e.g. 3.f */);
@@ -330,7 +349,7 @@ public class MyWindowManager {
         if (mWindowBgBitmap != null) {
             blur();
         } else {
-            AILog.i(TAG, "mWindowBgBitmap is null");
+            Log.i(TAG, "mWindowBgBitmap is null");
         }
     }
 
@@ -340,6 +359,16 @@ public class MyWindowManager {
      */
     public void createSmallWindow() {
         if (null != smallWindow && null != smallWindowParams && !isShowing) {
+            smallWindow.removeMainViews();
+            if(isVoiceWindow){
+                isVoiceWindow = false;
+                isShowing = true;
+                initLayoutParams();
+                smallWindow.switchToMainView();
+                getWindowManager().addView(smallWindow, smallWindowParams);
+                return ;
+            }
+
             smallWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
             smallWindowParams.width = LayoutParams.MATCH_PARENT;
             getWindowManager().addView(smallWindow, smallWindowParams);
@@ -350,7 +379,6 @@ public class MyWindowManager {
     public void ShowPickerUI(List<Object> list, String mTips) {
         smallWindowParams.gravity = Gravity.CENTER;
         smallWindowParams.width = 600;
-        AILog.d("isShowing="+isShowing);
         if (isShowing) {
             removeWindow();
         }
@@ -362,7 +390,7 @@ public class MyWindowManager {
     }
 
     public void removePickerWindow() {
-        AILog.i(TAG, "removeSmallWindow");
+        Log.i(TAG, "removeSmallWindow");
         if (isShowPicker) {
             try {
                 if (mView != null) {
@@ -376,7 +404,7 @@ public class MyWindowManager {
     }
 
     private void removeWindow() {
-        AILog.i(TAG, "removeSmallWindow");
+        Log.i(TAG, "removeSmallWindow");
         if (isShowing) {
             smallWindow.removeCallBacks();
             try {
@@ -391,6 +419,45 @@ public class MyWindowManager {
         }
     }
 
+    /**
+     * 从全布局的悬浮窗切换到语音伴随悬浮窗
+     */
+    public void switchVoiceWindow(){
+        if ( ! isVoiceWindow ){
+            isVoiceWindow = true;
+            initVoiceLayoutParams();
+            smallWindow.switchToVoiceView();
+            mWindowManager.updateViewLayout(smallWindow,smallWindowParams);
+        }
+    }
+
+    /**
+     * 停止播放，关闭所有悬浮窗
+     */
+    public void exitVoiceWindow(){
+        if( isVoiceWindow ){
+            Log.e(TAG,"createSmallWindow");
+            showContextUI("正在倾听…");
+            startListening();
+            removeWindow();
+        }
+    }
+
+    /**
+     * 停止播放，如果在音频伴随悬浮窗则恢复到主悬浮窗
+     */
+    public void restoreMainWindow(){
+
+        if( isVoiceWindow ){
+            isVoiceWindow = false;
+            showContextUI("正在倾听…");
+            startListening();
+
+            initLayoutParams();
+            smallWindow.switchToMainView();
+            mWindowManager.updateViewLayout(smallWindow,smallWindowParams);
+        }
+    }
     /**
      * 将小悬浮窗从屏幕上移除。
      */
@@ -420,7 +487,7 @@ public class MyWindowManager {
      * 开始倾听动画效果
      */
     public void startListening() {
-        AILog.i(TAG, "startListening");
+        Log.i(TAG, "startListening");
         smallWindow.startListening();
     }
 
@@ -428,7 +495,7 @@ public class MyWindowManager {
      * 停止倾听动画效果
      */
     public void stopListening() {
-        AILog.i(TAG, "stopListening");
+        Log.i(TAG, "stopListening");
         smallWindow.stopListening();
     }
 
@@ -436,7 +503,7 @@ public class MyWindowManager {
      * 显示识别动画
      */
     public void startRecognition() {
-        AILog.i(TAG, "startRecognition");
+        Log.i(TAG, "startRecognition");
         smallWindow.startRecognition();
     }
 
@@ -444,7 +511,7 @@ public class MyWindowManager {
      * 停止识别动画
      */
     public void stopRecognition() {
-        AILog.i(TAG, "stopRecognition");
+        Log.i(TAG, "stopRecognition");
         smallWindow.stopRecognition();
     }
 
@@ -476,14 +543,15 @@ public class MyWindowManager {
         HashMap<String, Object> map;
         for (int i = 0; i < pois.size(); i++) {
             map = new HashMap<String, Object>();
-            map.put("nav_address", String.valueOf(i + 1) + ". " + ((PoiBean) (pois.get(i))).getName());
+            map.put("nav_index",String.valueOf(i + 1) + ". ");
+            map.put("nav_address",  ((PoiBean) (pois.get(i))).getName());
             map.put("nav_area", ((PoiBean) (pois.get(i))).getAddress());
             map.put("nav_distance", ((PoiBean) (pois.get(i))).getDisplayDistance());
             listItem.add(map);
         }
         SimpleAdapter mSimpleAdapter = new SimpleAdapter(mContext, listItem, R.layout.nav_item,
-                new String[]{"nav_address", "nav_area", "nav_distance"},
-                new int[]{R.id.nav_address, R.id.nav_area, R.id.nav_distance});
+                new String[]{"nav_index","nav_address", "nav_area", "nav_distance"},
+                new int[]{R.id.nav_index,R.id.nav_address, R.id.nav_area, R.id.nav_distance});
 
         if (pois.size() <= LIST_ITEMS_PER_PAGE) {
             isListLastPage = true;
@@ -491,6 +559,12 @@ public class MyWindowManager {
         smallWindow.showNavigationUI(pois, title, mSimpleAdapter);
     }
 
+    /**
+     * 显示悬浮窗
+     */
+    public void showWindow(){
+        createSmallWindow();
+    }
     /**
      * 显示对话上下文
      *
@@ -544,7 +618,6 @@ public class MyWindowManager {
         int mNavListCount = mListView.getCount();
         View firtsItem = mListView.getChildAt(0); // 可见区域的第0个
         View lastItem = mListView.getChildAt(lastIndex - firstIndex);
-        AILog.d("first=" + firstIndex + ",Visible=" + lastIndex);
 
         int top = 0 - ((firtsItem == null) ? 0 : firtsItem.getTop()); // 第一个元素隐藏部分高度
         int index_add = isViewCovered(lastItem) ? (lastIndex - firstIndex) : (lastIndex - firstIndex + 1);
@@ -626,7 +699,8 @@ public class MyWindowManager {
         LocationDBHelper dbHelper = LocationDBHelper.getInstance();
         for (int i = 0; i < list.size(); i++) {
             HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("phone_name", String.valueOf(i + 1) + ". " + list.get(i).pName);
+            map.put("phone_index", String.valueOf(i + 1) + ". ");
+            map.put("phone_name",  list.get(i).pName);
             map.put("phone_number", list.get(i).pNumber);
             String addr = dbHelper.findPhoneAreaByNumber(list.get(i).pNumber);
             if (null != addr) {
@@ -636,9 +710,11 @@ public class MyWindowManager {
             }
             listItem.add(map);
         }
-        SimpleAdapter mSimpleAdapter = new SimpleAdapter(mContext, listItem, R.layout.phone_item, new String[]{"phone_name", "phone_number", "phone_area"}, new int[]{R.id.phone_name, R.id.phone_num, R.id.phone_area});
+        SimpleAdapter mSimpleAdapter = new SimpleAdapter(mContext, listItem, R.layout.phone_item,
+                new String[]{"phone_index","phone_name", "phone_number", "phone_area"},
+                new int[]{R.id.phone_index,R.id.phone_name, R.id.phone_num, R.id.phone_area});
 
-        AILog.e(TAG, "number size ---- > " + list.size());
+        Log.e(TAG, "number size ---- > " + list.size());
         if (listItem.size() <= LIST_ITEMS_PER_PAGE) {
             isListLastPage = true;
         }
@@ -668,7 +744,7 @@ public class MyWindowManager {
         smallWindow.setPhoneCancelButtonClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                AILog.i(TAG, "点击取消按钮执行");
+                Log.i(TAG, "点击取消按钮执行");
                 stopPhoneWait(true);
                 PhoneNode.getInstance().getBusClient().publish(AiosApi.Other.UI_CLICK);//停掉AIOS交互，
                 removeSmallWindow();//移除悬浮窗
@@ -817,5 +893,12 @@ public class MyWindowManager {
      */
     public void removeVehLargeImage() {
         smallWindow.removeVehLargeImage();
+    }
+
+    /**
+     * 判断当前是否处在帮助/设置界面，用于决定是否开启计时器
+     */
+    public boolean isHelpOrSettingPage(){
+        return smallWindow.isHelpOrSettingPage();
     }
 }

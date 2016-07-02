@@ -70,7 +70,7 @@ public class SystemPropertiesProxy {
  
           //参数类型
           @SuppressWarnings("rawtypes")
-              Class[] paramTypes= new Class[1];
+          Class[] paramTypes= new Class[1];
           paramTypes[0]= String.class;
  
           @SuppressWarnings("unchecked")

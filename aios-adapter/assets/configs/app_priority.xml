@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (apps)*>
+
+    <!ELEMENT apps (app)+>
+    <!ATTLIST apps priority CDATA #REQUIRED>
+
+    <!ELEMENT app (#PCDATA)>
+    <!ATTLIST app package CDATA #REQUIRED>
+    ]>
+<!--说明：自定义控制命令-->
+
+<!--UI优先级定义:-->
+<!--a、导航、行车记录同属于最高优先级-->
+<!--b、音乐、喜马拉雅、等这类多媒体app同属于第三优先级-->
+<!--c、讲故事、讲笑话等这类多媒体播报以及天气、股票、限行等这类即时资讯信息展示同属于第四优先级-->
+
+<!--优先级的规则：-->
+<!--a、同优先级的UI“互斥”，即最后调用的UI高于之前被调起的。举例：导航先打开，行车记录再打开，那么不会主动调出（回到）导航的-->
+<!--UI；天气播报过程中吊起股票查询，则股票查询的UI干掉天气查询的接口-->
+<!--b、低优先级的UI交互完成后，自动调出（回到）最后打开的最高优先级的UI，举例：导航先打开，再打开音乐app，一段时间后；或者查-->
+<!--股票，股票信息播放完成一段时间后，自动回到导航的UI-->
+
+<!--等待时间约定（可以根据路测的反馈再修改）：-->
+<!--a、股票、天气、限行TTS播报完成后再等待3秒，如3秒内用户不手动点股票、限行的大图，则适配层退出，调出（回到）高优先级的UI；-->
+<!--如TTS播报完成后的3秒内用户点开大图，则重新倒计时6秒后退出；如用户6秒内点大图再回到小图界面，则重新及时6秒后退出。-->
+<!--b、笑话、故事、音乐，喜马拉雅等，在节目内容开始播放6秒后UI退出，调出（回到）高优先级的UI-->
+
+<root>
+
+    <!--最高优先级-->
+    <apps priority="priority_1">
+        <!-- 地图 -->
+        <app package="com.mapbar.android.carnavi"/> <!-- 图吧 -->
+        <app package="com.autonavi.minimap"/> <!-- 高德地图 -->
+        <app package="com.baidu.BaiduMap"/> <!-- 百度地图 -->
+        <app package="com.baidu.navi"/> <!-- 百度导航 -->
+        <app package="com.autonavi.amapauto"/> <!-- 高德地图车机版 -->
+        <app package="cld.navi.k3618.mainframe"/> <!-- 凯立德导航，这个包名会变，对接时需修改 -->
+
+        <!-- 行车记录仪。如果需要定制，在此修改成自己的行车记录仪包名即可 -->
+        <app package="com.stcloud.driverecorder"/> <!-- 行车记录仪 -->
+    </apps>
+
+    <!--<apps priority="priority_2">-->
+    <!--</apps>-->
+
+    <!--第三优先级-->
+    <apps priority="priority_3">
+        <app package="cn.kuwo.kwmusiccar"/> <!-- 酷我音乐 -->
+        <app package="com.aispeech.aios.music"/> <!-- AIOS Music -->
+        <app package="com.ximalaya.ting.android.car"/> <!-- 喜马拉雅FM -->
+    </apps>
+
+    <!--不建议配置最低优先级，一般情况最低优先级的UI均为AIOS自带UI-->
+</root>

@@ -16,10 +16,6 @@ public class BNRBroadCast extends BroadcastReceiver {
 	private static final String EDOG_GET_FLOATING_STATUS = "com.szcx.edog.get.floating.status";
 	private static final String TEMP_HIGH_KEYEVENT = "android.intent.action.TEMP_HIGH_KEYEVENT";
 	private static final String TEMP_NORMAL_KEYEVENT = "android.intent.action.TEMP_NORMAL_KEYEVENT";
-	private static final String BAIDU_MAP = "com.baidu.BaiduMap";
-	private static final String GAODE_MAP = "com.autonavi.minimap";
-	private static final String BAIDU_NAVI = "com.baidu.navi";
-	private static final String KUWO_MUSIC = "cn.kuwo.kwmusiccar";
 	public static final String ACTION_ACC_ON = "android.intent.action.ACC_ON_KEYEVENT";
 	public static final String ACTION_ACC_OFF = "android.intent.action.ACC_OFF_KEYEVENT";
 	private static final String ACTION_TOUCHEVENT = "android.intent.action.TOUCHEVENT";
@@ -43,10 +39,12 @@ public class BNRBroadCast extends BroadcastReceiver {
 				Intent edog = new Intent();
 				edog.setAction(EDOG_FLOATING_WINDOW);
 				edog.putExtra(EDOG_WINDOW, MainApplication.edog_state);
+			}else {
+				ScrrenoffActivity.screen.finish();
 			}
 		} else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
 			if (!MainApplication.temp_alert && MainApplication.acc_state) {
-				if (ScrrenoffActivity.screen == null) {
+				/*if (ScrrenoffActivity.screen == null) {
 					if (System.currentTimeMillis() - MainApplication.exitTime > 2000 && MainApplication.autoScreenOff) {
 						MainApplication.exitTime = System.currentTimeMillis();
 						Intent intent2 = new Intent(context,ScrrenoffActivity.class);
@@ -68,6 +66,9 @@ public class BNRBroadCast extends BroadcastReceiver {
 						MainApplication.mScreenOff=true;
 						ScrrenoffActivity.screen.exit();
 					}
+				}*/
+				if (ScrrenoffActivity.screen != null) {
+					ScrrenoffActivity.screen.finish();
 				}
 			}
 			Intent edog = new Intent();
@@ -80,7 +81,16 @@ public class BNRBroadCast extends BroadcastReceiver {
 			context.startService(new Intent(context, BNRService.class));
 			
 		} else if (action.equals(TEMP_HIGH_KEYEVENT)) {
-			MainApplication.temp_alert = true;
+			if (ScrrenoffActivity.screen == null) {
+				Intent intent2 = new Intent(context,ScrrenoffActivity.class);
+				intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				boolean isCamera = Constant.CAMERA_ACTIVITY.equals(MainApplication.app.topActivity());
+				intent2.putExtra("isCamera", isCamera);
+				context.startActivity(intent2);
+				MainApplication.getHander().removeMessages(1);
+				MainApplication.getHander().removeMessages(3);
+			}
+			/*MainApplication.temp_alert = true;
 			MainApplication.getHander().removeMessages(1);
 			if (ScrrenoffActivity.screen != null) {
 				ScrrenoffActivity.screen.exit();
@@ -98,10 +108,10 @@ public class BNRBroadCast extends BroadcastReceiver {
 				forceStopPackage(KUWO_MUSIC, context);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 
 		} else if (action.equals(TEMP_NORMAL_KEYEVENT)) {
-			if(MainApplication.tempActivity != null){
+			/*if(MainApplication.tempActivity != null){
 				MainApplication.tempActivity.finish();
 			}
 			if (MainApplication.acc_state )
@@ -109,7 +119,7 @@ public class BNRBroadCast extends BroadcastReceiver {
 			MainApplication.temp_alert = false;
 			Intent edog = new Intent();
 			edog.setAction(EDOG_FLOATING_WINDOW);
-			edog.putExtra(EDOG_WINDOW, MainApplication.edog_state);
+			edog.putExtra(EDOG_WINDOW, MainApplication.edog_state);*/
 		} else if (ACTION_TOUCHEVENT.equals(action)) {
 			if (MainApplication.acc_state)
 				MainApplication.app.goNoDiturb();

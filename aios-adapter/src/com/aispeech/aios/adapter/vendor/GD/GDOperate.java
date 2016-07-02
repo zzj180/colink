@@ -15,9 +15,8 @@ import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 
 /**
  * @desc 高德地图接口类
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class GDOperate {
     private static final String TAG = "AIOS-Adapter-GDOperate";
@@ -43,7 +42,8 @@ public class GDOperate {
      */
     public void startNavigation(PoiBean bean) {
 //        this.openVioce();//打开路口语音播报
-//        this.checkGDReNavigation();//删除poi遗留
+//        this.checkGDReNavigation();//删除poi遗留  
+    	//铁站-C口","latitude":22.575425,"longitude":113.876578,"distance":1375,"tel":""},{"name":"芝麻街(坪洲地铁店
         if (APPUtil.getInstance().isInstalled(Configs.MapConfig.PACKAGE_GDMAP)) {
             String lat = String.valueOf(bean.getLatitude());
             String lon = String.valueOf(bean.getLongitude());

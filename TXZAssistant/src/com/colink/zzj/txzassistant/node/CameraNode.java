@@ -1,6 +1,9 @@
 package com.colink.zzj.txzassistant.node;
 
+import android.content.Intent;
+
 import com.colink.zzj.txzassistant.AdapterApplication;
+import com.colink.zzj.txzassistant.util.Logger;
 import com.txznet.sdk.TXZCameraManager;
 import com.txznet.sdk.TXZCameraManager.CameraTool;
 import com.txznet.sdk.TXZCameraManager.CapturePictureListener;
@@ -30,19 +33,19 @@ public class CameraNode {
 	public static CameraTool mCameraTool = new CameraTool() {
 
 		@Override
-		public boolean capturePicure(long time,
-				final CapturePictureListener listener) {
+		public boolean capturePicure(long time,final CapturePictureListener listener) {
 			// TODO 抓拍实现
-			AdapterApplication.runOnUiGround(new Runnable() {
-				@Override
-				public void run() {
-					// TODO 保存
-					// listener.onSave("/camera/123.jpg");
-					// TODO 出错
-					listener.onError(TXZCameraManager.CAPTURE_ERROR_NO_CAMERA,
-							"没有摄像头");
-				}
-			}, 2000);
+			Logger.d("long="+time);
+				AdapterApplication.runOnUiGround(new Runnable() {
+					@Override
+					public void run() {
+							AdapterApplication.getContext().sendBroadcast(new Intent("KEY_CAMARA_GET_PICTURE"));
+							// TODO 保存
+							
+							//  TODO 出错
+							listener.onError(TXZCameraManager.CAPTURE_ERROR_UNKNOW,null);
+					}
+				}, time);
 			
 			return true;
 		}

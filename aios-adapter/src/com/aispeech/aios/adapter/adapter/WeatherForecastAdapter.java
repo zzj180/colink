@@ -23,18 +23,21 @@ import java.util.List;
  */
 public class WeatherForecastAdapter extends BaseAdapter {
 
-    private int mDay;
-    private String[] mWeeks;
+    private String mToday;
+    private String mSearchDay;
     private Context mContext;
     private List<WeatherBean.WeatherData> mWeatherDatas;
 
     public WeatherForecastAdapter(Context mContext) {
         this.mContext = mContext;
-        this.mWeeks = mContext.getResources().getStringArray(R.array.week);
     }
 
-    public void setDay(int day) {
-        this.mDay = day;
+    public void setToday(String day) {
+        this.mToday = day;
+    }
+
+    public void setSearchDay(String searchDay) {
+        this.mSearchDay = searchDay;
     }
 
     public void setWeatherDatas(List<WeatherBean.WeatherData> mWeatherDatas) {
@@ -74,7 +77,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        String dateString = DateUtils.getWeekDate(mContext, mWeatherDatas.get(position).getDate(), position);
+        String dateString = DateUtils.getWeekDate(mContext, mToday, mWeatherDatas.get(position).getDate());
         viewHolder.dateText.setText(dateString);
 
         String weather = mWeatherDatas.get(position).getWeather();
@@ -85,7 +88,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
         viewHolder.typeImage.setImageResource(WeatherResource.getImgSmallByWeather(weather));
         viewHolder.tempText.setText(mWeatherDatas.get(position).getTemperature().replace("~", "/"));
 
-        if (position == mDay) {
+        if (mSearchDay.equals(mWeatherDatas.get(position).getDate())) {
             viewHolder.dateText.setTextColor(mContext.getResources().getColor(R.color.text_hightlight));
         } else {
             viewHolder.dateText.setTextColor(mContext.getResources().getColor(R.color.text_white));

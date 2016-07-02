@@ -51,7 +51,7 @@ public class SerialPort {
 	public OutputStream getOutputStream() {
 		return mFileOutputStream;
 	}
-
+	
 	// JNI
 	private native static FileDescriptor open(String path, int baudrate,
 			int flags);

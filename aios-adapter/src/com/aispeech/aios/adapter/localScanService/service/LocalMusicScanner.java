@@ -8,6 +8,7 @@ import com.aispeech.ailog.AILog;
 import com.aispeech.aios.adapter.localScanService.bean.LocalMusicBean;
 import com.aispeech.aios.adapter.localScanService.db.MusicLocalDaoImpl;
 import com.aispeech.aios.adapter.localScanService.util.CharUtil;
+import com.aispeech.aios.adapter.localScanService.util.PathClusterUtil;
 import com.aispeech.aios.client.AIOSMusicDataNode;
 
 import org.json.JSONArray;
@@ -39,12 +40,15 @@ public class LocalMusicScanner implements Runnable {
 
     @Override
     public void run() {
-        // 1 拿到歌曲完整路径 list
-        // 2 解析list
-        // 3 post AIOS
-        // 4 存数据库
 
-        List<LocalMusicBean> list = parseMusicInfo(getMusicList(mfolders));
+        List<String> musicFileList = new ArrayList<String>();
+
+        for (String rootPath : PathClusterUtil.getClusteredList(mfolders)) {//拿到歌曲完整路径 list
+            initMusicFileList(musicFileList, rootPath);
+        }
+
+        List<LocalMusicBean> localMusicBeanList = getMusicList(musicFileList);
+        List<LocalMusicBean> list = parseMusicInfo(localMusicBeanList);// 解析list
 
         updataLocalMusicDB(list);//更新数据库
 
@@ -57,130 +61,103 @@ public class LocalMusicScanner implements Runnable {
 
     }
 
-
     /**
-     * 遍历文件夹下所有音乐文件
+     * 根据音频文件名列表获取List<LocalMusicBean>对象,Item已经设置好完整名和简单名
      *
-     * @param folders
-     * @return
+     * @param musicFileList 音频文件完整名列表
+     * @return List<LocalMusicBean>对象
      */
-    private List<LocalMusicBean> getMusicList(List<String> folders) {
+    private List<LocalMusicBean> getMusicList(List<String> musicFileList) {
 
         List<LocalMusicBean> dataList = new ArrayList<LocalMusicBean>();
-        LocalMusicBean info = null;
-        for (int i = 0; i < folders.size(); i++) {
-            String path = folders.get(i);
-            //遍历文件
-            File dirFile = new File(path);
 
-            if (!dirFile.exists() || dirFile.listFiles() == null) {
-                continue;
-            }
-            for (File file : dirFile.listFiles()) {
+        LocalMusicBean info;
+        File musicFile;
+        for (String musicFilePath : musicFileList) {
 
-                String name = file.getName();
-                if (name.toLowerCase().endsWith(".mp3") || name.toLowerCase().endsWith(".ogg")) {
-                    info = new LocalMusicBean();
-                    info.setPath(folders.get(i) + "/" + name);
-                    info.setFileName(name);
-                    dataList.add(info);
+            info = new LocalMusicBean();
+            musicFile = new File(musicFilePath);
+
+            info.setPath(musicFilePath);
+            info.setFileName(musicFile.getName());
+
+            dataList.add(info);
+        }
+        return dataList;
+    }
+
+    /**
+     * 根据根目录递归查询下面的音频文件，并添加到List<String>
+     *
+     * @param musicFileList 应该传递进来一个空的列表
+     * @param rootPath      跟目录
+     */
+    private void initMusicFileList(List<String> musicFileList, String rootPath) {
+
+        File rootFile = new File(rootPath);
+        File[] files = rootFile.listFiles();
+
+        if (files!=null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    initMusicFileList(musicFileList, file.getAbsolutePath());
+                } else {
+                    String name = file.getName().toLowerCase();
+                    if (name.endsWith(".ogg") || name.endsWith(".mp3")) {
+                        musicFileList.add(file.getAbsolutePath());
+                    }
                 }
             }
         }
-        return dataList;
     }
 
 
     /**
      * 解析音频文件
+     *
      * @param dataList 音频文件信息
      * @return
      */
-    private List<LocalMusicBean>  parseMusicInfo(List<LocalMusicBean> dataList) {
+    private List<LocalMusicBean> parseMusicInfo(List<LocalMusicBean> dataList) {
 
         List<LocalMusicBean> musicList = new ArrayList<LocalMusicBean>();
 
-        if (dataList == null || dataList.size() == 0) {
-            AILog.d(TAG, "未找到歌曲！");
-        }
-
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
 
-        File file = null;
-
+        AILog.d(TAG, "解析之前的音乐信息：");
+        AILog.d(TAG, dataList);
+        File file;
         for (LocalMusicBean info : dataList) {
-
             file = new File(info.getPath());
+            if (file.exists()) {
+                try {
+                    mmr.setDataSource(info.getPath());
 
-            try {
-                mmr.setDataSource(info.getPath());
+                    info.setMusicName(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)));
+                    info.setArtist(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)));
 
-                AILog.d(TAG, "bean.path :" + info.getPath());
+                    info.setSize(String.valueOf(file.length()));
+                    info.setData(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE)));
+                    info.setAlbum(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)));
+                    info.setCloud(false);//是否云端音乐
+                    info.setDuration(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
+                    info.setMime(getEmptyMessyCodeValidated(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)));
 
-                AILog.d(TAG, "bean.Name :" + info.getFileName());
+                    if (!musicList.contains(info)) {//去重复
+                        musicList.add(info);
+                    }
 
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)) || CharUtil.isMessyCode(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE))) {
-                    info.setMusicName("unknown");
-                } else {
-                    info.setMusicName(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
+                } catch (Exception e) {
+                    AILog.e(TAG, e.toString());
                 }
-                AILog.d(TAG, "bean.MusicName :" + info.getMusicName());
-
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)) || CharUtil.isMessyCode(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM))) {
-                    info.setAlbum("unknown");
-                } else {
-                    info.setAlbum(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
-                }
-                AILog.d(TAG, "bean.album :" + info.getAlbum());
-
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)) || CharUtil.isMessyCode(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)) ) {
-                    info.setArtist("unknown");
-                } else {
-                    info.setArtist(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
-                }
-                AILog.d(TAG, "bean.artist :" + info.getArtist());
-
-                info.setCloud(false);//是否云端音乐
-
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE))) {
-                    info.setData("unknown");
-                } else {
-                    info.setData(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE));
-                }
-                AILog.d(TAG, "bean.data :" + info.getData());
-
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION))) {
-                    info.setDuration("unknown");
-                } else {
-                    info.setDuration(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
-                }
-                AILog.d(TAG, "info.duration :" + info.getDuration());
-
-                info.setSize(String.valueOf(file.length()));
-                AILog.d(TAG, "info.size :" + info.getSize());
-
-                if (TextUtils.isEmpty(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE))) {
-                    info.setMime("unknown");
-                } else {
-                    info.setMime(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE));
-                }
-                AILog.d(TAG, "info.mime :" + info.getMime());
-
-                if (!musicList.contains(info)) {//去重复
-                    musicList.add(info);
-                }
-
-            } catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IllegalStateException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
 
         }
-        return musicList;
 
+
+        AILog.d(TAG, "解析之后的音乐信息：");
+        AILog.d(TAG, dataList);
+        return musicList;
     }
 
     /**
@@ -209,50 +186,48 @@ public class LocalMusicScanner implements Runnable {
 
         JSONObject jb = new JSONObject();
         JSONArray jrr = new JSONArray();
-        JSONObject job = null;
+        JSONObject job;
         for (LocalMusicBean info : list) {
             job = new JSONObject();
 
             job.put("id", String.valueOf(info.getId()));
-
-            if ("unknown".equals(info.getMusicName())) {
-                job.put("title", "");
-            } else {
-                job.put("title", info.getMusicName());
-            }
-
-            if ("unknown".equals(info.getArtist())) {
-                job.put("artist", "");
-            } else {
-                job.put("artist", info.getArtist());
-            }
-
-            if ("unknown".equals(info.getAlbum())) {
-                job.put("album", "");
-            } else {
-                job.put("album", info.getAlbum());
-            }
-
-            if ("unknown".equals(info.getFileName())) {
-                job.put("name", "");
-            } else {
-                job.put("name", info.getFileName().substring(0,(info.getFileName().lastIndexOf("."))));//去掉后缀名
-            }
-
-            if ("unknown".equals(info.getDuration())) {
-                job.put("duration", null);
-            } else {
-                job.put("duration", Integer.getInteger(info.getDuration()));
-            }
+            job.put("title", getValidated(info.getMusicName()));
+            job.put("artist", getValidated(info.getArtist()));
+            job.put("name", info.getFileName().substring(0, (info.getFileName().lastIndexOf("."))));//去掉后缀名
+            job.put("album", getValidated(info.getAlbum()));
+            job.put("duration", Integer.getInteger(info.getDuration()));
             job.put("size", Integer.parseInt(info.getSize()));
             job.put("url", info.getPath());
+
             jrr.put(job);
         }
 
         jb.put("songs", jrr);
-        AIOSMusicDataNode.getInstance().postData(jb.toString());//发给AIOS
-        AILog.d(TAG, "JRR:" + jrr);
 
+        AILog.i("传给内核同步的Json：");
+        AILog.json(TAG, jb.toString());
+
+        AIOSMusicDataNode.getInstance().postData(jb.toString());
+    }
+
+    /**
+     * 如果字符串等于"unknown"，就返回“”字符串，否则返回原字符串
+     *
+     * @param src 待验证字符串
+     * @return 验证之后的字符串
+     */
+    private String getValidated(String src) {
+        return "unknown".equals(src) ? "" : src;
+    }
+
+    /**
+     * 如果是乱码或者为空，就返回"unknown"，否则返回原字符串
+     *
+     * @param src 待验证字符串
+     * @return 验证之后的字符串
+     */
+    private String getEmptyMessyCodeValidated(String src) {
+        return TextUtils.isEmpty(src) || CharUtil.isMessyCode(src) ? "unknown" : src;
     }
 
 }

@@ -32,14 +32,16 @@ public class MainApplication extends Application {
 	private String CONSUMER_CODE = "ro.inet.consumer.code";
 	public static String custom_code;
 	public final static String NO_DIDTURB = "no_disturb";
+	public static final String BACK_CAR_STATE = "back_car_state";
+
 	private static final String SCREEN_OFF_SWITCH = "screen_off_switch";
 	private String ACC_STATE = "acc_state";
 
 	public static boolean autoScreenOff;
 	public static long exitTime;
+	public static boolean isBackCar;
 	public static boolean mScreenOff=false;
 
-	
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -56,7 +58,6 @@ public class MainApplication extends Application {
 					public void onChange(boolean selfChange) {
 						goNoDiturb();
 					}
-
 				});
 		getContentResolver().registerContentObserver(Settings.System.getUriFor(ACC_STATE), true,
 				new ContentObserver(getHander()) {
@@ -76,6 +77,9 @@ public class MainApplication extends Application {
 								forceStopPackage(Constant.BAIDU_NAVI, getApplicationContext());
 								forceStopPackage(Constant.GAODE_MAP, getApplicationContext());
 								forceStopPackage(Constant.KUWO_MUSIC, getApplicationContext());
+								forceStopPackage(Constant.XMLY_FM, getApplicationContext());
+								forceStopPackage(Constant.GD_CAR_PKG, getApplicationContext());
+								forceStopPackage(Constant.WEB_CHAT_PKG, getApplicationContext());
 								forceStopPackage(Constant.BAIDU_MAP, getApplicationContext());
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -88,12 +92,83 @@ public class MainApplication extends Application {
 					}
 				});
 		
+		isBackCar();
+		getContentResolver().registerContentObserver(Settings.System.getUriFor(BACK_CAR_STATE), true,
+				new ContentObserver(new Handler(getMainLooper())) {
+					@Override
+					public void onChange(boolean selfChange) {
+						isBackCar();
+					}
+
+				});
+		
+		getContentResolver().registerContentObserver(Settings.System.getUriFor(NO_DIDTURB), true,
+				new ContentObserver(new Handler(getMainLooper())) {
+					@Override
+					public void onChange(boolean selfChange) {
+						goNoDiturb();
+					}
+				});
+		
+		getContentResolver().registerContentObserver(Settings.System.getUriFor("ONE_NAVI"), true,
+				new ContentObserver(new Handler(getMainLooper())) {
+					@Override
+					public void onChange(boolean selfChange) {
+						closeOneNaviApp();
+					}
+				});
+		
+		getHander().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				closeOneNaviApp();
+			}
+		}, 5000);
+		
 //		CrashHandler crasHandler = CrashHandler.getInstance();
 //		crasHandler.init(this);
 	}
 
+	private void closeOneNaviApp() {
+		try {
+			forceStopPackage("com.glsx.ddbox", getApplicationContext());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			forceStopPackage("com.glsx.autonavi", getApplicationContext());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			forceStopPackage("com.share.android", getApplicationContext());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			forceStopPackage("com.coagent.voip", getApplicationContext());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			forceStopPackage("com.coagent.ecar", getApplicationContext());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void isBackCar() {
+		isBackCar = Settings.System.getInt(getContentResolver(),BACK_CAR_STATE,0) == 1;
+		if(isBackCar){
+			getHander().removeMessages(1);
+			if (ScrrenoffActivity.screen != null) {
+				ScrrenoffActivity.screen.finish();
+			}
+		}
+	}
+
 	public void goNoDiturb() {
-		int time = Settings.System.getInt(getApplicationContext().getContentResolver(), NO_DIDTURB,300);
+		int time = Settings.System.getInt(getApplicationContext().getContentResolver(), NO_DIDTURB,60);
 		autoScreenOff = Settings.System.getInt(getApplicationContext().getContentResolver(), SCREEN_OFF_SWITCH,0)==0;
 		Log.d("sleep", "time =" + time + ",screenOFF = "+autoScreenOff);
 		getHander().removeMessages(1);
@@ -109,14 +184,18 @@ public class MainApplication extends Application {
 	public String topActivity() {
 		String className = null;
 		ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		List<RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
-		// 应用程序位于堆栈的顶层
-		if (tasksInfo != null) {
-			ComponentName name = tasksInfo.get(0).topActivity;
-			if(name!=null){
-				className = name.getClassName();
+		try {
+			List<RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
+			// 应用程序位于堆栈的顶层
+			if (tasksInfo != null) {
+				ComponentName name = tasksInfo.get(0).topActivity;
+				if(name!=null){
+					className = name.getClassName();
+				}
 			}
+		} catch (Exception e) {
 		}
+		
 		return className;
 	}
 

@@ -19,15 +19,14 @@
         android:layout_height="@dimen/show_height"
         android:layout_x="@dimen/num_x1"
         android:layout_y="@dimen/button_home"
-      	android:ellipsize="marquee"
-            android:gravity="center|end"
-            android:scrollbars="horizontal"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#ffffff"
-        android:textSize="34sp"
+        android:background="@drawable/show"
+        android:ellipsize="marquee"
         android:paddingRight="@dimen/del_width"
-        android:background="@drawable/show" />
+        android:scrollbars="horizontal"
+        android:singleLine="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="34sp" />
 
     <ImageButton
         android:id="@+id/del"
@@ -185,7 +184,7 @@
         android:id="@+id/bluestate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_x="@dimen/button_home_left"
+        android:layout_x="@dimen/button_home_left"
         android:layout_y="@dimen/text_bluestate_y"
         android:text="@string/unconnect" />
 
@@ -193,7 +192,7 @@
         android:id="@+id/bluename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_x="@dimen/button_home_left"
+        android:layout_x="@dimen/button_home_left"
         android:layout_y="@dimen/text_devicename_y"
         android:text="无" />
 

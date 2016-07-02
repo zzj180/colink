@@ -3,8 +3,10 @@ package com.aispeech.aios.adapter.ui;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.aispeech.ailog.AILog;
 import com.aispeech.aios.BusClient;
+import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.adapter.HelpInfoAdapter;
 import com.aispeech.aios.adapter.adapter.SearchFmAdapter;
@@ -44,9 +46,8 @@ import java.util.List;
 
 /**
  * @desc 悬浮窗展示UI
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimation.OnFlipChangeListener {
     private static final String TAG = "AIOS-FloatWindowSmallView";
@@ -92,6 +93,15 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
     private LinearLayout mContextLayout;
     private ImageView mSearchLoadingImage;
 
+    /**麦克风Layout**/
+    private RelativeLayout mMicLayout;
+    /**识别结构Layout**/
+    private RelativeLayout mAsrLayout;
+    /**音频伴随Layout**/
+    private LinearLayout mVoiceLayout;
+    private RelativeLayout mStopVoiceLayout;
+    private ImageView mPlayingImageView;
+
     public FloatWindowSmallView(Context context) {
         super(context);
 
@@ -101,6 +111,12 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
     }
 
     private void initViews() {
+
+        mMicLayout = (RelativeLayout) findViewById(R.id.rl_left);
+        mAsrLayout = (RelativeLayout) findViewById(R.id.rl_right);
+        mVoiceLayout = (LinearLayout) findViewById(R.id.ll_voice);
+        mStopVoiceLayout = (RelativeLayout) findViewById(R.id.rl_voice);
+        mPlayingImageView = (ImageView) findViewById(R.id.iv_playing);
 
         mWaitLayout = (LinearLayout) findViewById(R.id.ll_wait);
         mWeatherLayout = (WeatherLayout) findViewById(R.id.linlayout_weather);
@@ -156,6 +172,13 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
     }
 
     /**
+     * 判断当前是否处在帮助/设置界面，用于决定是否开启计时器
+     */
+    public boolean isHelpOrSettingPage(){
+        return mSettingHelpLayout.getVisibility() == View.VISIBLE;
+    }
+
+    /**
      * 设置众view的点击事件
      *
      * @param listener 要设置的listener
@@ -163,6 +186,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
     public void setOnClickListener(OnClickListener listener) {
         mBackImage.setOnClickListener(listener);
         mMicView.setOnClickListener(listener);
+        mStopVoiceLayout.setOnClickListener(listener);
         mConfirmButton.setOnClickListener(listener);
         mCancleButton.setOnClickListener(listener);
         mHelpImage.setOnClickListener(new OnClickListener() {
@@ -190,7 +214,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
         mBackImage.setVisibility(GONE);
         mSettingHelpLayout.setVisibility(VISIBLE);
         mSettingHelpLayout.onHelpSettingsClicked(mTipsMode, isHelpImageClicked);
-  //      isHelpImageClicked = !isHelpImageClicked;
+        isHelpImageClicked = !isHelpImageClicked;
 
         float cx = mHelpImage.getWidth() / 2.0f;
         float cy = mHelpImage.getHeight() / 2.0f;
@@ -253,12 +277,13 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        AILog.e(TAG, "=========" + keyCode);
+        Log.e(TAG, "=========" + keyCode);
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { //按下的如果是BACK，同时没有重复
-            new Handler().postDelayed(new Runnable() {
+            mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     MyWindowManager.getInstance().removeSmallWindow();
+                    removeVehLargeImage();
                     isHelpImageClicked = false;
                 }
             }, 800);
@@ -593,7 +618,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
         mHandler.post(mStopRecognitionRunnable); // 麦克风动画停止
     }
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler(AdapterApplication.getContext().getMainLooper());
 
     /**
      * 开始动画的线程
@@ -603,7 +628,9 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
         @Override
         public void run() {
             if (null != mMicView) {
-                AILog.i(TAG, "startListening");
+                Log.i(TAG, "startListening");
+                AudioManager audioManager = (AudioManager) AdapterApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
                 mMicView.startListening();
             }
         }
@@ -616,7 +643,9 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
 
         @Override
         public void run() {
-            AILog.i(TAG, "stopListening");
+            Log.i(TAG, "stopListening");
+            AudioManager audioManager = (AudioManager) AdapterApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
             mMicView.stopListening();
         }
     };
@@ -628,7 +657,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
 
         @Override
         public void run() {
-            AILog.i(TAG, "startRecognition");
+            Log.i(TAG, "startRecognition");
             mMicView.startRecognition();
         }
     };
@@ -640,7 +669,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
 
         @Override
         public void run() {
-            AILog.i(TAG, "stopRecognition");
+            Log.i(TAG, "stopRecognition");
             mMicView.stopRecognition();
         }
     };
@@ -725,7 +754,7 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
 
 
     //hide ALl ui right of floatwindow
-    private void removeMainViews() {
+    public void removeMainViews() {
         mContextLayout.setVisibility(GONE);
         mSearchLoadingImage.setVisibility(GONE);
         mWaitLayout.setVisibility(GONE);
@@ -825,4 +854,21 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
             }
         }
     }
+
+    public void switchToVoiceView(){
+        mMicLayout.setVisibility(View.GONE);
+        mAsrLayout.setVisibility(View.GONE);
+        mVoiceLayout.setVisibility(View.VISIBLE);
+
+        ((AnimationDrawable) mPlayingImageView.getDrawable()).start();
+    }
+
+    public void switchToMainView(){
+        mString = "";
+        mMicLayout.setVisibility(View.VISIBLE);
+        mAsrLayout.setVisibility(View.VISIBLE);
+        mVoiceLayout.setVisibility(View.GONE);
+        mPlayingImageView.clearAnimation();
+    }
+
 }

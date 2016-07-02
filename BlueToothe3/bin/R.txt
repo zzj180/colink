@@ -660,6 +660,7 @@ int string app_name 0x7f0b000d
 int string callin 0x7f0b0016
 int string calling 0x7f0b0017
 int string callwait 0x7f0b0018
+int string clearBook 0x7f0b0021
 int string connected 0x7f0b0019
 int string count 0x7f0b0015
 int string hello_world 0x7f0b000e
@@ -668,6 +669,7 @@ int string preference_default_tts_role 0x7f0b0011
 int string preference_key_tts_pitch 0x7f0b0014
 int string preference_key_tts_speed 0x7f0b0012
 int string preference_key_tts_volume 0x7f0b0013
+int string reDownBook 0x7f0b0020
 int string unconnect 0x7f0b001a
 int style AppBaseTheme 0x7f0c0083
 int style AppTheme 0x7f0c0085

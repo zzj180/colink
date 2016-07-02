@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 
 /**
- * Created by aispeecch on 2016/3/1.
+ * Created by zzj on 2016/3/1.
  */
 public class Contact {
 

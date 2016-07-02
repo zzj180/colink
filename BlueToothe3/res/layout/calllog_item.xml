@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:textSize="24sp"
-        android:maxEms="4"
+        android:singleLine="true"
+         android:maxEms="8"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -22,7 +23,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="8dp"
         android:textSize="24sp"
-        android:maxEms="7"
+        android:singleLine="true"
+         android:maxEms="8"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
@@ -42,6 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="4dp"
+       android:layout_marginLeft="8dp"
         android:textSize="20sp"
         android:text="TextView" />
 

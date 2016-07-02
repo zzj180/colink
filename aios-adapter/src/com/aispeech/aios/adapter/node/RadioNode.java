@@ -14,9 +14,8 @@ import com.aispeech.aios.adapter.util.SystemOperateUtil;
 /**
  * @desc AIOS Radio Node
  * 调频/调幅收音机领域
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-18
- * @copyright aispeech.com
  */
 public class RadioNode extends BaseNode {
 

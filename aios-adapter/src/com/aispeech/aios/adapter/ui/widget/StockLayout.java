@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.adapter.StockAdapter;
 import com.aispeech.aios.adapter.bean.StockBean;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.ui.view.StockChartView;
 import com.aispeech.aios.adapter.util.MathUtil;
 
@@ -87,6 +89,7 @@ public class StockLayout extends LinearLayout {
 
     /**
      * 显示股票查询UI
+     *
      * @param bean 股票实体bean
      */
     public void showStockUI(StockBean bean) {
@@ -170,8 +173,8 @@ public class StockLayout extends LinearLayout {
         List<String> ytitle = new ArrayList<String>();
         List<String> endTitle = new ArrayList<String>();
 
-        if(bean.mBaseData.state.equals("suspend")) {
-            for(int i = 0; i <= 4; i++) {
+        if (bean.mBaseData.state.equals("suspend")) {
+            for (int i = 0; i <= 4; i++) {
                 ytitle.add("0.00");
                 endTitle.add("0.00%");
             }
@@ -234,7 +237,7 @@ public class StockLayout extends LinearLayout {
                     xtitle.add(" ");
                     xtitle.add(time[1] + "");
 
-                    if(df == null) {
+                    if (df == null) {
                         df = new SimpleDateFormat("HH:mm");
                     }
 
@@ -243,7 +246,7 @@ public class StockLayout extends LinearLayout {
                         Date stopTime = df.parse(time[1]);
 
 
-                        int count = (int)(stopTime.getTime() - startTime.getTime()) / 1000 / 60;
+                        int count = (int) (stopTime.getTime() - startTime.getTime()) / 1000 / 60;
                         mStockChart.setMaxPointNum(count);
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -260,7 +263,7 @@ public class StockLayout extends LinearLayout {
                     xtitle.add(" ");
                     xtitle.add(time1[1] + "");
 
-                    if(df == null) {
+                    if (df == null) {
                         df = new SimpleDateFormat("HH:mm");
                     }
 
@@ -271,7 +274,7 @@ public class StockLayout extends LinearLayout {
                         Date stopTime = df.parse(time1[1]);
 
 
-                        int count = (int)(stopTime.getTime() - midTime1.getTime() + midTime0.getTime() - startTime.getTime()) / 1000 / 60;
+                        int count = (int) (stopTime.getTime() - midTime1.getTime() + midTime0.getTime() - startTime.getTime()) / 1000 / 60;
                         mStockChart.setMaxPointNum(count);
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -347,10 +350,9 @@ public class StockLayout extends LinearLayout {
     private OnClickListener stockListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            UITimer.getInstance().executeUITask(new UITimerTask(), UITimer.DELAY_MIDDLE , !zoomStatus);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mStockChart.getLayoutParams();
             if (!zoomStatus) {
-
                 layoutParams.width = RelativeLayout.LayoutParams.MATCH_PARENT;
                 layoutParams.height = RelativeLayout.LayoutParams.MATCH_PARENT;
                 mStockChart.setShowEndTitles(true);

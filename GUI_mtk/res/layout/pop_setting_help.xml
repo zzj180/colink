@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#7F000000"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/ll_setting_pop"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/butten_back_normal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_pop_title"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            style="@style/text_session_item_f3"
+            android:text="@string/baidu_text"
+             />
+
+        <TextView
+            android:id="@+id/tv_pop_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="left"
+            android:text="@string/baidu_text"
+            style="@style/text_session_item_f4_tips" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/line_x" >
+        </View>
+
+        <TextView
+            android:id="@+id/tv_i_know"
+            android:layout_width="fill_parent"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:background="@drawable/selector_setting_pop_button"
+            style="@style/text_session_item_f3"
+            android:text="@string/button_text_i_know"
+             />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -16,5 +16,30 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+ <style name="text_activity_title_f2">
+        <item name="android:textSize">@dimen/text_size_f2</item>
+        <item name="android:textColor">@color/color_text_tips</item>
+    </style>
+    
+  <style name="text_session_item_f3">
+        <item name="android:textSize">@dimen/text_size_f3</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="text_session_item_f3_tips">
+        <item name="android:textSize">@dimen/text_size_f3</item>
+        <item name="android:textColor">@color/color_text_tips</item>
+    </style>
+    <style name="text_session_item_f4">
+        <item name="android:textSize">@dimen/text_size_f4</item>
+        <item name="android:textColor">@color/grey_white</item>
+    </style>
+     <style name="text_session_item_f4_tips">
+        <item name="android:textSize">@dimen/text_size_f4</item>
+        <item name="android:textColor">@color/color_text_tips</item>
+    </style>
+    
+     <style name="text_session_item_f5_tips">
+        <item name="android:textSize">@dimen/text_size_f5</item>
+        <item name="android:textColor">@color/color_text_tips</item>
+    </style>
 </resources>

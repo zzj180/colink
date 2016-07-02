@@ -17,8 +17,9 @@ import com.aispeech.aios.adapter.node.HomeNode;
 import com.aispeech.aios.adapter.node.NearbyNode;
 import com.aispeech.aios.adapter.node.PhoneNode;
 import com.aispeech.aios.adapter.node.TTSNode;
-import com.aispeech.aios.adapter.util.SendBroadCastUtil;
+import com.aispeech.aios.adapter.ui.view.MarqueeTextView;
 import com.aispeech.aios.adapter.util.MapOperateUtil;
+import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 
 import java.util.List;
 
@@ -58,18 +59,19 @@ public class NearbyAdapter extends BaseAdapter {
         if (null == convertView) {
             mHolder = new ViewHolder();
             convertView = View.inflate(mContext, R.layout.nearby_item, null);
-//            mHolder.address = (TextView) convertView.findViewById(R.id.nearby_area);
+            mHolder.index = (TextView) convertView.findViewById(R.id.nearby_index);
             mHolder.distance = (TextView) convertView.findViewById(R.id.nearby_distance);
-            mHolder.name = (TextView) convertView.findViewById(R.id.nearby_address);
+            mHolder.name = (MarqueeTextView) convertView.findViewById(R.id.nearby_name);
             mHolder.image_nav = (ImageView) convertView.findViewById(R.id.nearby_nav);
             mHolder.image_phone = (ImageView) convertView.findViewById(R.id.nearby_phone);
             convertView.setTag(mHolder);
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        mHolder.name.setText(String.valueOf(position + 1) + ". " + ((PoiBean) l.get(position)).getName());//设置poi名称
+
+        mHolder.index.setText(String.valueOf(position + 1) + ". ");
+        mHolder.name.setText(((PoiBean) l.get(position)).getName());//设置poi名称
         mHolder.distance.setText(((PoiBean) l.get(position)).getDisplayDistance());//设置距离
-//        mHolder.address.setText(l.get(position).getAddress());//设置地址
         if (!TextUtils.isEmpty(((PoiBean) l.get(position)).getTelephone())) {//如果电话号码不为空
             mHolder.image_phone.setImageResource(R.drawable.nearby_phone_selected);//将电话图片设置可选状态
 
@@ -81,8 +83,8 @@ public class NearbyAdapter extends BaseAdapter {
                     } else {
                         TTSNode.getInstance().play("连接蓝牙后我才能帮你打电话哦");
                     }
-                    NearbyNode.getInstance().getBusClient().publish(AiosApi.Other.UI_CLICK);////语音交互停止
-                    UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, null, null);
+                    NearbyNode.getInstance().getBusClient().publish(AiosApi.Other.UI_PAUSE);////语音交互停止
+//                    UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, null, null);
                 }
             });
 
@@ -103,8 +105,9 @@ public class NearbyAdapter extends BaseAdapter {
     }
 
     public static final class ViewHolder {
+        public TextView index;//序号
         public TextView distance;//距离  1000Km
-        public TextView name;// poi名称  北京天安门
+        public MarqueeTextView name;// poi名称  北京天安门
         public ImageView image_phone;//电话图标
         public ImageView image_nav;//导航图标
     }

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mycontent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_page_background"
+    android:orientation="horizontal" >
+
+    <View
+        android:layout_width="@dimen/main_icon_margin_left"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+
+    <!-- wake up -->
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_setting_wakeup"
+            android:contentDescription="@string/setting_title_wakeup" />
+
+        <TextView
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_title_margin_top"
+            android:text="@string/setting_title_wakeup" />
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_setting_status_text"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/setting_page1_status_text_margin_top">
+            
+            <TextView
+                android:id="@+id/tv_status_wakeup_close"
+                style="@style/text_session_item_f5_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/setting_wakeup_status_closed" />
+            
+            <TextView
+                android:id="@+id/tv_status_wakeup_open"
+                style="@style/text_session_item_f5_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="@string/wakeup_word_default" />
+            
+            <ImageView 
+                android:id="@+id/iv_setting_edit_wakeupword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:visibility="visible"
+                android:src="@drawable/selector_btn_edit_setting"
+                />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_wakeup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_status_image_margin_top"
+            android:background="@drawable/selector_checkbox_setting"
+            android:button="@null"
+            android:checked="true" />
+    </LinearLayout>
+
+    <!-- map choose -->
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_setting_map"
+            android:contentDescription="@string/setting_title_map_choose" />
+
+        <TextView
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_title_margin_top"
+            android:text="@string/setting_title_map_choose" />
+
+        <TextView
+            android:id="@+id/tv_status_map_choose"
+            style="@style/text_session_item_f5_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_setting_status_text"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/setting_page1_status_text_margin_top"
+            android:text="@string/setting_map_choose_gaode" />
+
+        <RadioGroup
+            android:id="@+id/rg_setting_map_choose"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_status_image_margin_top"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rBtn_map_gaode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_map_gaode"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/rBtn_map_baidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_map_baidu"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/rBtn_map_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_map_more"
+                android:button="@null"
+                android:visibility="gone"
+                android:gravity="center" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <!-- tts play speed choose -->
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_fuction_item_bg"
+        android:foreground="@drawable/butten_mask"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_setting_tts"
+            android:contentDescription="@string/setting_title_map_choose" />
+
+        <TextView
+            style="@style/text_session_item_f4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_title_margin_top"
+            android:text="@string/setting_title_tts_speed" />
+
+        <TextView
+            android:id="@+id/tv_status_tts_play"
+            style="@style/text_session_item_f5_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_setting_status_text"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/setting_page1_status_text_margin_top"
+            android:text="@string/setting_tts_speed_standard" />
+
+        <RadioGroup
+            android:id="@+id/rg_setting_tts_speed"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_page1_status_image_margin_top"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rBtn_tts_slowly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_tts_play_slowly"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/rBtn_tts_standard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_tts_play_standard"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/rBtn_tts_fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_tts_play_fast"
+                android:button="@null"
+                android:gravity="center" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/main_icon_margin_right"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+
+</LinearLayout>

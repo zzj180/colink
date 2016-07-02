@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zzj.coogo.screenoff"
     android:sharedUserId="android.uid.phone"
-    android:versionCode="23"
-    android:versionName="1.1.8.1" xmlns:tools="http://schemas.android.com/tools">
+    android:versionCode="29"
+    android:versionName="1.1.8.8" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -82,17 +82,20 @@
                 <action android:name="android.intent.action.CLOSE_SYSTEM_DIALOGS" />
             </intent-filter>
         </receiver>
+        
         <receiver android:name="com.zzj.coogo.screenoff.GaoDeBroadCast" >
             <intent-filter>
                 <action android:name="com.amap.navi" />
                  <action android:name="com.autonavi.minimap.carmode.send"/>
             </intent-filter>
         </receiver>
+        
         <receiver android:name="com.zzj.coogo.screenoff.MeiXingBroadCast" >
             <intent-filter>
                 <action android:name="com.mxnavi.mxnavi.TO_CTRL_TURNING_INFO" />
             </intent-filter>
         </receiver>
+        
         <receiver android:name="com.zzj.coogo.screenoff.NaviGuidanceReceiver" >
             <intent-filter>
                 <action android:name="CLD.NAVI.MSG.GUIDANCEINFO" />
@@ -103,6 +106,7 @@
             android:name="com.zzj.coogo.screenoff.BNRService"
             android:exported="false" >
         </service>
+        
         <service
             android:name="com.zzj.coogo.screenoff.SwitchServeice"
             android:exported="false" >

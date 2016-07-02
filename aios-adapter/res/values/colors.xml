@@ -57,4 +57,7 @@
 
     <!-- ListView分割线颜色 -->
     <color name="listview_divider_color">#3F4145</color>
+    
+     <color name="prepare_navi">#1e2336</color>
+     <color name="prepare_navi_active">#32364d</color>
 </resources>

@@ -5,6 +5,7 @@ package com.aispeech.aios.adapter.control;
  * to do:
  */
 public enum UIType {
+    ShowWindow("awakeui"),
     Awake("awake"),
     //股票
     StockNodeUI("stock"),
@@ -25,6 +26,18 @@ public enum UIType {
     WeChat("wechat"),
     //移除悬浮窗，可以在子线程调用
     DismissWindow("dismissWindow"),
+    /**
+     * 切换到音频伴随悬浮窗
+     **/
+    SwitchVoiceWindow("switchVoiceWindow"),
+    /**
+     * 退出音频伴随悬浮窗
+     **/
+    ExitVoiceWindow("exitVoiceWindow"),
+    /**
+     * 退出音频伴随悬浮窗，并恢复主悬浮窗
+     **/
+    RestoreMainWindow("restoreMainWindow"),
     //限行移除大图view
     VehiclerestrictionLargeImage("vehiclerestrictionLargeImage"),
     //共用loading处理
@@ -49,9 +62,7 @@ public enum UIType {
     PhoneAnswerStatus("phoneAnswer"),
     PhoneList("phoneList"),
     PhoneStopWait("stopwait"),
-    PhoneUpdateWait("updatewait")
-    ;
-
+    PhoneUpdateWait("updatewait");
 
 
     private String type;

@@ -43,7 +43,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	LEDView ledView;
 	View layout;
 
-	WakeLock wl;
+//	WakeLock wl;
 
 	private BNRBroadCast mScreenOffReceiver;
 
@@ -55,6 +55,8 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	public static final String CMDCLOSE_DESK_LYRIC = "close_desk_lyric";// 关闭桌面歌词
 	String MOFANG_PKG = "com.coogo.inet.vui.assistant.car";
 	String WINDOW_SERVICE_CLASS = "com.android.kwmusic.KWMusicService";
+	
+	String TXZ_PKG = "com.colink.zzj.txzassistant";
 	String content = "";
 	boolean isTW;
 	boolean isCamera;
@@ -135,9 +137,9 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 		 */
 
 		initView();
-		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
-				| PowerManager.ACQUIRE_CAUSES_WAKEUP, "Gank");
+	/*	PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		 = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+				| PowerManager.ACQUIRE_CAUSES_WAKEUP, "Gank");*/
 
 		MainApplication.mScreenOff = false;
 		registReceive();
@@ -185,7 +187,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onResume() {
 		
-		wl.acquire();
+//		wl.acquire();
 		int lrc_show = Settings.System.getInt(getApplicationContext().getContentResolver(), "screen_off_lrc_switch", 0);
 		if(lrc_show == 0){
 			ComponentName name = new ComponentName(MOFANG_PKG, WINDOW_SERVICE_CLASS);
@@ -197,6 +199,17 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			ComponentName txzname = new ComponentName(TXZ_PKG, WINDOW_SERVICE_CLASS);
+			Intent txz = new Intent();
+			txz.setComponent(txzname);
+			txz.setAction(CMDOPEN_DESK_LYRIC);
+			try {
+				startService(txz);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			sendBroadcast(new Intent(CMDOPEN_DESK_LYRIC));
+			
 		}
 		if (MainApplication.gaodeisnavi) {
 			ledView.setVisibility(View.GONE);
@@ -212,8 +225,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	}
 
 	private void registReceive() {
-		final IntentFilter homeFilter = new IntentFilter(
-				Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+		final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
 		mScreenOffReceiver = new BNRBroadCast();
 		registerReceiver(mScreenOffReceiver, homeFilter);
 		IntentFilter filter = new IntentFilter();
@@ -237,7 +249,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onPause() {
-		wl.release();
+//		wl.release();
 		ledView.stop();
 		ComponentName name = new ComponentName(MOFANG_PKG, WINDOW_SERVICE_CLASS);
 		Intent intent = new Intent();
@@ -248,6 +260,17 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ComponentName txzname = new ComponentName(TXZ_PKG, WINDOW_SERVICE_CLASS);
+		Intent txz = new Intent();
+		txz.setComponent(txzname);
+		txz.setAction(CMDCLOSE_DESK_LYRIC);
+		try {
+			startService(txz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sendBroadcast(new Intent(CMDCLOSE_DESK_LYRIC));
 		super.onPause();
 	}
 
@@ -313,8 +336,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	void goHomePage(){
 		Intent mHomeIntent = new Intent(Intent.ACTION_MAIN, null);
 		mHomeIntent.addCategory(Intent.CATEGORY_HOME);
-		mHomeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+		mHomeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 		startActivity(mHomeIntent);
 	}
 	

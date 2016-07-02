@@ -4,9 +4,13 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 
+import com.aispeech.ailog.AILog;
+
 import java.io.File;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @desc 音频播放管理器
@@ -14,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @date 2016-01-13
  * @copyright aispeech.com
  */
-public class AudioPlayManager implements OnCompletionListener {
+public class AudioPlayManager implements OnCompletionListener,MediaPlayer.OnPreparedListener,MediaPlayer.OnErrorListener {
 
     private static final String TAG = "WcAudioPlayManager";
 
@@ -22,16 +26,20 @@ public class AudioPlayManager implements OnCompletionListener {
 
     private MediaPlayer mPlayer;
 
+    private ExecutorService worker;
+
     public interface PlayListener {
         void onAudioStart();
 
         void onComplete();
+
+        void onError();
     }
 
     private ConcurrentLinkedQueue<PlayListener> mPlayListenerLists;
 
     enum State {
-        PLAYING, PAUSE, STOPED,
+        PLAYING, PAUSE, STOPED,ERROR
     }
 
     private State mState = State.STOPED;
@@ -43,7 +51,11 @@ public class AudioPlayManager implements OnCompletionListener {
         mPlayer = new MediaPlayer();
         mPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
         mPlayer.setOnCompletionListener(this);
+        mPlayer.setOnPreparedListener(this);
+        mPlayer.setOnErrorListener(this);
         mPlayListenerLists = new ConcurrentLinkedQueue<PlayListener>();
+
+        worker = Executors.newSingleThreadExecutor();
     }
 
     public static synchronized AudioPlayManager getInstance() {
@@ -59,7 +71,7 @@ public class AudioPlayManager implements OnCompletionListener {
      */
     public void openAndPlay(final String filePath) {
         //Don't do time-consuming operation in ui thread
-        new Thread(new Runnable() {
+        worker.execute(new Runnable() {
             @Override
             public void run() {
                 File file = new File(filePath);
@@ -70,20 +82,17 @@ public class AudioPlayManager implements OnCompletionListener {
                 try {
                     mPlayer.reset();
                     mPlayer.setDataSource(filePath);
-                    mPlayer.prepare();
-                    mPlayer.start();
-                    dispatchStartListener();
-                } catch (IllegalStateException e){
+                    mPlayer.prepareAsync();
+                } catch (IllegalStateException e) {
                     e.printStackTrace();
                     onStateChange(State.STOPED);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                    onStateChange(State.STOPED);
-                    dispatchCompleteListener();
+                    onStateChange(State.ERROR);
+                    dispatchErrorListenner();
                 }
-                onStateChange(State.PLAYING);
             }
-        }).start();
+        });
     }
 
     /**
@@ -91,8 +100,13 @@ public class AudioPlayManager implements OnCompletionListener {
      */
     public void pause() {
         if (mState == State.PLAYING) {
-            onStateChange(State.PAUSE);
-            mPlayer.pause();
+            worker.execute(new Runnable() {
+                @Override
+                public void run() {
+                    onStateChange(State.PAUSE);
+                    mPlayer.pause();
+                }
+            });
         }
     }
 
@@ -101,8 +115,13 @@ public class AudioPlayManager implements OnCompletionListener {
      */
     public void resume() {
         if (mState == State.PAUSE) {
-            onStateChange(State.PLAYING);
-            mPlayer.start();
+            worker.execute(new Runnable() {
+                @Override
+                public void run() {
+                    onStateChange(State.PLAYING);
+                    mPlayer.start();
+                }
+            });
         }
 
     }
@@ -113,8 +132,14 @@ public class AudioPlayManager implements OnCompletionListener {
     public void stop() {
         try {
             if (mState !=null) {
-                onStateChange(State.STOPED);
-                mPlayer.stop();
+                worker.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        onStateChange(State.STOPED);
+                        mPlayer.stop();
+                        mPlayer.reset();
+                    }
+                });
             }
         } catch (IllegalStateException e) {
             onStateChange(State.STOPED);
@@ -133,6 +158,25 @@ public class AudioPlayManager implements OnCompletionListener {
     public void onCompletion(MediaPlayer mp) {
         onStateChange(State.STOPED);
         dispatchCompleteListener();
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        if(mPlayer!=null){
+            mPlayer.start();
+            onStateChange(State.PLAYING);
+            dispatchStartListener();
+        }
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+        if(i == 1){
+            AILog.e(TAG , "捕获播放器异常");
+            onStateChange(State.ERROR);
+            dispatchErrorListenner();
+        }
+        return true;
     }
 
     /**
@@ -159,6 +203,18 @@ public class AudioPlayManager implements OnCompletionListener {
         }
     }
 
+
+    private void dispatchErrorListenner(){
+        AILog.e(TAG , "dispatchErrorListenner excute!");
+        Iterator<PlayListener> iter = mPlayListenerLists.iterator();
+        if(iter.hasNext()){
+            PlayListener listener = iter.next();
+            if (listener != null) {
+                listener.onError();
+            }
+        }
+    }
+
     private void dispatchCompleteListener() {
         Iterator<PlayListener> iter = mPlayListenerLists.iterator();
         while (iter.hasNext()) {
@@ -181,10 +237,12 @@ public class AudioPlayManager implements OnCompletionListener {
 
     /**
      * 释放音频资源
-     */
+     *
+     * deprecated
     public synchronized void release() {
         mPlayListenerLists.clear();
         mWcAudioPlayManager = null;
     }
+    */
 
 }

@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnConn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect" />
+
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register" />
+
+    <Button
+        android:id="@+id/btnSendEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendEvent" />
+
+    <Button
+        android:id="@+id/btnSendMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendMsg" />
+
+    <Button
+        android:id="@+id/btnWriteContactsInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WriteContactsInfo" />
+
+</LinearLayout>

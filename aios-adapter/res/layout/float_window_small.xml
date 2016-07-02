@@ -8,6 +8,7 @@
     android:orientation="horizontal">
 
     <RelativeLayout
+        android:id="@+id/rl_left"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -41,6 +42,7 @@
 
     <!-- 右边所有View -->
     <RelativeLayout
+        android:id="@+id/rl_right"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
@@ -123,5 +125,59 @@
             android:visibility="gone" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_voice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/anim_voice_playing"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/tv_playing"/>
+
+            <TextView
+                android:id="@+id/tv_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/tips_playing"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_small_size"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_voice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/selector_red_btn"
+            android:padding="8dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@drawable/icon_stop_play"
+                android:text="@string/tips_stop_voice"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/font_small_size"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

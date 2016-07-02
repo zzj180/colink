@@ -7,7 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.R;
+import com.aispeech.aios.adapter.node.TTSNode;
 
 /**
  * @desc 请在此添加类描述
@@ -26,8 +28,10 @@ public class HelpInfoAdapter extends BaseAdapter {
     public final static int HELP_TYPE_STOCK = 7;
 
     private Context mContext;
+    private String mWakeup;
     private int mTipsType = HELP_TYPE_HOME;
     private int[] mHomeTipsImages = {
+            R.drawable.icon_tips_wakeup,
             R.drawable.icon_tips_phone,
             R.drawable.icon_tips_music,
             R.drawable.icon_tips_nav_arr,
@@ -51,6 +55,17 @@ public class HelpInfoAdapter extends BaseAdapter {
         mTipsWeatherString = mContext.getResources().getStringArray(R.array.help_tips_weather);
         mTipsStockString = mContext.getResources().getStringArray(R.array.help_tips_stock);
         mTipsVehString = mContext.getResources().getStringArray(R.array.help_tips_veh);
+
+        //获取当前主唤醒词
+        BusClient.RPCResult rpc = TTSNode.getInstance().call("/keys/wakeup/words/major", "get");
+        try {
+            String majorCode = new String((rpc.retval == null) ? "unknown".getBytes() : rpc.retval, "utf-8");
+            if (!"unknown".equals(majorCode) && !"nil".equals(majorCode)) {
+                mWakeup = majorCode;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setTipsType(int tipsType) {
@@ -139,7 +154,12 @@ public class HelpInfoAdapter extends BaseAdapter {
             default:
                 viewHodler.typeImage.setImageResource(mHomeTipsImages[position]);
                 viewHodler.typeText.setText(mTipsTypeString[position]);
-                viewHodler.tipsText.setText(mTipsHomeString[position]);
+
+                if (position == 0) {
+                    String wakeup = String.format(mTipsHomeString[position], mWakeup);
+                    viewHodler.tipsText.setText(wakeup);
+                } else
+                    viewHodler.tipsText.setText(mTipsHomeString[position]);
 
                 viewHodler.typeImage.setVisibility(View.VISIBLE);
                 viewHodler.typeText.setVisibility(View.VISIBLE);

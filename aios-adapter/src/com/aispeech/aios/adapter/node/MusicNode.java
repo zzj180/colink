@@ -16,6 +16,8 @@ import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.bean.RpcRecall;
 import com.aispeech.aios.adapter.config.AiosApi;
 import com.aispeech.aios.adapter.config.Configs;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.ui.MyWindowManager;
@@ -74,16 +76,6 @@ public class MusicNode extends BaseNode implements OnMusicSearchedListener, OnMu
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public void onExit() {
-        super.onExit();
-    }
-
-    @Override
     public void onJoin() {
         super.onJoin();
         bc.subscribe(AiosApi.Wakeup.WAKEUP_RESULT);
@@ -138,6 +130,7 @@ public class MusicNode extends BaseNode implements OnMusicSearchedListener, OnMu
                 if (AiosApi.Music.PLAY.equals(url) && bytes.size() == 0) {
                     AIMusic.playRandom();
                     UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 0);
+                    UITimer.getInstance().executeAppTask(new UITimerTask() , UITimer.DELAY_MIDDLE);
                     return null;
                 }
 
@@ -220,6 +213,7 @@ public class MusicNode extends BaseNode implements OnMusicSearchedListener, OnMu
     public void onItemSelect(String jsonArray) {
         MyWindowManager.getInstance().removeSmallWindow();
         AIMusic.play(jsonArray);
+        UITimer.getInstance().executeAppTask(new UITimerTask() , UITimer.DELAY_MIDDLE);
     }
 
 

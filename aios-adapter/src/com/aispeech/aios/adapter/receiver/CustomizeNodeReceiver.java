@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.aispeech.ailog.AILog;
-import com.aispeech.aios.adapter.service.FloatWindowService;
+import com.aispeech.aios.adapter.config.AiosApi;
+import com.aispeech.aios.adapter.model.CustomVoiceData;
+import com.aispeech.aios.adapter.node.CustomizeNode;
 
 /**
  * @desc 定制节点接收器
@@ -23,11 +25,15 @@ public class CustomizeNodeReceiver extends BaseReceiver {
 
     @Override
     protected void onReceiveIml(Context context, Intent intent) {
-        AILog.i(TAG,mAction);
+        AILog.i(TAG, mAction);
 
         if (mAction.equals(Intent.ACTION_PACKAGE_ADDED) || mAction.equals(Intent.ACTION_PACKAGE_REMOVED)) {
-
-            FloatWindowService.getRunningService().restartCustomizeNode();
+            try {
+                AILog.d("publish customvoiceData again");
+                CustomizeNode.getInstance().publishSticky(AiosApi.Customize.COMMAND, new CustomVoiceData().getStatementJson());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     }

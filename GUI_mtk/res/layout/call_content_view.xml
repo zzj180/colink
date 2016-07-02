@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/pick_app_content_view_header_height"
+        android:background="@color/title_bg"
+        android:visibility="gone" />
+
+    <!-- Call XXX: call_out_name -->
+
+    <TextView
+        android:id="@+id/tv_title_call_out_name"
+        style="@style/text_session_title_f2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/session_content_padding_head_title"
+        android:background="@drawable/session_view_bg"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_contact_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_contact_avatar" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/callDialogName"
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name" />
+
+            <TextView
+                android:id="@+id/callDialogNumber"
+                style="@style/text_session_item_f4_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="@string/number" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/session_button_hight"
+        android:orientation="horizontal" >
+
+        <!-- Call Out and ProgerssBar -->
+        <FrameLayout
+            android:id="@+id/fl_call_out_ok"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:gravity="center" >
+
+            <ProgressBar
+                android:id="@+id/progressBarWaiting"
+                style="@style/ProgressBarHorizontalStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center" 
+                >
+                <TextView
+                    android:id="@+id/tv_call_out_ok"
+                    style="@style/text_session_item_f3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:text="@string/call_out" />
+                
+                <!--Time Left  -->
+                <TextView
+                    android:id="@+id/tv_call_out_cancel_time"
+                    style="@style/text_session_item_f4_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_call_out_ok"
+                    android:gravity="center"
+                    android:text="" />
+            </RelativeLayout>
+        </FrameLayout>
+
+        <!-- Call Cancel -->
+        <RelativeLayout
+            android:id="@+id/rl_call_out_cancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/selector_btn_session"
+            android:gravity="center" >
+            <TextView
+                android:id="@+id/tv_call_out_cancel"
+                style="@style/text_session_item_f3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="@string/call_cancel" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

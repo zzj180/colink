@@ -3,10 +3,12 @@ package com.aispeech.aios.adapter.ui.widget;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -15,10 +17,13 @@ import android.widget.TextView;
 import com.aispeech.ailog.AILog;
 import com.aispeech.aimusic.AIMusic;
 import com.aispeech.aimusic.config.MusicConfig;
+import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.adapter.HelpInfoAdapter;
 import com.aispeech.aios.adapter.adapter.SpinnerAdapter;
 import com.aispeech.aios.adapter.config.Configs;
+import com.aispeech.aios.adapter.config.Configs.MapConfig;
+import com.aispeech.aios.adapter.node.HomeNode;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
 
 import java.net.URL;
@@ -29,9 +34,8 @@ import java.util.Locale;
 
 /**
  * @desc 设置和帮助页面Layout
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-02-16
- * @copyright aispeech.com
  */
 public class SettingsHelpLayout extends LinearLayout {
 
@@ -46,6 +50,7 @@ public class SettingsHelpLayout extends LinearLayout {
     private Spinner mPhoneSpinner;
     private Spinner mMusicSpinner;
     private Spinner mMapSpinner;
+    private Spinner mWakeupSpinner;
 
     private TextView mCopyRightTextCN;
     private TextView mCopyRightTextEN;
@@ -110,16 +115,19 @@ public class SettingsHelpLayout extends LinearLayout {
         mPhoneSpinner = (Spinner) findViewById(R.id.spinner_setting_phone);
         mMusicSpinner = (Spinner) findViewById(R.id.spinner_setting_music);
         mMapSpinner = (Spinner) findViewById(R.id.spinner_setting_map);
+        mWakeupSpinner = (Spinner) findViewById(R.id.spinner_setting_wakeup);
     }
 
     private void initDatas() {
         SpinnerAdapter mPhoneAdapter = new SpinnerAdapter(mContext, mContext.getResources().getStringArray(R.array.phones));
         SpinnerAdapter mMusicAdapter = new SpinnerAdapter(mContext, mContext.getResources().getStringArray(R.array.musics));
         SpinnerAdapter mMapAdapter = new SpinnerAdapter(mContext, mContext.getResources().getStringArray(R.array.maps));
+        SpinnerAdapter mWakeupAdapter = new SpinnerAdapter(mContext, mContext.getResources().getStringArray(R.array.switch_wakeup));
 
         mPhoneSpinner.setAdapter(mPhoneAdapter);
         mMusicSpinner.setAdapter(mMusicAdapter);
         mMapSpinner.setAdapter(mMapAdapter);
+        mWakeupSpinner.setAdapter(mWakeupAdapter);
     }
 
     /**
@@ -190,7 +198,7 @@ public class SettingsHelpLayout extends LinearLayout {
         });
 
 
-        int defaultMapType = PreferenceHelper.getInstance().getCurrentMapType();//int
+        int defaultMapType = Settings.System.getInt(AdapterApplication.getContext().getContentResolver(),"MAP_INDEX", MapConfig.GDMAP);//int
         String mapType = Configs.getMapName(defaultMapType);
         AILog.d(TAG, "读取默认地图设置：" + mapType);
 
@@ -204,7 +212,7 @@ public class SettingsHelpLayout extends LinearLayout {
         mMapSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                int mp = PreferenceHelper.getInstance().getCurrentMapType();
+                int mp = Settings.System.getInt(AdapterApplication.getContext().getContentResolver(),"MAP_INDEX", MapConfig.GDMAP);
 
                 String mapType = maps[i];//选中的地图类型
                 AILog.d(TAG, "mMapSpinner onClick  :" + mapType);
@@ -221,16 +229,38 @@ public class SettingsHelpLayout extends LinearLayout {
                 } else if (mapType.equals("高德地图车机版")) {
                     mp = Configs.MapConfig.GDMAPFORCAT;
                 }
-
-                PreferenceHelper.getInstance().setCurrentMapType(mp); //存储当前设置的地图类型
+                Settings.System.putInt(AdapterApplication.getContext().getContentResolver(),"MAP_INDEX", mp);
+                 //存储当前设置的地图类型
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+            	
             }
         });
+        
+        mWakeupSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				PreferenceHelper.getInstance().setWakeUpEnable(position==0);
+				HomeNode.getInstance().setWakeUp(position==0);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        	
+		});
+
+        boolean wakeUpEnable = PreferenceHelper.getInstance().getWakeUpEnable();
+        mWakeupSpinner.setSelection(wakeUpEnable?0:1,true);
+        
         initTime();
     }
 

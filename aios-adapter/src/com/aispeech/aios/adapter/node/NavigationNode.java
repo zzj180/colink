@@ -163,7 +163,7 @@ public class NavigationNode extends BaseNode {
                 if (obj.has("longitude")) {
                     bean.setLongitude(obj.getDouble("longitude"));
                 }
-            } catch (JSONException e) {
+            }catch (JSONException e) {
                 e.printStackTrace();
             }
             try {
@@ -288,6 +288,9 @@ public class NavigationNode extends BaseNode {
                     break;
                 case 1://没有找到目的地
                     bc.publish("navigation.poi.search.result", null, "not found");
+                    break;
+                case 3://网络条件不佳
+                    bc.publish("navigation.poi.search.result", null, "timeout");
                     break;
                 case 2://定位失败
                     TTSNode.getInstance().play(mContext.getString(R.string.error_loc));

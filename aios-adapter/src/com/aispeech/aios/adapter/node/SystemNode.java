@@ -11,18 +11,18 @@ import com.aispeech.aios.BaseNode;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.bean.RpcRecall;
 import com.aispeech.aios.adapter.config.AiosApi;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.util.MapOperateUtil;
 import com.aispeech.aios.adapter.util.StringUtil;
 import com.aispeech.aios.adapter.util.SystemOperateUtil;
-import com.aispeech.aios.adapter.util.ThirdAPPOperateUtil;
 
 /**
  * @desc 系统操作相关节点
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class SystemNode extends BaseNode {
 
@@ -49,7 +49,16 @@ public class SystemNode extends BaseNode {
         if (topic.equals("wakeup.result")) {//唤醒成功
             AILog.d(TAG, "System捕获到唤醒成功的消息");
             SystemOperateUtil.getInstance().openScreen();
-            UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow);
+        } else if (topic.equals("aios.mute.state")) {
+            String state = StringUtil.getEncodedString(parts[0]);
+           /* AudioManager audioManager = (AudioManager) AdapterApplication.getContext()
+					.getSystemService(Context.AUDIO_SERVICE);
+            try {
+            	boolean enable = Boolean.parseBoolean(state);
+            	audioManager.setStreamMute(AudioManager.STREAM_MUSIC, enable);
+			} catch (Exception e) {
+			}*/
+            Log.d(TAG,"state=" + state);
         }
 
     }
@@ -58,14 +67,13 @@ public class SystemNode extends BaseNode {
     public void onJoin() {
         super.onJoin();
         bc.subscribe("wakeup.result");
+        bc.subscribe("aios.mute.state");
     }
 
     @Override
     public BusClient.RPCResult onCall(String url, byte[]... bytes) throws Exception {
         AILog.i(TAG, url, bytes);
-
         mRpcRecall = new RpcRecall(url, bytes);
-
         if (bytes.length > 0) {
             return new BusClient.RPCResult(onCallCommand(url, StringUtil.getEncodedString(bytes[0])));
         } else {
@@ -75,7 +83,7 @@ public class SystemNode extends BaseNode {
 
     /**
      * 根据onCall回调的参数处理交互逻辑
-     * @param url 参考onCall回调参数1
+     * @param url     参考onCall回调参数1
      * @param APPName APP名称
      * @return
      * @throws UnsupportedEncodingException
@@ -88,6 +96,7 @@ public class SystemNode extends BaseNode {
             	SystemOperateUtil.getInstance().openDrivingRecorder();
                 return "行车记录仪打开";
             } else if (APPName.equals("音乐") || APPName.equals("酷我音乐")) {//打开音乐
+                UITimer.getInstance().executeAppTask(new UITimerTask() , UITimer.DELAY_MIDDLE);
                 AIMusic.play();
             } else if (APPName.equals("地图") || APPName.equals("导航")) {
                 MapOperateUtil.getInstance().openMap();
@@ -150,14 +159,17 @@ public class SystemNode extends BaseNode {
         } else if (url.equals(AiosApi.System.SCREEN_ON)) {//打开屏幕
             SystemOperateUtil.getInstance().openScreen();
         } else if (url.equals(AiosApi.System.SCREEN_OFF)) {//关闭屏幕
-            SystemOperateUtil.getInstance().closeScreen();
+        	SystemOperateUtil.getInstance().openNoDisturb();
         } else if (url.equals(AiosApi.System.MEDIA_PAUSE)) {//暂停播放
             AIMusic.playPause();
         } else if (url.equals(AiosApi.System.MEDIA_PLAY)) {//播放音乐
-            if (mRpcRecall.getByteList().size() > 0) {
+            //当关键词匹配“播放音乐”时，才会进入该分支
+            if (mRpcRecall.getByteList().size() > 0) {//取得指定的播放模式
                 String mode = StringUtil.getEncodedString(mRpcRecall.getByteList().get(0));
                 AIMusic.setPlayMode(mode);
             }
+
+            UITimer.getInstance().executeAppTask(new UITimerTask() , UITimer.DELAY_MIDDLE);
             AIMusic.play();
         } else if (url.equals(AiosApi.System.MEDIA_PREV)) {//播放上一首
             AIMusic.playPre();

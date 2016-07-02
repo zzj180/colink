@@ -21,7 +21,7 @@ public class LEDView extends LinearLayout {
 
 	public static final String DATE_FORMAT = "%02d:%02d";
 	
-	private String mFormat = "yyyy.M.d  E";
+	private String mFormat = "yyyy.M.d  EEEE";
 	
 	private static final int REFRESH_DELAY = 20000;
 

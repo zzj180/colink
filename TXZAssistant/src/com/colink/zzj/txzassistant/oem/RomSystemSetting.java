@@ -4,6 +4,10 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import com.colink.zzj.txzassistant.AdapterApplication;
+import com.colink.zzj.txzassistant.AssistantService;
+import com.colink.zzj.txzassistant.util.APPUtil;
+import com.colink.zzj.txzassistant.util.Logger;
+import com.colink.zzj.txzassistant.util.SystemPropertiesProxy;
 
 import android.app.ActivityManager;
 import android.app.WallpaperManager;
@@ -13,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.provider.Settings;
@@ -33,6 +38,14 @@ public class RomSystemSetting {
 	private static final String ACTION_HANGUP = "com.colink.service.TelphoneService.TelephoneHandupReceive";
 	private static final String ACTION_ANSWER = "com.colink.service.TelphoneService.TelephoneAnswerReceive";
 	private static final String ACTION_DIAL = "com.colink.service.TelphoneService.TelephoneReceive";
+	
+	public static final int TIPS_MUSIC_LOWER = 1;// 音量降低
+	public static final int TIPS_MUSIC_RAISE = 2;// 音量增大
+	public static final int TIPS_MUSIC_SETMAX = 3;// 音量最大
+	public static final int TIPS_MUSIC_SETMIN = 4;// 音量最小
+	private static final String TIPS_MUSIC_MAX = "音量已经调到最大了";
+	private static final String TIPS_MUSIC_MIN = "音量已经调到最小了";
+	private static final String TIPS_MUSIC_VOLUME = "音量已经调到";
 	
 	private static final String ONE_NAVI = "ONE_NAVI";
 
@@ -114,8 +127,7 @@ public class RomSystemSetting {
 					.setRingerMode(vibrate ? AudioManager.RINGER_MODE_VIBRATE
 							: AudioManager.RINGER_MODE_SILENT);
 		} else {
-			mAudioManager
-					.setRingerMode(vibrate ? AudioManager.RINGER_MODE_VIBRATE
+			mAudioManager.setRingerMode(vibrate ? AudioManager.RINGER_MODE_VIBRATE
 							: AudioManager.RINGER_MODE_NORMAL);
 			mAudioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
 					vibrate ? AudioManager.VIBRATE_SETTING_ON
@@ -146,18 +158,176 @@ public class RomSystemSetting {
 		// CallLog.Calls.MISSED_TYPE);
 		startActivityFromService(context, intent);
 	}
+	
+	public static String playSoundTips(Context context,final int type) {
+		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
+		int currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_ALARM); // 系统当前音量/3
+		Logger.d("currentVolume="+currentVolume);
+		String platform = SystemPropertiesProxy.get(context, AssistantService.KEY_PLATFORM);
+		switch (type) {
+		case TIPS_MUSIC_RAISE:// 增大音量
+			if (TextUtils.isEmpty(platform)) {
+				if (currentVolume >= 7) {
+					currentVolume = 7;
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(
+							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+							currentVolume, 0);
+					return TIPS_MUSIC_MAX;
+				} else {
+					currentVolume++;
+					// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+							currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(
+							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+							currentVolume, 0);
+					return TIPS_MUSIC_VOLUME + currentVolume;
+				}
+			} else {
+				currentVolume = currentVolume/3;
+				if (currentVolume > 3) {
+					currentVolume = 4;
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,12, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,6, 0);
+					return TIPS_MUSIC_MAX;
+				} else {
+					currentVolume++;
+				 // PreferenceHelper.getInstance().setVolume(currentVolume * 3);
+					int pre_volume = currentVolume * 3;
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,pre_volume/2, 0);
+					return TIPS_MUSIC_VOLUME + currentVolume;
+				}
+			}
+		case TIPS_MUSIC_LOWER:// 降低音量
+			if (TextUtils.isEmpty(platform)) {
+				if (currentVolume <= 0) {
+					currentVolume = 0;
+					// 静音了播报无作用
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+							currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(
+							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+							currentVolume, 0);
+					return TIPS_MUSIC_MIN;
+				} else {
+					--currentVolume;
+					// PreferenceHelper.getInstance().setVolume(currentVolume *
+					// 3);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+							currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(
+							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+							currentVolume, 0);
+					return  TIPS_MUSIC_VOLUME + currentVolume;
+
+				}
+			} else {
+				currentVolume = currentVolume/3;
+				if (currentVolume <= 0) {
+					currentVolume = 0;
+					// 静音了播报无作用
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume , 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume , 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume , 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,currentVolume , 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,currentVolume , 0);
+					return TIPS_MUSIC_MIN;
+				} else {
+					--currentVolume;
+					// PreferenceHelper.getInstance().setVolume(currentVolume *
+					// 3);
+					int pre_volume = currentVolume * 3;
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,pre_volume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,pre_volume/2, 0);
+					return TIPS_MUSIC_VOLUME + currentVolume;
+
+				}
+			}
+		case TIPS_MUSIC_SETMAX:// 音量最大
+			if (TextUtils.isEmpty(platform)) {
+				currentVolume = 7;
+				// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+						currentVolume * 2, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,
+						currentVolume, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
+						currentVolume, 0);
+			} else {
+				currentVolume = 12;
+				// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_RING,currentVolume, 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,currentVolume , 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,currentVolume , 0);
+				mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,6, 0);
+			}
+			return  TIPS_MUSIC_MAX;
+		case TIPS_MUSIC_SETMIN:// 音量最小
+			currentVolume = 0;
+			// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_RING,currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,currentVolume , 0);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,currentVolume , 0);
+			return TIPS_MUSIC_MIN;
+		default:
+			break;
+		}
+		return null;
+
+	}
 
 	// 音量加减----vain
 	public static int RaiseOrLowerVolume(Context context, boolean isAdd,int volumeValue) {
 		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		String platform = SystemPropertiesProxy.get(context, AssistantService.KEY_PLATFORM);
 		if (isAdd) {
 			for (int i = 0; i < volumeValue; i++) {// FLAG_REMOVE_SOUND_AND_VIBRATE
+				if(am.getStreamVolume(AudioManager.STREAM_ALARM) > 11){
+					return 12;
+				}
+				if(TextUtils.isEmpty(platform)){
+					am.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_RAISE,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+				}
 				am.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_RAISE,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 				am.adjustStreamVolume(AudioManager.STREAM_ALARM,AudioManager.ADJUST_RAISE,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);//FLAG_SHOW_UI    FX_FOCUS_NAVIGATION_UP
 				am.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION,AudioManager.ADJUST_RAISE,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);//FLAG_SHOW_UI    FX_FOCUS_NAVIGATION_UP
 			}
 		} else {
 			for (int i = 0; i < volumeValue; i++) {
+				if(TextUtils.isEmpty(platform)){
+					am.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_LOWER,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+				}
 				am.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_LOWER,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 				am.adjustStreamVolume(AudioManager.STREAM_ALARM,AudioManager.ADJUST_LOWER,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 				am.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION,AudioManager.ADJUST_LOWER,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
@@ -170,9 +340,17 @@ public class RomSystemSetting {
 	// 最大音量--vain
 	public static int setMaxVolume(Context context) {
 		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC,12, 0);
-		am.setStreamVolume(AudioManager.STREAM_ALARM, 12, 0);
-		am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 12, 0);
+		
+		String platform = SystemPropertiesProxy.get(context, AssistantService.KEY_PLATFORM);
+		if(TextUtils.isEmpty(platform)){
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM, am.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
+			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, am.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
+		}else{
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,12, 0);
+			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 12, 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM, 12, 0);
+		}
 		// 返回当前媒体音量
 		return am.getStreamVolume(AudioManager.STREAM_ALARM);
 	}
@@ -181,19 +359,32 @@ public class RomSystemSetting {
 	public static int setMinVolume(Context context) {
 		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-		am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
 		am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+		am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
 		// 返回当前媒体音量
 		return am.getStreamVolume(AudioManager.STREAM_ALARM);
 	}
 
 	// 设置到某个音量值--vain
 	public static int setVolume(Context context, int volumeValue) {
-		AudioManager am = (AudioManager) context
-				.getSystemService(Context.AUDIO_SERVICE);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC,volumeValue, 0);
-		am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
-		am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumeValue, 0);
+		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		String platform = SystemPropertiesProxy.get(context, AssistantService.KEY_PLATFORM);
+		if(TextUtils.isEmpty(platform)){
+			if(volumeValue > 7){
+				volumeValue = 7;
+			}
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,volumeValue * 2, 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumeValue, 0);
+		}else{
+			if(volumeValue > 12){
+				volumeValue = 12;
+			}
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumeValue, 0);
+		}
+		
 		// 返回当前媒体音量
 		return am.getStreamVolume(AudioManager.STREAM_ALARM);
 	}
@@ -227,9 +418,8 @@ public class RomSystemSetting {
 		context.sendBroadcast(intent);
 	}
 	
-	private static int mStreamVolume = 0;
 	
-	public static void setMute(Context context){
+/*	public static void setMute(Context context){
 		AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
@@ -239,7 +429,7 @@ public class RomSystemSetting {
 		AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		//隐藏音乐进度条
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-	}
+	}*/
 	
 	  /**
      * 打开FM
@@ -311,31 +501,66 @@ public class RomSystemSetting {
     	int navi = Settings.System.getInt(context.getContentResolver(), ONE_NAVI, 0);
 		switch (navi) {
 		case 1:
-			ComponentName componetName = new ComponentName("com.coagent.app","com.coagent.activity.MainActivity");
-			Intent ecar = new Intent();
-			ecar.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			ecar.setComponent(componetName);
-			
-			try {
-				context.startActivity(ecar);
-			} catch (Exception e) {
+			if (APPUtil.getInstance().isInstalled("com.coagent.ecar")) {
+				Intent tmpIntent = new Intent("com.android.ecar.recv");
+				tmpIntent.putExtra("ecarSendKey", "MakeCall");
+				tmpIntent.putExtra("cmdType", "standCMD");
+				tmpIntent.putExtra("keySet", "");
+				context.sendBroadcast(tmpIntent);
+			}else{
+				ComponentName componetName = new ComponentName("com.coagent.app","com.coagent.activity.MainActivity");
+				Intent ecar = new Intent();
+				ecar.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				ecar.setComponent(componetName);
+				
+				try {
+					context.startActivity(ecar);
+				} catch (Exception e) {
+				}
 			}
-
-			Intent tmpIntent = new Intent("com.android.ecar.recv");
-			tmpIntent.putExtra("ecarSendKey", "MakeCall");
-			tmpIntent.putExtra("cmdType", "standCMD");
-			tmpIntent.putExtra("keySet", "");
-			context.sendBroadcast(tmpIntent);
 			break;
 		default:
-			Intent intent = new Intent("com.glsx.bootup.receive.autonavi");
-			intent.putExtra("autonaviType", 1); // autonaviType为1：表示直接发起导航请求，
-												// autonaviType为2：只进入导航主页面（不发起请求）;
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			
+			int enable = 1;
 			try {
-				context.startActivity(intent);
+				Cursor query = context.getContentResolver().query(Uri.parse("content://com.colink.bluetoothe/bluetootheonline"),null, null, null, null);
+				if (query != null) {
+					if (query.moveToNext()) {
+						enable = query.getInt(query.getColumnIndex("support"));
+					}
+					query.close();
+				}
 			} catch (Exception e) {
 			}
+			if(enable == 1){
+				if (APPUtil.getInstance().isInstalled("com.share.android")) {
+					Intent intent = new Intent("tianan.cloudcall.action.CALL");
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					try {
+						context.startActivity(intent);
+					} catch (Exception e) {
+					}
+				}else{
+					Intent intent = new Intent("com.glsx.bootup.receive.autonavi");
+					intent.putExtra("autonaviType", 1); // autonaviType为1：表示直接发起导航请求，
+														// autonaviType为2：只进入导航主页面（不发起请求）;
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					try {
+						context.startActivity(intent);
+					} catch (Exception e) {
+					}
+				}
+			}else{
+				Intent intent = new Intent("com.glsx.bootup.receive.autonavi");
+				intent.putExtra("autonaviType", 1); // autonaviType为1：表示直接发起导航请求，
+													// autonaviType为2：只进入导航主页面（不发起请求）;
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				try {
+					context.startActivity(intent);
+				} catch (Exception e) {
+				}
+			}
+			
 			break;
 		}
     }

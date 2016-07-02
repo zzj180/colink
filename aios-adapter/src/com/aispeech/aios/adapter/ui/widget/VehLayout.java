@@ -16,6 +16,8 @@ import com.aispeech.ailog.AILog;
 import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.bean.VehicleRestrictionBean;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.util.VolleyHelper;
 import com.android.volley.toolbox.NetworkImageView;
 
@@ -70,6 +72,7 @@ public class VehLayout extends LinearLayout implements View.OnClickListener {
 
     /**
      * 显示限行UI
+     *
      * @param bean 车辆限行的实体bean
      */
     public void showUI(VehicleRestrictionBean bean) {
@@ -112,6 +115,7 @@ public class VehLayout extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        UITimer.getInstance().executeUITask(new UITimerTask() , UITimer.DELAY_MIDDLE , true);
         switch (view.getId()) {
             case R.id.img_veh_local:
                 showLargeImg(1);
@@ -147,6 +151,7 @@ public class VehLayout extends LinearLayout implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 removeVehLargeImage();
+                UITimer.getInstance().executeUITask(new UITimerTask() , UITimer.DELAY_MIDDLE , false);
             }
         });
         isCreated = true;//更改状态值
@@ -163,7 +168,7 @@ public class VehLayout extends LinearLayout implements View.OnClickListener {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_REMOVELARGEIMAGE:
-                    if (mWindowManager != null && isCreated  ){
+                    if (mWindowManager != null && isCreated) {
                         mWindowManager.removeView(mFloatLayout);
                         isCreated = false;
 

@@ -12,9 +12,8 @@ import com.aispeech.aios.adapter.util.APPUtil;
 
 /**
  * @desc 凯立德接口类
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class GGOperate {
     private static final String TAG = "AIOS-Adapter-KLDOperate";

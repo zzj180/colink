@@ -7,15 +7,26 @@
     android:gravity="center_vertical"
     android:minHeight="@dimen/result_list_item_min_height">
 
+    <!--序号-->
     <TextView
+        android:id="@+id/phone_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/font_big"/>
+
+    <com.aispeech.aios.adapter.ui.view.MarqueeTextView
         android:id="@+id/phone_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:ellipsize="end"
-        android:singleLine="true"
         android:textColor="@color/text_white"
-        android:textSize="@dimen/font_big" />
+        android:textSize="@dimen/font_big"
+
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/phone_num"

@@ -3,6 +3,7 @@ package com.aispeech.aios.adapter.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 
 import com.aispeech.ailog.AILog;
 import com.aispeech.aios.adapter.AdapterApplication;
@@ -27,6 +28,7 @@ public class PreferenceHelper {
     public static final String PREF_KEY_WIFI_STATE = "pref_key_wifi_state";//wifi状态
     public static final String PREF_KEY_MEDIA_VOLUME = "pref_key_media_volume";//音量大小
     public static final String PREF_KEY_BRIGHTNESS = "pref_key_brightness";//亮度大小
+    public static final String PREF_KEY_WAKEUP_SWITCH = "pref_key_wakeup_switch";//唤醒开关
 
     /**
      * 是否使用远程BusServer
@@ -66,18 +68,18 @@ public class PreferenceHelper {
     /**
      * 存储默认地图类型
      *
-     * @param type    地图类型
+     * @param type 地图类型
      */
-    public void setCurrentMapType(int type) {
+/*    public void setCurrentMapType(int type) {
         AILog.i(TAG, "store current map type : " + type);
         mSp.edit().putInt(PREF_KEY_CURRENT_MAP_TYPE, type).apply();
     }
 
-    /**
+    *//**
      * 获取默认地图类型
      *
      * @return 地图类型
-     */
+     *//*
     public int getCurrentMapType() {
         int defaultMapType = Configs.MapConfig.GDMAP;
         try {
@@ -88,12 +90,12 @@ public class PreferenceHelper {
         defaultMapType = mSp.getInt(PREF_KEY_CURRENT_MAP_TYPE, defaultMapType);
         AILog.i(TAG, "current map type : " + defaultMapType);
         return defaultMapType;
-    }
+    }*/
 
     /**
      * 设置默认音乐应用
      *
-     * @param type    音乐应用：1，AIOS音乐；2，酷我音乐
+     * @param type 音乐应用：1，AIOS音乐；2，酷我音乐
      */
     public void setDefaultMusicType(int type) {
         AILog.i(TAG, "store current music type : " + type);
@@ -103,10 +105,10 @@ public class PreferenceHelper {
     /**
      * 获取默认音乐应用
      *
-     * @return 音乐应用：1，AIOS音乐；2，酷我音乐  默认为 1
+     * @return 音乐应用：1，AIOS音乐；2，酷我音乐  默认为 2
      */
     public int getDefaultMusicType() {
-        int defaultMusicType = 1;
+        int defaultMusicType = 2;
         try {
             defaultMusicType = PropertyUtil.getInstance().loadProperty().getDefaultMusicType();
         } catch (IOException e) {
@@ -162,10 +164,10 @@ public class PreferenceHelper {
     /**
      * 获取系统媒体类型音量
      *
-     * @return 音量值，默认为最大15
+     * @return 音量值，默认为最大7
      */
-    public int getVolume() {
-        int volume = mSp.getInt(PREF_KEY_MEDIA_VOLUME, 15);
+   public int getVolume() {
+        int volume = mSp.getInt(PREF_KEY_MEDIA_VOLUME, 7);
         AILog.i(TAG, "current volume : " + volume);
         return volume;
     }
@@ -177,11 +179,24 @@ public class PreferenceHelper {
 
     /**
      * 获取系统媒体类型音量
+     *
      * @return 音量值，默认为最大255
      */
     public int getBrightness() {
         int curBrightness = mSp.getInt(PREF_KEY_BRIGHTNESS, 255);
-        AILog.i(TAG, "current brightness : " + curBrightness);
+        try {
+            int systemBrightness = Settings.System.getInt(AdapterApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);//读取系统当前屏幕亮度值
+            if(systemBrightness == 0 && curBrightness != 0){//如果系统当前屏幕亮度是 0 && 缓存屏幕亮度不是 0 使用缓存亮度值
+                return curBrightness;
+            }else if (curBrightness != systemBrightness) {
+                curBrightness = systemBrightness;//如果当前缓存本地亮度值不等于系统亮度值，设置亮度值为系统亮度值
+                setBrightness(curBrightness);
+            }
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        AILog.d(TAG, "return  brightness : " + curBrightness);
         return curBrightness;
     }
 
@@ -239,5 +254,13 @@ public class PreferenceHelper {
         }
 
         return defaultString;
+    }
+    
+    public void setWakeUpEnable(boolean enable){
+    	 mSp.edit().putBoolean(PREF_KEY_WAKEUP_SWITCH, enable).apply();
+    }
+    
+    public boolean getWakeUpEnable(){
+    	return mSp.getBoolean(PREF_KEY_WAKEUP_SWITCH, true);
     }
 }

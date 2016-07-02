@@ -1,46 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
     android:descendantFocusability="blocksDescendants"
     android:minHeight="@dimen/result_list_item_min_height">
 
+    <!--序号-->
     <TextView
-        android:id="@+id/nearby_address"
+        android:id="@+id/nearby_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="@dimen/nearby_list_addr_max_width"
-        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="1.北京市天安门"
+        android:layout_marginStart="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/text_white"
-        android:textSize="@dimen/font_big" />
+        android:textSize="@dimen/font_big"/>
 
+    <!--poi名称-->
+    <com.aispeech.aios.adapter.ui.view.MarqueeTextView
+        android:id="@+id/nearby_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@+id/nearby_index"
+        android:layout_toEndOf="@+id/nearby_index"
+        android:layout_toLeftOf="@+id/nearby_distance"
+        android:layout_toStartOf="@+id/nearby_distance"
+
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+
+        android:layout_centerVertical="true"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/font_big"/>
+
+    <!--距离-->
     <TextView
         android:id="@+id/nearby_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/llist_padding"
+        android:layout_marginStart="@dimen/llist_padding"
         android:layout_marginRight="@dimen/llist_padding"
+        android:layout_marginEnd="@dimen/llist_padding"
         android:layout_toLeftOf="@+id/nearby_phone"
+        android:layout_toStartOf="@+id/nearby_phone"
         android:singleLine="true"
-        android:text="1000KM"
         android:textColor="@color/text_white"
-        android:textSize="@dimen/font_medium" />
+        android:textSize="@dimen/font_medium"/>
 
-    <ImageView
-        android:id="@+id/nearby_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/plist_padding"
-        android:src="@drawable/nearby_nav" />
-
+    <!--电话按钮-->
     <ImageView
         android:id="@+id/nearby_phone"
         android:layout_width="wrap_content"
@@ -48,7 +66,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/mlist_padding"
+        android:layout_marginEnd="@dimen/mlist_padding"
         android:layout_toLeftOf="@+id/nearby_nav"
-        android:src="@drawable/nearby_phone_nselected" />
+        android:layout_toStartOf="@+id/nearby_nav"
+        android:padding="10dp"
+        android:src="@drawable/nearby_phone_nselected"/>
+
+    <!--导航按钮-->
+    <ImageView
+        android:id="@+id/nearby_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/plist_padding"
+        android:layout_marginEnd="@dimen/plist_padding"
+        android:src="@drawable/nearby_nav"/>
 
 </RelativeLayout>

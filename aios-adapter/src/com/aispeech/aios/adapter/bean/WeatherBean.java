@@ -8,15 +8,24 @@ import java.util.List;
  */
 public class WeatherBean extends BaseBean{
 
-    private int searchDay;
+    private String searchDay;
     private List<WeatherData> mWeatherDatas;
+    private WeatherData today;
 
-    public int getSearchDay() {
+    public String getSearchDay() {
         return searchDay;
     }
 
-    public void setSearchDay(int searchDay) {
+    public void setSearchDay(String searchDay) {
         this.searchDay = searchDay;
+    }
+
+    public WeatherData getToday() {
+        return today;
+    }
+
+    public void setToday(WeatherData today) {
+        this.today = today;
     }
 
     public List<WeatherData> getWeatherDatas() {

@@ -1,8 +1,13 @@
 package com.aispeech.aios.adapter.util;
 
+import android.provider.Settings;
+
 import com.aispeech.ailog.AILog;
 import com.aispeech.aios.BusClient;
+import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.bean.PoiBean;
+import com.aispeech.aios.adapter.config.Configs;
+import com.aispeech.aios.adapter.config.Configs.MapConfig;
 import com.aispeech.aios.adapter.node.TTSNode;
 
 import org.json.JSONException;
@@ -45,6 +50,12 @@ public class LocationUtil {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        int mapType = Settings.System.getInt(AdapterApplication.getContext().getContentResolver(),"MAP_INDEX", MapConfig.BDDH);
+        if (mapType == Configs.MapConfig.BDDH || mapType ==  Configs.MapConfig.BDMAP) {//如果是百度地图或者百度导航
+            PoiBean pi = PoiBean.gcj02_To_Bd09(p.getLatitude(), p.getLongitude());
+            p.setLongitude(pi.getLongitude());
+            p.setLatitude(pi.getLatitude());
         }
         return p;
     }

@@ -17,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by hehr on 2015/10/14.
+ * Created by zzj on 2015/10/14.
  * 图吧接口
  */
 public class TBOperate {

@@ -100,6 +100,7 @@ public class GaoDeBroadCast extends BroadcastReceiver {
 						// int total_remain_time =
 						// extras.getInt("total_remain_time");
 						int next_road_distance = data.getSegRemainDis();
+						Log.d("info", "road_icon="+road_icon);
 						if (ScrrenoffActivity.screen != null) {
 							if(ScrrenoffActivity.screen.isTW){
 						//		current_road = ZHConverter.convert(current_road, ZHConverter.TRADITIONAL);

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xiaodong 20150611 modify -->
+<com.unisound.unicar.gui.view.SessionLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/session_page_background"
+    android:orientation="horizontal" >
+
+    <com.unisound.unicar.gui.view.MicrophoneControl
+        android:id="@+id/microphoneControl"
+        android:layout_width="@dimen/width_mic_control_view"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical" >
+    </com.unisound.unicar.gui.view.MicrophoneControl>
+
+    <com.unisound.unicar.gui.view.MicrophoneControlDoresoView
+        android:id="@+id/microphoneControl_doreso"
+        android:layout_width="@dimen/width_mic_control_view"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="13dp"
+        android:gravity="center" >
+
+        <!-- XD 20150921 modify -->
+
+        <com.unisound.unicar.gui.view.SessionContainer
+            android:id="@+id/sessionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:fillViewport="true" >
+        </com.unisound.unicar.gui.view.SessionContainer>
+
+    </RelativeLayout>
+
+</com.unisound.unicar.gui.view.SessionLinearLayout>

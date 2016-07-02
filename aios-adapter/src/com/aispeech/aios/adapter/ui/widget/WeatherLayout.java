@@ -102,19 +102,27 @@ public class WeatherLayout extends LinearLayout {
      * @param weather 查询到的天气结果实体bean
      */
     public void showUI(WeatherBean weather) {
-        int searchDay = weather.getSearchDay();
 
-        WeatherBean.WeatherData searchDayWeatherData = weather.getWeatherDatas().get(searchDay);
+        String searchDay = weather.getSearchDay();
+        WeatherBean.WeatherData today = weather.getToday();
 
+        WeatherBean.WeatherData searchDayWeatherData = today;
+        for (WeatherBean.WeatherData weatherData : weather.getWeatherDatas()) {
+            if (searchDay.equals(weatherData.getDate())) {
+                searchDayWeatherData = weatherData;
+                break;
+            }
+        }
         mAreaAndDate.setText(String.format(mCityFormat, weather.getTitle(),
-                DateUtils.getWeekDate(mContext, searchDayWeatherData.getDate(), searchDay)));
+                DateUtils.getWeekDate(mContext, today.getDate(), searchDay)));
 
         mWeatherType.setText(String.format(mTypeFormat, searchDayWeatherData.getWeather()));
         mTempRange.setText(searchDayWeatherData.getTemperature());
         String[] wind = searchDayWeatherData.getWind().split(",");
         mWind.setText(getResources().getString(R.string.weather_wind, wind[0], wind[1]));
 
-        mWeatherForecastAdapter.setDay(searchDay);
+        mWeatherForecastAdapter.setToday(today.getDate());
+        mWeatherForecastAdapter.setSearchDay(searchDay);
         mWeatherForecastAdapter.setWeatherDatas(weather.getWeatherDatas());
 
         String speakWords = weather.getTitle() + searchDayWeatherData.getDate() + "天气,"

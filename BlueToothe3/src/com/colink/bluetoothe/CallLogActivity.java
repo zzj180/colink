@@ -26,6 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.colink.bluetoolthe.R;
 import com.colink.database.CallLogDatabase;
 import com.colink.database.CallLogProvider;
@@ -55,9 +56,6 @@ public class CallLogActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		/*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-
 		// No Titlebar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -77,7 +75,6 @@ public class CallLogActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 		
 		unbindService(conn);
-	//	overridePendingTransition(R.anim.fade, R.anim.hold);
 	}
 
 	public ArrayList<CallLogBean> list;
@@ -160,9 +157,6 @@ public class CallLogActivity extends Activity implements OnClickListener {
 					 long duration=cursor.getLong(cursor
 								.getColumnIndex(CallLog.Calls.DURATION));
 					
-					// String date =
-					// cursor.getLong(cursor.getColumnIndex(CallLog.Calls.DATE));
-					
 					String number = cursor.getString(cursor
 							.getColumnIndex(CallLog.Calls.NUMBER));
 					
@@ -193,7 +187,6 @@ public class CallLogActivity extends Activity implements OnClickListener {
 					
 					clb.setType(type);
 					
-			//		clb.setDate(sfd.format(date));
 					list.add(clb);
 				}
 				cursor.close();

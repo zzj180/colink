@@ -9,6 +9,8 @@ import com.aispeech.aios.adapter.config.Configs;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.util.StringUtil;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,20 +53,24 @@ public class WeatherNode extends BaseNode {
         AILog.i(TAG, "onJoin");
         super.onJoin();
         bc.subscribe("data.weather.query.result");
+        bc.subscribe(AiosApi.Other.AIOS_STATE);
     }
 
     @Override
     public void onMessage(String topic, byte[]... parts) throws Exception {
         super.onMessage(topic, parts);
         AILog.i(TAG, topic, parts);
-        if (AiosApi.Player.STATE.equals(topic) && "wait".equals(StringUtil.getEncodedString(parts[0]))) {
-            bc.unsubscribe(AiosApi.Player.STATE);
-        }
-
         if (topic.equals("data.weather.query.result")) {
             UiEventDispatcher.notifyUpdateUI(UIType.CancelLoadingUI);
             queryWeatherResult(parts);
+        } else if (topic.equals(AiosApi.Player.STATE) && StringUtil.getEncodedString(parts[0]).equals(AiosApi.Player.STATE_WAIT)) {
+            UITimer.getInstance().executeUITask(new UITimerTask() , UITimer.DELAY_SHORT , false);
+            bc.unsubscribe(AiosApi.Player.STATE);
+        } else if (topic.equals(AiosApi.Other.AIOS_STATE) && StringUtil.getEncodedString(parts[0]).equals("awake")) {
+            UITimer.getInstance().cancelTask();
+            bc.unsubscribe(AiosApi.Player.STATE);
         }
+
     }
 
     @Override
@@ -75,13 +81,22 @@ public class WeatherNode extends BaseNode {
         return null;
     }
 
-    private void queryWeatherResult(byte[]... parts) throws Exception{
+    private void queryWeatherResult(byte[]... parts) throws Exception {
         int errId = Integer.valueOf(new String(parts[1]));
         if (errId == 0) {
             JSONObject jsonObject = new JSONObject(new String(parts[0]));
             JSONObject resultJson = jsonObject.optJSONObject("result");
+
             WeatherBean weatherBean = new WeatherBean();
-            weatherBean.setSearchDay(resultJson.optInt("day"));
+            weatherBean.setSearchDay(resultJson.optString("searchDay"));
+
+            JSONObject todayObject = resultJson.optJSONObject("today");
+            WeatherBean.WeatherData today = new WeatherBean.WeatherData();
+            today.setDate(todayObject.optString("date"));
+            today.setWeather(todayObject.optString("weather"));
+            today.setTemperature(todayObject.optString("temperature"));
+            today.setWind(todayObject.optString("wind"));
+            weatherBean.setToday(today);
 
             String area = resultJson.optString("area");
             weatherBean.setTitle(area.substring(area.lastIndexOf(">") + 1, area.length()));
@@ -101,7 +116,7 @@ public class WeatherNode extends BaseNode {
                 weatherDatas.add(mWeatherData);
             }
             weatherBean.setWeatherDatas(weatherDatas);
-
+            bc.subscribe(AiosApi.Player.STATE);
             UiEventDispatcher.notifyUpdateUI(UIType.WeatherUI, weatherBean);
         } else {
             switch (errId) {
@@ -109,7 +124,7 @@ public class WeatherNode extends BaseNode {
                     bc.publish(AiosApi.Weather.QUERY_RESULT, "没有定位到当前城市，请稍后再试");
                     break;
                 case 2: //查询日期已过期
-                    bc.publish(AiosApi.Weather.QUERY_RESULT, Configs.MarkedWords.DATE_PASSED);
+                    bc.publish(AiosApi.Weather.QUERY_RESULT, "查询日期超出范围");
                     break;
                 case 3: //查询时期超过7天
                     bc.publish(AiosApi.Weather.QUERY_RESULT, Configs.MarkedWords.DATE_TOO_FAR);

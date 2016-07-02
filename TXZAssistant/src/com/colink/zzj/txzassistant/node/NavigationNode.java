@@ -98,9 +98,7 @@ public class NavigationNode {
 		@Override
 		public void exitNav() {
 			Logger.i("exitNav");
-			if(APPUtil.getInstance().isInstalled(APPUtil.GD_MAP_PKG)){
-				GDOperate.getInstance(mContext).closeMap();
-			}
+			GDOperate.getInstance(mContext).closeMap();
 			if(APPUtil.getInstance().isInstalled(APPUtil.BD_NAVI_PKG)){
 				BDDHOperate.getInstance(mContext).closeMap();
 			}
@@ -145,9 +143,14 @@ public class NavigationNode {
 	private void openMap(){
 		if (AdapterApplication.mapType == 1) {// 高德
 			try {
-				APPUtil.lanchApp(mContext, APPUtil.GD_MAP_PKG);
+				if (APPUtil.getInstance().isInstalled(APPUtil.GD_CAR_PKG)) {
+					APPUtil.lanchApp(mContext, APPUtil.GD_CAR_PKG);
+				}else if(APPUtil.getInstance().isInstalled(APPUtil.GD_MAP_PKG)){
+					APPUtil.lanchApp(mContext, APPUtil.GD_MAP_PKG);
+				}else{
+					Toast.makeText(mContext, "未找到高德地图",Toast.LENGTH_SHORT).show();
+				}
 			} catch (Exception e) {
-				Toast.makeText(mContext, "未找到高德地图",Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}
 		}  else if (AdapterApplication.mapType == 0) {// 百度导航开始导航

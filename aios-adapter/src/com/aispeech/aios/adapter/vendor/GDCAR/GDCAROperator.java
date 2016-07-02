@@ -2,17 +2,20 @@ package com.aispeech.aios.adapter.vendor.GDCAR;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.aispeech.ailog.AILog;
+import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.bean.PoiBean;
 import com.aispeech.aios.adapter.config.AiosApi;
 import com.aispeech.aios.adapter.config.Configs;
 import com.aispeech.aios.adapter.node.HomeNode;
 import com.aispeech.aios.adapter.util.APPUtil;
+import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 
 /**
- * Created by hehr on 2016/3/10.
+ * Created by zzj on 2016/3/10.
  * 高德车机版接口
  */
 public class GDCAROperator {
@@ -102,16 +105,25 @@ public class GDCAROperator {
      * 退出高德
      */
     public void closeMap() {//强制结束掉高德APP，需要root权限
-
-        try {
-
-            APPUtil.getInstance().closeApplication(Configs.MapConfig.PACKAGE_GDMAPFORCAT);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            AILog.d(TAG, "结束高德地图失败");
-        }
-
+    	Intent intent = new Intent(
+				"android.intent.action.VIEW",
+				android.net.Uri
+						.parse("androidauto://naviExit?sourceApplication=TXZAssistant"));
+		intent.setPackage(Configs.MapConfig.PACKAGE_GDMAPFORCAT);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+		mContext.startActivity(intent);
+    	
+    	new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            	 try {
+                     APPUtil.getInstance().forceStopPackage(Configs.MapConfig.PACKAGE_GDMAPFORCAT);
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+            }
+        }, 1500);
     }
 
 }

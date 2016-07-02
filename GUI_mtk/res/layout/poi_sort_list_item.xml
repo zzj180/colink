@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutPoiListItem"
+    android:layout_width="@dimen/poi_sort_list_item_width"
+    android:layout_height="45dp"
+    android:background="@drawable/list_item_music_bg"
+    android:gravity="center_vertical" >
+
+    <TextView
+        android:id="@+id/textViewPoiSortItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/baidu_text"
+        android:textColor="@color/grey_white"
+        android:textSize="16sp" />
+
+</LinearLayout>

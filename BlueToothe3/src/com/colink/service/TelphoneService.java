@@ -71,7 +71,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android_serialport_api.SerialPort;
 
 import com.colink.application.Application;
@@ -84,6 +83,7 @@ import com.colink.bluetoothe.SettingActivity;
 import com.colink.database.BlueTootheDB;
 import com.colink.database.BlueTootheState;
 import com.colink.database.CallLogProvider;
+import com.colink.util.APPUtil;
 import com.colink.util.Constact;
 import com.colink.util.Contact;
 import com.colink.util.SystemPropertiesProxy;
@@ -103,9 +103,8 @@ public class TelphoneService extends Service implements Constact {
 	public static String _TYPE_STANDCMD_ = "standCMD";
 	public static String _CMD_ = "ecarSendKey";
 	public static String _TYPE_ = "cmdType";
-
+	public static final String KEY_PLATFORM = "ro.os.version";
 	private static final String STARTDOWN = "开始导入通讯录";
-	private static final String OVERDOWN = "导入通讯录结束";
 
 	// private static final String DOWNVOER = "通讯录导入结束";
 
@@ -118,7 +117,7 @@ public class TelphoneService extends Service implements Constact {
 	private static final String CONTACT_NUMBER = "number";
 
 	private static final String ACTION_BLUETOOTH_PHONEBOOK = "android.intent.action.BLUETOOTH_PHONEBOOK";
-	private static final String PLAY_TTS = "com.wanma.action.PLAY_TTS";
+	
 	private static final String ACTION_CALLLOG_RECEIVE = "android.intent.action.BLUETOOTH_CALLLOG";
 	private static final String ACTION_DIALPAD_RECEIVE = "android.intent.action.BLUETOOTH_DIALPAD";
 	private static final String ACTION_SYNCCONTACT_RECEIVE = "android.intent.action.PHONEBOOK_SYNC";
@@ -133,7 +132,6 @@ public class TelphoneService extends Service implements Constact {
 	private static final String ACTION_OPEN_FMAUDIO = "android.intent.action.OPEN_FMAUDIO";
 	private static final String ACTION_ACC_OFF = "android.intent.action.ACC_OFF_KEYEVENT";
 
-	private static final String TTS_KEY = "content";
 
 	private WindowManager mWindowManager;
 	private WindowManager.LayoutParams mWindowParams = new WindowManager.LayoutParams();
@@ -170,9 +168,9 @@ public class TelphoneService extends Service implements Constact {
 
 	private HandlerThread mReadThread;
 
-	private HandlerThread insertThread;
+//	private HandlerThread insertThread;
 
-	private Handler insertHander;
+//	private Handler insertHander;
 
 	private int count;
 
@@ -191,9 +189,9 @@ public class TelphoneService extends Service implements Constact {
 	public static boolean isDownPhone;
 	private String ACC_STATE = "acc_state";
 	// add aios contact
-//	private List<Contact> list = new ArrayList<Contact>();
+	// private List<Contact> list = new ArrayList<Contact>();
 	private IBinder binder = new localBinder();
-	private List<Contact> list;
+	private ArrayList<Contact> list;
 	private Runnable read = new Runnable() {
 		@Override
 		public void run() {
@@ -229,14 +227,27 @@ public class TelphoneService extends Service implements Constact {
 				dismiss();
 				break;
 			case RESUME_VOICE:
-				if (notifiactionVolumn > 0) {
-					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,
+			/*	if (notifiactionVolumn > 0) {
+					getAudioManager().setStreamVolume(
+							AudioManager.STREAM_MUSIC,
 							notifiactionVolumn * 2 + 1, 0);
 				} else {
-					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+					getAudioManager().setStreamVolume(
+							AudioManager.STREAM_MUSIC, 0, 0);
+				}*/
+				
+				String platform = SystemPropertiesProxy.get(TelphoneService.this, KEY_PLATFORM);
+				if(TextUtils.isEmpty(platform)){
+					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,notifiactionVolumn * 2, 0);
+				}else{
+					//mtk
+					if(notifiactionVolumn > 12){
+						notifiactionVolumn = 12;
+					}
+					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,notifiactionVolumn, 0);
 				}
-				getAudioManager().setStreamVolume(AudioManager.STREAM_NOTIFICATION,
-						notifiactionVolumn, AudioManager.FLAG_ALLOW_RINGER_MODES);
+				getAudioManager().setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifiactionVolumn,0);
+				getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM, notifiactionVolumn,0);
 				break;
 			default:
 				break;
@@ -250,9 +261,12 @@ public class TelphoneService extends Service implements Constact {
 			SpannableString spannableString = new SpannableString(
 					mPhoneNumber.trim());
 			for (int i = 0; i < mPhoneNumber.trim().length(); i++) {
-				Drawable drawable = getResources().getDrawable(R.drawable.p0 + (int) (mPhoneNumber.charAt(i) - 48));
-				drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
-				spannableString.setSpan(new ImageSpan(drawable), i, i + 1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				Drawable drawable = getResources().getDrawable(
+						R.drawable.p0 + (int) (mPhoneNumber.charAt(i) - 48));
+				drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+						drawable.getIntrinsicHeight());
+				spannableString.setSpan(new ImageSpan(drawable), i, i + 1,
+						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			phone_view.setText(spannableString);
 			phone_state.setImageResource(R.drawable.qudian);
@@ -267,7 +281,8 @@ public class TelphoneService extends Service implements Constact {
 
 	private void inComming() {
 		if (view != null && view.isShown()) {
-			Toast.makeText(this, mPhoneNumber + "来电", Toast.LENGTH_SHORT).show();
+			/*Toast.makeText(this, mPhoneNumber + "来电", Toast.LENGTH_SHORT)
+					.show();*/
 		} else {
 			try {
 				mName = getContactNameByNumber(mPhoneNumber.trim());
@@ -281,7 +296,8 @@ public class TelphoneService extends Service implements Constact {
 			writeQn802x(1);
 
 			if (!TextUtils.isEmpty(mPhoneNumber)) {
-				SpannableString spannableString = new SpannableString(mPhoneNumber.trim());
+				SpannableString spannableString = new SpannableString(
+						mPhoneNumber.trim());
 				for (int i = 0; i < mPhoneNumber.trim().length(); i++) {
 					Drawable drawable = getResources()
 							.getDrawable(R.drawable.p0 + (int) (mPhoneNumber.charAt(i) - 48));
@@ -330,7 +346,8 @@ public class TelphoneService extends Service implements Constact {
 		con.put(BlueTootheDB.DEVICENAME, Application.device_address);
 		con.put(BlueTootheDB.ONLINE, 0);
 		// getContentResolver().insert(BlueTootheState.CONTENT_URI, con);
-		getContentResolver().update(BlueTootheState.CONTENT_URI, con, null,null);
+		getContentResolver().update(BlueTootheState.CONTENT_URI, con, null,
+				null);
 		Intent coff = new Intent(ACTION_BLUE_STATE);
 		sendBroadcast(coff);
 		Intent setdis = new Intent(ACTION_DEVICE_STATE);
@@ -395,7 +412,7 @@ public class TelphoneService extends Service implements Constact {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		// Create a receiving thread
 		// mReadThread = new ReadThread();
 		mReadThread = new HandlerThread("readThreaed");
@@ -404,15 +421,29 @@ public class TelphoneService extends Service implements Constact {
 		mReadHander.post(read);
 		mHandlerThread = new HandlerThread("writeThread");
 		mHandlerThread.start();
-		mWriteHander = new Handler(mHandlerThread.getLooper());
+		mWriteHander = new Handler(mHandlerThread.getLooper()){
+			@Override
+			public void handleMessage(Message msg) {
+				switch (msg.what) {
+				case 3:
+					
+					Intent intent = new Intent(TelphoneService.this, PhoneBookService.class);
+					intent.putExtra(CONTACTS_KEY, list);
+					intent.putExtra(ISOVER_KEY, true);
+					startService(intent);
+					if(list!=null)
+					list.clear();
+					break;
+				default:
+					break;
+				}
+			}
+		};
 		sendCommand(QUERY_AUTO_COMMAND, 7500);
 		// sendCommand(QUERY_A2DP_SWITCH, 7800);
-		String customer = SystemPropertiesProxy.get(this,
-				"ro.inet.consumer.code");
-		String bName = SystemPropertiesProxy.get(this,
-				"ro.coogo.bluetooth.name");
-		if (!getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(
-				SP_UNICAR_KEY_IS_FIRST_START, false)) {
+		String customer = SystemPropertiesProxy.get(this,"ro.inet.consumer.code");
+		String bName = SystemPropertiesProxy.get(this,"ro.coogo.bluetooth.name");
+		if (!getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(SP_UNICAR_KEY_IS_FIRST_START, false)) {
 			if (!TextUtils.isEmpty(bName)) {
 				sendCommand("AT#MM" + bName + "\r\n", 8000);
 			} else {
@@ -420,18 +451,71 @@ public class TelphoneService extends Service implements Constact {
 			}
 			if ("006".equals(customer)) {
 				insertPhone("九目服务热线", "4006585802");
-			}else if("003".equals(customer)){
+			} else if ("003".equals(customer)) {
 				sendCommand(CHANGE_AUDIO_COMMAND, 6500);
 			}
 			sendCommand(AT_MM, 8500);
 		}
-		getContentResolver().registerContentObserver(Settings.System.getUriFor(ACC_STATE), true,
+		getContentResolver().registerContentObserver(
+				Settings.System.getUriFor(ACC_STATE), true,
 				new ContentObserver(mWriteHander) {
 					@Override
 					public void onChange(boolean selfChange) {
-						boolean acc_state = Settings.System.getInt(getContentResolver(),ACC_STATE, 1)==1;
-						if(!acc_state){
-							dismiss();
+						boolean acc_state = Settings.System.getInt(
+								getContentResolver(), ACC_STATE, 1) == 1;
+						Log.d(TAG, "acc_state = " + acc_state);
+						if (!acc_state) {
+							mManagerHandler.sendEmptyMessage(CALL_STATUS_HAND_UP);
+							/*if(mReadThread!=null)
+							mReadThread.quit();
+							if(mHandlerThread!=null)
+							mHandlerThread.quit();
+							try {
+								if(mInputStream!=null)
+								mInputStream.close();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							try {
+								if(mOutputStream!=null)
+								mOutputStream.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							Application.getInstance().closeSerialPort();*/
+				//			Process.killProcess(Process.myPid());
+						}else{
+							/*try {
+								mSerialPort = mApplication.getSerialPort();
+								mOutputStream = mSerialPort.getOutputStream();
+								mInputStream = mSerialPort.getInputStream();
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+							mReadThread = new HandlerThread("readThreaed");
+							mReadThread.start();
+							mReadHander = new Handler(mReadThread.getLooper());
+							mReadHander.post(read);
+							mHandlerThread = new HandlerThread("writeThread");
+							mHandlerThread.start();
+							mWriteHander = new Handler(mHandlerThread.getLooper()){
+								@Override
+								public void handleMessage(Message msg) {
+									switch (msg.what) {
+									case 3:
+										
+										Intent intent = new Intent(TelphoneService.this, PhoneBookService.class);
+										intent.putExtra(CONTACTS_KEY, list);
+										intent.putExtra(ISOVER_KEY, true);
+										startService(intent);
+										list.clear();
+										break;
+									default:
+										break;
+									}
+								}
+							};*/
+
 						}
 					}
 				});
@@ -444,49 +528,6 @@ public class TelphoneService extends Service implements Constact {
 		view = View.inflate(this, R.layout.incalling, null);
 		findViews();
 		initWindowParams();
-		insertThread = new HandlerThread("insert");
-		insertThread.setPriority(Thread.MAX_PRIORITY);
-		insertThread.start();
-		insertHander = new Handler(insertThread.getLooper()) {
-			@Override
-			public void handleMessage(Message msg) {
-				switch (msg.what) {
-				case 1:
-					getContentResolver().delete(RAW_CONTENT_URI, null, null);
-					// getContentResolver().delete(EcarConatactsProvider.CONTENT_URI,
-					// null, null);
-					break;
-				case 2:
-					/*Contact contact = (Contact) msg.obj;
-					insertPhone(contact.getName(), contact.getPhone());*/
-					try {
-						testInsertBatch((List<Contact>) msg.obj);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					break;
-				case 3:
-					try {
-						testInsertBatch(list);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					list.clear();
-					isDownPhone = false;
-					Intent contactDone = new Intent(ACTION_CONTACT_DONE);
-					sendBroadcast(contactDone);
-					playTTS(OVERDOWN);
-					insertHander.removeMessages(3);
-					/*Gson gson = new Gson();
-					String json = gson.toJson(list);
-					Log.d("gson_contact", json);
-					AIOSContactDataNode.getInstance().postData(json);*/
-					break;
-				default:
-					break;
-				}
-			}
-		};
 		String id = SystemPropertiesProxy.get(this, "ro.build.display.id");
 		if (id.contains("CV86")) {
 			sendCommand(CHANGE_AUDIO_COMMAND, 6500);
@@ -539,8 +580,8 @@ public class TelphoneService extends Service implements Constact {
 				|| ECAR_NUM1.equals(mPhoneNumber.trim())
 				|| ECAR_NUM3.equals(mPhoneNumber)
 				|| ECAR_NUM4.equals(mPhoneNumber)) {
-			
-			if(exitsApk(ECAR_NEW_APP)){
+
+			if (exitsApk(ECAR_NEW_APP)) {
 				ComponentName componetName = new ComponentName(ECAR_NEW_APP,ECAR_NEW_SERVICE);
 				Intent ecar = new Intent();
 				ecar.setComponent(componetName);
@@ -550,7 +591,7 @@ public class TelphoneService extends Service implements Constact {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else{
+			} else {
 				ComponentName componetName = new ComponentName(ECAR_APP,ECAR_SERVICE);
 				Intent ecar = new Intent();
 				ecar.setComponent(componetName);
@@ -579,9 +620,10 @@ public class TelphoneService extends Service implements Constact {
 		if (view == null || !view.isShown()) {
 			return;
 		}
-		Log.e(TAG, "notifiactionVolumn=" + notifiactionVolumn);
-		mManagerHandler.sendEmptyMessageDelayed(RESUME_VOICE, 1000);
-		getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM,notifiactionVolumn, AudioManager.FLAG_ALLOW_RINGER_MODES);
+		Log.d(TAG, "notifiactionVolumn=" + notifiactionVolumn);
+		mManagerHandler.sendEmptyMessageDelayed(RESUME_VOICE, 2000);
+		/*getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM,
+				notifiactionVolumn, AudioManager.FLAG_ALLOW_RINGER_MODES);*/
 		sendBroadcast(new Intent(ACTION_OPEN_FMAUDIO));
 		Intent ecar = new Intent(CALL_RECEIVE_ACTION);
 		ecar.putExtra(ECAR_RECEICVER_CMD, CALL_STATUS_HAND_UP);
@@ -595,13 +637,14 @@ public class TelphoneService extends Service implements Constact {
 		try {
 			mWindowManager.removeViewImmediate(view);
 		} catch (Exception e) {
+			Log.d(TAG, e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	private void initWindowParams() {
 		mWindowParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-		mWindowParams.format = PixelFormat.RGBA_8888; //效果为背景透明
+		mWindowParams.format = PixelFormat.RGBA_8888; // 效果为背景透明
 		// resetWindowParamsFlags();
 		mWindowParams.flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN;
 		/*
@@ -744,60 +787,76 @@ public class TelphoneService extends Service implements Constact {
 	 */
 	@SuppressWarnings("deprecation")
 	private void insertPhone(String name, String number) {
-			ContentValues values = new ContentValues();
-			values.put(People.NAME, name);
-			Uri uri = getContentResolver().insert(People.CONTENT_URI, values);
-			if(uri == null){
-				return;
-			}
-			Uri numberUri = Uri.withAppendedPath(uri,
-					People.Phones.CONTENT_DIRECTORY);
-			values.clear();
-			values.put(People.Phones.TYPE, People.Phones.TYPE_MOBILE);
-			values.put(People.NUMBER, number);
-			if(numberUri == null){
-				return;
-			}
-			getContentResolver().insert(numberUri, values);
-	
-	}
-	
-	 public synchronized void testInsertBatch(List<Contact> cs) throws Exception {  
-		    ContentProviderClient client = getContentResolver().acquireContentProviderClient(ContactsContract.AUTHORITY);
-		    ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();  
-		    int rawContactInsertIndex = 0;
-		    Log.d(TAG, "size = " +cs.size());
-		    for (Contact contact : cs) {
-		    	rawContactInsertIndex = ops.size();
-		    	ops.add(ContentProviderOperation.newInsert(RawContacts.CONTENT_URI)
-		    		     .withValue(RawContacts.ACCOUNT_TYPE, null)
-		    		     .withValue(RawContacts.ACCOUNT_NAME, null)
-		    		     .withYieldAllowed(true).build());
+		ContentValues values = new ContentValues();
+		values.put(People.NAME, name);
+		Uri uri = getContentResolver().insert(People.CONTENT_URI, values);
+		if (uri == null) {
+			return;
+		}
+		Uri numberUri = Uri.withAppendedPath(uri,
+				People.Phones.CONTENT_DIRECTORY);
+		values.clear();
+		values.put(People.Phones.TYPE, People.Phones.TYPE_MOBILE);
+		values.put(People.NUMBER, number);
+		if (numberUri == null) {
+			return;
+		}
+		getContentResolver().insert(numberUri, values);
 
-		    		   // 添加姓名
-		    		   ops.add(ContentProviderOperation
-		    		     .newInsert(ContactsContract.Data.CONTENT_URI)
-		    		     .withValueBackReference(Data.RAW_CONTACT_ID,
-		    		       rawContactInsertIndex)
-		    		     .withValue(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE)
-		    		     .withValue(StructuredName.DISPLAY_NAME, contact.getName())
-		    		     .withYieldAllowed(true).build());
-		    		   // 添加号码
-		    		   ops.add(ContentProviderOperation
-		    		     .newInsert(
-		    		       android.provider.ContactsContract.Data.CONTENT_URI)
-		    		     .withValueBackReference(Data.RAW_CONTACT_ID,
-		    		       rawContactInsertIndex)
-		    		     .withValue(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE)
-		    		     .withValue(Phone.NUMBER, contact.getPhone())
-		    		     .withValue(Phone.TYPE, Phone.TYPE_MOBILE)
-		    		     .withYieldAllowed(true).build());
+	}
+
+	public synchronized void testInsertBatch(List<Contact> cs, boolean isOver) {
+		ContentProviderClient client = getContentResolver()
+				.acquireContentProviderClient(ContactsContract.AUTHORITY);
+		ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
+		int rawContactInsertIndex = 0;
+		try {
+			for (Contact contact : cs) {
+				rawContactInsertIndex = ops.size();
+				ops.add(ContentProviderOperation
+						.newInsert(RawContacts.CONTENT_URI)
+						.withValue(RawContacts.ACCOUNT_TYPE, null)
+						.withValue(RawContacts.ACCOUNT_NAME, null)
+						.withYieldAllowed(true).build());
+
+				// 添加姓名
+				ops.add(ContentProviderOperation
+						.newInsert(ContactsContract.Data.CONTENT_URI)
+						.withValueBackReference(Data.RAW_CONTACT_ID,
+								rawContactInsertIndex)
+						.withValue(Data.MIMETYPE,
+								StructuredName.CONTENT_ITEM_TYPE)
+						.withValue(StructuredName.DISPLAY_NAME,
+								contact.getName()).withYieldAllowed(true)
+						.build());
+				// 添加号码
+				ops.add(ContentProviderOperation
+						.newInsert(
+								android.provider.ContactsContract.Data.CONTENT_URI)
+						.withValueBackReference(Data.RAW_CONTACT_ID,
+								rawContactInsertIndex)
+						.withValue(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE)
+						.withValue(Phone.NUMBER, contact.getPhone())
+						.withValue(Phone.TYPE, Phone.TYPE_MOBILE)
+						.withYieldAllowed(true).build());
 			}
-		    client.applyBatch(ops); 
-		    client.release();
-		    // 在事务中对多个操作批量执行  
-		 //   resolver.applyBatch(ContactsContract.AUTHORITY, ops);  
-		}  
+			client.applyBatch(ops);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (client != null)
+				client.release();
+			if (isOver) {
+				isDownPhone = false;
+				Intent contactDone = new Intent(ACTION_CONTACT_DONE);
+				sendBroadcast(contactDone);
+				playTTS(OVERDOWN);
+			}
+
+		}
+		// 在事务中对多个操作批量执行
+		// resolver.applyBatch(ContactsContract.AUTHORITY, ops);
+	}
 
 	private boolean getContactInfo() {
 		ContentResolver resolver = getContentResolver();
@@ -814,16 +873,12 @@ public class TelphoneService extends Service implements Constact {
 
 	private String getContactNameByNumber(String number) {
 		Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
-		// Uri nameuri = Uri.parse(CONTENT_CONTACT);
 		ContentResolver resolver = getContentResolver();
-		Cursor cursor = resolver.query(uri,
-				new String[] { Phone.DISPLAY_NAME }, SECTION + number, null,
-				null);
+		Cursor cursor = resolver.query(uri,new String[] { Phone.DISPLAY_NAME }, SECTION + number, null,null);
 		String name = null;
 		if (cursor.moveToFirst()) {
 			name = cursor.getString(0);
 		}
-
 		cursor.close();
 		return name;
 	}
@@ -835,7 +890,7 @@ public class TelphoneService extends Service implements Constact {
 
 	private synchronized void onDataReceived(final byte[] buffer, int size) {
 		str = new String(buffer, 0, size);
-		Log.e(TAG, size + "," + str);
+		Log.d(TAG, size + "," + str);
 		if (size < 2) {
 			return;
 		}
@@ -846,7 +901,7 @@ public class TelphoneService extends Service implements Constact {
 			mPhoneNumber = new String(buffer, 2, size - 2);
 			mName = null;
 			try {
-				mName = getContactNameByNumber(mPhoneNumber.trim());
+				mName = getContactNameByNumber(mPhoneNumber);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -867,8 +922,8 @@ public class TelphoneService extends Service implements Constact {
 		 * writeQn802x(0); break;
 		 */
 		case PHONEBOOK_COMPLETE_FEEDBACK: // 电话本下载完成
-			insertHander.removeMessages(3);
-			insertHander.sendEmptyMessageDelayed(3, 3000);
+			mWriteHander.removeMessages(3);
+			mWriteHander.sendEmptyMessageDelayed(3, 5000);
 			count = 0;
 			// delete by zzj 20150916
 			// playTTS(DOWNVOER);
@@ -884,13 +939,15 @@ public class TelphoneService extends Service implements Constact {
 			break;
 		case DEVICENAME_FEEDBACK: // 蓝牙名
 			Application.blueTooth_name = new String(buffer, 2, size - 2);
-			getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
-					.putString(KEY_PRE, Application.blueTooth_name)
-					.putBoolean(SP_UNICAR_KEY_IS_FIRST_START, true).commit();
+			getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit().putString(KEY_PRE, Application.blueTooth_name).putBoolean(SP_UNICAR_KEY_IS_FIRST_START, true).commit();
 			Intent nameBlue = new Intent(ACTION_BLUE_NAME);
 			sendBroadcast(nameBlue);
 			Intent devicename = new Intent(ACTION_DEVICE_NAME);
 			sendBroadcast(devicename);
+			ContentValues cn = new ContentValues();
+			cn.put(BlueTootheDB.SUPPORT, 1);
+			// getContentResolver().insert(BlueTootheState.CONTENT_URI,con);
+			getContentResolver().update(BlueTootheState.CONTENT_URI, cn,null, null);
 			break;
 		case HFPUNCONNECT_FEEDBACK: // 连接断开
 			// isDownPhone = false;
@@ -899,8 +956,7 @@ public class TelphoneService extends Service implements Constact {
 			mManagerHandler.sendEmptyMessage(BLUE_NOT_CONNECTED);
 			SendCallState(this, 1);
 			// getSharedPreferences("blueToothe",
-			// Context.MODE_WORLD_READABLE).edit().putBoolean("online",
-			// false).commit();
+			// Context.MODE_WORLD_READABLE).edit().putBoolean("online", false).commit();
 			break;
 		case HFPUNCONNECTTING_FEEDBACK: // 正在连接
 			Application.device_address = null;
@@ -913,9 +969,9 @@ public class TelphoneService extends Service implements Constact {
 			ContentValues con1 = new ContentValues();
 			con1.put(BlueTootheDB.DEVICENAME, Application.device_address);
 			con1.put(BlueTootheDB.ONLINE, 1);
+			con1.put(BlueTootheDB.SUPPORT, 1);
 			// getContentResolver().insert(BlueTootheState.CONTENT_URI,con);
-			getContentResolver().update(BlueTootheState.CONTENT_URI, con1,
-					null, null);
+			getContentResolver().update(BlueTootheState.CONTENT_URI, con1,null, null);
 			SendCallState(this, 2);
 			// getSharedPreferences("blueToothe",Context.MODE_WORLD_READABLE).edit().putBoolean("online",true).commit();
 			break;
@@ -923,10 +979,12 @@ public class TelphoneService extends Service implements Constact {
 			// sendCommand(CHANGE_AUDIO_COMMAND);
 			if (!getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(
 					SP_UNICAR_KEY_IS_FIRST_VOICE, false)) {
-				if("003".equals(SystemPropertiesProxy.get(this,"ro.inet.consumer.code"))){
+				if ("003".equals(SystemPropertiesProxy.get(this,
+						"ro.inet.consumer.code"))) {
 					sendCommand(CHANGE_AUDIO_COMMAND);
 				}
-				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit().putBoolean(SP_UNICAR_KEY_IS_FIRST_VOICE, true).apply();
+				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
+						.putBoolean(SP_UNICAR_KEY_IS_FIRST_VOICE, true).apply();
 			}
 			mManagerHandler.sendEmptyMessage(CALL_STATUS_OUTCALLING);
 			if (yicar) {
@@ -969,7 +1027,12 @@ public class TelphoneService extends Service implements Constact {
 			break;
 		case VERSION:
 			String value = new String(buffer, 2, size - 2);
-			getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit().putString(VERSION_KEY, "版本号:" + value).commit();
+			getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
+					.putString(VERSION_KEY, "版本号:" + value).commit();
+			ContentValues con2 = new ContentValues();
+			con2.put(BlueTootheDB.SUPPORT, 1);
+			// getContentResolver().insert(BlueTootheState.CONTENT_URI,con);
+			getContentResolver().update(BlueTootheState.CONTENT_URI, con2,null, null);
 			break;
 		case PIN_FEEDBACK: // pin码
 			Application.pin_value = new String(buffer, 2, size - 2);
@@ -992,77 +1055,48 @@ public class TelphoneService extends Service implements Constact {
 		case A2DP_FEEDBACK_IM:
 
 			if (buffer[2] == 48) {
-				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit().putBoolean(A2DP_SWITCH, false).commit();
+				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
+						.putBoolean(A2DP_SWITCH, false).commit();
 			} else {
-				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit().putBoolean(A2DP_SWITCH, true).commit();
+				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
+						.putBoolean(A2DP_SWITCH, true).commit();
 			}
 		default:
 			break;
 		}
 	}
-
+	int phoneLength;
+	int nameLength;
+	String contact_name;
+	String contact_phone;
 	private void downPhoneBook(final byte[] buffer, int size) {
 		if (count == 0) {
-			if(list == null)
-			list = new ArrayList<Contact>();
+			if (list == null)
+				list = new ArrayList<Contact>();
 			list.clear();
 			isDownPhone = true;
 			contactName = "";
-			
-	//		insertHander.sendEmptyMessage(1);
 			Intent contactStart = new Intent(ACTION_CONTACT_START);
 			sendBroadcast(contactStart);
 			playTTS(STARTDOWN);
-//			list = new ArrayList<com.colink.aios.bluetooth.Contact>();
 		}
-		insertHander.removeMessages(3);
-		insertHander.sendEmptyMessageDelayed(3, 10000);
+		mWriteHander.removeMessages(3);
+		mWriteHander.sendEmptyMessageDelayed(3, 10000);
 		count++;
-		int phoneLength = 0;
-		int nameLength = 0;
 		try {
 			phoneLength = Integer.parseInt(new String(buffer, 4, 2));
 			nameLength = Integer.parseInt(new String(buffer, 2, 2));
-			// Log.d(size+"", phoneLength+","+i);
 			if (nameLength + phoneLength + 6 <= size) {
-				final String contact_name = new String(buffer, 6, nameLength);
-				final String contact_phone = new String(buffer, 6 + nameLength,
-						phoneLength);
-				// addContact(contact_name, contact_phone);
-				// Log.e("ib", contact_name + ":" + contact_phone);
-			/*	com.colink.aios.bluetooth.Contact c = new com.colink.aios.bluetooth.Contact();
-				c.setName(contact_name);
-				List<PhoneInfoEntity> phoneInfo = new ArrayList<PhoneInfoEntity>();
-				PhoneInfoEntity entity = new PhoneInfoEntity();
-				entity.setNumber(contact_phone);
-				phoneInfo.add(entity);
-				c.setPhoneInfo(phoneInfo);
-				list.add(c);*/
+				contact_name = new String(buffer, 6, nameLength);
+				contact_phone = new String(buffer, 6 + nameLength, phoneLength);
 				list.add(new Contact(contact_name, contact_phone));
-				if(count % 100 == 0){
-				/*	Message msg = new Message();
-					msg.what = 2;
-					msg.obj = list;
+				if (count % 100 == 0) {
+					Intent intent = new Intent(TelphoneService.this, PhoneBookService.class);
+					intent.putExtra(CONTACTS_KEY, list);
+					intent.putExtra(ISOVER_KEY, false);
+					startService(intent);
 					list.clear();
-					insertHander.sendMessage(msg);*/
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								testInsertBatch(list);
-								list.clear();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							
-						}
-					}).start();
 				}
-			//	list.add(new Contact(contact_name, contact_phone));
-				/*Message msg = new Message();
-				msg.what = 2;
-				msg.obj = new Contact(contact_name, contact_phone);
-				insertHander.sendMessage(msg);*/
 			}
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
@@ -1138,10 +1172,6 @@ public class TelphoneService extends Service implements Constact {
 			mReadThread = null;
 		}
 
-		if (insertThread != null) {
-			insertThread.quit();
-		}
-
 		if (mHandlerThread != null) {
 			mHandlerThread.quit();
 			mHandlerThread = null;
@@ -1167,14 +1197,14 @@ public class TelphoneService extends Service implements Constact {
 		public void onReceive(Context context, Intent intent) {
 
 			String action = intent.getAction();
-			Log.e("TelphoneService", action);
+			Log.d(TAG, action);
 			if (ACTION_HANDUP_RECEIVE.equals(action)) {
 				sendCommand(HANDUP_COMMAND);
 			} else if (ACTION_CALLOUT_RECEIVE.equals(action)) {
 				String number = intent.getStringExtra(CONTACT_NUMBER);
 				if (Application.state != DISCONNECTED) {
 					try {
-						if (number.trim().length() == 13) {
+						if (number.startsWith("86")) {
 							number = "+" + number;
 						}
 						sendCommand("AT#CW" + number + "\r\n");
@@ -1184,7 +1214,17 @@ public class TelphoneService extends Service implements Constact {
 						e.printStackTrace();
 					}
 				} else {
-					createsetDialog(context);
+					int navi = Settings.System.getInt(getContentResolver(),"ONE_NAVI", 0);
+					if(navi == 1 && APPUtil.getInstance().isInstalled("com.coagent.ecar")){
+						Intent tmpIntent=new Intent("com.android.ecar.recv");
+						tmpIntent.putExtra("ecarSendKey", "VoipMakeCall");
+						tmpIntent.putExtra("cmdType", "standCMD");
+						tmpIntent.putExtra("keySet", "name,number");
+						tmpIntent.putExtra("number", number);
+						context.sendBroadcast(tmpIntent);
+					}else{
+						createsetDialog(context);
+					}
 				}
 
 			} else if (ACTION_ANSWER_RECEIVE.equals(action)) {
@@ -1224,9 +1264,10 @@ public class TelphoneService extends Service implements Constact {
 				context.startActivity(calllog);
 			} else if (ACTION_ECAR_NAVI.equals(action)) {
 				String cmd = intent.getStringExtra(_CMD_);
-	//			Log.e("TelphoneService", cmd);
+				// Log.e("TelphoneService", cmd);
 				if ("BluetoothQueryState".equals(cmd)) {
-					SendCallState(context,Application.state == DISCONNECTED ? 1 : 2);
+					SendCallState(context,
+							Application.state == DISCONNECTED ? 1 : 2);
 				} else if ("BluetoothMakeCall".equals(cmd)) {
 					if (Application.state != DISCONNECTED) {
 						try {
@@ -1269,7 +1310,6 @@ public class TelphoneService extends Service implements Constact {
 			// delete by zzj 20150915
 			else if (Constact.ECAR_SEND_ACTION.equals(action)) {
 				int ecar_cmd = intent.getIntExtra(Constact.ECAR_SENDCMD, -1);
-				Log.e("TelphoneService", ecar_cmd + "");
 				switch (ecar_cmd) {
 				case Constact.HAND_UP_CMD:
 					sendCommand(HANDUP_COMMAND);
@@ -1308,20 +1348,6 @@ public class TelphoneService extends Service implements Constact {
 					}).start();
 					break;
 				case Constact.SPEAKER_ENABLE_CMD:
-
-					/*
-					 * new Thread(new Runnable() {
-					 * 
-					 * @Override public void run() { int retry = 2; do { try {
-					 * FileOutputStream fos = new FileOutputStream(DEVICE_FILE);
-					 * byte[] wBuf = new byte[1]; wBuf[0] = (byte) 1;
-					 * fos.write(wBuf, 0, 1); fos.flush(); fos.close(); retry--;
-					 * } catch (FileNotFoundException e) {
-					 * 
-					 * } catch (IOException e) {
-					 * 
-					 * } } while (retry != 0); } }).start();
-					 */
 
 					break;
 				case Constact.MAKE_CALL_OTHER_CMD:
@@ -1638,20 +1664,20 @@ public class TelphoneService extends Service implements Constact {
 			iContext.sendBroadcast(tmpIntent);
 		}
 	}
-	
-	 private boolean exitsApk(String packageName){
-   	  PackageManager pm = getPackageManager();
-       List<PackageInfo> packlist = pm.getInstalledPackages(0); 
-       for (int i = 0; i < packlist.size(); i++) {  
-      	  PackageInfo pak = (PackageInfo) packlist.get(i);  
 
-           if (pak.packageName.equals(packageName)) {  
-               return true;
-           }  
+	private boolean exitsApk(String packageName) {
+		PackageManager pm = getPackageManager();
+		List<PackageInfo> packlist = pm.getInstalledPackages(0);
+		for (int i = 0; i < packlist.size(); i++) {
+			PackageInfo pak = (PackageInfo) packlist.get(i);
 
- 		  }  
- 		  return false;
-   	
-   }
-	 
+			if (pak.packageName.equals(packageName)) {
+				return true;
+			}
+
+		}
+		return false;
+
+	}
+
 }

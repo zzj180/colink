@@ -1,0 +1,1 @@
+{"origin_code":"SMS_SEND","data":{"content":"这是短信内容","name":"李白","schedule_type":"INPUT_CONTENT_SMS","number":"10086"},"domain":"SESSION_SHOW","type":"INPUT_CONTENT_SMS","origin_type":"cn.yunzhisheng.sms"}

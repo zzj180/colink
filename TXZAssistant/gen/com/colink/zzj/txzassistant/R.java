@@ -9,18 +9,101 @@ package com.colink.zzj.txzassistant;
 
 public final class R {
     public static final class array {
+        /**   <string-array name="open_music" >
+        <item>打开音乐</item>       
+    </string-array> 
+         */
+        public static final int capture_wakeup=0x7f04000c;
+        public static final int close_carcorder=0x7f040009;
         public static final int close_edog=0x7f040002;
         public static final int close_fm=0x7f040003;
         public static final int close_radar=0x7f040006;
+        public static final int go_com=0x7f04000b;
         public static final int home_page=0x7f040008;
+        public static final int in_com=0x7f04000a;
+        public static final int lower_volume=0x7f040013;
+        public static final int next_music=0x7f04000e;
         public static final int one_navi=0x7f040007;
         public static final int open_edog=0x7f040001;
         public static final int open_fm=0x7f040004;
         public static final int open_radar=0x7f040005;
         public static final int open_screenOff=0x7f040000;
-        public static final int txz_sdk_init_wakeup_keywords=0x7f040009;
+        public static final int pause_music=0x7f040010;
+        /**  cunstom Asr wakeup 
+         */
+        public static final int play_music=0x7f04000d;
+        public static final int prev_music=0x7f04000f;
+        public static final int raise_volume=0x7f040012;
+        public static final int rs_voice_asr_start_hint=0x7f040015;
+        public static final int stop_music=0x7f040011;
+        public static final int txz_sdk_init_wakeup_keywords=0x7f040014;
     }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int black=0x7f050002;
+        public static final int blue=0x7f050000;
+        public static final int brown=0x7f050003;
+        public static final int color_asr_result_text=0x7f050027;
+        public static final int color_location_keyword_text=0x7f050028;
+        public static final int color_main_auto_help_text=0x7f050026;
+        public static final int color_text_link=0x7f05002b;
+        public static final int color_text_tips=0x7f05002a;
+        /**  no change color Begin
+         */
+        public static final int color_traffic_control_number=0x7f050030;
+        public static final int color_wakeup_word=0x7f050029;
+        public static final int color_webview_loading_background=0x7f05002e;
+        public static final int color_webview_loading_text=0x7f05002f;
+        /**  webview progressbar & loading 
+         */
+        public static final int color_webview_progressbar_background=0x7f05002c;
+        public static final int color_webview_progressbar_progress=0x7f05002d;
+        public static final int dark_blue=0x7f050001;
+        public static final int function_item=0x7f050020;
+        public static final int function_item_pressed=0x7f050021;
+        public static final int gren=0x7f050006;
+        public static final int grey=0x7f050004;
+        public static final int grey_white=0x7f050008;
+        /**   
+         */
+        public static final int item_pressed=0x7f05001f;
+        public static final int light_grey=0x7f050007;
+        /**  xiaodong added 20150610 
+         */
+        public static final int main_page_background=0x7f050022;
+        public static final int menu_divider=0x7f05000a;
+        public static final int menu_item_pressed=0x7f050009;
+        public static final int microphone_bg=0x7f050017;
+        public static final int music_item_bg_normal=0x7f050010;
+        public static final int music_item_bg_pressed=0x7f050011;
+        public static final int page_memo_management_bg=0x7f05000c;
+        public static final int page_memo_management_header=0x7f05000b;
+        public static final int prepare_navi=0x7f050032;
+        /**  no change color End
+         */
+        public static final int prepare_navi_active=0x7f050031;
+        public static final int prompt_bg=0x7f050018;
+        public static final int red=0x7f050005;
+        public static final int session_container_bg=0x7f050019;
+        public static final int session_page_background=0x7f050023;
+        public static final int sms_line=0x7f05001d;
+        /**  2013.03.22 added by shichao for new sms dialog 
+         */
+        public static final int sms_title=0x7f05001c;
+        public static final int space_grey=0x7f05001a;
+        public static final int state_focused=0x7f05000f;
+        public static final int state_pressed=0x7f05000e;
+        public static final int state_selected=0x7f05000d;
+        public static final int text_color_widget=0x7f05001e;
+        public static final int text_custom_dialog_title=0x7f050016;
+        public static final int text_focus=0x7f050014;
+        public static final int text_memo_management_header=0x7f050015;
+        public static final int text_stock_name=0x7f050012;
+        public static final int title_bg=0x7f050013;
+        public static final int weather_background=0x7f050024;
+        public static final int weather_focus_day=0x7f050025;
+        public static final int white=0x7f05001b;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -30,30 +113,330 @@ public final class R {
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
+        public static final int banner_paddingTop=0x7f060012;
+        public static final int bottom_bar_height=0x7f060010;
+        public static final int bottom_indicator_height=0x7f060009;
+        public static final int bottom_mic_sideline=0x7f060011;
+        public static final int call_content_view_margin_bottom=0x7f060041;
+        /**  call content view padding 
+ call content view padding 
+ call content view padding 
+         */
+        public static final int call_content_view_margin_left=0x7f06003e;
+        public static final int call_content_view_margin_right=0x7f06003f;
+        public static final int call_content_view_margin_top=0x7f060040;
+        public static final int container_height=0x7f060061;
+        /**  浮球与对话框 
+
+    <dimen name="second_page_one_line_icon_height">221dp</dimen>
+    <dimen name="second_page_two_line_icon_height">105dp</dimen>
+
+    
+ 浮球与对话框 
+ 浮球与对话框 
+         */
+        public static final int float_window_def=0x7f060015;
+        public static final int function_padding_bottom=0x7f06002c;
+        /**  function padding 
+ function padding 
+ function padding 
+         */
+        public static final int function_padding_left=0x7f060029;
+        public static final int function_padding_right=0x7f06002a;
+        public static final int function_padding_top=0x7f06002b;
+        /**  xd 20150714 added for setting page End 
+ setting 
+         */
+        public static final int height_setting_status_text=0x7f06000d;
+        public static final int help_example_textsize=0x7f060058;
+        public static final int help_menu_margin=0x7f06001c;
+        public static final int help_menu_subtext_size=0x7f06005b;
+        public static final int help_menu_text_padding=0x7f06001d;
+        /**  help 
+ help 
+ help 
+         */
+        public static final int help_menu_text_size=0x7f06001a;
+        public static final int help_submenu_text_padding=0x7f06001e;
+        public static final int help_submenu_text_size=0x7f06001b;
+        public static final int help_title_text_padding=0x7f06001f;
+        public static final int help_title_text_size=0x7f060056;
+        public static final int list_padding=0x7f060049;
+        public static final int main_icon_margin_left=0x7f060050;
+        public static final int main_icon_margin_right=0x7f060051;
+        public static final int main_page_banner_height=0x7f06005e;
+        public static final int main_page_banner_hight=0x7f06004f;
+        public static final int mainview_setting_icon=0x7f060014;
+        /**  menu 
+ menu 
+ menu 
+         */
+        public static final int menu_width=0x7f060020;
+        public static final int mic_control_height=0x7f06005a;
+        public static final int mic_float_pic_size=0x7f060055;
+        public static final int mic_height=0x7f060053;
+        public static final int mic_icon=0x7f060054;
+        public static final int mic_text_answer_margin=0x7f060059;
+        /**  text size 
+         */
+        public static final int mic_title_textsize=0x7f060057;
+        public static final int pic_text_distance=0x7f06004e;
+        public static final int pick_app_content_view_header_height=0x7f060045;
+        public static final int pick_app_padding_bottom=0x7f060039;
+        /**  pick app padding 
+ pick app padding 
+ pick app padding 
+         */
+        public static final int pick_app_padding_left=0x7f060036;
+        public static final int pick_app_padding_right=0x7f060037;
+        public static final int pick_app_padding_top=0x7f060038;
+        /**  pick phone number padding 
+         */
+        public static final int pick_header_contact=0x7f06005c;
+        public static final int pick_music_padding_bottom=0x7f06003d;
+        /**  pick music padding 
+ pick music padding 
+ pick music padding 
+         */
+        public static final int pick_music_padding_left=0x7f06003a;
+        public static final int pick_music_padding_right=0x7f06003b;
+        public static final int pick_music_padding_top=0x7f06003c;
+        public static final int pick_persion_padding_bottom=0x7f060030;
+        /**  pick persion padding 
+ pick persion padding 
+ pick persion padding 
+         */
+        public static final int pick_persion_padding_left=0x7f06002d;
+        public static final int pick_persion_padding_right=0x7f06002e;
+        public static final int pick_persion_padding_top=0x7f06002f;
+        public static final int pick_phone_number_padding_bottom=0x7f060034;
+        /**  pick phone number padding 
+ pick phone number padding 
+ pick phone number padding 
+         */
+        public static final int pick_phone_number_padding_left=0x7f060031;
+        public static final int pick_phone_number_padding_right=0x7f060032;
+        public static final int pick_phone_number_padding_top=0x7f060033;
+        /**  pick view 
+ pick view 
+ pick view 
+         */
+        public static final int pick_view_cancel_button_height=0x7f060035;
+        public static final int pick_view_cancel_button_textsize=0x7f060047;
+        /**  Poi 
+ Poi 
+ Poi 
+         */
+        public static final int poi_list_divier_margin=0x7f060046;
+        public static final int poi_sort_list_divider_height=0x7f060043;
+        public static final int poi_sort_list_item_width=0x7f060044;
+        public static final int prepare_windows_height=0x7f060019;
+        public static final int prepare_windows_width=0x7f060018;
+        /**  二级Icon界面 
+         */
+        public static final int second_page_banner_height=0x7f060013;
+        public static final int session_button_hight=0x7f06000e;
+        public static final int session_contain_height=0x7f06004b;
+        public static final int session_padding_bottom=0x7f060024;
+        /**  session padding 
+ session padding 
+ session padding 
+         */
+        public static final int session_padding_left=0x7f060021;
+        public static final int session_padding_right=0x7f060022;
+        public static final int session_padding_top=0x7f060023;
+        public static final int session_text_padding_bottom=0x7f060028;
+        /**  session text padding 
+ session text padding 
+ session text padding 
+         */
+        public static final int session_text_padding_left=0x7f060025;
+        public static final int session_text_padding_right=0x7f060026;
+        public static final int session_text_padding_top=0x7f060027;
+        public static final int setting_page1_status_image_margin_top=0x7f06000c;
+        public static final int setting_page1_status_text_margin_top=0x7f06000b;
+        /**  xd 20150714 added for setting page Begin 
+         */
+        public static final int setting_page1_title_margin_top=0x7f06000a;
+        public static final int setting_sideline=0x7f06004c;
+        public static final int shadow_width=0x7f06004a;
+        public static final int slidingmenu_offset=0x7f060048;
+        /**  sms input content edittext height 
+         */
+        public static final int sms_edittext_height=0x7f06005d;
+        public static final int sms_word_size=0x7f060052;
+        public static final int stock_bigger_text_size=0x7f060063;
+        public static final int stock_biggest_text_size=0x7f060064;
+        public static final int stock_normal_text_size=0x7f060062;
+        /**  XD 20150724 added  Begin 
+         */
+        public static final int text_size_f1=0x7f060002;
+        public static final int text_size_f2=0x7f060003;
+        public static final int text_size_f3=0x7f060004;
+        public static final int text_size_f4=0x7f060005;
+        public static final int text_size_f5=0x7f060006;
+        public static final int text_size_f6=0x7f060007;
+        public static final int title_bar_paddingTop=0x7f06005f;
+        /**  主界面 
+ 主界面 
+ 主界面 
+         */
+        public static final int title_height=0x7f06000f;
+        /**  XD 20150724 added End 
+         */
+        public static final int title_setting_margin=0x7f060008;
+        public static final int title_setting_right=0x7f06004d;
+        /**  xd added 20150720 Begin 
+ xd added 20150720 Begin 
+ xd added 20150720 Begin 
+ xd added 20150720  for Mi pad Begin 
+         */
+        public static final int voice_level_view_margin_top=0x7f060060;
+        public static final int weather_image_margin_bottom1=0x7f060066;
+        public static final int weather_image_margin_top1=0x7f060065;
+        public static final int weather_smaller_text_size=0x7f060067;
+        /**  Datetime pick item text size 
+ Datetime pick item text size 
+ Datetime pick item text size 
+         */
+        public static final int wheel_view_item_text_size=0x7f060042;
+        public static final int window_height=0x7f060017;
+        public static final int window_width=0x7f060016;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int back_normal=0x7f020000;
+        public static final int back_pressed=0x7f020001;
+        public static final int btn_fuction_item_bg=0x7f020002;
+        public static final int btn_menu_back=0x7f020003;
+        public static final int butten_back_normal=0x7f020004;
+        public static final int butten_back_pressed=0x7f020005;
+        public static final int butten_dialog_normal=0x7f020006;
+        public static final int butten_dialog_pressed=0x7f020007;
+        public static final int butten_mask=0x7f020008;
+        public static final int ic_edit_setting_normal=0x7f020009;
+        public static final int ic_edit_setting_pressed=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_map_marker=0x7f02000c;
+        public static final int icon_dot_normal=0x7f02000d;
+        public static final int icon_dot_selected=0x7f02000e;
+        public static final int icon_en=0x7f02000f;
+        public static final int icon_setting_float_mic=0x7f020010;
+        public static final int icon_setting_tts=0x7f020011;
+        public static final int icon_setting_wakeup=0x7f020012;
+        public static final int icon_st=0x7f020013;
+        public static final int line_x=0x7f020014;
+        public static final int selector_btn_edit_setting=0x7f020015;
+        public static final int selector_btn_session=0x7f020016;
+        public static final int selector_btn_tts_play_fast=0x7f020017;
+        public static final int selector_btn_tts_play_slowly=0x7f020018;
+        public static final int selector_btn_tts_play_standard=0x7f020019;
+        public static final int selector_checkbox_setting=0x7f02001a;
+        public static final int selector_setting_pop_button=0x7f02001b;
+        public static final int session_button_normal=0x7f02001c;
+        public static final int session_button_pressed=0x7f02001d;
+        public static final int setting_checkbox_off=0x7f02001e;
+        public static final int setting_checkbox_on=0x7f02001f;
+        public static final int setting_tts_fast_off=0x7f020020;
+        public static final int setting_tts_fast_on=0x7f020021;
+        public static final int setting_tts_slowly_off=0x7f020022;
+        public static final int setting_tts_slowly_on=0x7f020023;
+        public static final int setting_tts_standard_off=0x7f020024;
+        public static final int setting_tts_standard_on=0x7f020025;
+        public static final int shape_left=0x7f020026;
+        public static final int shape_right=0x7f020027;
     }
     public static final class id {
-        public static final int action_settings=0x7f090002;
-        public static final int button1=0x7f090000;
-        public static final int button2=0x7f090001;
+        public static final int action_settings=0x7f0b0021;
+        public static final int backBtn=0x7f0b0008;
+        public static final int bmapView=0x7f0b0000;
+        public static final int bottomPannel=0x7f0b0009;
+        public static final int btn_change_location_cancel=0x7f0b001b;
+        public static final int btn_change_location_ok=0x7f0b001a;
+        public static final int button1=0x7f0b0002;
+        public static final int button2=0x7f0b0003;
+        public static final int button3=0x7f0b0004;
+        public static final int cb_float_mic=0x7f0b0017;
+        public static final int cb_wakeup=0x7f0b0010;
+        public static final int et_change_location=0x7f0b0019;
+        public static final int iv_setting_edit_wakeupword=0x7f0b000f;
+        public static final int ll_setting_pop=0x7f0b001c;
+        public static final int map=0x7f0b0005;
+        public static final int mycontent=0x7f0b000c;
+        public static final int nav=0x7f0b0001;
+        public static final int pager=0x7f0b000a;
+        public static final int rBtn_tts_fast=0x7f0b0015;
+        public static final int rBtn_tts_slowly=0x7f0b0013;
+        public static final int rBtn_tts_standard=0x7f0b0014;
+        public static final int rg_setting_tts_speed=0x7f0b0012;
+        public static final int textView1=0x7f0b0020;
+        public static final int top_pannel=0x7f0b0006;
+        public static final int tv_i_know=0x7f0b001f;
+        public static final int tv_pop_content=0x7f0b001e;
+        public static final int tv_pop_title=0x7f0b001d;
+        public static final int tv_status_float_mic=0x7f0b0016;
+        public static final int tv_status_oneshot=0x7f0b0018;
+        public static final int tv_status_tts_play=0x7f0b0011;
+        public static final int tv_status_wakeup_close=0x7f0b000d;
+        public static final int tv_status_wakeup_open=0x7f0b000e;
+        public static final int tv_top_title=0x7f0b0007;
+        public static final int viewGroup=0x7f0b000b;
+    }
+    public static final class integer {
+        public static final int num_cols=0x7f070000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
+        public static final int activity_baidu_locationoverlay=0x7f030000;
+        public static final int activity_baidu_route=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_route_plan_no_map=0x7f030003;
+        public static final int activity_settings_view_pager=0x7f030004;
+        public static final int pager_settings_layout_1=0x7f030005;
+        public static final int pager_settings_layout_2=0x7f030006;
+        public static final int pop_edit_wakeupword_layout=0x7f030007;
+        public static final int pop_setting_help=0x7f030008;
+        public static final int prepare_navi=0x7f030009;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060004;
-        public static final int app_name=0x7f060002;
-        public static final int hello_world=0x7f060003;
-        public static final int serch_music_fail=0x7f060005;
-        public static final int txz_sdk_init_app_id=0x7f060000;
-        public static final int txz_sdk_init_app_token=0x7f060001;
+        public static final int action_settings=0x7f080004;
+        public static final int app_name=0x7f080002;
+        public static final int button_text_i_know=0x7f08001a;
+        public static final int cancel=0x7f080016;
+        public static final int cancel_prepnavi=0x7f080020;
+        public static final int common_control=0x7f080006;
+        public static final int edit_wakeupword_tip_1=0x7f080017;
+        public static final int edit_wakeupword_tip_2=0x7f080018;
+        public static final int edit_wakeupword_tip_3=0x7f080019;
+        public static final int hello_world=0x7f080003;
+        public static final int in_com=0x7f080022;
+        public static final int location_change_default_hint=0x7f080014;
+        public static final int luxianguihua=0x7f08001c;
+        public static final int ok=0x7f080015;
+        public static final int playvoice=0x7f080021;
+        public static final int prepnavi_address=0x7f08001d;
+        public static final int prepnavi_endpoi=0x7f08001e;
+        public static final int receive_prepnavi_command=0x7f08001f;
+        public static final int route_planning=0x7f08001b;
+        public static final int serch_music_fail=0x7f080005;
+        public static final int setting_float_mic_closed=0x7f08000f;
+        public static final int setting_float_mic_open=0x7f08000e;
+        public static final int setting_help_text_float_mic=0x7f080013;
+        public static final int setting_help_text_wakeup=0x7f080012;
+        public static final int setting_title_aes_marks=0x7f080011;
+        public static final int setting_title_asr_marks=0x7f080010;
+        public static final int setting_title_float_mic=0x7f08000d;
+        public static final int setting_title_tts_speed=0x7f080009;
+        public static final int setting_title_wakeup=0x7f080007;
+        public static final int setting_tts_speed_fast=0x7f08000c;
+        public static final int setting_tts_speed_slowly=0x7f08000a;
+        public static final int setting_tts_speed_standard=0x7f08000b;
+        public static final int setting_wakeup_status_closed=0x7f080008;
+        public static final int txz_sdk_init_app_id=0x7f080000;
+        public static final int txz_sdk_init_app_token=0x7f080001;
     }
     public static final class style {
         /** 
@@ -77,10 +460,16 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f090001;
+        public static final int text_activity_title_f2=0x7f090002;
+        public static final int text_session_item_f3=0x7f090003;
+        public static final int text_session_item_f3_tips=0x7f090004;
+        public static final int text_session_item_f4=0x7f090005;
+        public static final int text_session_item_f4_tips=0x7f090006;
+        public static final int text_session_item_f5_tips=0x7f090007;
     }
 }

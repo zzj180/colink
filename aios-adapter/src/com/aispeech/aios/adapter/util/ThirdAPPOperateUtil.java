@@ -22,9 +22,8 @@ import com.aispeech.aios.adapter.vendor.TB.TBOperate;
 
 /**
  * @desc 第三方APP操作工具类
- * @auth AISPEECH
+ * @auth zzj
  * @date 2016-01-13
- * @copyright aispeech.com
  */
 public class ThirdAPPOperateUtil {
 

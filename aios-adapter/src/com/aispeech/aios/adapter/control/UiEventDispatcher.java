@@ -30,9 +30,10 @@ public class UiEventDispatcher {
 
     /**
      * 更新UI显示，用于更新列表，如音乐、电话联系人、FM、导航、附近
-     * @param type 所要更新的UI类型
+     *
+     * @param type        所要更新的UI类型
      * @param mObjectList 列表list
-     * @param mTitle 标题，用于显示在搜索结果上方
+     * @param mTitle      标题，用于显示在搜索结果上方
      */
     public static void notifyUpdateUI(UIType type, List<Object> mObjectList, String mTitle) {
         notifyUpdateUI(type, null, mObjectList, mTitle, 0);
@@ -40,7 +41,8 @@ public class UiEventDispatcher {
 
     /**
      * 更新UI显示，用于只传过来一个实体Bean的情况，如天气、限行、股票
-     * @param type 所要更新的UI类型
+     *
+     * @param type     所要更新的UI类型
      * @param baseBean 实体Bean
      */
     public static void notifyUpdateUI(UIType type, BaseBean baseBean) {
@@ -49,7 +51,8 @@ public class UiEventDispatcher {
 
     /**
      * 延时更新UI，主要用于延时移除悬浮窗
-     * @param type 所要更新的UI类型
+     *
+     * @param type  所要更新的UI类型
      * @param delay 延时时间
      */
     public static void notifyUpdateUI(UIType type, long delay) {
@@ -58,6 +61,7 @@ public class UiEventDispatcher {
 
     /**
      * 更新上下文显示，包括语音识别或者合成的结果
+     *
      * @param context 上下文内容
      */
     public static void notifyUpdateUI(String context) {
@@ -66,6 +70,7 @@ public class UiEventDispatcher {
 
     /**
      * 更新UI显示，主要用于没有参数传递的UI更新，如上/下一页，显示/移除Loading界面等
+     *
      * @param type 要更新的UI类型
      */
     public static void notifyUpdateUI(UIType type) {
@@ -74,6 +79,7 @@ public class UiEventDispatcher {
 
     /**
      * 列表当前是否在第一页
+     *
      * @return true 是； false 否。
      */
     public static boolean isListViewFirstPage() {
@@ -82,10 +88,15 @@ public class UiEventDispatcher {
 
     /**
      * 列表当前是否在最后一页
+     *
      * @return true 是； false 否。
      */
     public static boolean isListViewLastPage() {
         return MyWindowManager.getInstance().isListLastPage();
+    }
+
+    public static boolean isShowWindow() {
+        return MyWindowManager.getInstance().isShowing();
     }
 
     private synchronized static void notifyUpdateUI(UIType type, BaseBean baseBean, List<Object> objectList, String title, long delay) {
@@ -109,11 +120,17 @@ public class UiEventDispatcher {
         @Override
         public void handleMessage(Message msg) {
             switch (UIType.values()[msg.what]) {
-
+                case ShowWindow:
+                    //重置所有的状态
+                    isShowWindow = false;
+                    isShowContext = false;
+                    MyWindowManager.getInstance().showWindow();
+                    break;
                 case Awake:
                     //重置所有的状态
                     isShowWindow = false;
                     isShowContext = false;
+
                     break;
 
                 case StockNodeUI:
@@ -154,6 +171,7 @@ public class UiEventDispatcher {
                     MyWindowManager.getInstance().showMusicListUI(musicList, musicTitle);
                     break;
                 case Location:
+                    isShowContext = true;
                     MapOperateUtil.getInstance().locateByMap();
                     break;
                 case VehiclerestrictionUI:
@@ -186,6 +204,19 @@ public class UiEventDispatcher {
                     }
                     break;
 
+                case SwitchVoiceWindow:
+                    MyWindowManager.getInstance().switchVoiceWindow();
+                    MyWindowManager.getInstance().startListening();
+
+                    break;
+
+                case ExitVoiceWindow:
+                    MyWindowManager.getInstance().exitVoiceWindow();
+                    break;
+
+                case RestoreMainWindow:
+                    MyWindowManager.getInstance().restoreMainWindow();
+                    break;
                 case LoadingUI:
                     MyWindowManager.getInstance().setSearchProgressBarShow();
                     break;
@@ -207,7 +238,7 @@ public class UiEventDispatcher {
 //                    isPicker = true;
 //                    break;
                 case ShowPickerUI:
-                    isShowContext=true;
+                    isShowContext = true;
                     List<Object> list = (List<Object>) msg.obj;
                     String pickerTitle = msg.getData().getString("title");
                     MyWindowManager.getInstance().ShowPickerUI(list, pickerTitle);

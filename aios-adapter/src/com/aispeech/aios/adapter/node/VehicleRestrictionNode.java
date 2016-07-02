@@ -7,6 +7,8 @@ import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.bean.VehicleRestrictionBean;
 import com.aispeech.aios.adapter.config.AiosApi;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.util.StringUtil;
@@ -41,6 +43,7 @@ public class VehicleRestrictionNode extends BaseNode {
         super.onJoin();
         bc.subscribe("wakeup.result");
         bc.subscribe("data.vehiclerestriction.query.result");
+        bc.subscribe(AiosApi.Other.AIOS_STATE);
     }
 
     @Override
@@ -56,6 +59,7 @@ public class VehicleRestrictionNode extends BaseNode {
         if (topic.equals("wakeup.result")) {
             UiEventDispatcher.notifyUpdateUI(UIType.VehiclerestrictionLargeImage, null, null);
         } else if (AiosApi.Player.STATE.equals(topic) && "wait".equals(StringUtil.getEncodedString(parts[0]))) {
+            UITimer.getInstance().executeUITask(new UITimerTask(), UITimer.DELAY_SHORT , false);
             bc.unsubscribe(AiosApi.Player.STATE);
         } else if (topic.equals("data.vehiclerestriction.query.result")) {
             UiEventDispatcher.notifyUpdateUI(UIType.CancelLoadingUI);
@@ -65,6 +69,9 @@ public class VehicleRestrictionNode extends BaseNode {
             } else {
                 onErrorResponse(errId);
             }
+        } else if (topic.equals(AiosApi.Other.AIOS_STATE) && StringUtil.getEncodedString(parts[0]).equals("awake")) {
+            UITimer.getInstance().cancelTask();
+            bc.unsubscribe(AiosApi.Player.STATE);
         }
     }
 
@@ -149,4 +156,5 @@ public class VehicleRestrictionNode extends BaseNode {
             UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
         }
     }
+
 }

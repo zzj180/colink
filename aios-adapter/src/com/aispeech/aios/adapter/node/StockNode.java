@@ -5,6 +5,8 @@ import com.aispeech.aios.BaseNode;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.bean.StockBean;
 import com.aispeech.aios.adapter.config.AiosApi;
+import com.aispeech.aios.adapter.control.UITimer;
+import com.aispeech.aios.adapter.control.UITimerTask;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
 import com.aispeech.aios.adapter.util.DateUtils;
@@ -49,6 +51,7 @@ public class StockNode extends BaseNode {
     public void onJoin() {
         super.onJoin();
         bc.subscribe("data.stock.query.result");
+        bc.subscribe(AiosApi.Other.AIOS_STATE);
     }
 
     @Override
@@ -57,22 +60,30 @@ public class StockNode extends BaseNode {
         AILog.i(TAG, topic, parts);
 
         if (AiosApi.Player.STATE.equals(topic) && "wait".equals(StringUtil.getEncodedString(parts[0]))) {
+            UITimer.getInstance().executeUITask(new UITimerTask() , UITimer.DELAY_SHORT  , false);
+            bc.unsubscribe(AiosApi.Player.STATE);
+        } else if (topic.equals(AiosApi.Other.AIOS_STATE) && StringUtil.getEncodedString(parts[0]).equals("awake")) {
+            UITimer.getInstance().cancelTask();
             bc.unsubscribe(AiosApi.Player.STATE);
         }
 
         UiEventDispatcher.notifyUpdateUI(UIType.CancelLoadingUI, null, null);
 
-        if(topic.equals("data.stock.query.result")) {
+        if (topic.equals("data.stock.query.result")) {
             int retCode = Integer.valueOf(new String(parts[1], "utf-8"));
-            if(retCode == 0) {
+            if (retCode == 0) {
                 getSuccessStockInfo(new JSONObject(new String(parts[0], "utf-8")));
-            } else if(retCode == -1) {
+            } else if (retCode == -1) {
                 TTSNode.getInstance().playRpc("stock.query.stock.result", "网络条件不佳，请重试!");
                 UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
-            } else if(retCode == -2) {
+            } else if (retCode == -2) {
                 TTSNode.getInstance().playRpc("stock.query.stock.result", "网络条件不佳，请重试!");
+                UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
+            } else if (retCode == -4) {
+                TTSNode.getInstance().playRpc("stock.query.stock.result", "对不起，没有查到相应的结果!");
                 UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
             }
+
         }
 
     }
@@ -91,17 +102,25 @@ public class StockNode extends BaseNode {
         mStockBean = new StockBean();
 
         mStockBean.parseJson(response);
-        if("success".equals(mStockBean.res)) {
+        if ("success".equals(mStockBean.res)) {
             mStockBean.notifyMaxDataRetrive();
 
             mStockBean.setTitle(mStockBean.mBaseData.name);
 
-            String percent = mStockBean.mBaseData.percentage >= 0 ? "上涨 " + mStockBean.mBaseData.change +"， 涨幅 " + mStockBean.mBaseData.percentage + "%" : "下跌 "+ -mStockBean.mBaseData.change +"， 跌幅 "+ -mStockBean.mBaseData.percentage + "%";
+            if(mStockBean.mBaseData.percentage == 0.0f) {
+                mStockBean.mBaseData.percentage = 0.0f;
+            }
+
+            if(mStockBean.mBaseData.change == 0.0f) {
+                mStockBean.mBaseData.change = 0.0f;
+            }
+
+            String percent = mStockBean.mBaseData.percentage >= 0 ? "上涨 " + mStockBean.mBaseData.change + "， 涨幅 " + mStockBean.mBaseData.percentage + "%" : "下跌 " + -mStockBean.mBaseData.change + "， 跌幅 " + -mStockBean.mBaseData.percentage + "%";
 
             float price = mStockBean.mBaseData.current;
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-            if("suspend".equals(mStockBean.mBaseData.state)) {
+            if ("suspend".equals(mStockBean.mBaseData.state)) {
                 String speack = mStockBean.mBaseData.name + "目前已停牌, 停牌前价格 " + mStockBean.mBaseData.lastClose;
                 TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                 UiEventDispatcher.notifyUpdateUI(UIType.StockNodeUI, mStockBean);
@@ -110,15 +129,16 @@ public class StockNode extends BaseNode {
             }
 
             try {
-                Date  date = df.parse(mStockBean.mBaseData.adate);
-                if(DateUtils.isToday(date)) {
-                    if(mStockBean.mTimeList.size() == 1) {
+                bc.subscribe(AiosApi.Player.STATE);
+                Date date = df.parse(mStockBean.mBaseData.adate);
+                if (DateUtils.isToday(date)) {
+                    if (mStockBean.mTimeList.size() == 1) {
                         String tranTime[] = mStockBean.mTimeList.get(0).split("-");
-                        if(tranTime != null && tranTime.length == 2) {
+                        if (tranTime != null && tranTime.length == 2) {
                             if (DateUtils.isBetweenTime(mStockBean.mBaseData.adate, tranTime[0], tranTime[1])) {
                                 String speack = mStockBean.mBaseData.name + "现在" + percent + "，报 " + price;
                                 TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
-                            } else if(DateUtils.isBetweenTime(mStockBean.mBaseData.adate, "00:00", tranTime[0])){
+                            } else if (DateUtils.isBetweenTime(mStockBean.mBaseData.adate, "00:00", tranTime[0])) {
                                 String speack = mStockBean.mBaseData.name + "现在" + percent + "，报 " + price;
                                 TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                             } else {
@@ -129,14 +149,14 @@ public class StockNode extends BaseNode {
                             String speack = mStockBean.mBaseData.name + percent + "，报 " + price;
                             TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                         }
-                    } else if(mStockBean.mTimeList.size() == 2) {
+                    } else if (mStockBean.mTimeList.size() == 2) {
                         String tranTime0[] = mStockBean.mTimeList.get(0).split("-");
                         String tranTime1[] = mStockBean.mTimeList.get(1).split("-");
-                        if(tranTime0 != null && tranTime1 != null && tranTime0.length == 2 && tranTime1.length == 2) {
+                        if (tranTime0 != null && tranTime1 != null && tranTime0.length == 2 && tranTime1.length == 2) {
                             if (DateUtils.isBetweenTime(mStockBean.mBaseData.adate, tranTime0[0], tranTime1[1])) {
                                 String speack = mStockBean.mBaseData.name + "现在" + percent + "，报 " + price;
                                 TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
-                            } else if(DateUtils.isBetweenTime(mStockBean.mBaseData.adate, "00:00", tranTime0[0])) {
+                            } else if (DateUtils.isBetweenTime(mStockBean.mBaseData.adate, "00:00", tranTime0[0])) {
                                 String speack = mStockBean.mBaseData.name + "现在" + percent + "，报 " + price;
                                 TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                             } else {
@@ -152,22 +172,22 @@ public class StockNode extends BaseNode {
                         TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                     }
                 } else {
-                    if(DateUtils.isWeenkend(mStockBean.mBaseData.adate)){
+                    if (DateUtils.isWeenkend(mStockBean.mBaseData.adate)) {
                         Map<String, String> params = DateUtils.getDateArray(mStockBean.mBaseData.adate);
-                        if(params != null) {
-                            String speack = params.get("month") + "月" + params.get("day") +"日" + mStockBean.mBaseData.name + percent +"，报 " + price;
+                        if (params != null) {
+                            String speack = params.get("month") + "月" + params.get("day") + "日" + mStockBean.mBaseData.name + percent + "，报 " + price;
                             TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                         } else {
-                            String speack = mStockBean.mBaseData.name + percent +"，报 " + price;
+                            String speack = mStockBean.mBaseData.name + percent + "，报 " + price;
                             TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                         }
                     } else {
                         Map<String, String> params = DateUtils.getDateArray(mStockBean.mBaseData.adate);
-                        if(params != null) {
-                            String speack = params.get("month") + "月" + params.get("day") +"日" + mStockBean.mBaseData.name + percent +"，报 " + price;
+                        if (params != null) {
+                            String speack = params.get("month") + "月" + params.get("day") + "日" + mStockBean.mBaseData.name + percent + "，报 " + price;
                             TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                         } else {
-                            String speack = mStockBean.mBaseData.name + percent +"，报 " + price;
+                            String speack = mStockBean.mBaseData.name + percent + "，报 " + price;
                             TTSNode.getInstance().playRpc("stock.query.stock.result", speack);
                         }
                     }
@@ -178,7 +198,7 @@ public class StockNode extends BaseNode {
                 TTSNode.getInstance().playRpc("stock.query.stock.result", "无法获取该股票信息!");
                 UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
             }
-        } else if("fail".equals(mStockBean.res)) {
+        } else if ("fail".equals(mStockBean.res)) {
             TTSNode.getInstance().playRpc("stock.query.stock.result", "未查到相关的股票!");
             UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow, 2000);
         } else {

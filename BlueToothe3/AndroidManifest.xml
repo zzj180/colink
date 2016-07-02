@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.colink.bluetoolthe"
-    android:versionCode="35"
-    android:versionName="3.2.2.2" >
+    android:versionCode="55"
+    android:versionName="3.2.3.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -68,13 +68,7 @@
             android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.android.activity.PopupkActivity"
-            android:alwaysRetainTaskState="true"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog" />
+       
         <activity
             android:name="com.colink.bluetoothe.ContactActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
@@ -86,25 +80,7 @@
             android:launchMode="singleInstance"
             android:screenOrientation="landscape" />
 
-       <!--  <receiver
-            android:name="com.colink.service.TelphoneService$TelephoneReceive"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="com.colink.service.TelphoneService.TelephoneReceive" />
-                <action android:name="com.colink.service.TelphoneService.TelephoneHandupReceive" />
-                <action android:name="com.colink.service.TelphoneService.TelephoneAnswerReceive" />
-                <action android:name="com.colink.service.TelphoneService.TelephoneReDialReceive" />
-                <action android:name="android.intent.action.BLUETOOTH_PHONEBOOK" />
-                <action android:name="android.intent.action.PHONEBOOK_SYNC" />
-                <action android:name="android.intent.action.BLUETOOTH_DIALPAD" />
-                <action android:name="android.intent.action.OPEN_BLUETOOTH" />
-                <action android:name="android.intent.action.CLOSE_BLUETOOTH" />
-                <action android:name="android.intent.action.MATCH_BLUETOOTH" />
-                <action android:name="com.android.ecar.tnc.send" />
-                <action android:name="android.intent.action.DISCONNECT_BLUETOOTH" />
-                <action android:name="android.intent.action.BLUETOOTH_CALLLOG" />
-            </intent-filter>
-        </receiver> -->
+    
         <receiver android:name="com.colink.service.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -126,7 +102,8 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
-
+		<service
+            android:name="com.colink.service.PhoneBookService"></service>
         <provider
             android:name="com.colink.database.CallLogProvider"
             android:authorities="com.colink.calllogprovider"

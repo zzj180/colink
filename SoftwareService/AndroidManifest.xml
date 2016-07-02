@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zzj.softwareservice"
+    android:versionCode="12"
+    android:versionName="1.1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
+    </uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
+    </uses-permission>
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" >
+    </uses-permission>
+
+    <application
+        android:name="com.zzj.softwareservice.ZZJApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="dkQOcb5B3zXuDh5HrqzkbziF" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.zzj.softwareservice.SoftwareManager"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name="com.android.fm.radio.FMRadioService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter android:priority="200" >
+            </intent-filter>
+        </service>
+        <!--
+        <service android:name="com.zzj.softwareservice.TaskService"
+			android:enabled="true"
+			android:exported="true"  >
+			<intent-filter android:priority="200" >  
+    		</intent-filter>  
+		</service>
+        -->
+
+        <receiver android:name="com.zzj.softwareservice.BootReceiver" >
+            <intent-filter android:priority="200" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.zzj.softwareservice.bd.BNRService"
+            android:exported="false" >
+        </service>
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+
+        <receiver android:name="com.zzj.softwareservice.gd.GaoDeBroadCast" >
+            <intent-filter android:priority="1000" >
+                <action android:name="com.amap.navi" />
+                <action android:name="com.autonavi.minimap.carmode.send" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.zzj.softwareservice.mx.MeiXingBroadCast" >
+            <intent-filter android:priority="1000" >
+                <action android:name="com.mxnavi.mxnavi.TO_CTRL_TURNING_INFO" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.zzj.softwareservice.kld.NaviGuidanceReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="CLD.NAVI.MSG.GUIDANCEINFO" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.zzj.softwareservice.database.NaviContentProvider"
+            android:authorities="com.zzj.softwareservice.NaviProvider"
+            android:exported="true" />
+        
+         <provider
+            android:name="com.zzj.softwareservice.database.WeatherProvider"
+            android:authorities="com.zzj.softwareservice.WeatherProvider"
+            android:exported="true" />
+    </application>
+
+</manifest>

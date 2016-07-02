@@ -11,54 +11,87 @@
 
     <!--唤醒后的提示语-->
     <tips id="hi">
-        <tip name="主人你好啊"/>
-        <tip name="有什么可以帮您"/>
-        <tip name="您有什么需要"/>
-        <tip name="我在,你有什么指示"/>
-        <tip name="需要我为你做什么"/>
+        <tip name="你好啊" />
+        <tip name="请吩咐" />
+        <tip name="我在" />
+        <tip name="有什么需要" />
+        <!--
+        <tip name="你好啊" />
+        <tip name="有什么可以帮您" />
+        <tip name="您有什么需要" />
+        <tip name="我在,您有什么指示" />
+        <tip name="需要我为您做什么" />
+        -->
     </tips>
 
     <!--退出时的提示语-->
     <tips id="bye">
-        <tip name="主人再见"/>
-        <tip name="再见，随时为您服务哦"/>
+        <tip name="主人再见" />
+        <tip name="再见，随时为您服务哦" />
     </tips>
 
     <!--没有识别到说话的提示语-->
     <tips id="silence">
-        <tip name="没听清哦，能再说一遍吗"/>
-        <tip name="没有听清哦，能重说一遍吗"/>
-        <tip name="对不起，可以再说一遍吗"/>
+        <tip name="没听清哦，能再说一遍吗" />
+        <tip name="没有听清哦，能重说一遍吗" />
+        <tip name="对不起，可以再说一遍吗" />
     </tips>
 
     <!--3次没有识别到说话的提示语-->
     <tips id="wakeup_again">
-        <tip name="主人我累了，请重新唤醒使用其他功能"/>
+        <tip name="请重新唤醒使用其他功能" />
     </tips>
 
     <tips id="repeat_again">
-        <tip name="我没听清，请再说一遍"/>
+        <tip name="网络不给力, 请稍后再试" />
+        <tip name="网络不给力, 请检查网络" />
     </tips>
 
     <!--没有网络时的提示语-->
     <tips id="network_abnomal">
-        <tip name="网络条件不佳，请使用本地功能"/>
-        <tip name="网络不给力,请使用本地功能"/>
+        <tip name="网络条件不佳，请使用本地功能" />
+        <tip name="网络不给力,请使用本地功能" />
+        <tip name="网络不佳，请稍后再试" />
     </tips>
 
     <!--没有网络，并且语音命令导航时的提示语-->
     <tips id="network_abnomal_navi">
-        <tip name="网络已断开， 请使用本地导航"/>
+        <tip name="网络不佳， 请使用本地导航" />
+    </tips>
+
+    <!--没有网络，并且语音命令听音乐时的提示语-->
+    <tips id="network_abnomal_music">
+        <tip name="网络不佳， 为您打开本地音乐" />
     </tips>
 
     <!--没有连接蓝牙时，语音命令打电话给谁的提示语-->
     <tips id="bluetooth_disconnect">
-        <tip name="连接蓝牙后我才能帮您打电话哦"/>
+        <tip name="连接蓝牙后我才能帮您打电话哦" />
     </tips>
 
     <!--联系人没有同步成功，语音命令打电话给谁的提示语-->
     <tips id="contacts_unsync">
-        <tip name="联系人没有同步成功"/>
+        <tip name="联系人没有同步成功" />
+    </tips>
+
+    <!--列表展示界面，超出范围-->
+    <tips id="page_over">
+        <tip name="你可以说上一页，下一页" />
+        <tip name="只支持说上一页，下一页" />
+        <tip name="对不起，暂不支持此功能" />
+    </tips>
+
+    <!--对于不支持的说法的反馈语-->
+    <tips id="tip_list">
+        <tip name="对不起，暂不支持此功能" />
+        <tip name="对不起，还不支持这样的说法哦" />
+    </tips>
+
+    <!--对于不支持的功能的反馈语-->
+    <tips id="nosupport">
+        <tip name="对不起，暂不支持此功能" />
+        <tip name="您说的太难了，我没听懂" />
+        <tip name="暂不支持此功能" />
     </tips>
 
 </root>
