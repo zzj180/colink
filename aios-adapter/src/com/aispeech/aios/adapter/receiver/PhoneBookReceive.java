@@ -88,24 +88,26 @@ public class PhoneBookReceive extends BroadcastReceiver {
 				TTSController.getInstance(context).playText(playText);
 			}
 		} else if (ACTION_ACC_ON.equals(action)) {
-			int storageVolume = PreferenceHelper.getInstance().getVolume();
-			if (storageVolume > 0) {
-				String platform = SystemPropertiesProxy.get(context,AdapterApplication.KEY_PLATFORM);
-				if (TextUtils.isEmpty(platform)) {
-					AudioManager am = (AudioManager) context.getSystemService(Service.AUDIO_SERVICE);
-					am.setStreamVolume(AudioManager.STREAM_NOTIFICATION,storageVolume, 0);
-					am.setStreamVolume(AudioManager.STREAM_ALARM,storageVolume, 0);
-					am.setStreamVolume(AudioManager.STREAM_MUSIC,storageVolume * 2, 0);
-				}
-				PreferenceHelper.getInstance().setVolume(0);
+			AdapterApplication.accState = true;
+				int storageVolume = PreferenceHelper.getInstance().getVolume();
+				if (storageVolume > 0) {
+					String platform = SystemPropertiesProxy.get(context,AdapterApplication.KEY_PLATFORM);
+					if (TextUtils.isEmpty(platform)) {
+						AudioManager am = (AudioManager) context.getSystemService(Service.AUDIO_SERVICE);
+						am.setStreamVolume(AudioManager.STREAM_NOTIFICATION,storageVolume, 0);
+						am.setStreamVolume(AudioManager.STREAM_ALARM,storageVolume, 0);
+						am.setStreamVolume(AudioManager.STREAM_MUSIC,storageVolume * 2, 0);
+					}
+					PreferenceHelper.getInstance().setVolume(0);
 			}
 			context.startService(new Intent(context, FloatWindowService.class));
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
+					context.sendBroadcast(new Intent("com.android.action_acc_on"));
 					SendBroadCastUtil.getInstance().sendBroadCast("com.aispeech.acc.status", "status", "on");
 				}
-			}, 3000);
+			}, 300);
 		} else if (ACTION_ACC_OFF.equals(action)) {
 			if (PreferenceHelper.getInstance().getVolume() == 0) {
 				String platform = SystemPropertiesProxy.get(context,AdapterApplication.KEY_PLATFORM);
@@ -118,15 +120,16 @@ public class PhoneBookReceive extends BroadcastReceiver {
 					PreferenceHelper.getInstance().setVolume(curValue);
 				}
 			}
-			// HomeNode.getInstance(context).getBusClient().call("recorder",
-			// "/recorder/stop");
+			AdapterApplication.accState = false;
+			// HomeNode.getInstance(context).getBusClient().call("recorder", "/recorder/stop");
+			context.sendBroadcast(new Intent("com.android.action_acc_off"));
 			SendBroadCastUtil.getInstance().sendBroadCast("com.aispeech.acc.status", "status", "off");
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					context.stopService(new Intent(context,FloatWindowService.class));
 				}
-			}, 3000);
+			}, 300);
 		} else if (action.equals(TEMP_HIGH_KEYEVENT)) {
 		} else if (action.equals(TEMP_NORMAL_KEYEVENT)) {
 		}
@@ -134,6 +137,7 @@ public class PhoneBookReceive extends BroadcastReceiver {
 		else if (ACTION_REMOTE_NAVI.equals(action)) {
 			float lat = intent.getFloatExtra("lat", 0f);
 			float lng = intent.getFloatExtra("lng", 0f);
+			Log.d("TTSReceive", "lat = " + lat + "--- lng =" + lng);
 			String address = intent.getStringExtra("address");
 			if (TextUtils.isEmpty(address)) {
 				address = context.getString(R.string.prepnavi_address);
@@ -154,7 +158,7 @@ public class PhoneBookReceive extends BroadcastReceiver {
 			// Gps gcj02 =
 			// PositionUtil.gps84_To_Gcj02(Double.parseDouble(latlon[1]),
 			// Double.parseDouble(latlon[0])); //delete by zzj
-			int mapType = Settings.System.getInt(context.getContentResolver(),"MAP_INDEX", MapConfig.GDMAP);
+			int mapType = Settings.System.getInt(context.getContentResolver(),"MAP_INDEX", MapConfig.BDDH);
 
 			if (APPUtil.getInstance().isInstalled(Configs.getMapPackage(mapType))) {
 				PoiBean bean = new PoiBean();

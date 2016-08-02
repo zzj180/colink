@@ -8,11 +8,12 @@
  */
 package com.zzj.coogo.screenoff;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.Thread.UncaughtExceptionHandler;
 
+import org.json.JSONException;
+
 import android.content.Context;
-import android.content.Intent;
-import android.os.Process;
 
 /**
  * @Module		: 隶属模块名
@@ -50,7 +51,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	@Override
 	public void uncaughtException(Thread thread, Throwable ex) {
 		// TODO Auto-generated method stub
-		ex.printStackTrace();
+		/*ex.printStackTrace();
 		
 		//如果系统提供了默认的异常处理器，则交给系统去结束程序，否则自己做
 		if(!handleException(ex) &&defaultExceptionHandler != null){
@@ -61,9 +62,18 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		Intent talkService = new Intent(mContext, BNRService.class);
 		mContext.startService(talkService);
 		Intent windowService = new Intent(mContext, SwitchServeice.class);
-		mContext.startService(windowService);
+		mContext.startService(windowService);*/
+		
+		try {
+			CrashLogUtils.saveLogToFile(mContext, ex);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		defaultExceptionHandler.uncaughtException(thread, ex);
 	}
-	private boolean handleException(Throwable ex) {
+	/*private boolean handleException(Throwable ex) {
 
 		if (ex == null) {
 			return false;
@@ -73,6 +83,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			return false;
 		}
 		return true;
-	}
+	}*/
 	
 }

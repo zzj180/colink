@@ -227,6 +227,7 @@ public class BNRService extends Service {
 
 		@Override
 		public void onConnectFail(final String reason) {
+			L.v(reason);
 			try {
 
 				BNRemoteVistor.getInstance().setBNEventListener(

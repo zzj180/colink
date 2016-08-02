@@ -1,13 +1,18 @@
 package com.aispeech.aios.adapter.node;
 
+import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Handler;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.aispeech.ailog.AILog;
+import com.aispeech.aimusic.AIMusic;
 import com.aispeech.aios.BaseNode;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.AdapterApplication;
@@ -15,9 +20,12 @@ import com.aispeech.aios.adapter.bean.TTS;
 import com.aispeech.aios.adapter.config.AiosApi;
 import com.aispeech.aios.adapter.control.UIType;
 import com.aispeech.aios.adapter.control.UiEventDispatcher;
+import com.aispeech.aios.adapter.service.FloatWindowService;
 import com.aispeech.aios.adapter.util.DeviceUtil;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
+import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 import com.aispeech.aios.adapter.util.StringUtil;
+import com.aispeech.aios.adapter.util.SystemPropertiesProxy;
 
 /**
  * @desc Home节点，UI交互使用
@@ -35,7 +43,7 @@ public class HomeNode extends BaseNode {
     private Context mContext;
     private HomeNodeReceiver homeNodeReceiver;
     private static String aiosState = "unknown";
-
+    private String ACC_STATE = "acc_state";
     private HomeNode() {
         this.mContext = AdapterApplication.getContext();
     }
@@ -92,6 +100,7 @@ public class HomeNode extends BaseNode {
 
 	private void startRecorder() {
 		mIsNeedAsleep = false;
+		mContext.sendBroadcast(new Intent("aios.intent.action.RECORDER_START"));
 		if (bc != null) {
 			bc.call("/keys/wakeup/allow", "set", "enable"); // 打开语音唤醒开关
 		}
@@ -100,6 +109,7 @@ public class HomeNode extends BaseNode {
 
     private void stopRecorder() {
         mIsNeedAsleep = true;
+    	mContext.sendBroadcast(new Intent("aios.intent.action.RECORDER_STOP"));
         if (bc != null) {
             bc.publish(AiosApi.Other.UI_PAUSE);
             new Handler(AdapterApplication.getContext().getMainLooper()).postDelayed(new Runnable() {
@@ -114,10 +124,12 @@ public class HomeNode extends BaseNode {
 
 	public void setWakeUp(boolean enable) {
 		if (enable) {
+			mContext.sendBroadcast(new Intent("aios.intent.action.RECORDER_START"));
 			if (bc != null) {
 				bc.call("/keys/wakeup/allow", "set", "enable"); // 打开语音唤醒开关
 			}
 		} else {
+			mContext.sendBroadcast(new Intent("aios.intent.action.RECORDER_STOP"));
 			if (bc != null) {
 				bc.call("/keys/wakeup/allow", "set", "disable");
 			}
@@ -143,12 +155,10 @@ public class HomeNode extends BaseNode {
 	 * 解绑广播
 	 */
 	public void unRegister() {
-
 		if (homeNodeReceiver != null) {
 			mContext.unregisterReceiver(homeNodeReceiver);
 			homeNodeReceiver = null;
 		}
-
 	}
 
 	@Override
@@ -165,15 +175,13 @@ public class HomeNode extends BaseNode {
         bc.subscribe(AiosApi.Other.AIOS_STATE);
         bc.subscribe(AiosApi.Other.UI_MIC_CLICK);
         bc.subscribe("wechat.message");//订阅微信来消息信息
-        new Handler(AdapterApplication.getContext().getMainLooper()).post(new Runnable() {
+  /*    new Handler(AdapterApplication.getContext().getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
                 AudioManager mAudioManager = (AudioManager) AdapterApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
-                PreferenceHelper.getInstance().setVolume(mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+    //            PreferenceHelper.getInstance().setVolume(mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
             }
-        });
-
-
+        });*/
     }
 
     @Override
@@ -222,11 +230,11 @@ public class HomeNode extends BaseNode {
 
 		} else if (topic.equals("wakeup.result")) {
 			UiEventDispatcher.notifyUpdateUI(UIType.Awake);
+			publishSticky("phone.bluetooth.state", "connected");
 		} else if (topic.equals("vad.state")) {
 			mVadState = new String(parts[0], "utf-8");
-			Log.i(TAG, "vadState : " + mVadState);
+			Log.i(TAG, "vadState : " + mVadState + mIsMicClick);
 			if (mVadState.equals("busy")) {
-				Log.i(TAG, "vad state is busy ");
 				UiEventDispatcher.notifyUpdateUI(UIType.StartListening);
 
 			} else if (mVadState.equals("wait")) {
@@ -242,6 +250,8 @@ public class HomeNode extends BaseNode {
 			}
 		} else if (topic.equals(AiosApi.Other.UI_MIC_CLICK)) {
 			mIsMicClick = true;
+			publishSticky("phone.bluetooth.state", "connected");
+			getACCState();
 		} else if (topic.equals("keys.aios.state")) {
 			return;
 		} else {
@@ -264,4 +274,12 @@ public class HomeNode extends BaseNode {
         Log.d(TAG, url+ bytes);
         return null;
     }
+    
+    private void getACCState() {
+   // 	int state = Settings.System.getInt(mContext.getContentResolver(),ACC_STATE, -1);
+		if(AdapterApplication.accState){
+           mContext.sendBroadcast(new Intent("com.android.action_acc_on"));
+		}
+	}
+
 }

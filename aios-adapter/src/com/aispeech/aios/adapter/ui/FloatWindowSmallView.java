@@ -629,8 +629,6 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
         public void run() {
             if (null != mMicView) {
                 Log.i(TAG, "startListening");
-                AudioManager audioManager = (AudioManager) AdapterApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
                 mMicView.startListening();
             }
         }
@@ -644,8 +642,6 @@ public class FloatWindowSmallView extends LinearLayout implements Rotate3dAnimat
         @Override
         public void run() {
             Log.i(TAG, "stopListening");
-            AudioManager audioManager = (AudioManager) AdapterApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
             mMicView.stopListening();
         }
     };

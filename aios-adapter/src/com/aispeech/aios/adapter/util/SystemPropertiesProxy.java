@@ -1,9 +1,6 @@
 package com.aispeech.aios.adapter.util;
 
-import java.io.File;
 import java.lang.reflect.Method;
-
-import dalvik.system.DexFile;
 
 import android.content.Context;
 

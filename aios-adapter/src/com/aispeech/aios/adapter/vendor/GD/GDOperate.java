@@ -8,6 +8,7 @@ import com.aispeech.ailog.AILog;
 import com.aispeech.aios.adapter.bean.PoiBean;
 import com.aispeech.aios.adapter.config.AiosApi;
 import com.aispeech.aios.adapter.config.Configs;
+import com.aispeech.aios.adapter.config.Configs.MapConfig;
 import com.aispeech.aios.adapter.node.HomeNode;
 import com.aispeech.aios.adapter.util.APPUtil;
 import com.aispeech.aios.adapter.util.SendBroadCastUtil;
@@ -66,7 +67,7 @@ public class GDOperate {
     /**
      * 退出高德
      */
-    public void closeMap() {//强制结束掉高德APP，需要root权限
+    public void closeGDMap() {//强制结束掉高德APP，需要root权限
 
         closeVoice();
         context.sendBroadcast(new Intent("com.amap.stopnavi"));
@@ -76,7 +77,7 @@ public class GDOperate {
         try {
         	//changed by ydj on 2016.3.24
        //     APPUtil.getInstance(context).kill(MapConfig.PACKAGE_GDMAP);
-        	APPUtil.getInstance().forceStopPackage(Configs.MapConfig.PACKAGE_GDMAP);
+        	APPUtil.getInstance().forceStopPackage(MapConfig.PACKAGE_GDMAP);
         	//changed by ydj on 2016.3.24
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,6 +85,34 @@ public class GDOperate {
         }
 
     }
+    
+	public void closeCarMap() {// 强制结束掉高德APP，需要root权限
+		
+		Intent intent = new Intent("AUTONAVI_STANDARD_BROADCAST_RECV");
+		intent.putExtra("KEY_TYPE", 10021);
+		context.sendBroadcast(intent);
+		
+		try {
+        	//changed by ydj on 2016.3.24
+       //     APPUtil.getInstance(context).kill(MapConfig.PACKAGE_GDMAP);
+        	APPUtil.getInstance().forceStopPackage(MapConfig.PACKAGE_GDMAPFORCAT);
+        	//changed by ydj on 2016.3.24
+        } catch (Exception e) {
+            e.printStackTrace();
+            AILog.d(TAG, "结束高德地图失败");
+        }
+
+	}
+    
+    public void closeMap() {// 强制结束掉高德APP，需要root权限
+		if (APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)) {
+			closeCarMap();
+		}
+		if (APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)) {
+			closeGDMap();
+		}
+
+	}
 
     /**
      * 当前位置，并在地图定位

@@ -38,17 +38,19 @@ public class SoftwareManager extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		String action = intent.getAction();
-		if (APP_MANAGER.equals(action)) {
-			app_name = intent.getStringExtra("control");
-			if (ONE_NAVI_APP.equals(app_name)) {
-				openONENavi();
-			} else if (NAVI_APP.equals(app_name)) {
-				openMap();
-			} else if (VOICE_APP.equals(app_name)) {
-
-			} else if (MUSIC_APP.equals(app_name)) {
-				openMusic();
+		if(intent!=null){
+			String action = intent.getAction();
+			if (APP_MANAGER.equals(action)) {
+				app_name = intent.getStringExtra("control");
+				if (ONE_NAVI_APP.equals(app_name)) {
+					openONENavi();
+				} else if (NAVI_APP.equals(app_name)) {
+					openMap();
+				} else if (VOICE_APP.equals(app_name)) {
+	
+				} else if (MUSIC_APP.equals(app_name)) {
+					openMusic();
+				}
 			}
 		}
 		return super.onStartCommand(intent, flags, startId);

@@ -143,23 +143,7 @@ public class BNRBroadCast extends BroadcastReceiver {
 			if (ScrrenoffActivity.screen != null) {
 				ScrrenoffActivity.screen.exit();
 			}
-		}/*else if("".equals(action)){
-			try {
-				forceStopPackage("com.coagent.ecar", context);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				forceStopPackage("com.coagent.voip", context);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				forceStopPackage("com.coagent.voip", context);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}*/
+		}
 	}
 
 	/**

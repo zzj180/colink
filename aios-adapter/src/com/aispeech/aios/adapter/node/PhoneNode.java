@@ -422,8 +422,7 @@ public class PhoneNode extends BaseNode {
 				JSONObject itemJson = listJson.getJSONObject(j);
 
 				AILog.json(itemJson.toString());
-				list.add(new PhoneItem(itemJson.getString("name"), itemJson
-						.getString("number")));
+				list.add(new PhoneItem(itemJson.getString("name"), itemJson.getString("number")));
 			}
 		}
 

@@ -53,6 +53,8 @@ import com.aispeech.aios.adapter.util.PositionUtil;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
 import com.aispeech.aios.adapter.util.SystemPropertiesProxy;
 import com.aispeech.aios.adapter.util.UserPreference;
+import com.aispeech.aios.adapter.vendor.BDDH.BDDHOperate;
+import com.aispeech.aios.adapter.vendor.GD.GDOperate;
 
 /**
  * @desc 悬浮窗相关服务
@@ -68,7 +70,7 @@ public class FloatWindowService extends Service {
 	private HandlerThread mWorker;
 
 	private static FloatWindowService service;
-
+	private String MAP_INDEX = "MAP_INDEX";
 	private HandlerThread mHandlerThread = new HandlerThread("worker-thread");
 	public static final String BACK_CAR_STATE = "back_car_state";
 	@Override
@@ -160,13 +162,28 @@ public class FloatWindowService extends Service {
 		AIMusic.closeDeskLyric();
 		
 		isBackCar();
+		Handler handler = new Handler(getMainLooper());
 		getContentResolver().registerContentObserver(Settings.System.getUriFor(BACK_CAR_STATE), true,
-				new ContentObserver(new Handler(getMainLooper())) {
+				new ContentObserver(handler) {
 					@Override
 					public void onChange(boolean selfChange) {
 						isBackCar();
 					}
 
+				});
+		
+		getContentResolver().registerContentObserver(
+				Settings.System.getUriFor(MAP_INDEX), false,
+				new ContentObserver(handler) {
+					@Override
+					public void onChange(boolean selfChange) {
+						int mapType = getMapType();
+						if(mapType==0){
+							GDOperate.getInstance(getApplicationContext()).closeMap();
+						}else if(mapType == 1){
+							BDDHOperate.getInstance(getApplicationContext()).closeMap();
+						}
+					}
 				});
 	}
 	
@@ -175,6 +192,10 @@ public class FloatWindowService extends Service {
 		if(isBackCar){
 			 cancelAios();
 		}
+	}
+	
+	private int getMapType() {
+		return Settings.System.getInt(getContentResolver(), MAP_INDEX, 0);
 	}
 
 	private void cancelAios() {
@@ -263,10 +284,8 @@ public class FloatWindowService extends Service {
 		Builder builder = new AlertDialog.Builder(context);
 		button1.setOnClickListener(l);
 		button2.setOnClickListener(l);
-		String address = mUserPreference.getString("address",
-				getString(R.string.prepnavi_address));
-		((TextView) v.findViewById(R.id.textView1)).setText(getString(
-				R.string.prepnavi_endpoi, address));
+		String address = mUserPreference.getString("address",getString(R.string.prepnavi_address));
+		((TextView) v.findViewById(R.id.textView1)).setText(getString(R.string.prepnavi_endpoi, address));
 		builder.setView(v);
 		Intent intent = new Intent(PLAY_TTS);
 		String content = getString(R.string.receive_prepnavi_command);

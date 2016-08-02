@@ -354,8 +354,7 @@ public class SystemOperateUtil {
 				0);
 		switch (navi) {
 		case 1:
-			ComponentName componetName = new ComponentName("com.coagent.app",
-					"com.coagent.activity.MainActivity");
+			ComponentName componetName = new ComponentName("com.coagent.app","com.coagent.activity.MainActivity");
 			Intent ecar = new Intent();
 			ecar.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			ecar.setComponent(componetName);
@@ -369,6 +368,17 @@ public class SystemOperateUtil {
 			tmpIntent.putExtra("cmdType", "standCMD");
 			tmpIntent.putExtra("keySet", "");
 			con.sendBroadcast(tmpIntent);
+			break;
+		case 2:
+			Intent ddb = new Intent("com.glsx.bootup.receive.autonavi");
+			ddb.putExtra("autonaviType", 1); // autonaviType为1：表示直接发起导航请求，
+												// autonaviType为2：只进入导航主页面（不发起请求）;
+			ddb.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			try {
+				con.startActivity(ddb);
+			} catch (Exception e) {
+				Toast.makeText(con, "未找到指定的一键导航", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		default:
 			if (APPUtil.getInstance().isInstalled("com.share.android")) {
@@ -464,9 +474,7 @@ public class SystemOperateUtil {
 			isMute = mute;
 			mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 		}
-		
-		AudioManager audioManager = (AudioManager) mContext
-				.getSystemService(Context.AUDIO_SERVICE);
+				
 */		if(mute){
 			int pre_volune = mAudioManager.getStreamVolume(AudioManager.STREAM_SYSTEM);
 			if(pre_volune!=0){
@@ -534,8 +542,9 @@ public class SystemOperateUtil {
 					return play(TIPS_MUSIC_VOLUME + currentVolume);
 				}
 			} else {
-				if (currentVolume > 11) {
-					currentVolume = 12;
+				currentVolume = currentVolume/3;
+				if (currentVolume > 4) {
+					currentVolume = 15;
 					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
 					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
 					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
@@ -545,6 +554,7 @@ public class SystemOperateUtil {
 					return play(TIPS_MUSIC_MAX);
 				} else {
 					currentVolume++;
+					currentVolume = currentVolume * 5;
 					// PreferenceHelper.getInstance().setVolume(currentVolume *
 					// 3);
 					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
@@ -576,6 +586,7 @@ public class SystemOperateUtil {
 
 				}
 			} else {
+				currentVolume = currentVolume/3;
 				if (currentVolume <= 0) {
 					currentVolume = 0;
 					// 静音了播报无作用
@@ -588,6 +599,7 @@ public class SystemOperateUtil {
 					return play(TIPS_MUSIC_MIN);
 				} else {
 					--currentVolume;
+					currentVolume = currentVolume * 3;
 					// PreferenceHelper.getInstance().setVolume(currentVolume *
 					// 3);
 					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
@@ -608,7 +620,7 @@ public class SystemOperateUtil {
 				mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,currentVolume, 0);
 				mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
 			} else {
-				currentVolume = 12;
+				currentVolume = 15;
 				// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
 				mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
 				mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,currentVolume, 0);
@@ -622,7 +634,7 @@ public class SystemOperateUtil {
 			currentVolume = 0;
 			// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
 			mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-					currentVolume * 2, 0);
+					currentVolume, 0);
 			mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,
 					currentVolume, 0);
 			mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,

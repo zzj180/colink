@@ -11,8 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
@@ -103,9 +101,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 					@Override
 					public void onSystemUiVisibilityChange(int visibility) {
 						if (visibility == View.VISIBLE) {
-							getWindow()
-									.getDecorView()
-									.setSystemUiVisibility(
+							getWindow().getDecorView().setSystemUiVisibility(
 											View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 													| View.SYSTEM_UI_FLAG_IMMERSIVE
 													| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

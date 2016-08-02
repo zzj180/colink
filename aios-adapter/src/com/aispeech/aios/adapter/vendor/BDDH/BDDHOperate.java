@@ -41,9 +41,7 @@ public class BDDHOperate {
     public void startNavigation(PoiBean bean) {
 
         Uri uri = Uri.parse("bdnavi://plan?&dest=" +
-                bean.getLatitude() +
-                "," +
-                bean.getLongitude());
+                bean.getLatitude() +"," + bean.getLongitude());
         Intent intent = new Intent("com.baidu.navi.action.START", uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (APPUtil.getInstance().isInstalled("com.baidu.navi")) {

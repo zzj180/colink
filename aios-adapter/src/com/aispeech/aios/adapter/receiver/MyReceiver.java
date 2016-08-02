@@ -57,10 +57,9 @@ public class MyReceiver extends BroadcastReceiver {
                     System.exit(0);
                 }
             }, 3000);
-        }
-
-        if (action.startsWith("aios.intent.action.STATE")) {
+        }else if (action.startsWith("aios.intent.action.STATE")) {
             String state = intent.getStringExtra("aios.intent.extra.STATE");
+            AILog.i(TAG, "state="+state);
             if (state.equals("awake")) {
                 if (FloatWindowService.getRunningService() == null) {
                     startFloatWindowsService(context);
@@ -68,8 +67,7 @@ public class MyReceiver extends BroadcastReceiver {
                 if (APPUtil.getInstance().isSystemUid()) {
                     MyWindowManager.getInstance().setBackgroundBlur();
                 }
-            } else if (state.equals("ready")) {
-                AILog.i(TAG, "aios is ready");
+            }else if (state.equals("ready")) {
 
                 //查询蓝牙连接状态
                 AdapterApplication.getContext().sendBroadcast(new Intent(PhoneNode.AIOS_BT_STATUS_REQ));
@@ -102,11 +100,10 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                 String jsonstr = "[" +
-                        "{\"folder\":\"/mnt/sdcard/Music\"},\n" +
+                     //   "{\"folder\":\"/mnt/sdcard/Music\"},\n" +
                         "{\"folder\":\"/mnt/sdcard/kwmusiccar/Song\"}\n" +
                         "]";
 
-                AILog.i(TAG, "The paths below will be scan for music  " + jsonstr);
                 Intent jsonIntent = new Intent("aios.intent.action.LOCAL_MUSIC_SCAN");
                 jsonIntent.putExtra("aios.intent.extra.TEXT", jsonstr);
                 AdapterApplication.getContext().sendBroadcast(jsonIntent);
