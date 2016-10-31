@@ -39,9 +39,9 @@ public class Application extends android.app.Application {
 
 	public SerialPort getSerialPort() throws SecurityException, IOException,InvalidParameterException {
 		if (mSerialPort == null) {
-		//	mSerialPort = new SerialPort("/dev/ttyS1", 9600, 0);
-		//	mSerialPort = new SerialPort("/dev/ttyS2", 9600, 0);
-			mSerialPort = new SerialPort("/dev/ttyMT1", 9600, 0);
+		//	mSerialPort = new SerialPort("/dev/ttyS1", 9600, 0); //A33
+		//	mSerialPort = new SerialPort("/dev/ttyS2", 9600, 0); //v10
+			mSerialPort = new SerialPort("/dev/ttyMT1", 9600, 0);  //mtk	
 		}
 		return mSerialPort;
 	}
@@ -51,8 +51,8 @@ public class Application extends android.app.Application {
 		super.onCreate();
 		changeMetrics(getBaseContext());
 		instance = this;
-//		CrashHandler crashHandler = CrashHandler.getInstance();
-//		crashHandler.init(getApplicationContext());
+		CrashHandler crashHandler = CrashHandler.getInstance();
+		crashHandler.init(getApplicationContext());
 	}
 
 	public void closeSerialPort() {

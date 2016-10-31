@@ -82,9 +82,10 @@ public class PhoneBookService extends IntentService {
 			if (isover) {
 				TelphoneService.isDownPhone = false;
 				Intent contactDone = new Intent(Constact.ACTION_CONTACT_DONE);
+				contactDone.putExtra("uri", ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
 				sendBroadcast(contactDone);
 				Intent intent = new Intent(Constact.PLAY_TTS);
-				intent.putExtra(Constact.TTS_KEY, Constact.OVERDOWN);
+		//		intent.putExtra(Constact.TTS_KEY, Constact.OVERDOWN);
 				sendBroadcast(intent);
 			}
 		}

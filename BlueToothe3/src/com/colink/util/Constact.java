@@ -56,6 +56,10 @@ public interface Constact {
 	public static final String A2DP_STOP_COMMAND = "AT#MC\r\n";
 	public static final String A2DP_NEXT_COMMAND = "AT#MD\r\n";
 	public static final String A2DP_PREV_COMMAND = "AT#ME\r\n";
+	
+	public static final String A2DP_CLOSE= "AT#YO0\r\n";
+	public static final String A2DP_OPEN= "AT#YO1\r\n";
+	
 	public static final String DTMF_DIAL_PREFIX = "AT#CX";
 	public static final String COMMAND_FUFFIX = "\r\n";
 	
@@ -71,6 +75,7 @@ public interface Constact {
 	public static final String NUMBER_9="9";
 
 	public final String DEVICE_FILE = "/sys/class/btaudio_cls/btaudio/btaudio";
+	public final String DEVICE_MTK_FILE = "/sys/class/qn802x_cls/qn802x/qn802x";
 	
 	//广播给方案商处理业务
 	public static final int HAND_UP_CMD = 1; //挂断电话
@@ -99,7 +104,7 @@ public interface Constact {
 	
 	public static final String A2DP_SWITCH = "a2dpswitch";
 	//翼卡发广播
-	public static final String CALL_RECEIVE_ACTION = "com.android.ecar.tnc.rec";
+	public static final String CALL_RECEIVE_ACTION = "com.android.ecar.tnc.rec";//modiy
 	
 	public static final String VERSION_KEY = "version";
 	

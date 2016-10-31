@@ -25,10 +25,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.PixelFormat;
@@ -42,16 +42,17 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Process;
+import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.PowerManager.WakeLock;
 import android.provider.CallLog;
+import android.provider.Contacts.People;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.Settings;
-import android.provider.Contacts.People;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.TelephonyManager;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -98,7 +99,7 @@ public class TelphoneService extends Service implements Constact {
 
 	public static final String ACTION_ECAR_NAVI = "com.android.ecar.send";
 	public static final String ACTION_ECAR_send = "com.android.ecar.recv";
-
+	 private static final String BLUETOOTH_PHONE_STATE = "com.coogo.BLUETOOTH_PHONE_STATE";
 	public static String _KEYS_ = "keySet";
 	public static String _TYPE_STANDCMD_ = "standCMD";
 	public static String _CMD_ = "ecarSendKey";
@@ -144,6 +145,7 @@ public class TelphoneService extends Service implements Constact {
 	public ImageView phone_state;
 	public Chronometer phone_time;
 	int notifiactionVolumn;
+	private WakeLock wl;
 
 	// private static final String ACTION_INIT_DATA =
 	// "cn.yunzhisheng.intent.action.INIT_DATA";
@@ -241,13 +243,11 @@ public class TelphoneService extends Service implements Constact {
 					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,notifiactionVolumn * 2, 0);
 				}else{
 					//mtk
-					if(notifiactionVolumn > 12){
-						notifiactionVolumn = 12;
-					}
 					getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC,notifiactionVolumn, 0);
 				}
 				getAudioManager().setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifiactionVolumn,0);
 				getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM, notifiactionVolumn,0);
+				getAudioManager().setStreamVolume(AudioManager.STREAM_SYSTEM, notifiactionVolumn,0);
 				break;
 			default:
 				break;
@@ -346,8 +346,8 @@ public class TelphoneService extends Service implements Constact {
 		con.put(BlueTootheDB.DEVICENAME, Application.device_address);
 		con.put(BlueTootheDB.ONLINE, 0);
 		// getContentResolver().insert(BlueTootheState.CONTENT_URI, con);
-		getContentResolver().update(BlueTootheState.CONTENT_URI, con, null,
-				null);
+		getContentResolver().update(BlueTootheState.CONTENT_URI, con, null,null);
+		
 		Intent coff = new Intent(ACTION_BLUE_STATE);
 		sendBroadcast(coff);
 		Intent setdis = new Intent(ACTION_DEVICE_STATE);
@@ -364,12 +364,15 @@ public class TelphoneService extends Service implements Constact {
 			time = System.currentTimeMillis();
 			Intent intnet = new Intent(ACTION_CLOSE_WAKEUP);
 			sendBroadcast(intnet);
-			getAudioManager().setStreamVolume(AudioManager.STREAM_NOTIFICATION,
+			/*getAudioManager().setStreamVolume(AudioManager.STREAM_NOTIFICATION,
 					0, AudioManager.FLAG_ALLOW_RINGER_MODES);
 			getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC, 0,
 					AudioManager.FLAG_ALLOW_RINGER_MODES);
-			getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM, 0,
+			getAudioManager().setStreamVolume(AudioManager.STREAM_SYSTEM, 0,
 					AudioManager.FLAG_ALLOW_RINGER_MODES);
+			getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM, 0,
+					AudioManager.FLAG_ALLOW_RINGER_MODES);*/
+			setMute(true);
 			phone_state.setImageResource(R.drawable.tonghuazhong);
 			phone_time.setVisibility(View.VISIBLE);
 			phone_time.setBase(SystemClock.elapsedRealtime());
@@ -383,11 +386,11 @@ public class TelphoneService extends Service implements Constact {
 		if (Application.state == INCOMING_CALL) {
 			mType = CONNECTED;
 		}
-		/*
-		 * Intent phone_offhook = new Intent(ACTION_BLUETOOTH_PHONE_STATE);
-		 * phone_offhook.putExtra("state", TelephonyManager.CALL_STATE_OFFHOOK);
-		 * sendBroadcast(phone_offhook);
-		 */
+		
+		Intent phone_offhook = new Intent(ACTION_BLUETOOTH_PHONE_STATE);
+		phone_offhook.putExtra("state", TelephonyManager.CALL_STATE_OFFHOOK);
+		sendBroadcast(phone_offhook);
+		 
 	}
 
 	@Override
@@ -451,18 +454,20 @@ public class TelphoneService extends Service implements Constact {
 			}
 			if ("006".equals(customer)) {
 				insertPhone("九目服务热线", "4006585802");
-			} else if ("003".equals(customer)) {
+			}/* else if ("003".equals(customer)) {
 				sendCommand(CHANGE_AUDIO_COMMAND, 6500);
-			}
+			}*/
 			sendCommand(AT_MM, 8500);
+		}
+		if("174".equals(customer)){
+			sendCommand(A2DP_CLOSE,4500);
 		}
 		getContentResolver().registerContentObserver(
 				Settings.System.getUriFor(ACC_STATE), true,
 				new ContentObserver(mWriteHander) {
 					@Override
 					public void onChange(boolean selfChange) {
-						boolean acc_state = Settings.System.getInt(
-								getContentResolver(), ACC_STATE, 1) == 1;
+						boolean acc_state = Settings.System.getInt(getContentResolver(), ACC_STATE, 1) == 1;
 						Log.d(TAG, "acc_state = " + acc_state);
 						if (!acc_state) {
 							mManagerHandler.sendEmptyMessage(CALL_STATUS_HAND_UP);
@@ -485,6 +490,7 @@ public class TelphoneService extends Service implements Constact {
 							Application.getInstance().closeSerialPort();*/
 				//			Process.killProcess(Process.myPid());
 						}else{
+							setMute(false);
 							/*try {
 								mSerialPort = mApplication.getSerialPort();
 								mOutputStream = mSerialPort.getOutputStream();
@@ -515,12 +521,10 @@ public class TelphoneService extends Service implements Constact {
 									}
 								}
 							};*/
-
 						}
 					}
 				});
-		if (TextUtils.isEmpty(getSharedPreferences(BLUETOOTH, MODE_PRIVATE)
-				.getString(VERSION_KEY, null))) {
+		if (TextUtils.isEmpty(getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getString(VERSION_KEY, null))) {
 			sendCommand(QUERY_VERSION_COMMAND, 10000);
 		}
 		registerReceiver();
@@ -528,10 +532,11 @@ public class TelphoneService extends Service implements Constact {
 		view = View.inflate(this, R.layout.incalling, null);
 		findViews();
 		initWindowParams();
-		String id = SystemPropertiesProxy.get(this, "ro.build.display.id");
+		setMute(false);
+	/*	String id = SystemPropertiesProxy.get(this, "ro.build.display.id");
 		if (id.contains("CV86")) {
 			sendCommand(CHANGE_AUDIO_COMMAND, 6500);
-		}
+		}*/
 	}
 
 	private OnClickListener mOnClickListener = new OnClickListener() {
@@ -572,6 +577,7 @@ public class TelphoneService extends Service implements Constact {
 		if (view == null || view.isShown()) {
 			return;
 		}
+		
 		SendCallState(this, 5);
 		Intent intent = new Intent(CALL_RECEIVE_ACTION);
 		intent.putExtra(ECAR_RECEICVER_CMD, CALL_STATUS_OUTCALL);
@@ -605,11 +611,14 @@ public class TelphoneService extends Service implements Constact {
 				sendCommand(AT_YS, 300);
 			}
 		}
+	//	getAudioManager().setStreamMute(AudioManager.STREAM_MUSIC, true);
 		getAudioManager().requestAudioFocus(null, AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 		notifiactionVolumn = getAudioManager().getStreamVolume(AudioManager.STREAM_ALARM);
 		sendBroadcast(new Intent(ACTION_CLOSE_FMAUDIO));
 		try {
 			mWindowManager.addView(view, mWindowParams);
+			getWakeLock().acquire();
+			getWakeLock().release();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -617,11 +626,15 @@ public class TelphoneService extends Service implements Constact {
 
 	public void dismiss() {
 		SendCallState(this, 3);
+		Intent phone_idle = new Intent(ACTION_BLUETOOTH_PHONE_STATE);
+		phone_idle.putExtra("state", TelephonyManager.CALL_STATE_IDLE);
+		sendBroadcast(phone_idle);
 		if (view == null || !view.isShown()) {
 			return;
 		}
 		Log.d(TAG, "notifiactionVolumn=" + notifiactionVolumn);
-		mManagerHandler.sendEmptyMessageDelayed(RESUME_VOICE, 2000);
+	//	mManagerHandler.sendEmptyMessageDelayed(RESUME_VOICE, 2000);
+		setMute(false);
 		/*getAudioManager().setStreamVolume(AudioManager.STREAM_ALARM,
 				notifiactionVolumn, AudioManager.FLAG_ALLOW_RINGER_MODES);*/
 		sendBroadcast(new Intent(ACTION_OPEN_FMAUDIO));
@@ -631,15 +644,13 @@ public class TelphoneService extends Service implements Constact {
 		Intent intnet = new Intent(ACTION_OPEN_WAKEUP);
 		sendBroadcast(intnet);
 		getAudioManager().abandonAudioFocus(null);
-		Intent phone_idle = new Intent(ACTION_BLUETOOTH_PHONE_STATE);
-		phone_idle.putExtra("state", TelephonyManager.CALL_STATE_IDLE);
-		sendBroadcast(phone_idle);
 		try {
 			mWindowManager.removeViewImmediate(view);
 		} catch (Exception e) {
 			Log.d(TAG, e.getMessage());
 			e.printStackTrace();
 		}
+		writeQn802x(0);
 	}
 
 	private void initWindowParams() {
@@ -727,6 +738,21 @@ public class TelphoneService extends Service implements Constact {
 							}
 						}
 					}
+					
+					FileOutputStream fs;
+					try {
+						fs = new FileOutputStream(DEVICE_MTK_FILE);
+						byte[] wBuf = new byte[3];
+						wBuf[0] = (byte) 0xFF;
+						wBuf[1] = (byte) (n);
+						wBuf[2] = (byte) 0xFC;
+						fs.write(wBuf, 0, 5);
+						fs.flush();
+						fs.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 				} while (retry != 0);
 			}
 		}).start();
@@ -849,6 +875,7 @@ public class TelphoneService extends Service implements Constact {
 			if (isOver) {
 				isDownPhone = false;
 				Intent contactDone = new Intent(ACTION_CONTACT_DONE);
+				contactDone.putExtra("uri", ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
 				sendBroadcast(contactDone);
 				playTTS(OVERDOWN);
 			}
@@ -977,7 +1004,7 @@ public class TelphoneService extends Service implements Constact {
 			break;
 		case ANSWER_FEEDBACK: // 电话接起
 			// sendCommand(CHANGE_AUDIO_COMMAND);
-			if (!getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(
+		/*	if (!getSharedPreferences(BLUETOOTH, MODE_PRIVATE).getBoolean(
 					SP_UNICAR_KEY_IS_FIRST_VOICE, false)) {
 				if ("003".equals(SystemPropertiesProxy.get(this,
 						"ro.inet.consumer.code"))) {
@@ -985,7 +1012,7 @@ public class TelphoneService extends Service implements Constact {
 				}
 				getSharedPreferences(BLUETOOTH, MODE_PRIVATE).edit()
 						.putBoolean(SP_UNICAR_KEY_IS_FIRST_VOICE, true).apply();
-			}
+			}*/
 			mManagerHandler.sendEmptyMessage(CALL_STATUS_OUTCALLING);
 			if (yicar) {
 				try {
@@ -1044,6 +1071,10 @@ public class TelphoneService extends Service implements Constact {
 			Application.auto_call = (buffer[2] == 49);
 
 			Application.auto_conn = (buffer[3] == 49);
+			ContentValues su = new ContentValues();
+			su.put(BlueTootheDB.SUPPORT, 1);
+			// getContentResolver().insert(BlueTootheState.CONTENT_URI,con);
+			getContentResolver().update(BlueTootheState.CONTENT_URI, su,null, null);
 			Intent auto = new Intent(ACTION_DEVICE_AUTO);
 			sendBroadcast(auto);
 			break;
@@ -1166,7 +1197,7 @@ public class TelphoneService extends Service implements Constact {
 
 	@Override
 	public void onDestroy() {
-
+		setMute(false);
 		if (mReadThread != null) {
 			mReadThread.quit();
 			mReadThread = null;
@@ -1223,6 +1254,9 @@ public class TelphoneService extends Service implements Constact {
 						tmpIntent.putExtra("number", number);
 						context.sendBroadcast(tmpIntent);
 					}else{
+						Intent phone_offhook = new Intent(ACTION_BLUETOOTH_PHONE_STATE);
+						phone_offhook.putExtra("state", TelephonyManager.CALL_STATE_IDLE);
+						sendBroadcast(phone_offhook);
 						createsetDialog(context);
 					}
 				}
@@ -1232,11 +1266,12 @@ public class TelphoneService extends Service implements Constact {
 			} else if (ACTION_REDIAL_RECEIVE.equals(action)) {
 				sendCommand(REDIAL_COMMAND);
 			} else if (ACTION_ACC_OFF.equals(action)) {
-				if (!readAccFile()) {
-					dismiss();
+				if (!readAccFile() && mManagerHandler!=null) {
+					mManagerHandler.sendEmptyMessage(CALL_STATUS_HAND_UP);
+				/*	dismiss();
 					context.stopService(new Intent(
 							BootReceiver.TELPHONE_SERVICE));
-					Process.killProcess(android.os.Process.myPid());
+					Process.killProcess(android.os.Process.myPid());*/
 				}
 			} else if (ACTION_CLOSE_ACTION.equals(action)) {
 				// 关闭蓝牙
@@ -1266,8 +1301,7 @@ public class TelphoneService extends Service implements Constact {
 				String cmd = intent.getStringExtra(_CMD_);
 				// Log.e("TelphoneService", cmd);
 				if ("BluetoothQueryState".equals(cmd)) {
-					SendCallState(context,
-							Application.state == DISCONNECTED ? 1 : 2);
+					SendCallState(context,Application.state == DISCONNECTED ? 1 : 2);
 				} else if ("BluetoothMakeCall".equals(cmd)) {
 					if (Application.state != DISCONNECTED) {
 						try {
@@ -1315,10 +1349,8 @@ public class TelphoneService extends Service implements Constact {
 					sendCommand(HANDUP_COMMAND);
 					break;
 				case Constact.MAKE_CALL_CMD:
-					String num = intent
-							.getStringExtra(Constact.ECAR_CALL_NUMBER);
-					String name = intent
-							.getStringExtra(Constact.ECAR_CALL_NAME);
+					String num = intent.getStringExtra(Constact.ECAR_CALL_NUMBER);
+					String name = intent.getStringExtra(Constact.ECAR_CALL_NAME);
 					if (Application.state == DISCONNECTED) {
 						createsetDialog(context);
 					} else {
@@ -1332,8 +1364,7 @@ public class TelphoneService extends Service implements Constact {
 							int retry = 2;
 							do {
 								try {
-									FileOutputStream fos = new FileOutputStream(
-											DEVICE_FILE);
+									FileOutputStream fos = new FileOutputStream(DEVICE_FILE);
 									byte[] wBuf = new byte[1];
 									wBuf[0] = (byte) 8;
 									fos.write(wBuf, 0, 1);
@@ -1351,8 +1382,7 @@ public class TelphoneService extends Service implements Constact {
 
 					break;
 				case Constact.MAKE_CALL_OTHER_CMD:
-					String number = intent
-							.getStringExtra(Constact.ECAR_CALL_NUMBER);
+					String number = intent.getStringExtra(Constact.ECAR_CALL_NUMBER);
 					char[] cs = number.toCharArray();
 					for (int i = 0; i < cs.length; i++) {
 						try {
@@ -1385,7 +1415,7 @@ public class TelphoneService extends Service implements Constact {
 
 		FileInputStream fis = null;
 		byte[] rBuf = new byte[10];
-		boolean accOn = false;
+		boolean accOn = true;
 		try {
 			fis = new FileInputStream(ACCDRIVER_ACCDRIVER);
 			fis.read(rBuf);
@@ -1419,18 +1449,14 @@ public class TelphoneService extends Service implements Constact {
 		View v = inflater.inflate(R.layout.dialog_state, null);
 		button2 = (Button) v.findViewById(R.id.button2);
 		Builder builder = new AlertDialog.Builder(context);
-		((TextView) v.findViewById(R.id.blueName)).setText("蓝牙名称  : "
-				+ Application.blueTooth_name);
-		((TextView) v.findViewById(R.id.pinMa)).setText("PIN 码  : "
-				+ Application.pin_value);
+		((TextView) v.findViewById(R.id.blueName)).setText("蓝牙名称  : " + Application.blueTooth_name);
+		((TextView) v.findViewById(R.id.pinMa)).setText("PIN 码  : " + Application.pin_value);
 		playTTS("蓝牙未连接");
 		builder.setView(v);
 		mAlertDialog = builder.create();
 		mAlertDialog.setCanceledOnTouchOutside(false);
 		mAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_PHONE);// 显示
-		mAlertDialog.getWindow().setFlags(
-				WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+		mAlertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		v.findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -1489,6 +1515,7 @@ public class TelphoneService extends Service implements Constact {
 	ProgressBar progressBar;
 	AlertDialog alertDialog;
 
+
 	public void startCountDownTimer(Context context,
 			final long countDownMillis, String name, final String number) {
 		LayoutInflater inflater = LayoutInflater.from(context);
@@ -1498,8 +1525,7 @@ public class TelphoneService extends Service implements Constact {
 		if (name == null) {
 			if (number.equals(ECAR_NUM1) || number.equals(ECAR_NUM2)
 					|| number.equals(ECAR_NUM3) || number.equals(ECAR_NUM4)) {
-				((TextView) v.findViewById(R.id.callDialogName))
-						.setText("翼卡在线");
+				((TextView) v.findViewById(R.id.callDialogName)).setText("翼卡在线");
 				playTTS("吾秒后为您接通翼卡在线电话");
 			} else {
 				playTTS("吾秒后为您接通" + number + "电话");
@@ -1588,6 +1614,8 @@ public class TelphoneService extends Service implements Constact {
 		}
 	};
 
+
+//导入电话弹框
 	public void CreateDialog(Context context) {
 		if (mAlertDialog != null) {
 			return;
@@ -1621,7 +1649,24 @@ public class TelphoneService extends Service implements Constact {
 			}
 		});
 	}
+	
+	private void setMute(boolean state){
+		AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+		audioManager.setStreamMute(1, state);
+		audioManager.setStreamMute(2, state);
+		audioManager.setStreamMute(3, state);
+		audioManager.setStreamMute(4, state);
+		audioManager.setStreamMute(5, state);
+		audioManager.setStreamMute(6, state);
+		audioManager.setStreamMute(7, state);
+		audioManager.setStreamMute(8, state);
+		audioManager.setStreamMute(9, state);
+		Intent intent = new Intent(BLUETOOTH_PHONE_STATE);
+		intent.putExtra("heedset", !state);
+		sendBroadcast(intent);
+	}
 
+//导入电话弹框倒计时
 	private void CountDown() {
 		if (mCountDownTimer != null) {
 			return;
@@ -1653,6 +1698,7 @@ public class TelphoneService extends Service implements Constact {
 		return (AudioManager) getSystemService(Service.AUDIO_SERVICE);
 	}
 
+//通知翼卡蓝牙状态
 	public void SendCallState(Context iContext, int iCallState) {
 		if (iContext != null) {
 			String tmpState = String.valueOf(iCallState);
@@ -1678,6 +1724,15 @@ public class TelphoneService extends Service implements Constact {
 		}
 		return false;
 
+	}
+	
+	public WakeLock getWakeLock() {
+		if (wl == null) {
+			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+			wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+					| PowerManager.ACQUIRE_CAUSES_WAKEUP,getPackageName());
+		}
+		return wl;
 	}
 
 }
