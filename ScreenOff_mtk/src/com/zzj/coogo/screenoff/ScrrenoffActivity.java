@@ -1,7 +1,11 @@
 package com.zzj.coogo.screenoff;
 
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.spreada.utils.chinese.ZHConverter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,8 +14,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,33 +39,45 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	public static final String CUSTIOM_007 = "007";
 	public static final String CUSTIOM_003 = "003";
 	public static final String CUSTIOM_006 = "006";
-
+	private static final String GMT_8 = "GMT+8";
+	private final static long MILLIS_IN_DAY = 86400000;
 	private static final String COM_WANMA_ACTION_MAIN_INFO = "com.wanma.action.MAIN_INFO";
 
-	TextView nextRoad, distanceText, remainDistanceText;
+	private TextView nextRoad, distanceText, remainDistanceText;
 
-	ImageView maneuverImage;
+	private ImageView maneuverImage;
 	// ImageView naviButton;
 
-	LEDView ledView;
-	View layout;
+	private LEDView ledView;
+	private View layout;
 
-//	WakeLock wl;
+	// WakeLock wl;
 
 	private BNRBroadCast mScreenOffReceiver;
 
-	private static Boolean isExit = false;
+	private Boolean isExit = false;
 
 	static ScrrenoffActivity screen;
-	public static TextView edog_state;
-	public static final String CMDOPEN_DESK_LYRIC = "open_desk_lyric";// 打开桌面歌词
-	public static final String CMDCLOSE_DESK_LYRIC = "close_desk_lyric";// 关闭桌面歌词
-	String MOFANG_PKG = "com.coogo.inet.vui.assistant.car";
-	String WINDOW_SERVICE_CLASS = "com.android.kwmusic.KWMusicService";
+	private TextView edog_state;
+	private String CMDOPEN_DESK_LYRIC = "cn.kuwo.kwmusicauto.action.OPEN_DESKLYRIC";// 打开桌面歌词
+	private String CMDCLOSE_DESK_LYRIC = "cn.kuwo.kwmusicauto.action.CLOSE_DESKLYRIC";// 关闭桌面歌词
+//	private String MOFANG_PKG = "com.coogo.inet.vui.assistant.car";
+//	private String WINDOW_SERVICE_CLASS = "com.android.kwmusic.KWMusicService";
+//	String TXZ_PKG = "com.colink.zzj.txzassistant";
+
+	private final String MANEUVER_IMAGE = "maneuver_Image";
+	private final String NEXT_ROAD = "next_roadName";
+	private final String NEXT_ROAD_DISTANCE = "next_road_distance";
+	private final String TOTAL_REMAIN_TIME = "total_remain_time";
+	private final String TOTAL_REMAIN_DISTANCE = "total_remain_distance";
+
+	private  final String ISNAVING = "is_naving";
 	
-	String TXZ_PKG = "com.colink.zzj.txzassistant";
+	private boolean isNaviing = false;
+	private  final Uri uri_navi = Uri.parse("content://com.zzj.softwareservice.NaviProvider/navi");
+
 	String content = "";
-	boolean isTW;
+	private boolean isTW;
 	boolean isCamera;
 
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -75,6 +96,68 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 			}
 		}
 	};
+
+	private Cursor query;
+
+	private ContentObserver observernew = new ContentObserver(new Handler()) {
+
+		@Override
+		public void onChange(boolean selfChange, Uri uri) {
+			// TODO Auto-generated method stub
+			super.onChange(selfChange, uri);
+			getNaviInfo(uri);
+		}
+
+	};
+
+	private void getNaviInfo(Uri uri) {
+		try {
+			query = getContentResolver().query(uri, null, null, null, null);
+			if (query.moveToNext()) {
+				isNaviing = query.getInt(query.getColumnIndex(ISNAVING)) == 1;
+				if (isNaviing) {
+
+					ledView.setVisibility(View.GONE);
+					layout.setVisibility(View.VISIBLE);
+					ledView.stop();
+					String maneuver_Image = query.getString(query
+							.getColumnIndex(MANEUVER_IMAGE));
+					String next_road = query.getString(query
+							.getColumnIndex(NEXT_ROAD));
+					int next_road_distance = query.getInt(query
+							.getColumnIndex(NEXT_ROAD_DISTANCE));
+					int total_distance = query.getInt(query
+							.getColumnIndex(TOTAL_REMAIN_DISTANCE));
+					int remainTime = query.getInt(query
+							.getColumnIndex(TOTAL_REMAIN_TIME));
+
+					if (isTW) {
+						nextRoad.setText(ZHConverter.convert(next_road,
+								ZHConverter.TRADITIONAL));
+					} else {
+						nextRoad.setText(next_road);
+					}
+					remainDistanceText.setText(getRemainDidistance(total_distance,
+									System.currentTimeMillis() + remainTime* 1000));
+
+					int resID = getResources().getIdentifier(maneuver_Image,
+							"drawable", getApplicationInfo().packageName);
+					maneuverImage.setBackgroundResource(resID);
+					distanceText.setText(getDidistance(next_road_distance));
+				} else {
+					ledView.setVisibility(View.VISIBLE);
+					layout.setVisibility(View.GONE);
+					ledView.start();
+
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (query != null)
+				query.close();
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -101,7 +184,9 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 					@Override
 					public void onSystemUiVisibilityChange(int visibility) {
 						if (visibility == View.VISIBLE) {
-							getWindow().getDecorView().setSystemUiVisibility(
+							getWindow()
+									.getDecorView()
+									.setSystemUiVisibility(
 											View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 													| View.SYSTEM_UI_FLAG_IMMERSIVE
 													| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -121,9 +206,9 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.screen_off);
 		screen = this;
 		Intent intent = getIntent();
-		if(intent != null){
+		if (intent != null) {
 			isCamera = intent.getBooleanExtra("isCamera", false);
-		}else{
+		} else {
 			isCamera = false;
 		}
 		/*
@@ -133,9 +218,12 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 		 */
 
 		initView();
-	/*	PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		 = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
-				| PowerManager.ACQUIRE_CAUSES_WAKEUP, "Gank");*/
+		/*
+		 * PowerManager pm = (PowerManager)
+		 * getSystemService(Context.POWER_SERVICE); =
+		 * pm.newWakeLock(PowerManager.FULL_WAKE_LOCK |
+		 * PowerManager.ACQUIRE_CAUSES_WAKEUP, "Gank");
+		 */
 
 		MainApplication.mScreenOff = false;
 		registReceive();
@@ -182,11 +270,14 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-		
-//		wl.acquire();
+
+		// wl.acquire();
+		//免打扰歌词开关
 		int lrc_show = Settings.System.getInt(getApplicationContext().getContentResolver(), "screen_off_lrc_switch", 0);
-		if(lrc_show == 0){
-			ComponentName name = new ComponentName(MOFANG_PKG, WINDOW_SERVICE_CLASS);
+		Log.d("screen", "lrc = " + lrc_show);
+		if (lrc_show == 0) {
+			/*ComponentName name = new ComponentName(MOFANG_PKG,
+					WINDOW_SERVICE_CLASS);
 			Intent intent = new Intent();
 			intent.setComponent(name);
 			intent.setAction(CMDOPEN_DESK_LYRIC);
@@ -195,7 +286,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			ComponentName txzname = new ComponentName(TXZ_PKG, WINDOW_SERVICE_CLASS);
+			ComponentName txzname = new ComponentName(TXZ_PKG,WINDOW_SERVICE_CLASS);
 			Intent txz = new Intent();
 			txz.setComponent(txzname);
 			txz.setAction(CMDOPEN_DESK_LYRIC);
@@ -203,25 +294,20 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 				startService(txz);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 			sendBroadcast(new Intent(CMDOPEN_DESK_LYRIC));
-			
-		}
-		if (MainApplication.gaodeisnavi) {
-			ledView.setVisibility(View.GONE);
-			layout.setVisibility(View.VISIBLE);
-			ledView.stop();
-		} else {
-			ledView.setVisibility(View.VISIBLE);
-			layout.setVisibility(View.GONE);
-			ledView.start();
 
 		}
+		
+		sendBroadcast(new Intent(Constant.NO_DISTURB_ACTION));
+		getNaviInfo(uri_navi);
 		super.onResume();
+		getContentResolver().registerContentObserver(uri_navi, false,observernew);
 	}
 
 	private void registReceive() {
-		final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+		final IntentFilter homeFilter = new IntentFilter(
+				Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
 		mScreenOffReceiver = new BNRBroadCast();
 		registerReceiver(mScreenOffReceiver, homeFilter);
 		IntentFilter filter = new IntentFilter();
@@ -241,13 +327,14 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onStop() {
 		super.onStop();
+		getContentResolver().unregisterContentObserver(observernew);
 	}
 
 	@Override
 	protected void onPause() {
-//		wl.release();
+		// wl.release();
 		ledView.stop();
-		ComponentName name = new ComponentName(MOFANG_PKG, WINDOW_SERVICE_CLASS);
+		/*ComponentName name = new ComponentName(MOFANG_PKG, WINDOW_SERVICE_CLASS);
 		Intent intent = new Intent();
 		intent.setComponent(name);
 		intent.setAction(CMDCLOSE_DESK_LYRIC);
@@ -256,7 +343,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ComponentName txzname = new ComponentName(TXZ_PKG, WINDOW_SERVICE_CLASS);
 		Intent txz = new Intent();
 		txz.setComponent(txzname);
@@ -265,8 +352,9 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 			startService(txz);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		sendBroadcast(new Intent(CMDCLOSE_DESK_LYRIC));
+		sendBroadcast(new Intent("com.intent.action.LEAVE_NODISTURB"));
 		super.onPause();
 	}
 
@@ -310,7 +398,7 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	}
 
 	void exit() {
-		if(isCamera){
+		if (isCamera) {
 			goHomePage();
 		}
 		finish();
@@ -328,12 +416,77 @@ public class ScrrenoffActivity extends Activity implements OnClickListener,
 	private void text() {
 		setImmersive(true);
 	}
-	
-	void goHomePage(){
+
+	void goHomePage() {
 		Intent mHomeIntent = new Intent(Intent.ACTION_MAIN, null);
 		mHomeIntent.addCategory(Intent.CATEGORY_HOME);
-		mHomeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+		mHomeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 		startActivity(mHomeIntent);
 	}
-	
+
+	private String getDidistance(int s) {
+		String dis;
+		if (s < 1000) {
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.mi), s);
+		} else if (s < 100000) {
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.gl),
+					(float) s * 1.0 / 1000);
+		} else {
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.gl_far),
+					s / 1000);
+		}
+
+		return dis;
+	}
+
+	private String getRemainDidistance(int s, long time) {
+		long nowTime = System.currentTimeMillis();
+		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(GMT_8));
+		calendar.setTimeInMillis(time);
+		int l = (int) (toDay(time) - toDay(nowTime));
+		String d;
+		switch (l) {
+		case 0:
+			d = String.format(LEDView.DATE_FORMAT,
+					calendar.get(Calendar.HOUR_OF_DAY),
+					calendar.get(Calendar.MINUTE));
+			break;
+		case 1:
+			d = "明天";
+			break;
+		case 2:
+			d = "后天";
+			break;
+		default:
+			d = l + "天后";
+			break;
+		}
+		String dis;
+		if (s < 1000) {
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.arrive_mi), s,
+					d);
+		} else if (s < 1000000) {
+
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.arrive_gl),
+					(float) s * 1.0 / 1000, d);
+		} else {
+			dis = String.format(
+					ScrrenoffActivity.screen.getString(R.string.arrive_gl_far),
+					s / 1000, d);
+		}
+
+		return dis;
+	}
+
+	private long toDay(long millis) {
+		return (millis + TimeZone.getDefault().getOffset(millis))
+				/ MILLIS_IN_DAY;
+	}
+
 }

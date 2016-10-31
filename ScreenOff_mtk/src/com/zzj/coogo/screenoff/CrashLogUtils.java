@@ -10,16 +10,7 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -27,38 +18,6 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 
 public class CrashLogUtils {
-	/**
-	 * @param context
-	 * @param ex
-	 * @throws JSONException
-	 * @throws UnsupportedEncodingException
-	 * 上传log到服务器.
-	 */
-	public static void postCrashLog(Context context, Throwable ex) throws JSONException, UnsupportedEncodingException {
-		String crashReportStr = getCrashReport(context, ex);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String date = df.format(new Date());
-		JSONObject datanode = new JSONObject();
-		datanode.put("androidVersion", android.os.Build.VERSION.RELEASE);
-		datanode.put("androidBuild", android.os.Build.DISPLAY);
-		datanode.put("versionName", context.getPackageName());
-		datanode.put("versionCode", getVersion(context));
-		datanode.put("crashReportStr", crashReportStr);
-		datanode.put("date", date);
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost("http://alunchering/AndroidCrashCollector/crashlog");
-		httpPost.setHeader("Content-Type", "application/json");
-		httpPost.setEntity(new StringEntity(datanode.toString(), "UTF-8"));
-		try {
-			HttpResponse response = httpClient.execute(httpPost);
-			HttpEntity entity = response.getEntity();
-			String msg = EntityUtils.toString(entity);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * 

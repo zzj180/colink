@@ -7,6 +7,7 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -22,13 +23,9 @@ import android.view.WindowManager.LayoutParams;
 
 public class SwitchServeice extends Service {
 
-	private static final String CAMERA_ACTIVITY = "com.android.camera.CameraActivity";
 	private static final String CAMERA2_APP = "com.android.camera2";
-	private static final String GAODE_MAP_ACTIVITY = "com.autonavi.map.activity.NewMapActivity";
-	private static final String GAODE_CAR_ACTIVITY = "com.autonavi.auto.MainMapActivity";
 /*	private static final String GOOGLE_MAP_APP = "com.google.android.apps.maps";
 	private static final String GOOGLE_MAP_ACTIVITY = "com.google.android.maps.MapsActivity";*/
-	private static final String BAIDU_NAVI_ACTIVITY = "com.baidu.navi.NaviActivity";
 	private static final String TAG = "handerThread";
 	protected static final long delayMillis = 600L;
 	Handler handler, readHandler;
@@ -41,7 +38,7 @@ public class SwitchServeice extends Service {
 	private View switchView;
 
 //	private boolean showInput;
-
+	BNRBroadCast mScreenOffReceiver;
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -71,37 +68,17 @@ public class SwitchServeice extends Service {
 		super.onCreate();
 		createFloatView();
 		switchView.setVisibility(View.GONE);
-		handler = new Handler(getMainLooper())/* {
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-				switch (msg.what) {
-				case 0:
-					mWindowManager.removeViewImmediate(switchView);
-					switchView.findViewById(R.id.editText1).clearFocus();
-					wmParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL | LayoutParams.FLAG_NOT_FOCUSABLE;
-					switchView.setVisibility(View.VISIBLE);
-					mWindowManager.addView(switchView, wmParams);
-					showInput = false;
-					break;
-				case 1:
-					ShowKeyboard();
-					handler.sendEmptyMessageDelayed(2, 100);
-					break;
-				case 2:
-					HideKeyboard();
-					handler.sendEmptyMessageDelayed(0, 200);
-					break;
-				default:
-					break;
-				}
-			}
-		}*/;
+		handler = new Handler(getMainLooper());
 		mHandlerThread = new HandlerThread(TAG);
 		mHandlerThread.start();
 		readHandler = new Handler(mHandlerThread.getLooper());
 		readHandler.postDelayed(r, delayMillis);
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(Intent.ACTION_SCREEN_ON);
+		filter.addAction(Intent.ACTION_SCREEN_OFF);
+		mScreenOffReceiver = new BNRBroadCast();
+		registerReceiver(mScreenOffReceiver, filter);
+
 	}
 
 	private void createFloatView() {
@@ -169,7 +146,7 @@ public class SwitchServeice extends Service {
 				case MotionEvent.ACTION_UP:
 					if ((int) event.getRawY() == lastY) {
 						Intent intent = new Intent(Intent.ACTION_MAIN);
-						intent.setClassName(CAMERA2_APP, CAMERA_ACTIVITY);
+						intent.setClassName(CAMERA2_APP, Constant.CAMERA_ACTIVITY);
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						try {
 							startActivity(intent);
@@ -198,7 +175,7 @@ public class SwitchServeice extends Service {
 			mHandlerThread.quit();
 			readHandler.removeCallbacks(r);
 		}
-
+		unregisterReceiver(mScreenOffReceiver);
 		startService(new Intent(this, SwitchServeice.class));
 		super.onDestroy();
 	}
@@ -211,21 +188,15 @@ public class SwitchServeice extends Service {
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
-				if (tasksInfo != null && tasksInfo.size() > 0
-						&& switchView != null) {
-					if (BAIDU_NAVI_ACTIVITY.equals(tasksInfo.get(0).topActivity
-							.getClassName())) {
+				if (tasksInfo != null && tasksInfo.size() > 0 && switchView != null) {
+					if (Constant.BAIDU_NAVI_ACTIVITY.equals(tasksInfo.get(0).topActivity.getClassName())) {
 						SwitchServeice.this.sendBroadcast(new Intent("hiden_systemui"));
-						if (MainApplication.gaodeisnavi) {
 							switchView.setVisibility(View.VISIBLE);
-						} else {
-							switchView.setVisibility(View.GONE);
-						}
-					} else if (GAODE_MAP_ACTIVITY.equals(tasksInfo.get(0).topActivity
+					} else if (Constant.GAODE_MAP_ACTIVITY.equals(tasksInfo.get(0).topActivity
 							.getClassName())) {
 						SwitchServeice.this.sendBroadcast(new Intent("hiden_systemui"));
 						switchView.setVisibility(View.VISIBLE);
-					} else if (GAODE_CAR_ACTIVITY.equals(tasksInfo.get(0).topActivity
+					} else if (Constant.GAODE_CAR_ACTIVITY.equals(tasksInfo.get(0).topActivity
 							.getClassName())) {
 						switchView.setVisibility(View.VISIBLE);
 					} 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HardwareService</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <!-- modify by lzl -->
+    <!-- start -->
+    <string name="monitor">OK</string>
+    <string name="shutDown">shutDown</string>
+    <string name="thirdty_second">30</string>
+    <string name="monitor_model_remind">enter monitor model</string>
+    <!-- end -->
+
+</resources>

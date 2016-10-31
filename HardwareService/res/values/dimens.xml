@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+        <!-- modify by lzl  -->
+    <!-- start -->
+    <dimen name="comapnsate_layout_margin">30dp</dimen>
+    <dimen name="number_picker_height">248dp</dimen>
+    <dimen name="sub_add_dec_margin">80dp</dimen>
+    <dimen name="sub_add_btn_width">32dp</dimen>
+    <dimen name="sub_add_btn_height">46dp</dimen>
+    <dimen name="confim_btn_height">136dp</dimen>
+    <dimen name="btn_divid">2dp</dimen>
+    <dimen name="divid">4dp</dimen>
+   	<dimen name="off_textsize">120sp</dimen>
+   	<dimen name="title_textsize">40sp</dimen>
+   	<dimen name="half_screen">230dp</dimen>
+    <!-- end -->
+
+</resources>

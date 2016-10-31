@@ -36,6 +36,7 @@ public class LEDView extends LinearLayout {
 			int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
 			timeView.setText(String.format(DATE_FORMAT,hourOfDay, calendar.get(Calendar.MINUTE)));
 			dateView.setText(DateFormat.format(mFormat, calendar));
+			//19点到6点设置亮度15，6点到9点设置亮度200，9点到17点设置255，17点到19点设置200
 			if(hourOfDay < 6 || hourOfDay >19 ){
 				mBrightnessListening.dateListening(15);
 			}else if(hourOfDay > 17){
@@ -79,6 +80,8 @@ public class LEDView extends LinearLayout {
 		int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
 		timeView.setText(String.format(DATE_FORMAT,hourOfDay, calendar.get(Calendar.MINUTE)));
 		dateView.setText(DateFormat.format(mFormat, calendar));
+		
+		//是否显示日期
 		int date_show = Settings.System.getInt(context.getApplicationContext().getContentResolver(), "screen_off_date_switch", 0);
 		if(date_show==0){
 			dateView.setVisibility(View.VISIBLE);

@@ -1,9 +1,6 @@
 package com.zzj.coogo.screenoff;
 
-import java.io.File;
 import java.lang.reflect.Method;
-
-import dalvik.system.DexFile;
 
 import android.content.Context;
 

@@ -33,7 +33,7 @@ public class TemperatureActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(main);
 		// enterLightsOutMode(getWindow());
-		MainApplication.tempActivity = this;
+	//	MainApplication.tempActivity = this;
 
 		WindowManager.LayoutParams localLayoutParams = getWindow()
 				.getAttributes();
@@ -56,7 +56,7 @@ public class TemperatureActivity extends Activity {
 		Intent intnet = new Intent("android.intent.action.OPEN_WAKEUP");
 		sendBroadcast(intnet);
 		unregisterReceiver(mScreenOffReceiver);
-		MainApplication.tempActivity = null;
+//		MainApplication.tempActivity = null;
 	}
 
 	@Override
