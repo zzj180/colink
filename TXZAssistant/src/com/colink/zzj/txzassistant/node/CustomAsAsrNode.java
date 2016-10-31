@@ -8,6 +8,7 @@ import com.android.kwmusic.KWMusicService;
 import com.colink.zzj.txzassistant.AdapterApplication;
 import com.colink.zzj.txzassistant.R;
 import com.colink.zzj.txzassistant.oem.RomSystemSetting;
+import com.colink.zzj.txzassistant.util.APPUtil;
 import com.colink.zzj.txzassistant.util.Constants;
 import com.colink.zzj.txzassistant.util.Logger;
 import com.txznet.sdk.TXZAsrManager;
@@ -41,7 +42,11 @@ public class CustomAsAsrNode {
 				public void onCommandSelected(String type, String command) {
 					Logger.d(type);
 					if(Constants.CAPTURE_PICTURE_ASR.equals(type)){
-						AdapterApplication.getContext().sendBroadcast(new Intent("action.colink.take.picture"));
+						if(APPUtil.getInstance().isInstalled(APPUtil.CAMERA_PKG)){
+							AdapterApplication.getContext().sendBroadcast(new Intent("action.colink.take.picture"));
+						}else {
+							AdapterApplication.getContext().sendBroadcast(new Intent("android.intent.action.TAKE_PICTURE"));
+						}
 					}else if(Constants.PLAY_MUSIC_ASR.equals(type)){
 						Intent intent = new Intent(AdapterApplication.getContext(),KWMusicService.class);
 						intent.setAction(CommandPreference.SERVICECMD);

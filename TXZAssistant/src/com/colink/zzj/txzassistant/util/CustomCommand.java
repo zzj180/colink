@@ -9,6 +9,8 @@ public interface CustomCommand {
 	public final static String OPEN_FM = "OPEN_FM";
 	public final static String OPEN_RADAR = "OPEN_RADAR";
 	public final static String CLOSE_RADAR = "CLOSE_RADAR";
+	public final static String OPEN_BLUETOOTHE = "OPEN_BLUETOOTHE";
+	public final static String CLOSE_BLUETOOTHE = "CLOSE_BLUETOOTHE";
 	public final static String ONE_NAVI = "ONE_NAVI";
 	public final static String HOME_PAGE = "HOME_PAGE";
 	public final static String CLOSE_CARCORDER = "CLOSE_CARCORDER";

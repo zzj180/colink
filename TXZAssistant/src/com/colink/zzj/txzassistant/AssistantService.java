@@ -50,7 +50,6 @@ import com.txznet.sdk.TXZAsrManager;
 import com.txznet.sdk.TXZConfigManager;
 import com.txznet.sdk.TXZPowerManager;
 import com.txznet.sdk.TXZResourceManager;
-import com.txznet.sdk.TXZTtsManager;
 import com.txznet.sdk.TXZConfigManager.FloatToolType;
 
 /**
@@ -60,6 +59,7 @@ import com.txznet.sdk.TXZConfigManager.FloatToolType;
  */
 public class AssistantService extends Service implements Constants{
 
+	private static final String TTS_SHOW = "tts_show";
 	private static final String TXZ_SHOW = "com.txznet.txz.record.show";
 	private static final String TXZ_DISMISS = "com.txznet.txz.record.dismiss";
 	private static final String ACTION_NO_DISTURB = "com.inet.broadcast.no_disturb";
@@ -106,7 +106,8 @@ public class AssistantService extends Service implements Constants{
 				}
 			} else if (TXZ_SHOW.equals(action)) {
 				isShow = true;
-				CustomAsAsrNode.getInstance().recover();
+				Settings.System.putInt(getContentResolver(), TTS_SHOW, 1);
+		//		CustomAsAsrNode.getInstance().recover();
 				context.sendBroadcast(new Intent("action.coogo.QUITE_SCREENOFF"));
 				getCurActivity();
 				boolean isCamera = isConsumeActivity();
@@ -115,7 +116,8 @@ public class AssistantService extends Service implements Constants{
 				}
 			} else if (TXZ_DISMISS.equals(action)) {
 				isShow = false;
-				CustomAsAsrNode.getInstance().useWakeupAsAsr();
+				Settings.System.putInt(getContentResolver(), TTS_SHOW, 0);
+		//		CustomAsAsrNode.getInstance().useWakeupAsAsr();
 				/*if (CAMERA_ACTIVITY.equals(curActivity)
 						|| CAMERA_LAUNCHER.equals(curActivity)) {
 					try {
@@ -138,10 +140,18 @@ public class AssistantService extends Service implements Constants{
 							e.printStackTrace();
 						}
 					}else if (GAODE_CAR_ACTIVITY.equals(curActivity)) {
-						try {
-							APPUtil.lanchApp(getApplicationContext(),APPUtil.GD_CAR_PKG);
-						} catch (Exception e) {
-							e.printStackTrace();
+						if (APPUtil.getInstance().isInstalled(APPUtil.GD_CARJ_PKG)) {
+							try {
+								APPUtil.lanchApp(getApplicationContext(), APPUtil.GD_CARJ_PKG);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}else if (APPUtil.getInstance().isInstalled(APPUtil.GD_CAR_PKG)) {
+							try {
+								APPUtil.lanchApp(getApplicationContext(), APPUtil.GD_CAR_PKG);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
@@ -164,7 +174,7 @@ public class AssistantService extends Service implements Constants{
 		super.onCreate();
 		mUserPreference = new UserPreference(getApplicationContext());
 		AdapterApplication.mapType = getMapType();
-
+		Settings.System.putInt(getContentResolver(), TTS_SHOW, 0);
 		startKWMusicService();
 
 		getContentResolver().registerContentObserver(
@@ -175,7 +185,7 @@ public class AssistantService extends Service implements Constants{
 						AdapterApplication.mapType = getMapType();
 						Logger.d("mapType = " + AdapterApplication.mapType);
 						if(AdapterApplication.mapType==0){
-							GDOperate.getInstance(getApplicationContext()).closeMapBy();
+							GDOperate.getInstance(getApplicationContext()).closeMap();
 						}else if(AdapterApplication.mapType == 1){
 							BDDHOperate.getInstance(getApplicationContext()).closeMap();
 						}
@@ -288,8 +298,8 @@ public class AssistantService extends Service implements Constants{
 			TXZPowerManager.getInstance().reinitTXZ(new Runnable() {
 				@Override
 				public void run() {
-					TXZPowerManager.getInstance().notifyPowerAction(
-							TXZPowerManager.PowerAction.POWER_ACTION_WAKEUP);
+					TXZPowerManager.getInstance().notifyPowerAction(TXZPowerManager.PowerAction.POWER_ACTION_WAKEUP);
+					startService(new Intent(getApplicationContext(), PhoneBookService.class));
 					// TXZPowerManager.getInstance().reinitTXZ();
 				}
 			});
@@ -309,32 +319,32 @@ public class AssistantService extends Service implements Constants{
 			stop.putExtra(CommandPreference.CMDNAME,CommandPreference.CMDSTOP);
 			startService(stop);
 			
-			Set<String> words = AdapterApplication.getContext().getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).getStringSet(KEY_PRE_WAKEUPWORDS, null);
+		/*	 Set<String> words = AdapterApplication.getContext().getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).getStringSet(KEY_PRE_WAKEUPWORDS, null);
 			String[] strSet = new String[words.size()];
 			words.toArray(strSet);
 			TXZConfigManager.getInstance().setWakeupKeywordsNew(strSet);
 			boolean micEnable = UserPerferenceUtil.getFloatMicEnable(getApplicationContext());
-			TXZTtsManager.getInstance().setVoiceSpeed(UserPerferenceUtil.getTTSSpeed(getApplicationContext()));
+	//		TXZTtsManager.getInstance().setVoiceSpeed(UserPerferenceUtil.getTTSSpeed(getApplicationContext()));
 			TXZConfigManager.getInstance().showFloatTool(micEnable ? FloatToolType.FLOAT_NORMAL : FloatToolType.FLOAT_NONE);
 			TXZConfigManager.getInstance().setWakeupThreshhold(UserPerferenceUtil.getWakeupThreshold(getApplicationContext()));
-			TXZConfigManager.getInstance().enableWakeup(UserPerferenceUtil.getAECEnable(getApplicationContext()));
+			TXZConfigManager.getInstance().enableWakeup(UserPerferenceUtil.getAECEnable(getApplicationContext()));*/
 			TXZPowerManager.getInstance().notifyPowerAction(TXZPowerManager.PowerAction.POWER_ACTION_BEFORE_SLEEP);
 			TXZPowerManager.getInstance().releaseTXZ();
+			Intent intent = new Intent("AUTONAVI_STANDARD_BROADCAST_RECV");
+			intent.putExtra("KEY_TYPE", 10018);
+			sendBroadcast(intent);
+			GDOperate.getInstance(getApplicationContext()).closeMap();
 			AdapterApplication.runOnUiGround(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						RomSystemSetting.forceStopPackage(APPUtil.GD_CAR_PKG);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					try {
+						
 						RomSystemSetting.forceStopPackage(APPUtil.IMUSIC_PKG);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-			}, 10);
+			}, 1000);
 
 		}
 	}
@@ -377,8 +387,7 @@ public class AssistantService extends Service implements Constants{
 		mAlertDialog = builder.create();
 		mAlertDialog.setCanceledOnTouchOutside(false);
 		mAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_PHONE);// 显示
-		mAlertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+		mAlertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		CountDown();
 		mAlertDialog.show();
 
@@ -472,8 +481,7 @@ public class AssistantService extends Service implements Constants{
 			KLDOperate.getInstance(this).startNavigation(lat, lon, name);
 		} else if (AdapterApplication.mapType == 0) {// 百度导航开始导航
 			Gps bd09 = PositionUtil.gcj02_To_Bd09(lat, lon);
-			BDDHOperate.getInstance(this).startNavigation(bd09.getWgLat(),
-					bd09.getWgLon());
+			BDDHOperate.getInstance(this).startNavigation(bd09.getWgLat(),bd09.getWgLon());
 		}
 	}
 

@@ -1,11 +1,14 @@
 package com.colink.zzj.txzassistant;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.colink.zzj.txzassistant.util.Constants;
 import com.colink.zzj.txzassistant.util.Gps;
@@ -52,6 +55,7 @@ public class BootReceiver extends BroadcastReceiver {
 	private static final String SPIT = ",";
 	private static final String COM_GLSX_AUTONAVI = "com.glsx.bootup.send.autonavi";
 	private static final String ACTION_ROMOTE_CLD = "action.colink.command_showway_cld";
+	private static final String ACTION_PHONEBOOK = "com.zzj.phonebook.send";
 
 	public static String _KEYS_ = "keySet";
 	public static String _TYPE_STANDCMD_ = "standCMD";
@@ -107,7 +111,7 @@ public class BootReceiver extends BroadcastReceiver {
 
 			String playText = intent.getStringExtra("content");
 			Logger.d(playText);
-			TXZTtsManager.getInstance().cancelSpeak(mTtsTaskId);
+		//	TXZTtsManager.getInstance().cancelSpeak(mTtsTaskId);
 			mTtsTaskId = TXZTtsManager.getInstance().speakText(StringUtil.clearSpecial(playText.replace("usraud","")));
 		} else if (GL_PLAY_TTS.equals(action)) {
 
@@ -240,7 +244,14 @@ public class BootReceiver extends BroadcastReceiver {
 				} catch (Exception e) {
 				}
 			}
-		} else if (ACTION_ROMOTE_CLD.equals(action)) {
+		} else if(ACTION_PHONEBOOK.equals(action)){
+			Intent pb= new Intent(context,PhoneBookService.class);
+			pb.setAction("bluetooth");
+			ArrayList<HashMap<String, String>> li = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("phone");
+			Logger.d("phone="+li.size());
+			pb.putExtra("phone", li);
+			context.startService(pb);
+		}else if (ACTION_ROMOTE_CLD.equals(action)) {
 
 			float lat = intent.getFloatExtra("lat", 0f);
 			float lng = intent.getFloatExtra("lng", 0f);

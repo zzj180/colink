@@ -7,6 +7,7 @@ import com.colink.zzj.txzassistant.util.Logger;
 import com.txznet.sdk.TXZCameraManager;
 import com.txznet.sdk.TXZCameraManager.CameraTool;
 import com.txznet.sdk.TXZCameraManager.CapturePictureListener;
+import com.txznet.sdk.TXZCameraManager.CaptureVideoListener;
 
 /**
  * @desc  拍照场景节点
@@ -48,6 +49,13 @@ public class CameraNode {
 				}, time);
 			
 			return true;
+		}
+
+		@Override
+		public boolean captureVideo(CaptureVideoListener arg0,
+				CaptureVideoListener arg1) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 	};
 }

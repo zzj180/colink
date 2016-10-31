@@ -30,6 +30,7 @@ public class APPUtil {
     public static final String BD_MAP_PKG = "com.baidu.BaiduMap";
     public static final String GD_MAP_PKG = "com.autonavi.minimap";
     public static final String GD_CAR_PKG = "com.autonavi.amapauto";
+    public static final String GD_CARJ_PKG = "com.autonavi.amapautolite";
     public static final String KLD_MAP_PKG = "cld.navi.c2739.mainframe";
     public static final String MX_MAP_PKG = "com.mxnavi.mxnavi";
     public static final String GG_MAP_PKG = "com.google.android.apps.maps";

@@ -143,7 +143,9 @@ public class NavigationNode {
 	private void openMap(){
 		if (AdapterApplication.mapType == 1) {// 高德
 			try {
-				if (APPUtil.getInstance().isInstalled(APPUtil.GD_CAR_PKG)) {
+				if (APPUtil.getInstance().isInstalled(APPUtil.GD_CARJ_PKG)) {
+					APPUtil.lanchApp(mContext, APPUtil.GD_CARJ_PKG);
+				}else if (APPUtil.getInstance().isInstalled(APPUtil.GD_CAR_PKG)) {
 					APPUtil.lanchApp(mContext, APPUtil.GD_CAR_PKG);
 				}else if(APPUtil.getInstance().isInstalled(APPUtil.GD_MAP_PKG)){
 					APPUtil.lanchApp(mContext, APPUtil.GD_MAP_PKG);

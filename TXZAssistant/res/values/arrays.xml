@@ -21,6 +21,17 @@
         <item>电子狗关闭</item>
     </string-array>
     
+         <string-array name="open_bluetooth" >
+        <item>打开蓝牙</item>
+        <item>蓝牙打开</item>
+    </string-array>
+    
+    <string-array name="close_bluetooth" >
+        <item>关闭蓝牙</item>
+        <item>蓝牙关闭</item>
+    </string-array>
+    
+    
      <string-array name="close_fm" >
         <item>关闭发射</item>
         <item>关闭广播</item>

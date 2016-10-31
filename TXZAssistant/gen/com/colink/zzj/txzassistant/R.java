@@ -13,30 +13,32 @@ public final class R {
         <item>打开音乐</item>       
     </string-array> 
          */
-        public static final int capture_wakeup=0x7f04000c;
-        public static final int close_carcorder=0x7f040009;
+        public static final int capture_wakeup=0x7f04000e;
+        public static final int close_bluetooth=0x7f040004;
+        public static final int close_carcorder=0x7f04000b;
         public static final int close_edog=0x7f040002;
-        public static final int close_fm=0x7f040003;
-        public static final int close_radar=0x7f040006;
-        public static final int go_com=0x7f04000b;
-        public static final int home_page=0x7f040008;
-        public static final int in_com=0x7f04000a;
-        public static final int lower_volume=0x7f040013;
-        public static final int next_music=0x7f04000e;
-        public static final int one_navi=0x7f040007;
+        public static final int close_fm=0x7f040005;
+        public static final int close_radar=0x7f040008;
+        public static final int go_com=0x7f04000d;
+        public static final int home_page=0x7f04000a;
+        public static final int in_com=0x7f04000c;
+        public static final int lower_volume=0x7f040015;
+        public static final int next_music=0x7f040010;
+        public static final int one_navi=0x7f040009;
+        public static final int open_bluetooth=0x7f040003;
         public static final int open_edog=0x7f040001;
-        public static final int open_fm=0x7f040004;
-        public static final int open_radar=0x7f040005;
+        public static final int open_fm=0x7f040006;
+        public static final int open_radar=0x7f040007;
         public static final int open_screenOff=0x7f040000;
-        public static final int pause_music=0x7f040010;
+        public static final int pause_music=0x7f040012;
         /**  cunstom Asr wakeup 
          */
-        public static final int play_music=0x7f04000d;
-        public static final int prev_music=0x7f04000f;
-        public static final int raise_volume=0x7f040012;
-        public static final int rs_voice_asr_start_hint=0x7f040015;
-        public static final int stop_music=0x7f040011;
-        public static final int txz_sdk_init_wakeup_keywords=0x7f040014;
+        public static final int play_music=0x7f04000f;
+        public static final int prev_music=0x7f040011;
+        public static final int raise_volume=0x7f040014;
+        public static final int rs_voice_asr_start_hint=0x7f040017;
+        public static final int stop_music=0x7f040013;
+        public static final int txz_sdk_init_wakeup_keywords=0x7f040016;
     }
     public static final class attr {
     }

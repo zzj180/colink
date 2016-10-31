@@ -79,6 +79,10 @@ public class AdapterApplication extends Application implements InitListener,
 	public void onCreate() {
 		super.onCreate();
 		instance = this;
+		String customer = SystemPropertiesProxy.get(this,"ro.inet.consumer.code");
+		if("174".equals(customer)){
+			UserPerferenceUtil.VALUE_ENABLE_FLOAT_MIC_DEFAULT = true;
+		}
 		uiHandler = new Handler(Looper.getMainLooper());
 		mContext = getApplicationContext();
 		ContentValues con = new ContentValues();
@@ -102,14 +106,12 @@ public class AdapterApplication extends Application implements InitListener,
 			int asr = Settings.System.getInt(getContentResolver(), "asr", 1);
 			Logger.d("asr = " + asr);
 			if (asr == 0) {
-				mInitParam.setAsrType(AsrEngineType.ASR_IFLY).setTtsType(
-						TtsEngineType.TTS_YUNZHISHENG);
+				mInitParam.setAsrType(AsrEngineType.ASR_IFLY).setTtsType(TtsEngineType.TTS_YUNZHISHENG);
 			} else {
-				mInitParam.setAsrType(AsrEngineType.ASR_YUNZHISHENG)
-						.setTtsType(TtsEngineType.TTS_SYSTEM);
+				mInitParam.setAsrType(AsrEngineType.ASR_YUNZHISHENG).setTtsType(TtsEngineType.TTS_SYSTEM);
 			}
 		}
-
+		mInitParam.setTtsVoiceSpeed(80);
 		{
 			// TODO 设置唤醒词
 			Set<String> words = getSharedPreferences(PRE_NAME,Context.MODE_PRIVATE).getStringSet(KEY_PRE_WAKEUPWORDS,null);
@@ -119,14 +121,13 @@ public class AdapterApplication extends Application implements InitListener,
 				 * this.getResources().getStringArray(R
 				 * .array.txz_sdk_init_wakeup_keywords);
 				 */
-				String keywords = SystemPropertiesProxy.get(
-						getApplicationContext(), KEY_WAKEUP_WORDS);
+				String keywords = SystemPropertiesProxy.getString(
+						getApplicationContext(), KEY_WAKEUP_WORDS,"你好狼仔");
 				mInitParam.setWakeupKeywordsNew(new String[] { keywords });
 				Set<String> set = new HashSet<>();
 				set.add(keywords);
 				set.remove("");
-				getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).edit()
-						.putStringSet(KEY_PRE_WAKEUPWORDS, set).apply();
+				getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).edit().putStringSet(KEY_PRE_WAKEUPWORDS, set).apply();
 			} else {
 				String[] strSet = new String[words.size()];
 				words.toArray(strSet);
@@ -148,8 +149,13 @@ public class AdapterApplication extends Application implements InitListener,
 			if (!TextUtils.isEmpty(platform)) {
 				mInitParam.setTxzStream(AudioManager.STREAM_SYSTEM);
 			}
+			
+			String device = SystemPropertiesProxy.get(this, "ro.product.device");
 			// TODO 设置开启回音消除模式
-			mInitParam.setFilterNoiseType(1);
+			if(device.contains("8665")){
+				mInitParam.setFilterNoiseType(1);
+			}
+	//		mInitParam.setFilterNoiseType(1);
 			// TODO 其他设置
 		}
 
@@ -195,36 +201,30 @@ public class AdapterApplication extends Application implements InitListener,
 		if (words != null) {
 			keywords = new ArrayList<>(words).toString();
 		} else {
-			keywords = SystemPropertiesProxy.get(getApplicationContext(),
-					KEY_WAKEUP_WORDS);
+			keywords = SystemPropertiesProxy.get(getApplicationContext(),KEY_WAKEUP_WORDS);
 		}
 
 		ContentValues con = new ContentValues();
 		con.put(WakeUpDB.SWITCH, UserPerferenceUtil.getAECEnable(getApplicationContext()) ? 1 : 0);
 		getContentResolver().update(WakeUpSwitch.CONTENT_URI, con, null, null);
 		
-		TXZTtsManager.getInstance().speakText(
-				getString(R.string.playvoice, keywords));
-		TXZTtsManager.getInstance().setVoiceSpeed(
-				UserPerferenceUtil.getTTSSpeed(getApplicationContext()));
-		boolean micEnable = UserPerferenceUtil
-				.getFloatMicEnable(getApplicationContext());
-		TXZConfigManager.getInstance().showFloatTool(
-				micEnable ? FloatToolType.FLOAT_NORMAL
-						: FloatToolType.FLOAT_NONE);
-		TXZConfigManager.getInstance().setWakeupThreshhold(
-				UserPerferenceUtil.getWakeupThreshold(getApplicationContext()));
-		TXZConfigManager.getInstance().enableWakeup(
-				UserPerferenceUtil.getAECEnable(getApplicationContext()));
+		TXZTtsManager.getInstance().speakText(getString(R.string.playvoice, keywords));
+		
+	//	TXZTtsManager.getInstance().setVoiceSpeed(UserPerferenceUtil.getTTSSpeed(getApplicationContext()));
+		
+		boolean micEnable = UserPerferenceUtil.getFloatMicEnable(getApplicationContext());
+		TXZConfigManager.getInstance().showFloatTool(micEnable ? FloatToolType.FLOAT_NORMAL : FloatToolType.FLOAT_NONE);
+		
+		TXZConfigManager.getInstance().setWakeupThreshhold(UserPerferenceUtil.getWakeupThreshold(getApplicationContext()));
+		
+		TXZConfigManager.getInstance().enableWakeup(UserPerferenceUtil.getAECEnable(getApplicationContext()));
 
 		TXZConfigManager.getInstance().enableSettings(true);
-		TXZResourceManager.getInstance().setTextResourceString(
-				ASR_HINT,
-				this.getResources().getStringArray(
-						R.array.rs_voice_asr_start_hint));
+		
+		TXZResourceManager.getInstance().setTextResourceString(ASR_HINT,this.getResources().getStringArray(R.array.rs_voice_asr_start_hint));
 
 		// ERROR 关闭日志 DEBUG 打开日志
-		TXZConfigManager.getInstance().setUIConfigListener(
+		/* TXZConfigManager.getInstance().setUIConfigListener(
 				new UIConfigListener() {
 					@Override
 					public void onConfigChanged(String arg0) {
@@ -234,7 +234,7 @@ public class AdapterApplication extends Application implements InitListener,
 							// TODO 获取设置里各项参数
 							JSONArray array = jsonObject.getJSONArray(KEY_PRE_WAKEUPWORDS);
 							String floatTool = jsonObject.getString(KEY_FLOAT_TOOL);
-							int voiceSpeed = jsonObject.getInt(KEY_VOICE_SPEED);
+				//			int voiceSpeed = jsonObject.getInt(KEY_VOICE_SPEED);
 							float wakeupThreshold = Float.parseFloat(String.valueOf(jsonObject
 											.getDouble(KEY_WAKEUP_THRESHOLD)));
 							boolean wakeupSound = jsonObject.getBoolean(KEY_WAKEUP_SOUND);
@@ -245,7 +245,8 @@ public class AdapterApplication extends Application implements InitListener,
 							} else {
 								UserPerferenceUtil.setFloatMicEnable(getApplicationContext(), true);
 							}
-							UserPerferenceUtil.setTTSSpeed(getApplicationContext(), voiceSpeed);
+			//				if(voiceSpeed > 0)
+			//				UserPerferenceUtil.setTTSSpeed(getApplicationContext(), voiceSpeed);
 							UserPerferenceUtil.setAECEnable(getApplicationContext(), wakeupSound);
 							UserPerferenceUtil.setWakeupThreshold(getApplicationContext(), wakeupThreshold);
 							ContentValues con = new ContentValues();
@@ -266,13 +267,12 @@ public class AdapterApplication extends Application implements InitListener,
 								TXZConfigManager.getInstance().setWakeupKeywordsNew(strSet);
 							}
 
-							getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).edit()
-									.putStringSet(KEY_PRE_WAKEUPWORDS, set).apply();
+							getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE).edit().putStringSet(KEY_PRE_WAKEUPWORDS, set).apply();
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
 					}
-				});
+				}); */
 		TXZConfigManager.getInstance().setLogLevel(Log.DEBUG);
 		SenceToolNode.getInstance().init();
 		SystemNode.getInstance().init();
@@ -281,9 +281,9 @@ public class AdapterApplication extends Application implements InitListener,
 		AudioNode.getInstance().init();
 		NavigationNode.getInstance().init();
 		CustomAsAsrNode.getInstance().useWakeupAsAsr();
+		PhoneNode.getInstance().init();
 		startService(new Intent(getApplicationContext(), PhoneBookService.class));
 		startService(new Intent(getApplicationContext(), AssistantService.class));
-		PhoneNode.getInstance().init();
 		Logger.d("success");
 	}
 }

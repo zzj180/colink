@@ -138,8 +138,7 @@ public class MusicNode {
 			if(APPUtil.getInstance().isInstalled(APPUtil.KW_PKG)){
 				Intent intent = new Intent(mContext, KWMusicService.class);
 				intent.setAction(CommandPreference.SERVICECMD);
-				intent.putExtra(CommandPreference.CMDNAME,
-						CommandPreference.CMDFULL_CYCLE);
+				intent.putExtra(CommandPreference.CMDNAME,CommandPreference.CMDFULL_CYCLE);
 				mContext.startService(intent);
 			}else{
 				Intent intent = new Intent(AITING_ACTION);
@@ -344,15 +343,14 @@ public class MusicNode {
 		public void exit() {
 			Logger.d("exit");
 			Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
-			intent.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(
-					KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_STOP));
+			intent.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_STOP));
 			mContext.sendBroadcast(intent);
-			/*
-			 * Intent intent = new Intent(mContext,KWMusicService.class);
-			 * intent.setAction(CommandPreference.SERVICECMD);
-			 * intent.putExtra(CommandPreference.CMDNAME,
-			 * CommandPreference.CMDSTOP); mContext.startService(intent);
-			 */
+			
+			 Intent i = new Intent(mContext,KWMusicService.class);
+			 i.setAction(CommandPreference.SERVICECMD);
+			 i.putExtra(CommandPreference.CMDNAME, CommandPreference.CMDSTOP);
+			 mContext.startService(i);
+			
 
 			try {
 				RomSystemSetting.forceStopPackage(APPUtil.KW_PKG);

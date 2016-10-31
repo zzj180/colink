@@ -127,7 +127,7 @@ public class SystemPropertiesProxy {
 			ret = (String) get.invoke(SystemProperties, params);
 
 		} catch (IllegalArgumentException iAE) {
-			throw iAE;
+			ret = def;
 		} catch (Exception e) {
 			ret = def;
 		}

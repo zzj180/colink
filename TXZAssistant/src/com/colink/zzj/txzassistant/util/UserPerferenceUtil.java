@@ -42,7 +42,7 @@ public class UserPerferenceUtil {
     public static final String KEY_WAKEUP_THRESHOLD = "KEY_WAKEUP_THRESHOLD";
     // float mic setting
     public static final String KEY_ENABLE_FLOAT_MIC = "KEY_ENABLE_FLOAT_MIC";
-    public static final boolean VALUE_ENABLE_FLOAT_MIC_DEFAULT = false;
+    public static boolean VALUE_ENABLE_FLOAT_MIC_DEFAULT = false;
 
     // oneShot setting
     public static final String KEY_ENABLE_ONESHOT = "KEY_ENABLE_ONESHOT";

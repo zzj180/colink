@@ -171,10 +171,8 @@ public class RomSystemSetting {
 				if (currentVolume >= 7) {
 					currentVolume = 7;
 					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume * 2, 0);
-					mAudioManager.setStreamVolume(
-							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
-							currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
 					return TIPS_MUSIC_MAX;
 				} else {
 					currentVolume++;
@@ -189,14 +187,14 @@ public class RomSystemSetting {
 				}
 			} else {
 				currentVolume = currentVolume/3;
-				if (currentVolume > 3) {
-					currentVolume = 4;
-					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,12, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 12, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,12, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,12, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,12, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,12, 0);
+				if (currentVolume > 4) {
+					currentVolume = 5;
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,15, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 15, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,15, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_RING,15, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_DTMF,15, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,15, 0);
 					mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,6, 0);
 					return TIPS_MUSIC_MAX;
 				} else {
@@ -218,23 +216,17 @@ public class RomSystemSetting {
 				if (currentVolume <= 0) {
 					currentVolume = 0;
 					// 静音了播报无作用
-					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-							currentVolume * 2, 0);
-					mAudioManager.setStreamVolume(
-							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
-							currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
 					return TIPS_MUSIC_MIN;
 				} else {
 					--currentVolume;
 					// PreferenceHelper.getInstance().setVolume(currentVolume *
 					// 3);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-							currentVolume * 2, 0);
-					mAudioManager.setStreamVolume(
-							AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
-							currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume * 2, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+					mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,currentVolume, 0);
 					return  TIPS_MUSIC_VOLUME + currentVolume;
 
 				}
@@ -278,7 +270,7 @@ public class RomSystemSetting {
 				mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM,
 						currentVolume, 0);
 			} else {
-				currentVolume = 12;
+				currentVolume = 15;
 				// PreferenceHelper.getInstance().setVolume(currentVolume * 3);
 				mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume, 0);
 				mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
@@ -313,8 +305,8 @@ public class RomSystemSetting {
 		String platform = SystemPropertiesProxy.get(context, AssistantService.KEY_PLATFORM);
 		if (isAdd) {
 			for (int i = 0; i < volumeValue; i++) {// FLAG_REMOVE_SOUND_AND_VIBRATE
-				if(am.getStreamVolume(AudioManager.STREAM_ALARM) > 11){
-					return 12;
+				if(am.getStreamVolume(AudioManager.STREAM_ALARM) > 14){
+					return 15;
 				}
 				if(TextUtils.isEmpty(platform)){
 					am.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_RAISE,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
@@ -347,9 +339,13 @@ public class RomSystemSetting {
 			am.setStreamVolume(AudioManager.STREAM_ALARM, am.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
 			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, am.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
 		}else{
-			am.setStreamVolume(AudioManager.STREAM_MUSIC,12, 0);
-			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 12, 0);
-			am.setStreamVolume(AudioManager.STREAM_ALARM, 12, 0);
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,15, 0);
+			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 15, 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM,15, 0);
+			am.setStreamVolume(AudioManager.STREAM_RING,15, 0);
+			am.setStreamVolume(AudioManager.STREAM_DTMF,15, 0);
+			am.setStreamVolume(AudioManager.STREAM_SYSTEM,15, 0);
+			am.setStreamVolume(AudioManager.STREAM_VOICE_CALL,6, 0);
 		}
 		// 返回当前媒体音量
 		return am.getStreamVolume(AudioManager.STREAM_ALARM);
@@ -358,9 +354,12 @@ public class RomSystemSetting {
 	// 最小音量--vain
 	public static int setMinVolume(Context context) {
 		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+		am.setStreamVolume(AudioManager.STREAM_MUSIC,0, 0);
 		am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
-		am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+		am.setStreamVolume(AudioManager.STREAM_ALARM,0, 0);
+		am.setStreamVolume(AudioManager.STREAM_RING,0, 0);
+		am.setStreamVolume(AudioManager.STREAM_DTMF,0, 0);
+		am.setStreamVolume(AudioManager.STREAM_SYSTEM,0, 0);
 		// 返回当前媒体音量
 		return am.getStreamVolume(AudioManager.STREAM_ALARM);
 	}
@@ -377,12 +376,15 @@ public class RomSystemSetting {
 			am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
 			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumeValue, 0);
 		}else{
-			if(volumeValue > 12){
-				volumeValue = 12;
+			if(volumeValue > 15){
+				volumeValue = 15;
 			}
 			am.setStreamVolume(AudioManager.STREAM_MUSIC,volumeValue, 0);
-			am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
 			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_ALARM,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_RING,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_DTMF,volumeValue, 0);
+			am.setStreamVolume(AudioManager.STREAM_SYSTEM,volumeValue, 0);
 		}
 		
 		// 返回当前媒体音量

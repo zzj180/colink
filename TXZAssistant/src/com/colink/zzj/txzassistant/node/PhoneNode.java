@@ -227,13 +227,16 @@ public class PhoneNode  {
 		private String getContactNameByNumber(String number) {
 			Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 			ContentResolver resolver = mContext.getContentResolver();
-			Cursor cursor = resolver.query(uri,new String[] { Phone.DISPLAY_NAME }, Phone.NUMBER + "=" + number, null,null);
 			String name = null;
-			if(cursor!=null){
-				if (cursor.moveToFirst()) {
-					name = cursor.getString(0);
+			try {
+				Cursor cursor = resolver.query(uri,new String[] { Phone.DISPLAY_NAME }, Phone.NUMBER + "=" + number, null,null);
+				if(cursor!=null){
+					if (cursor.moveToFirst()) {
+						name = cursor.getString(0);
+					}
+					cursor.close();
 				}
-				cursor.close();
+			} catch (Exception e) {
 			}
 			return name;
 		}
