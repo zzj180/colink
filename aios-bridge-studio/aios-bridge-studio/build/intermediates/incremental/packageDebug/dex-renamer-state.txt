@@ -1,0 +1,7 @@
+#Sat Oct 29 10:07:13 CST 2016
+base.0=D\:\\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\\aios-bridge-studio\\aios-bridge-studio\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_9be505544d633498bf5dfd88fbb958664c846858
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=D\:\\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\\aios-bridge-studio\\aios-bridge-studio\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_af2eaf300133f4b7ec5685f5cad3d52940b75159\\classes.dex
+base.1=D\:\\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\\aios-bridge-studio\\aios-bridge-studio\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_af2eaf300133f4b7ec5685f5cad3d52940b75159
+file.0=D\:\\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\\aios-bridge-studio\\aios-bridge-studio\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_9be505544d633498bf5dfd88fbb958664c846858\\classes.dex

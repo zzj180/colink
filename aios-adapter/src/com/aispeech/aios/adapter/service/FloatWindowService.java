@@ -216,6 +216,8 @@ public class FloatWindowService extends Service {
 				CreateDialog(this);
 			}
 		}
+		AIMusic.setOnMusicSearchedListener(MusicNode.getInstance());
+        AIMusic.setOnMusicAppListener(MusicNode.getInstance());
 		return super.onStartCommand(intent, flags, startId);
 	}
 

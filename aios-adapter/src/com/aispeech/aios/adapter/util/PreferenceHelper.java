@@ -29,7 +29,8 @@ public class PreferenceHelper {
     public static final String PREF_KEY_MEDIA_VOLUME = "pref_key_media_volume";//音量大小
     public static final String PREF_KEY_BRIGHTNESS = "pref_key_brightness";//亮度大小
     public static final String PREF_KEY_WAKEUP_SWITCH = "pref_key_wakeup_switch";//唤醒开关
-
+    private static final String KEY_INPUT_VIEW_X = "KEY_INPUT_VIEW_X";
+    private static final String KEY_INPUT_VIEW_Y = "KEY_INPUT_VIEW_Y";
     /**
      * 是否使用远程BusServer
      */
@@ -262,5 +263,21 @@ public class PreferenceHelper {
     
     public boolean getWakeUpEnable(){
     	return mSp.getBoolean(PREF_KEY_WAKEUP_SWITCH, true);
+    }
+    
+    public static void setInputViewX(Context context, int x) {
+    	mSp.edit().putInt(KEY_INPUT_VIEW_X, x).apply();
+    }
+
+    public static int getInputViewX(Context context, int defaultX) {
+        return mSp.getInt(KEY_INPUT_VIEW_X, defaultX);
+    }
+
+    public static void setInputViewY(Context context, int y) {
+    	mSp.edit().putInt(KEY_INPUT_VIEW_Y, y).apply();
+    }
+
+    public static int getInputViewY(Context context, int defaultY) {
+    	 return mSp.getInt(KEY_INPUT_VIEW_Y, defaultY);
     }
 }

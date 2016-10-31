@@ -72,7 +72,9 @@ public class SystemNode extends BaseNode {
 					.getContext().getSystemService(Context.AUDIO_SERVICE);
 			try {
 				boolean enable = Boolean.parseBoolean(state);
-				audioManager.setStreamMute(AudioManager.STREAM_MUSIC, enable);
+				if(!AdapterApplication.isMTK){
+					audioManager.setStreamMute(AudioManager.STREAM_MUSIC, enable);
+				}
 				if(enable){
 					getWakeLock().acquire();
 					getWakeLock().release();

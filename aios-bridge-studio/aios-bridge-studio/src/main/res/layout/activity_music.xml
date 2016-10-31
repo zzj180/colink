@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MainLayoutStyle"
+    android:orientation="vertical"
+    tools:context=".activity.MusicActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            style="@style/MainLayoutStyle"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_sync_musics"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:text="@string/sync_local_musics" />
+
+
+            <Button
+                android:id="@+id/button_scan_disable"
+                style="@style/ButtonStyle"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:text="关闭本地音乐扫描（默认打开）" />
+
+
+            <Button
+                android:id="@+id/button_scan_enable"
+                style="@style/ButtonStyle"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:text="打开本地音乐扫描" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/demo_note_music"/>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

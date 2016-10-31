@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configs>
+    <!-- 基本配置 用于配置是否使能相关服务 -->
+    <config name="basic">
+        <item key="radio" value="true"/>
+        <item key="stock" value="true"/>
+        <item key="weather" value="true"/>
+        <item key="vehiclerestriction" value="true"/>
+        <item key="notification" value="true"/>
+        <item key="chat" value="true"/>
+        <item key="command" value="true"/>
+        <item key="navi" value="true"/>
+        <item key="music" value="true"/>
+        <item key="nearby" value="true"/>
+        <item key="phonecall" value="true"/>
+        <item key="callin" value="true"/>
+        <item key="wechat" value="true"/>
+        <item key="netfm" value="false"/>
+        <item key="trafficstate" value="true"/>
+    </config>
+    
+    <!-- 聚类开关 用于导航周边的POI数据优化 -->
+    <config name="cluster">
+        <item key="cluster" value="disable"/>
+    </config>
+
+    <!-- 合成音音量 取值范围0~100 默认50 -->
+    <config name="volume">
+        <item key="volume" value="70"/>
+    </config>
+    
+    
+</configs>

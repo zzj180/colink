@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.aispeech.aimusic.AIMusic;
 import com.aispeech.aios.adapter.AdapterApplication;
 import com.aispeech.aios.adapter.R;
 import com.aispeech.aios.adapter.bean.PoiBean;
@@ -22,6 +23,7 @@ import com.aispeech.aios.adapter.service.FloatWindowService;
 import com.aispeech.aios.adapter.service.PhoneBookService;
 import com.aispeech.aios.adapter.util.APPUtil;
 import com.aispeech.aios.adapter.util.Gps;
+import com.aispeech.aios.adapter.util.MapOperateUtil;
 import com.aispeech.aios.adapter.util.PositionUtil;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
 import com.aispeech.aios.adapter.util.SendBroadCastUtil;
@@ -59,7 +61,8 @@ public class PhoneBookReceive extends BroadcastReceiver {
 	private static final String SPIT = ",";
 	private static final String COM_GLSX_AUTONAVI = "com.glsx.bootup.send.autonavi";
 	private static final String ACTION_ROMOTE_CLD = "action.colink.command_showway_cld";
-
+	
+	
 	public static String _KEYS_ = "keySet";
 	public static String _TYPE_STANDCMD_ = "standCMD";
 	public static String _CMD_ = "ecarSendKey";
@@ -90,17 +93,19 @@ public class PhoneBookReceive extends BroadcastReceiver {
 		} else if (ACTION_ACC_ON.equals(action)) {
 			AdapterApplication.accState = true;
 				int storageVolume = PreferenceHelper.getInstance().getVolume();
+				Log.d("aios","storageVolume=" +storageVolume);
 				if (storageVolume > 0) {
 					String platform = SystemPropertiesProxy.get(context,AdapterApplication.KEY_PLATFORM);
 					if (TextUtils.isEmpty(platform)) {
 						AudioManager am = (AudioManager) context.getSystemService(Service.AUDIO_SERVICE);
 						am.setStreamVolume(AudioManager.STREAM_NOTIFICATION,storageVolume, 0);
-						am.setStreamVolume(AudioManager.STREAM_ALARM,storageVolume, 0);
 						am.setStreamVolume(AudioManager.STREAM_MUSIC,storageVolume * 2, 0);
+						am.setStreamVolume(AudioManager.STREAM_ALARM,storageVolume, 0);
 					}
 					PreferenceHelper.getInstance().setVolume(0);
 			}
 			context.startService(new Intent(context, FloatWindowService.class));
+			
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
@@ -114,10 +119,26 @@ public class PhoneBookReceive extends BroadcastReceiver {
 				if (TextUtils.isEmpty(platform)) {
 					AudioManager am = (AudioManager) context.getSystemService(Service.AUDIO_SERVICE);
 					int curValue = am.getStreamVolume(AudioManager.STREAM_ALARM);
-					am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
-					am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
-					am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-					PreferenceHelper.getInstance().setVolume(curValue);
+					Log.d("aios","curValue=" +curValue);
+					if(curValue != 0){
+						am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+						am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+						am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+						PreferenceHelper.getInstance().setVolume(curValue);
+					}else{
+						new Handler().postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								AudioManager am = (AudioManager) AdapterApplication.getContext().getSystemService(Service.AUDIO_SERVICE);
+								int cur = am.getStreamVolume(AudioManager.STREAM_ALARM);
+								Log.d("aios","curValue=" +cur);
+								am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+								am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+								am.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+								PreferenceHelper.getInstance().setVolume(cur);
+							}
+						}, 300);
+					}
 				}
 			}
 			AdapterApplication.accState = false;
@@ -130,9 +151,9 @@ public class PhoneBookReceive extends BroadcastReceiver {
 					context.stopService(new Intent(context,FloatWindowService.class));
 				}
 			}, 300);
-		} else if (action.equals(TEMP_HIGH_KEYEVENT)) {
+		}/* else if (action.equals(TEMP_HIGH_KEYEVENT)) {
 		} else if (action.equals(TEMP_NORMAL_KEYEVENT)) {
-		}
+		}*/
 
 		else if (ACTION_REMOTE_NAVI.equals(action)) {
 			float lat = intent.getFloatExtra("lat", 0f);
@@ -158,52 +179,11 @@ public class PhoneBookReceive extends BroadcastReceiver {
 			// Gps gcj02 =
 			// PositionUtil.gps84_To_Gcj02(Double.parseDouble(latlon[1]),
 			// Double.parseDouble(latlon[0])); //delete by zzj
-			int mapType = Settings.System.getInt(context.getContentResolver(),"MAP_INDEX", MapConfig.BDDH);
-
-			if (APPUtil.getInstance().isInstalled(Configs.getMapPackage(mapType))) {
-				PoiBean bean = new PoiBean();
-				bean.setLatitude(Double.parseDouble(latlon[1]));
-				bean.setLongitude(Double.parseDouble(latlon[0]));
-				bean.setName(poi);
-				switch (mapType) {
-				case Configs.MapConfig.GDMAP:
-					if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-	            		GDCAROperator.getInstance(context).startNavigation(bean);
-	            	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-	            		GDOperate.getInstance(context).startNavigation(bean);
-	            	}
-					break;
-				case Configs.MapConfig.BDDH:
-					Gps bd09 = PositionUtil.gcj02_To_Bd09(Double.parseDouble(latlon[1]),Double.parseDouble(latlon[0]));
-					PoiBean bea = new PoiBean();
-					bea.setLatitude(bd09.getWgLat());
-					bea.setLongitude(bd09.getWgLon());
-					bea.setName(poi);
-					BDDHOperate.getInstance(context).startNavigation(bea);
-					break;
-				case Configs.MapConfig.KLDMAP:
-					KLDOperate.getInstance(context).startNavigation(bean);
-					break;
-				case Configs.MapConfig.MXMAP:
-					MXOperate.getInstance(context).startNavigation(bean);
-					break;
-				case Configs.MapConfig.GGMAP:
-					GGOperate.getInstance(context).startNavigation(bean);
-					break;
-				case Configs.MapConfig.BDMAP:
-					BDOperate.getInstance(context).startNavigation(bean);
-					break;
-				case Configs.MapConfig.TBMAP:
-					TBOperate.getInstance(context).startNavigation(bean);
-					break;
-				case Configs.MapConfig.GDMAPFORCAT:
-					GDCAROperator.getInstance(context).startNavigation(bean);
-					break;
-				}
-			} else {
-				TTSNode.getInstance().play(
-						"没有找到" + Configs.getMapName(mapType) + "，无法导航");
-			}
+			PoiBean bean = new PoiBean();
+			bean.setLatitude(Double.parseDouble(latlon[1]));
+			bean.setLongitude(Double.parseDouble(latlon[0]));
+			bean.setName(poi);
+			MapOperateUtil.getInstance().startNavigation(bean);//开始导航
 		} else if (ACTION_REMOTE.equals(action)) {
 			double lat = intent.getDoubleExtra("lat", 0f);
 			double lng = intent.getDoubleExtra("lng", 0f);
@@ -214,137 +194,27 @@ public class PhoneBookReceive extends BroadcastReceiver {
 					lat = gcj02.getWgLat();
 					lng = gcj02.getWgLon();
 				}
-				int mapType = Settings.System.getInt(context.getContentResolver(), "MAP_INDEX",MapConfig.GDMAP);
-
-				if (APPUtil.getInstance().isInstalled(Configs.getMapPackage(mapType))) {
-					PoiBean bean = new PoiBean();
-					bean.setLatitude(lat);
-					bean.setLongitude(lng);
-					switch (mapType) {
-					case Configs.MapConfig.GDMAP:
-						if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-		            		GDCAROperator.getInstance(context).startNavigation(bean);
-		            	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-		            		GDOperate.getInstance(context).startNavigation(bean);
-		            	}
-						break;
-					case Configs.MapConfig.BDDH:
-						Gps bd09 = PositionUtil.gcj02_To_Bd09(lat, lng);
-						PoiBean bea = new PoiBean();
-						bea.setLatitude(bd09.getWgLat());
-						bea.setLongitude(bd09.getWgLon());
-						BDDHOperate.getInstance(context).startNavigation(bea);
-						break;
-					case Configs.MapConfig.KLDMAP:
-						KLDOperate.getInstance(context).startNavigation(bean);
-						break;
-					case Configs.MapConfig.MXMAP:
-						MXOperate.getInstance(context).startNavigation(bean);
-						break;
-					case Configs.MapConfig.GGMAP:
-						GGOperate.getInstance(context).startNavigation(bean);
-						break;
-					case Configs.MapConfig.BDMAP:
-						BDOperate.getInstance(context).startNavigation(bean);
-						break;
-					case Configs.MapConfig.TBMAP:
-						TBOperate.getInstance(context).startNavigation(bean);
-						break;
-					case Configs.MapConfig.GDMAPFORCAT:
-						GDCAROperator.getInstance(context).startNavigation(bean);
-						break;
-					}
-				} else {
-					TTSNode.getInstance().play("没有找到" + Configs.getMapName(mapType) + "，无法导航");
-				}
+				PoiBean bean =new PoiBean();
+				bean.setLatitude(lat);
+				bean.setLongitude(lng);
+				MapOperateUtil.getInstance().startNavigation(bean);//开始导航
 			}
 		} else if (ACTION_ECAR_NAVI.equals(action)) {
 			String cmd = intent.getStringExtra(_CMD_);
+			Log.d("TTSReceive", "cmd = " + cmd);
 			if ("StartMap".equals(cmd)) {
 				if (AdapterApplication.accState) {
 					String poiName;
 					String toLat;
 					String toLon;
 					PoiBean bean = new PoiBean();
-					int mapType = Settings.System.getInt(context.getContentResolver(), "MAP_INDEX",MapConfig.GDMAP);
-
-					if (APPUtil.getInstance().isInstalled(Configs.getMapPackage(mapType))) {
-						switch (mapType) {
-						case Configs.MapConfig.GDMAP:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-			            		GDCAROperator.getInstance(context).startNavigation(bean);
-			            	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-			            		GDOperate.getInstance(context).startNavigation(bean);
-			            	}
-							break;
-						case Configs.MapConfig.BDDH:
-							poiName = intent.getStringExtra("baidu_poiName");
-							toLat = intent.getStringExtra("baidu_latitude");
-							toLon = intent.getStringExtra("baidu_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							BDDHOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.KLDMAP:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							KLDOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.MXMAP:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							MXOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.GGMAP:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							GGOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.BDMAP:
-							BDOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.TBMAP:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							TBOperate.getInstance(context).startNavigation(bean);
-							break;
-						case Configs.MapConfig.GDMAPFORCAT:
-							poiName = intent.getStringExtra("gaode_poiName");
-							toLat = intent.getStringExtra("gaode_latitude");
-							toLon = intent.getStringExtra("gaode_longitude");
-							bean.setLatitude(Double.parseDouble(toLat));
-							bean.setLongitude(Double.parseDouble(toLon));
-							bean.setName(poiName);
-							GDCAROperator.getInstance(context).startNavigation(bean);
-							break;
-						}
-					} else {
-						TTSNode.getInstance().play("没有找到" + Configs.getMapName(mapType) + "，无法导航");
-					}
-
+					poiName = intent.getStringExtra("gaode_poiName");
+					toLat = intent.getStringExtra("gaode_latitude");
+					toLon = intent.getStringExtra("gaode_longitude");
+					bean.setLatitude(Double.parseDouble(toLat));
+					bean.setLongitude(Double.parseDouble(toLon));
+					bean.setName(poiName);
+					MapOperateUtil.getInstance().startNavigation(bean);//开始导航
 				}
 			}else if ("UpdateContacts".equals(cmd)) {
 				try {

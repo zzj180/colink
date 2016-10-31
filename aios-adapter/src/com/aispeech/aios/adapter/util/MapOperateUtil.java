@@ -52,7 +52,9 @@ public class MapOperateUtil {
 
             switch (mapType) {
                 case Configs.MapConfig.GDMAP:
-                	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
+                	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCATJ)){
+                		APPUtil.getInstance().openApplication(Configs.MapConfig.PACKAGE_GDMAPFORCATJ);
+                	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
                 		GDCAROperator.getInstance(mContext).openMap();
                 	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
                 		 GDOperate.getInstance(mContext).openMap();
@@ -91,12 +93,8 @@ public class MapOperateUtil {
 
             switch (mapType) {
             case Configs.MapConfig.GDMAP:
-            	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-            		GDCAROperator.getInstance(mContext).closeMap();
-            	}
-            	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-            		 GDOperate.getInstance(mContext).closeMap();
-            	}
+            	
+            	GDOperate.getInstance(mContext).closeMap();
                 break;
             case Configs.MapConfig.BDDH:
                 BDDHOperate.getInstance(mContext).closeMap();
@@ -128,18 +126,9 @@ public class MapOperateUtil {
      */
     public void locateByMap() {
     	 int mapType = Settings.System.getInt(mContext.getContentResolver(),MAP_INDEX, MapConfig.BDDH);
-
-       
             switch (mapType) {
             case Configs.MapConfig.GDMAP:
-            	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-            		GDCAROperator.getInstance(mContext).locate();
-            	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-            		 GDOperate.getInstance(mContext).locate();
-            	}else{
-            		 Toast.makeText(mContext, "请先安装高德地图", Toast.LENGTH_LONG).show();
-            	}
-                GDOperate.getInstance(mContext).locate();
+            	GDCAROperator.getInstance(mContext).locate();
                 break;
             case Configs.MapConfig.BDDH:
                 BDDHOperate.getInstance(mContext).locate();
@@ -171,17 +160,9 @@ public class MapOperateUtil {
      */
     public void startNavigation(PoiBean bean) {
     	 int mapType = Settings.System.getInt(mContext.getContentResolver(),MAP_INDEX, MapConfig.BDDH);
-
-      
             switch (mapType) {
             case Configs.MapConfig.GDMAP:
-            	if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)){
-            		GDCAROperator.getInstance(mContext).startNavigation(bean);
-            	}else if(APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)){
-            		GDOperate.getInstance(mContext).startNavigation(bean);
-            	}else{
-            		 Toast.makeText(mContext, "请先安装高德地图", Toast.LENGTH_LONG).show();
-            	}
+            	GDCAROperator.getInstance(mContext).startNavigation(bean);
                 break;
             case Configs.MapConfig.BDDH:
                 BDDHOperate.getInstance(mContext).startNavigation(bean);

@@ -2,6 +2,7 @@ package com.aispeech.aios.adapter.vendor.GD;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.aispeech.ailog.AILog;
@@ -45,7 +46,7 @@ public class GDOperate {
 //        this.openVioce();//打开路口语音播报
 //        this.checkGDReNavigation();//删除poi遗留  
     	//铁站-C口","latitude":22.575425,"longitude":113.876578,"distance":1375,"tel":""},{"name":"芝麻街(坪洲地铁店
-        if (APPUtil.getInstance().isInstalled(Configs.MapConfig.PACKAGE_GDMAP)) {
+    	 if (APPUtil.getInstance().isInstalled(Configs.MapConfig.PACKAGE_GDMAP)) {
             String lat = String.valueOf(bean.getLatitude());
             String lon = String.valueOf(bean.getLongitude());
             String cat = "android.intent.category.DEFAULT";
@@ -88,26 +89,45 @@ public class GDOperate {
     
 	public void closeCarMap() {// 强制结束掉高德APP，需要root权限
 		
-		Intent intent = new Intent("AUTONAVI_STANDARD_BROADCAST_RECV");
-		intent.putExtra("KEY_TYPE", 10021);
-		context.sendBroadcast(intent);
-		
-		try {
-        	//changed by ydj on 2016.3.24
-       //     APPUtil.getInstance(context).kill(MapConfig.PACKAGE_GDMAP);
-        	APPUtil.getInstance().forceStopPackage(MapConfig.PACKAGE_GDMAPFORCAT);
-        	//changed by ydj on 2016.3.24
-        } catch (Exception e) {
-            e.printStackTrace();
-            AILog.d(TAG, "结束高德地图失败");
-        }
+		if (APPUtil.getInstance().isInstalled(Configs.MapConfig.PACKAGE_GDMAPFORCATJ)) {
+    		Intent mIntent = new Intent("AUTONAVI_STANDARD_BROADCAST_RECV");
+    		mIntent.putExtra("KEY_TYPE",10010);
+    		context.sendBroadcast(mIntent);
+
+    		new Handler().postDelayed(new Runnable() {
+
+    			@Override
+    			public void run() {
+    				try {
+    					 APPUtil.getInstance().forceStopPackage(Configs.MapConfig.PACKAGE_GDMAPFORCATJ);
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+    			}
+    		}, 1000);
+
+    	}
+    	if (APPUtil.getInstance().isInstalled(Configs.MapConfig.PACKAGE_GDMAPFORCAT)) {
+    		Intent intent = new Intent("AUTONAVI_STANDARD_BROADCAST_RECV");
+    		intent.putExtra("KEY_TYPE", 10021);
+    		context.sendBroadcast(intent);
+        	
+        	new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                	 try {
+                         APPUtil.getInstance().forceStopPackage(Configs.MapConfig.PACKAGE_GDMAPFORCAT);
+                     } catch (Exception e) {
+                         e.printStackTrace();
+                     }
+                }
+            }, 1000);
+    	}
 
 	}
     
     public void closeMap() {// 强制结束掉高德APP，需要root权限
-		if (APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAPFORCAT)) {
 			closeCarMap();
-		}
 		if (APPUtil.getInstance().isInstalled(MapConfig.PACKAGE_GDMAP)) {
 			closeGDMap();
 		}

@@ -170,8 +170,7 @@ public class PhoneNode extends BaseNode {
 				// 收到蓝牙已断开消息，通知aios
 				// publishSticky("phone.bluetooth.state", "disconnected");
 			}  else if (intent.getAction().equals(ACTION_PHONE_STATE)) {// total
-																		// else
-																		// if
+																		
 				// 收到蓝牙来电铃声响起消息，通知aios
 
 				int state = intent.getIntExtra("state",TelephonyManager.CALL_STATE_RINGING);

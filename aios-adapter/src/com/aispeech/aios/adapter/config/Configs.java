@@ -81,6 +81,7 @@ public class Configs {
         public static final String PACKAGE_GGMAP = "com.google.android.apps.maps";
         public static final String PACKAGE_BDDH = "com.baidu.navi";//百度导航的包名
         public static final String PACKAGE_GDMAPFORCAT = "com.autonavi.amapauto";//高德地图车机版包名
+        public static final String PACKAGE_GDMAPFORCATJ = "com.autonavi.amapautolite";//高德地图车机版包名
     }
 
 

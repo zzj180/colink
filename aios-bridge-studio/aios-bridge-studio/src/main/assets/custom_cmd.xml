@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <url name="/customize/video/start">
+        <cmd name="把录像开了"/>
+        <cmd name="把录像打开"/>
+    </url>
+
+</root>

@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -71,7 +74,7 @@ public class MyWindowManager {
 	private static final int MSG_REMOVE_WINDOW = 0x02;
 	private static final int MSG_LOADING_WINDOW = 0x03;
 	private static final int MSG_RESUSE_VOLUME = 0x13;
-	
+	private static final String ACTION_BACK_CAR = "android.intent.action.BACK_CAR_ON_KEYEVENT";
 	private static final String TTS_SHOW = "tts_show";
 	/**
 	 * 小悬浮窗View的实例
@@ -147,7 +150,25 @@ public class MyWindowManager {
 		smallWindow.setOnNavigListClickListener(mNavigListClickListener);
 		smallWindow.setOnPhoneListItemClickListener(mOnPhoneListClickListener);
 		smallWindow.setOnPhoneWaitFinishedListener(mPhoneWaitFinishedListener);
+		IntentFilter filter = new IntentFilter(ACTION_BACK_CAR);
+		context.registerReceiver(receiver, filter);
 	}
+	
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (ACTION_BACK_CAR.equals(action)) {
+				UiEventDispatcher.notifyUpdateUI(UIType.Awake);
+				UiEventDispatcher.notifyUpdateUI(UIType.DismissWindow);
+				removeVehLargeImage();
+				BusClient bc = HomeNode.getInstance().getBusClient();
+				if (null != bc) {
+					bc.publish(AiosApi.Other.UI_PAUSE);
+				}
+			}
+		}
+	};
 
 	/**
 	 * 获取WindowManager的单例
@@ -395,8 +416,11 @@ public class MyWindowManager {
 			getWindowManager().addView(smallWindow, smallWindowParams);
 			isShowing = true;
 			if (mContext != null) {
-		//	getWakeLock().acquire();
 				Settings.System.putInt(mContext.getContentResolver(), TTS_SHOW,1);
+				AudioManager audioManager = (AudioManager) mContext.getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+				if(AdapterApplication.isMTK){
+					audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+				}
 			}
 		}
 	}
@@ -445,8 +469,7 @@ public class MyWindowManager {
 		if (mContext != null) {
 		//	getWakeLock().release();
 			Settings.System.putInt(mContext.getContentResolver(), TTS_SHOW, 0);
-			AudioManager audioManager = (AudioManager) AdapterApplication
-					.getContext().getSystemService(Context.AUDIO_SERVICE);
+			AudioManager audioManager = (AudioManager) mContext.getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 			audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 			mHandler.sendEmptyMessageDelayed(MSG_RESUSE_VOLUME, 1000);
 		}

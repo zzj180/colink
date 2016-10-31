@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="22"
+    format="8"
+    plugin-version="2.2.2"
+    timestamp="59505311527299"
+    token="-6918374321867815960"
+    verifier="FULL_BUILD_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="3570" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="460" />
+    <task
+        name="verifier"
+        duration="94" />
+
+    <artifact
+        location="D:\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\aios-bridge-studio\aios-bridge-studio\build\outputs\apk\aios-bridge-studio-debug.apk"
+        type="MAIN" />
+
+    <build
+        timestamp="59505311527299"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="D:\aios-pinwang-nihaoxiaochi_3.0.9.160806.1\aios-bridge-studio\aios-bridge-studio\build\outputs\apk\aios-bridge-studio-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

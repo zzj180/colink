@@ -473,8 +473,7 @@ public final class DeviceUtil {
 	public static String getExternalCacheBlocking(Context context, int timeout) {
 		String cacheroot = "";
 		for (int i = 0; i < timeout; i++) {
-			File cacheDir = DeviceUtil.getExternalCacheDir(AdapterApplication
-					.getContext());
+			File cacheDir = DeviceUtil.getExternalCacheDir(AdapterApplication.getContext());
 			if (cacheDir != null) {
 				cacheroot = cacheDir.getAbsolutePath();
 				break;
@@ -514,7 +513,7 @@ public final class DeviceUtil {
 					FAN_DEVICES));
 			bufWriter.write(value);
 			bufWriter.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

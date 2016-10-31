@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Service;
 import android.content.Context;
@@ -18,22 +19,28 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.aispeech.ailog.AILog;
 import com.aispeech.aimusic.AIMusic;
 import com.aispeech.aios.BusClient;
 import com.aispeech.aios.adapter.localScanService.service.LocalMusicScanService;
 import com.aispeech.aios.adapter.service.FloatWindowService;
+import com.aispeech.aios.adapter.ui.FloatView;
+import com.aispeech.aios.adapter.util.APPUtil;
 import com.aispeech.aios.adapter.util.PreferenceHelper;
 import com.aispeech.aios.adapter.util.SendBroadCastUtil;
 import com.aispeech.aios.adapter.util.SystemPropertiesProxy;
 import com.aispeech.aios.adapter.util.TTSController;
+import com.aispeech.aios.adapter.vendor.GDCAR.GDCAROperator;
 import com.tencent.bugly.crashreport.CrashReport;
 
 public class AdapterApplication extends Application {
 
 	public static String TAG = "AdapterApplication";
 	private String ACC_STATE = "acc_state";
+	private FloatView mFloatView;
 	public static final String KEY_PLATFORM = "ro.os.version";
 	private static Context mContext;
 	public static boolean accState = true;
@@ -47,6 +54,28 @@ public class AdapterApplication extends Application {
 		return mContext;
 	}
 
+	private OnClickListener mOnClick = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Intent localIntent = new Intent("aios.intent.action.UI_MIC_CLICK");
+			localIntent.setFlags(32);
+			mContext.sendBroadcast(localIntent);
+		}
+	};
+
+	private String getCurProcessName(Context context) {
+		int pid = android.os.Process.myPid();
+		ActivityManager activityManager = (ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE);
+		for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
+				.getRunningAppProcesses()) {
+			if (appProcess.pid == pid) {
+				return appProcess.processName;
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -54,6 +83,19 @@ public class AdapterApplication extends Application {
 		// CrashHandler.getInstance().init(getApplicationContext());
 		TTSController.getInstance(getApplicationContext()).init();
 		mContext = getApplicationContext();
+
+	/*	mFloatView = FloatView.getInstance(mContext);
+		mFloatView.setOnClickListener(mOnClick);
+		String processName = getCurProcessName(mContext);
+		if (!TextUtils.isEmpty(processName)) {
+			boolean defaultProcess = processName.equals("com.aispeech.aios.adapter");
+			if (defaultProcess) {
+				if (!mFloatView.isShown()) {
+					mFloatView.show();
+				}
+			}
+		}*/
+
 		String platform = SystemPropertiesProxy.get(this, KEY_PLATFORM);
 		if (TextUtils.isEmpty(platform)) {
 			isMTK = false;
@@ -119,9 +161,12 @@ public class AdapterApplication extends Application {
 				int storageVolume = PreferenceHelper.getInstance().getVolume();
 				if (storageVolume > 0) {
 					AudioManager am = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
-					am.setStreamVolume(AudioManager.STREAM_NOTIFICATION,storageVolume, 0);
-					am.setStreamVolume(AudioManager.STREAM_ALARM,storageVolume, 0);
-					am.setStreamVolume(AudioManager.STREAM_MUSIC,storageVolume * 2, 0);
+					am.setStreamVolume(AudioManager.STREAM_NOTIFICATION,
+							storageVolume, 0);
+					am.setStreamVolume(AudioManager.STREAM_ALARM,
+							storageVolume, 0);
+					am.setStreamVolume(AudioManager.STREAM_MUSIC,
+							storageVolume * 2, 0);
 					PreferenceHelper.getInstance().setVolume(0);
 				}
 			}
@@ -189,6 +234,12 @@ public class AdapterApplication extends Application {
 					accState = Settings.System.getInt(getContentResolver(),
 							ACC_STATE, 1) == 1;
 					if (!accState) {
+						Intent intent = new Intent(
+								"AUTONAVI_STANDARD_BROADCAST_RECV");
+						intent.putExtra("KEY_TYPE", 10018);
+						sendBroadcast(intent);
+						GDCAROperator.getInstance(getApplicationContext())
+								.closeMap();
 						sendBroadcast(new Intent("com.android.action_acc_off"));
 						SendBroadCastUtil.getInstance().sendBroadCast(
 								"com.aispeech.acc.status", "status", "off");
@@ -196,6 +247,7 @@ public class AdapterApplication extends Application {
 								new Intent(getApplicationContext(),
 										FloatWindowService.class));
 					}
+
 				}
 			}, 300);
 		}

@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">coogo语音</string>
+    <string name="sdk_version">欢迎使用AIOS for car v%1$s</string>
+
+    <string name="connect_bt">连接/断开蓝牙</string>
+    <string name="disconnect_bt">断开蓝牙</string>
+    <string name="sync_contacts">同步联系人(你可以说打电话给张三/张麻子)</string>
+    <string name="sync">同步</string>
+    <string name="clear">清空</string>
+    <string name="contact_name">张三</string>
+    <string name="contact_number">13000000000</string>
+    <string name="incoming">模拟来电</string>
+    <string name="show_ui">显示来电UI</string>
+    <string name="accept_simulate">模拟对方接受</string>
+    <string name="accept">接听</string>
+    <string name="reject">拒绝</string>
+    <string name="hangup">挂断</string>
+    <string name="outgoing">模拟去电</string>
+    <string name="bluetooth_disconnect">请先连接蓝牙</string>
+
+    <string name="demo_title_music">音乐模块</string>
+    <string name="demo_desc_music">音乐接口Demo</string>
+    <string name="sync_local_musics">同步本地音乐</string>
+    <string name="enable_scan_musics">是否AIOS自动同步本地音乐</string>
+
+    <string name="demo_title_phone">电话模块</string>
+    <string name="demo_desc_phone">电话功能Demo</string>
+
+    <string name="demo_title_customize">AIOS定制模块</string>
+    <string name="demo_desc_customize">AIOS定制Demo</string>
+
+    <string name="demo_title_system">系统模块</string>
+    <string name="demo_desc_system">系统接口Demo</string>
+
+    <string name="demo_title_map">地图模块</string>
+    <string name="demo_desc_map">地图接口Demo</string>
+
+    <string name="demo_title_setting">设置模块</string>
+    <string name="demo_desc_setting">设置接口Demo</string>
+
+    <string name="demo_title_status">状态监听</string>
+    <string name="demo_desc_status">状态监听Demo</string>
+
+    <string name="demo_title_radio">收音机监听</string>
+    <string name="demo_desc_radio">收音机监听Demo</string>
+
+    <string name="demo_title_ui">UI模块</string>
+    <string name="demo_desc_ui">UI接口Demo</string>
+
+    <string name="demo_note_customize">您可以：\n
+        a.定制AEC状态\n
+        1.您可以在AIOS启动后动态的修改AEC状态，AEC默认为关闭状态；\n
+        2.您可以将音乐调到中档音量，如果此时能唤醒则AEC为打开状态，否则为关闭状态；\n
+        3.请保证您的设备已经对接过AEC，否则此项测试可能无效。\n\n
+
+        b.定制通道反转\n
+        c.定制主唤醒词\n
+        d.定制快捷唤醒词\n\n
+
+        e.测试自定义命令效果\n
+        1.唤醒小驰后，语音输入：“打开空调”，查看AIOS反馈；\n
+        2.点击“注册打开空调命令”后，再重复第一步操作查看反馈；\n
+        3.点击“清空自定义命令”后，再重复第一步操作查看反馈。\n\n
+
+        f.测试APP扫描功能（默认开启）\n
+        1.唤醒小驰后，语音输入：“打开xxx”（xxx为机器上已安装的某款APP名称，比如 打开联系人），查看AIOS反馈；\n
+        2.点击“关闭APP扫描”，再重复第一步操作查看反馈；\n
+        3.点击“开启APP扫描”，再重复第一步操作查看反馈。\n
+    </string>
+
+    <string name="demo_note_map">您可以：\n
+        a.接入AIOS未支持的地图\n
+        1.安装随sdk一并发出的TecentMap.apk；\n
+        2.点击“接入腾讯地图”接入腾讯地图；\n
+        3.点击“默认腾讯地图”，将新接入的腾讯地图设为默认地图。或者手动在AIOS设置中设置亦可；\n
+        4.测试地图领域功能，包括打开地图、导航、我的位置以及AIOS导航领域快捷唤醒词（放大地图、缩小地图、
+        查看全程、退出导航、躲避拥堵、避免收费、高速优先、不走高速）等。\n
+    </string>
+
+    <string name="demo_note_setting">NOTE：设置对话模式、语音资源与默认地图时使用到的值，均可在SDK包的SettingProperty类中找到。</string>
+    <string name="demo_note_status">NOTE：设置状态监听器后，SDK能够收到AIOS发过来的各种状态并回调对应的接口。因为状态变化过多过快，请在
+        日志中查看相应变动。状态类型丰富中，敬请期待！</string>
+    <string name="demo_note_system">您可以：\n
+        a.将音量变化命令拦截，并自行处理\n
+        1.进入该界面，DEMO会自动绑定系统命令监听器（此时音量变化、亮度变化、系统级别的打开与关闭命令都将转发到SDK）\n
+        2.语音唤醒小驰，并说：增大音量、减小音量、最大音量、最小音量、静音、取消静音，分别查看该页变化以及TTS播报内容。\n\n
+
+        b.自定义设置AIOS-TTS播报音量大小\n
+        1.进度该界面, DEMO会设默认值并且可以随便拖动进度条来调节TTS播报音量大小.\n
+        2.TTS音量大小范围: 1 ~ 10 \n\n
+
+        c.将亮度变化命令拦截，并自行处理\n
+        1.进入该界面，DEMO会自动绑定系统命令监听器（此时音量变化、亮度变化、系统级别的打开与关闭命令都将转发到SDK）\n
+        2.语音唤醒小驰，并说：增加亮度、减小亮度、最大亮度、最小亮度，分别查看该页变化以及TTS播报内容。\n\n
+
+        d.将系统级别的打开、关闭命令拦截，并自行处理\n
+        1.进入该界面，DEMO会自动绑定系统命令监听器（此时音量变化、亮度变化、系统级别的打开与关闭命令都将转发到SDK）\n
+        2.语音唤醒小驰，用语音打开和关闭蓝牙、WIFI、热点、屏幕、电子狗、行车记录仪和胎压，分别查看该页变化以及TTS播报内容。\n
+    </string>
+
+    <string name="demo_note_ui">您可以：\n
+        a.为当前应用设置UI优先级\n
+        1.从三个优先级中选择一种，点击设置；\n
+        2.AIOS原生支持的地图优先级均为第一优先级，第二优先级预留，公版喜马拉雅与公版酷我是第三优先级，AIOS自身的天气、限行、路况等UI是第四优先级\n
+        3.根据您设置的优先级测试优先级机制处理是否正确：（比如设置为第二优先级）\n
+        　　i.先进入该页，再打开高德地图，在开启APP扫描时用语音输入“打开接口示例”，此时该应用在6s倒计时后应该切回到后台;\n
+        　　ii.先进入该页，再打开公版喜马拉雅，在开启APP扫描时用语音输入“打开接口示例”，此时该应用不会切回到后台\n\n
+
+        b.启用/停用UI优先级\n
+        1.使用该页上“启用UI优先级”与“停用UI优先级”即可实现设置。\n
+    </string>
+
+    <string name="demo_note_music">您可以：\n
+        a.在不打开酷我音乐与喜马拉雅的情况下，将所有音频控制命令转到SDK。比如：\n
+        1.根据歌名、歌手搜索歌曲（结果为模拟数据）；\n
+        2.从搜索结果中选择一首歌进行播放；\n
+        3.使用上一首、下一首、继续播放、暂停播放等快捷唤醒词进行控制；\n
+        4.开启或者关闭AIOS在启动时，执行的本地音乐同步操作；\n
+        5.使用单曲循环、顺序播放等命令修改播放模式；\n\n
+
+        b.在酷我音乐或者喜马拉雅打开的情况，让SDK参与音频控制命令的竞争\n
+        1.音频命令的竞争原则：同一状态下，喜马拉雅>酷我音乐>SDK接入的本地音乐，例如假设存在喜马拉雅、酷我音乐、SDK接入本地音乐
+        都是正在播放的状态（现实中不可能，设计到音频焦点机制），此时音频控制命令（上一首、下一首、继续播放等）将会交由喜马拉雅处理\n
+    </string>
+
+    <string name="prepnavi_address">预约地址</string>
+    <string name="prepnavi_endpoi">导航到%1$s</string>
+    <string name="receive_prepnavi_command">收到一条预约导航指令</string>
+    <string name="cancel_prepnavi">开始(%1$ss)</string>
+
+    <string name="start">开始</string>
+    <string name="cancel">取消</string>
+
+    <string name="wakeup_word">你好小云</string>
+    <string name="wakeup_word_pinyin">ni hao xiao yun</string>
+    <string name="launch_tips">语音已启动，您可以使用%1$s来唤醒</string>
+</resources>

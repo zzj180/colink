@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+    }
+  /*  useLibrary 'org.apache.http.legacy'*/
+    compileSdkVersion 19
+    buildToolsVersion '24.0.2'
+    defaultConfig {
+        applicationId "com.aispeech.aios.bridge"
+        minSdkVersion 16
+        //SO库不支持23并且没有做动态权限管理，请勿修改成23+
+        targetSdkVersion 22
+        versionCode 3
+        versionName "1.1.2" + releaseTime()
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:24.2.1'
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+def releaseTime() {
+    def runTasks = gradle.startParameter.taskNames
+    if ('assemble' in runTasks
+            || 'assembleDebug' in runTasks
+            || 'assembleRelease' in runTasks) {
+        Properties versionProps = new Properties();
+        File versionPropsFile = file('../version.properties');
+        if (versionPropsFile.canRead()) {
+            versionProps.load(new FileInputStream(versionPropsFile));
+            String version_date = versionProps['VERSION_DATE'].toString();
+            println ">version_date:" + version_date;
+            String version_count = versionProps['VERSION_COUNT'].toString();
+            println ">version_count:" + version_count;
+            return "." + version_date + "." + version_count
+        }
+
+        return ""
+    } else {
+        return ""
+    }
+}
